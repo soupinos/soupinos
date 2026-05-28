@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>praxis — Φτιάχνουμε παρουσία.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#080808;--bg2:#0f0f0f;--bg3:#161616;
+  --border:rgba(255,255,255,0.06);
+  --red:#FF3B00;--white:#F0EDE8;--muted:#666;
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  font-family:'DM Sans',sans-serif;
+  font-weight:400;
+  background:var(--bg);
+  color:var(--white);
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* ── CURSOR ── */
+.c-dot,.c-ring{
+  position:fixed;pointer-events:none;
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  z-index:9999;
+  will-change:left,top;
+}
+.c-dot{width:8px;height:8px;background:var(--red);z-index:10000}
+.c-ring{
+  width:32px;height:32px;
+  border:1px solid rgba(255,59,0,.45);
+  transition:width .2s,height .2s;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  padding:24px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background .4s,backdrop-filter .4s,padding .3s,border-color .4s;
+  border-bottom:1px solid transparent;
+}
+nav.scrolled{
+  background:rgba(8,8,8,.92);
+  backdrop-filter:blur(14px);
+  padding:14px 48px;
+  border-color:var(--border);
+}
+.nav-logo{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;
+  color:var(--white);text-decoration:none;letter-spacing:-.02em;
+}
+.nav-logo span{color:var(--red)}
+.nav-links{display:flex;align-items:center;gap:36px;list-style:none}
+.nav-links a{
+  color:var(--muted);text-decoration:none;font-size:.9rem;
+  transition:color .2s;
+}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{
+  background:var(--red)!important;
+  color:var(--white)!important;
+  padding:9px 20px;border-radius:4px;
+  transition:opacity .2s!important;
+}
+.nav-cta:hover{opacity:.82!important}
+
+/* ── HERO ── */
+#hero{
+  position:relative;height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+#particleCanvas{position:absolute;inset:0;z-index:0}
+.hero-content{
+  position:relative;z-index:1;
+  text-align:center;max-width:920px;padding:0 24px;
+}
+.hero-headline{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:clamp(1.9rem,4.8vw,4rem);
+  line-height:1.1;letter-spacing:-.03em;
+  margin-bottom:24px;min-height:1.15em;
+}
+.tw-cursor{color:var(--red);animation:blink 1s step-end infinite}
+.hero-sub{
+  font-size:clamp(.95rem,1.8vw,1.15rem);
+  font-weight:300;color:var(--muted);
+  margin-bottom:40px;line-height:1.65;
+}
+.hero-sub strong{color:var(--white);font-weight:400}
+.hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+.btn-primary{
+  background:var(--red);color:var(--white);
+  padding:13px 26px;border-radius:4px;
+  text-decoration:none;font-size:.95rem;
+  transition:opacity .2s,transform .2s;display:inline-block;
+}
+.btn-primary:hover{opacity:.84;transform:translateY(-1px)}
+.btn-ghost{
+  background:transparent;color:var(--white);
+  padding:13px 26px;border-radius:4px;
+  text-decoration:none;font-size:.95rem;
+  border:1px solid rgba(255,255,255,.18);
+  transition:border-color .2s,transform .2s;display:inline-block;
+}
+.btn-ghost:hover{border-color:rgba(255,255,255,.45);transform:translateY(-1px)}
+
+.scroll-ind{
+  position:absolute;bottom:36px;left:50%;
+  transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;z-index:1;
+}
+.scroll-ind span{font-size:.7rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+.scroll-arrow{
+  width:18px;height:18px;
+  border-right:1px solid var(--muted);
+  border-bottom:1px solid var(--muted);
+  transform:rotate(45deg);
+  animation:scrollBounce 2s ease-in-out infinite;
+}
+
+/* ── NUMBERS ── */
+#numbers{
+  background:var(--bg2);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:80px 48px;
+}
+.numbers-grid{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:40px;
+  text-align:center;
+}
+.num-val{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:clamp(2.8rem,6.5vw,5.5rem);
+  line-height:1;color:var(--red);margin-bottom:12px;
+}
+.num-unit{font-size:.55em;vertical-align:super;color:rgba(255,59,0,.7)}
+.num-lbl{font-size:.88rem;color:var(--muted);font-weight:300;line-height:1.5}
+
+/* ── UTILS ── */
+.section{padding:100px 48px;max-width:1200px;margin:0 auto}
+.sec-label{
+  font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--red);margin-bottom:14px;
+}
+.sec-title{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:clamp(2rem,4vw,3.4rem);
+  line-height:1.1;letter-spacing:-.03em;margin-bottom:20px;
+}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* ── PROBLEM ── */
+#problem{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;
+  padding:100px 48px;max-width:1200px;margin:0 auto;
+}
+.problem-text p{
+  color:var(--muted);font-size:.95rem;font-weight:300;
+  line-height:1.8;margin-top:14px;
+}
+.story-card{
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:8px;padding:40px;position:relative;overflow:hidden;
+}
+.story-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;
+  height:3px;background:var(--red);
+}
+.story-name{font-family:'Syne',sans-serif;font-weight:700;font-size:1.3rem;margin-bottom:3px}
+.story-biz{font-size:.82rem;color:var(--muted);margin-bottom:22px}
+.story-quote{
+  font-style:italic;color:var(--muted);font-weight:300;
+  line-height:1.75;margin-bottom:26px;font-size:.93rem;
+}
+.story-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+  padding-top:22px;border-top:1px solid var(--border);
+}
+.st-val{font-family:'Syne',sans-serif;font-weight:700;font-size:1.25rem;color:var(--red)}
+.st-lbl{font-size:.72rem;color:var(--muted);margin-top:3px}
+
+/* ── SERVICES ── */
+#services{padding:100px 48px}
+.services-wrap{max-width:1200px;margin:0 auto}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px}
+.svc-card{
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:8px;padding:38px 30px;position:relative;overflow:hidden;
+  transition:border-color .3s;
+}
+.svc-card::after{
+  content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;
+  background:var(--red);transform:scaleX(0);transform-origin:left;
+  transition:transform .35s ease;
+}
+.svc-card:hover::after{transform:scaleX(1)}
+.svc-icon{
+  width:42px;height:42px;border-radius:8px;
+  background:rgba(255,59,0,.1);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;margin-bottom:22px;
+}
+.svc-title{
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:1.1rem;line-height:1.3;margin-bottom:12px;
+}
+.svc-desc{color:var(--muted);font-weight:300;font-size:.88rem;line-height:1.75;margin-bottom:22px}
+.svc-price{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--red)}
+
+/* ── PROCESS ── */
+#process{background:var(--bg2);padding:100px 48px;border-top:1px solid var(--border)}
+.process-wrap{max-width:1200px;margin:0 auto}
+.process-head{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  margin-bottom:72px;flex-wrap:wrap;gap:20px;
+}
+.process-badge{
+  background:rgba(255,59,0,.1);border:1px solid rgba(255,59,0,.25);
+  color:var(--red);padding:8px 16px;border-radius:100px;
+  font-size:.82rem;white-space:nowrap;
+}
+.steps-row{
+  display:grid;
+  grid-template-columns:1fr 72px 1fr 72px 1fr;
+  align-items:start;
+}
+.step-conn{
+  height:1px;background:var(--border);
+  margin-top:32px;
+}
+.step{text-align:center}
+.step-num{
+  width:64px;height:64px;border-radius:50%;
+  border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 22px;
+  font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;
+  color:var(--red);background:var(--bg2);
+}
+.step-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:8px}
+.step-desc{color:var(--muted);font-size:.85rem;font-weight:300;line-height:1.65;max-width:200px;margin:0 auto}
+
+/* ── PRICING ── */
+#pricing{padding:100px 48px}
+.pricing-wrap{max-width:1200px;margin:0 auto}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px}
+.p-card{
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:8px;padding:38px 30px;
+  display:flex;flex-direction:column;position:relative;
+}
+.p-card.featured{border-color:var(--red);border-top-width:3px;margin-top:-3px}
+.feat-badge{
+  position:absolute;top:-1px;right:22px;
+  background:var(--red);color:var(--white);
+  font-size:.68rem;padding:4px 10px;
+  letter-spacing:.06em;text-transform:uppercase;
+}
+.p-name{
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:14px;
+}
+.p-price{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:2.6rem;line-height:1;margin-bottom:4px;
+}
+.p-period{font-size:.82rem;color:var(--muted);font-weight:300;margin-bottom:28px}
+.p-features{list-style:none;flex:1;margin-bottom:28px}
+.p-features li{
+  padding:8px 0;border-bottom:1px solid var(--border);
+  font-size:.88rem;font-weight:300;color:var(--muted);
+  display:flex;gap:10px;align-items:baseline;
+}
+.p-features li::before{content:'→';color:var(--red);flex-shrink:0}
+.p-cta{
+  display:block;text-align:center;padding:12px 20px;
+  border-radius:4px;text-decoration:none;font-size:.9rem;
+  transition:opacity .2s,border-color .2s;
+}
+.p-card:not(.featured) .p-cta{
+  border:1px solid var(--border);color:var(--white);
+}
+.p-card:not(.featured) .p-cta:hover{border-color:rgba(255,255,255,.3)}
+.p-card.featured .p-cta{background:var(--red);color:var(--white)}
+.p-card.featured .p-cta:hover{opacity:.84}
+
+/* ── DEMO ── */
+#demo{background:var(--bg2);padding:100px 48px;border-top:1px solid var(--border)}
+.demo-wrap{max-width:760px;margin:0 auto;text-align:center}
+.demo-sub{color:var(--muted);font-weight:300;font-size:.95rem;line-height:1.7;margin-top:14px}
+.demo-row{display:flex;gap:10px;margin:36px 0}
+.demo-input{
+  flex:1;background:var(--bg3);border:1px solid var(--border);
+  border-radius:4px;padding:13px 18px;
+  color:var(--white);font-family:'DM Sans',sans-serif;font-size:.93rem;
+  outline:none;transition:border-color .2s;cursor:none;
+}
+.demo-input:focus{border-color:rgba(255,255,255,.2)}
+.demo-input::placeholder{color:var(--muted)}
+.demo-run{
+  background:var(--red);color:var(--white);border:none;
+  padding:13px 26px;border-radius:4px;
+  font-family:'DM Sans',sans-serif;font-size:.93rem;
+  cursor:none;transition:opacity .2s;white-space:nowrap;
+}
+.demo-run:hover{opacity:.84}
+.demo-out{
+  display:none;text-align:left;
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:8px;padding:30px;
+  animation:fadeUp .4s ease;
+}
+.demo-out.show{display:block}
+.demo-biz{font-family:'Syne',sans-serif;font-weight:800;font-size:1.7rem;margin-bottom:6px}
+.demo-tag{color:var(--muted);font-size:.92rem;font-weight:300;margin-bottom:22px}
+.demo-swatches{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
+.swatch{
+  width:50px;height:50px;border-radius:6px;
+  border:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:flex-end;justify-content:center;
+  padding-bottom:4px;
+}
+.swatch span{font-size:.5rem;letter-spacing:0}
+
+/* ── CONTACT ── */
+#contact{padding:120px 48px;text-align:center}
+.contact-wrap{max-width:700px;margin:0 auto}
+.contact-h{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:clamp(2.4rem,6vw,5rem);
+  line-height:1.08;letter-spacing:-.03em;margin-bottom:16px;
+}
+.contact-h .hl{color:var(--red)}
+.contact-s{color:var(--muted);font-size:.97rem;font-weight:300;margin-bottom:44px}
+.contact-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
+.btn-wa{
+  background:#25D366;color:#fff;
+  padding:13px 26px;border-radius:4px;text-decoration:none;
+  font-size:.93rem;display:flex;align-items:center;gap:8px;
+  transition:opacity .2s;
+}
+.btn-wa:hover{opacity:.86}
+.btn-em{
+  background:transparent;color:var(--white);
+  padding:13px 26px;border-radius:4px;text-decoration:none;
+  font-size:.93rem;border:1px solid rgba(255,255,255,.18);
+  display:flex;align-items:center;gap:8px;
+  transition:border-color .2s;
+}
+.btn-em:hover{border-color:rgba(255,255,255,.44)}
+.contact-note{font-size:.82rem;color:var(--muted);font-weight:300}
+.contact-note span{margin:0 10px;opacity:.4}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--bg2);border-top:1px solid var(--border);
+  padding:28px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.foot-logo{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:1.15rem;color:var(--white);text-decoration:none;
+}
+.foot-logo span{color:var(--red)}
+.foot-copy{font-size:.82rem;color:var(--muted);font-weight:300}
+
+/* ── ANIMATIONS ── */
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes scrollBounce{
+  0%,100%{transform:rotate(45deg) translate(0,0);opacity:1}
+  50%{transform:rotate(45deg) translate(3px,3px);opacity:.4}
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  body{cursor:auto}
+  .c-dot,.c-ring{display:none}
+
+  nav{padding:16px 20px}
+  nav.scrolled{padding:12px 20px}
+  .nav-links{display:none}
+
+  #problem{grid-template-columns:1fr;gap:36px;padding:60px 20px}
+  #services{padding:60px 20px}
+  .services-grid{grid-template-columns:1fr}
+  #process{padding:60px 20px}
+  .process-head{flex-direction:column}
+  .steps-row{grid-template-columns:1fr;gap:32px}
+  .step-conn{display:none}
+  .step-desc{max-width:100%}
+  #pricing{padding:60px 20px}
+  .pricing-grid{grid-template-columns:1fr}
+  .p-card.featured{margin-top:0}
+  #demo{padding:60px 20px}
+  .demo-row{flex-direction:column}
+  #contact{padding:70px 20px}
+  .contact-btns{flex-direction:column;align-items:center}
+  footer{padding:22px 20px;flex-direction:column;gap:10px;text-align:center}
+  #numbers{padding:56px 20px}
+  .numbers-grid{grid-template-columns:1fr;gap:36px}
+  .section{padding:60px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="c-dot" id="cDot"></div>
+<div class="c-ring" id="cRing"></div>
+
+<!-- 01 NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">praxis<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Υπηρεσίες</a></li>
+    <li><a href="#pricing">Τιμές</a></li>
+    <li><a href="#demo">Demo</a></li>
+    <li><a href="#contact" class="nav-cta">Ξεκίνα →</a></li>
+  </ul>
+</nav>
+
+<!-- 02 HERO -->
+<section id="hero">
+  <canvas id="particleCanvas"></canvas>
+  <div class="hero-content">
+    <h1 class="hero-headline">
+      <span id="tw"></span><span class="tw-cursor">|</span>
+    </h1>
+    <p class="hero-sub">
+      Σε <strong>48 ώρες</strong> σε βρίσκουν. Από <strong>€20</strong> το μήνα.
+    </p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary">Ξεκίνα σήμερα →</a>
+      <a href="#demo" class="btn-ghost">δες πώς θα έμοιαζε το site σου ↓</a>
+    </div>
+  </div>
+  <div class="scroll-ind">
+    <span>scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- 03 NUMBERS -->
+<div id="numbers">
+  <div class="numbers-grid">
+    <div class="reveal">
+      <div class="num-val"><span class="counter" data-target="48">0</span><span class="num-unit">h</span></div>
+      <div class="num-lbl">Χρόνος παράδοσης<br>της παρουσίας σου</div>
+    </div>
+    <div class="reveal d1">
+      <div class="num-val">€<span class="counter" data-target="20">0</span></div>
+      <div class="num-lbl">Το μήνα αρκεί<br>για να υπάρχεις online</div>
+    </div>
+    <div class="reveal d2">
+      <div class="num-val"><span class="counter" data-target="100">0</span><span class="num-unit">%</span></div>
+      <div class="num-lbl">Ελληνικές επιχειρήσεις<br>χρειάζονται online παρουσία</div>
+    </div>
+  </div>
+</div>
+
+<!-- 04 PROBLEM -->
+<div id="problem">
+  <div class="reveal">
+    <div class="sec-label">Το πρόβλημα</div>
+    <h2 class="sec-title">Ο ανταγωνιστής σου είναι online. Εσύ όχι.</h2>
+    <p class="problem-text">
+      <p style="color:var(--muted);font-weight:300;font-size:.95rem;line-height:1.8;margin-top:14px">
+        Κάθε μέρα που δεν υπάρχεις στο διαδίκτυο, χάνεις πελάτες που ψάχνουν ακριβώς αυτό που προσφέρεις. Δεν σε βρίσκουν. Πάνε αλλού.
+      </p>
+      <p style="color:var(--muted);font-weight:300;font-size:.95rem;line-height:1.8;margin-top:12px">
+        Η online παρουσία δεν είναι πολυτέλεια — είναι η πόρτα της επιχείρησής σου. Και η πόρτα του ανταγωνιστή σου είναι ανοιχτή 24/7.
+      </p>
+    </p>
+  </div>
+  <div class="reveal d1">
+    <div class="story-card">
+      <div class="story-name">Ο Νίκος</div>
+      <div class="story-biz">Ιδιοκτήτης εστιατορίου · Θεσσαλονίκη</div>
+      <p class="story-quote">"Είχα 3 τραπέζια άδεια κάθε βράδυ. Τώρα έχω λίστα αναμονής κάθε Σαββατοκύριακο."</p>
+      <div class="story-stats">
+        <div><div class="st-val">+340%</div><div class="st-lbl">κρατήσεις</div></div>
+        <div><div class="st-val">48h</div><div class="st-lbl">παράδοση</div></div>
+        <div><div class="st-val">€20</div><div class="st-lbl">το μήνα</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 05 SERVICES -->
+<div id="services">
+  <div class="services-wrap">
+    <div class="reveal">
+      <div class="sec-label">Υπηρεσίες</div>
+      <h2 class="sec-title">Τι κάνουμε.</h2>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card reveal">
+        <div class="svc-icon">🌐</div>
+        <h3 class="svc-title">Η βιτρίνα που δουλεύει 24/7</h3>
+        <p class="svc-desc">Επαγγελματικό site που παρουσιάζει την επιχείρησή σου, αναδεικνύει τα προϊόντα σου και μετατρέπει επισκέπτες σε πελάτες — όλο το εικοσιτετράωρο.</p>
+        <div class="svc-price">€350 εφάπαξ</div>
+      </div>
+      <div class="svc-card reveal d1">
+        <div class="svc-icon">📱</div>
+        <h3 class="svc-title">Οι πελάτες σου είναι στο Instagram. Εσύ πού είσαι;</h3>
+        <p class="svc-desc">Δημιουργούμε και διαχειριζόμαστε τα social media σου. Τακτικό περιεχόμενο, stories, engagement — χωρίς εσύ να χρειαστεί να ασχοληθείς.</p>
+        <div class="svc-price">€80/μήνα</div>
+      </div>
+      <div class="svc-card reveal d2">
+        <div class="svc-icon">⚡</div>
+        <h3 class="svc-title">Υπάρχεις. Από σήμερα.</h3>
+        <p class="svc-desc">Google Business, online presence, βασικό site — όλα στημένα σε 48 ώρες. Το ελάχιστο που χρειάζεσαι για να σε βρίσκουν οι πελάτες σου.</p>
+        <div class="svc-price">€20/μήνα</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 06 PROCESS -->
+<div id="process">
+  <div class="process-wrap">
+    <div class="process-head">
+      <div class="reveal">
+        <div class="sec-label">Πώς δουλεύουμε</div>
+        <h2 class="sec-title">Απλά. Γρήγορα.</h2>
+      </div>
+      <div class="process-badge reveal d1">⚡ Παράδοση σε 48 ώρες</div>
+    </div>
+    <div class="steps-row">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <h3 class="step-title">Μιλάμε</h3>
+        <p class="step-desc">15 λεπτά αρκούν. Καταλαβαίνουμε τι χρειάζεσαι και σου προτείνουμε την καλύτερη λύση.</p>
+      </div>
+      <div class="step-conn reveal d1"></div>
+      <div class="step reveal d1">
+        <div class="step-num">02</div>
+        <h3 class="step-title">Φτιάχνουμε</h3>
+        <p class="step-desc">Αναλαμβάνουμε τα πάντα. Design, περιεχόμενο, τεχνικά — εσύ δεν κάνεις τίποτα.</p>
+      </div>
+      <div class="step-conn reveal d2"></div>
+      <div class="step reveal d2">
+        <div class="step-num">03</div>
+        <h3 class="step-title">Υπάρχεις.</h3>
+        <p class="step-desc">Σε 48 ώρες είσαι online. Οι πελάτες σε βρίσκουν. Εσύ ασχολείσαι με αυτό που ξέρεις.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 07 PRICING -->
+<div id="pricing">
+  <div class="pricing-wrap">
+    <div class="reveal">
+      <div class="sec-label">Τιμές</div>
+      <h2 class="sec-title">Διαλέξτε το πλάνο σας.</h2>
+    </div>
+    <div class="pricing-grid">
+      <div class="p-card reveal">
+        <div class="p-name">ΠΑΡΟΥΣΙΑ</div>
+        <div class="p-price">€20</div>
+        <div class="p-period">ανά μήνα</div>
+        <ul class="p-features">
+          <li>Google Business Profile</li>
+          <li>Βασική ιστοσελίδα 1 σελίδας</li>
+          <li>WhatsApp επικοινωνία</li>
+          <li>Παράδοση σε 48 ώρες</li>
+          <li>Hosting περιλαμβάνεται</li>
+        </ul>
+        <a href="#contact" class="p-cta">Ξεκίνα →</a>
+      </div>
+      <div class="p-card featured reveal d1">
+        <div class="feat-badge">Δημοφιλές</div>
+        <div class="p-name">ΠΑΡΟΥΣΙΑ+</div>
+        <div class="p-price">€80</div>
+        <div class="p-period">ανά μήνα</div>
+        <ul class="p-features">
+          <li>Όλα του ΠΑΡΟΥΣΙΑ</li>
+          <li>Διαχείριση Instagram</li>
+          <li>4 posts ανά μήνα</li>
+          <li>Stories & engagement</li>
+          <li>Μηνιαία αναφορά</li>
+          <li>Προτεραιότητα υποστήριξης</li>
+        </ul>
+        <a href="#contact" class="p-cta">Ξεκίνα →</a>
+      </div>
+      <div class="p-card reveal d2">
+        <div class="p-name">ΚΥΡΙΑΡΧΙΑ</div>
+        <div class="p-price">€350</div>
+        <div class="p-period">εφάπαξ</div>
+        <ul class="p-features">
+          <li>Πλήρες custom website</li>
+          <li>SEO βελτιστοποίηση</li>
+          <li>Φόρμα επικοινωνίας</li>
+          <li>Google Analytics</li>
+          <li>Responsive design</li>
+          <li>6 μήνες δωρεάν υποστήριξη</li>
+        </ul>
+        <a href="#contact" class="p-cta">Ξεκίνα →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 08 LIVE DEMO -->
+<div id="demo">
+  <div class="demo-wrap">
+    <div class="reveal">
+      <div class="sec-label">Live Demo</div>
+      <h2 class="sec-title" style="font-size:clamp(1.8rem,3.5vw,3rem)">Δες πώς θα έμοιαζε το site σου.</h2>
+      <p class="demo-sub">Γράψε το όνομα της επιχείρησής σου και δες μια πρόταση στιγμιαία.</p>
+    </div>
+    <div class="demo-row reveal d1">
+      <input type="text" class="demo-input" id="demoInput" placeholder="π.χ. Ταβέρνα Μανώλης, Ιατρείο Παπαδόπουλος, CrossFit Athens…">
+      <button class="demo-run" id="demoRun">Δες το →</button>
+    </div>
+    <div class="demo-out" id="demoOut">
+      <div class="demo-biz" id="demoBiz"></div>
+      <div class="demo-tag" id="demoTag"></div>
+      <div class="demo-swatches" id="demoSwatches"></div>
+      <a href="#contact" class="demo-cta-btn" id="demoCtaBtn"></a>
+    </div>
+  </div>
+</div>
+
+<!-- 09 CONTACT -->
+<div id="contact">
+  <div class="contact-wrap reveal">
+    <h2 class="contact-h">Μιλάμε <span class="hl">σήμερα.</span></h2>
+    <p class="contact-s">Δωρεάν ανάλυση της επιχείρησής σου. Χωρίς δέσμευση.</p>
+    <div class="contact-btns">
+      <a href="https://wa.me/302100000000" class="btn-wa">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+      <a href="mailto:hello@praxis.gr" class="btn-em">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        hello@praxis.gr
+      </a>
+    </div>
+    <p class="contact-note">
+      Απαντάμε εντός 2 ωρών<span>·</span>Δωρεάν ανάλυση<span>·</span>Χωρίς δέσμευση
+    </p>
+  </div>
+</div>
+
+<!-- 10 FOOTER -->
+<footer>
+  <a href="#" class="foot-logo">praxis<span>.</span></a>
+  <p class="foot-copy">© 2026 praxis · Φτιάχνουμε παρουσία.</p>
+</footer>
+
+<script>
+(function(){
+
+/* ── CURSOR ── */
+const dot  = document.getElementById('cDot');
+const ring = document.getElementById('cRing');
+let mx=0,my=0,rx=0,ry=0;
+if(window.innerWidth>768){
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX; my=e.clientY;
+    dot.style.left=mx+'px'; dot.style.top=my+'px';
+  });
+  (function loop(){
+    rx+=(mx-rx)*.1; ry+=(my-ry)*.1;
+    ring.style.left=rx+'px'; ring.style.top=ry+'px';
+    requestAnimationFrame(loop);
+  })();
+}
+
+/* ── PARTICLES ── */
+const cvs=document.getElementById('particleCanvas');
+const ctx=cvs.getContext('2d');
+function resize(){cvs.width=innerWidth;cvs.height=innerHeight}
+resize();
+window.addEventListener('resize',()=>{resize();init()});
+
+class P{
+  reset(){
+    this.x=Math.random()*cvs.width;
+    this.y=Math.random()*cvs.height;
+    this.vx=(Math.random()-.5)*.35;
+    this.vy=(Math.random()-.5)*.35;
+    this.r=Math.random()*1.4+.4;
+    this.a=Math.random()*.35+.1;
+  }
+  constructor(){this.reset()}
+  tick(){
+    this.x+=this.vx; this.y+=this.vy;
+    if(this.x<0||this.x>cvs.width)this.vx*=-1;
+    if(this.y<0||this.y>cvs.height)this.vy*=-1;
+  }
+  draw(){
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(255,59,0,${this.a})`;
+    ctx.fill();
+  }
+}
+let ps=[];
+function init(){ps=[];for(let i=0;i<80;i++)ps.push(new P())}
+init();
+(function frame(){
+  ctx.clearRect(0,0,cvs.width,cvs.height);
+  for(let i=0;i<ps.length;i++){
+    ps[i].tick();ps[i].draw();
+    for(let j=i+1;j<ps.length;j++){
+      const dx=ps[i].x-ps[j].x,dy=ps[i].y-ps[j].y;
+      const d=Math.sqrt(dx*dx+dy*dy);
+      if(d<120){
+        ctx.beginPath();
+        ctx.strokeStyle=`rgba(255,59,0,${.1*(1-d/120)})`;
+        ctx.lineWidth=.5;
+        ctx.moveTo(ps[i].x,ps[i].y);
+        ctx.lineTo(ps[j].x,ps[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(frame);
+})();
+
+/* ── TYPEWRITER ── */
+const twEl=document.getElementById('tw');
+const twTxt='Κάθε μέρα που δεν υπάρχεις online κερδίζει ο άλλος.';
+let ti=0;
+function typeNext(){
+  if(ti<twTxt.length){
+    twEl.textContent=twTxt.slice(0,++ti);
+    setTimeout(typeNext,52+Math.random()*22);
+  }
+}
+setTimeout(typeNext,640);
+
+/* ── NAV SCROLL ── */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',scrollY>60);
+},{passive:true});
+
+/* ── REVEAL ── */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* ── COUNTERS ── */
+const cObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting&&!e.target.dataset.done){
+      e.target.dataset.done='1';
+      const target=+e.target.dataset.target;
+      const t0=performance.now();
+      const dur=1600;
+      (function step(now){
+        const p=Math.min((now-t0)/dur,1);
+        const ease=1-Math.pow(1-p,3);
+        e.target.textContent=Math.floor(ease*target);
+        if(p<1)requestAnimationFrame(step);
+        else e.target.textContent=target;
+      })(t0);
+    }
+  });
+},{threshold:.5});
+document.querySelectorAll('.counter').forEach(el=>cObs.observe(el));
+
+/* ── LIVE DEMO ── */
+const profiles={
+  food:{
+    colors:['#8B4513','#FEFAE0','#F4A261','#2D1B0E'],
+    tags:['Κύριο','Φόντο','Accent','Dark'],
+    taglines:['Η γεύση που σε κάνει να επιστρέφεις.','Αυθεντικές γεύσεις, ζεστή ατμόσφαιρα.'],
+    cta:'Κράτησε τραπέζι →',ctaBg:'#8B4513',ctaFg:'#FEFAE0'
+  },
+  medical:{
+    colors:['#1B2B4B','#FFFFFF','#2E86AB','#E8F4F8'],
+    tags:['Κύριο','Φόντο','Accent','Light'],
+    taglines:['Η υγεία σου, η προτεραιότητά μας.','Σύγχρονη ιατρική, ανθρώπινη φροντίδα.'],
+    cta:'Κλείσε ραντεβού →',ctaBg:'#2E86AB',ctaFg:'#FFFFFF'
+  },
+  gym:{
+    colors:['#0A0A0A','#FF3B00','#FFFFFF','#1A1A1A'],
+    tags:['Φόντο','Accent','Κείμενο','Dark'],
+    taglines:['Το σώμα σου, η δύναμή σου.','Κάθε μέρα. Κάθε επανάληψη.'],
+    cta:'Ξεκίνα δωρεάν →',ctaBg:'#FF3B00',ctaFg:'#FFFFFF'
+  },
+  agency:{
+    colors:['#0A0A0A','#FF3B00','#F0EDE8','#161616'],
+    tags:['Φόντο','Accent','Κείμενο','Dark'],
+    taglines:['Η παρουσία σου, η επιτυχία σου.','Online από σήμερα.'],
+    cta:'Μάθε περισσότερα →',ctaBg:'#FF3B00',ctaFg:'#F0EDE8'
+  }
+};
+
+function detect(v){
+  v=v.toLowerCase();
+  if(/ταβ|εστ|καφ|εστια|ταβερ|πιτσ|σουβλ/.test(v))return'food';
+  if(/ιατρ|γιατρ|κλιν|νοσοκ|φαρμ|οδοντ|ψυχολ/.test(v))return'medical';
+  if(/gym|γυμ|fit|πιλατ|yoga|γιογκ|crossfit/.test(v))return'gym';
+  return'agency';
+}
+
+const inp=document.getElementById('demoInput');
+const btn=document.getElementById('demoRun');
+const out=document.getElementById('demoOut');
+
+function runDemo(){
+  const val=inp.value.trim();
+  if(!val)return;
+  const type=detect(val);
+  const pr=profiles[type];
+  const tl=pr.taglines[Math.floor(Math.random()*pr.taglines.length)];
+
+  document.getElementById('demoBiz').textContent=val;
+  document.getElementById('demoTag').textContent=tl;
+
+  const sw=document.getElementById('demoSwatches');
+  sw.innerHTML='';
+  pr.colors.forEach((c,i)=>{
+    const isLight=c==='#FFFFFF'||c==='#FEFAE0'||c==='#F0EDE8'||c==='#E8F4F8';
+    const d=document.createElement('div');
+    d.className='swatch';
+    d.style.background=c;
+    const s=document.createElement('span');
+    s.textContent=c;
+    s.style.color=isLight?'rgba(0,0,0,.5)':'rgba(255,255,255,.5)';
+    d.appendChild(s);
+    sw.appendChild(d);
+  });
+
+  const ctaBtn=document.getElementById('demoCtaBtn');
+  ctaBtn.textContent=pr.cta;
+  ctaBtn.style.cssText=`
+    display:inline-block;padding:12px 24px;border-radius:4px;
+    font-size:.93rem;text-decoration:none;
+    background:${pr.ctaBg};color:${pr.ctaFg};
+    font-family:'DM Sans',sans-serif;
+  `;
+
+  out.classList.remove('show');
+  void out.offsetWidth;
+  out.classList.add('show');
+}
+
+btn.addEventListener('click',runDemo);
+inp.addEventListener('keydown',e=>{if(e.key==='Enter')runDemo()});
+
+})();
+</script>
+</body>
+</html>
