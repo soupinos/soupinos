@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Block 05 — Grid Filters</title>
+  <link rel="stylesheet" href="../../tokens.css">
+  <link rel="stylesheet" href="block.css">
+</head>
+<body style="background:var(--bg); padding-top:4rem;">
+
+  <!--
+    px-grid — Responsive card grid with client-side filtering.
+
+    SECTION ATTRIBUTES on .px-grid:
+      data-cols="3"           Cards per row on desktop (2–4, default: 3)
+
+    FILTER BAR:
+      .px-grid-filters        Container for filter controls
+      .px-grid-filter-cats    Category buttons (data-cat="all|name")
+      .px-grid-filter-price   Price range slider (data-max="...")
+      .px-grid-filter-search  Live text search input
+
+    CARDS in .px-grid-cards:
+      Each <article class="px-grid-card"> takes:
+        data-cat="..."        Category slug (matches filter buttons)
+        data-price="..."      Numeric price for range filter
+        data-area="..."       Optional area/location tag
+
+    EXAMPLE:
+      <section class="px-grid" data-cols="3">
+        <div class="px-grid-filters">…</div>
+        <div class="px-grid-cards">
+          <article class="px-grid-card" data-cat="web" data-price="1200">…</article>
+        </div>
+      </section>
+      <script src="block.js"></script>
+  -->
+
+  <section class="px-grid" data-cols="3">
+
+    <!-- Section heading -->
+    <header class="px-grid-header">
+      <h2 class="px-grid-title">Portfolio</h2>
+      <p class="px-grid-subtitle">Επιλεγμένα projects που παράγουν αποτελέσματα.</p>
+    </header>
+
+    <!-- Filter controls -->
+    <div class="px-grid-filters" role="search" aria-label="Filter cards">
+
+      <!-- Category pills -->
+      <div class="px-grid-filter-cats" role="group" aria-label="Filter by category">
+        <button class="px-grid-cat-btn is-active" data-cat="all">Όλα</button>
+        <button class="px-grid-cat-btn" data-cat="web">Web Design</button>
+        <button class="px-grid-cat-btn" data-cat="ecommerce">E-Commerce</button>
+        <button class="px-grid-cat-btn" data-cat="branding">Branding</button>
+        <button class="px-grid-cat-btn" data-cat="seo">SEO &amp; Ads</button>
+      </div>
+
+      <!-- Search -->
+      <div class="px-grid-filter-search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="search" placeholder="Αναζήτηση..." aria-label="Search cards">
+      </div>
+
+    </div>
+
+    <!-- Results count -->
+    <p class="px-grid-count" aria-live="polite" aria-atomic="true"></p>
+
+    <!-- Cards -->
+    <div class="px-grid-cards" role="list">
+
+      <article class="px-grid-card" data-cat="web" data-price="1800" data-area="Αθήνα" role="listitem">
+        <div class="px-grid-card-img">
+          <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=75" alt="Εταιρικό website για RestaurantXY" loading="lazy" width="600" height="400">
+          <span class="px-grid-card-tag">Web Design</span>
+        </div>
+        <div class="px-grid-card-body">
+          <h3>RestaurantXY Website</h3>
+          <p>Πλήρες εταιρικό website με online κρατήσεις και menu manager.</p>
+          <div class="px-grid-card-meta">
+            <span class="px-grid-card-price">€1.800</span>
+            <span class="px-grid-card-area">Αθήνα</span>
+          </div>
+        </div>
+        <a class="px-grid-card-link" href="#" aria-label="View RestaurantXY project">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </article>
+
+      <article class="px-grid-card" data-cat="ecommerce" data-price="3500" data-area="Θεσσαλονίκη" role="listitem">
+        <div class="px-grid-card-img">
+          <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=75" alt="E-shop για FashionBrand" loading="lazy" width="600" height="400">
+          <span class="px-grid-card-tag">E-Commerce</span>
+        </div>
+        <div class="px-grid-card-body">
+          <h3>FashionBrand E-Shop</h3>
+          <p>WooCommerce store με custom theme, 500+ προϊόντα και πλήρη warehouse integration.</p>
+          <div class="px-grid-card-meta">
+            <span class="px-grid-card-price">€3.500</span>
+            <span class="px-grid-card-area">Θεσσαλονίκη</span>
+          </div>
+        </div>
+        <a class="px-grid-card-link" href="#" aria-label="View FashionBrand project">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </article>
+
+      <article class="px-grid-card" data-cat="branding" data-price="900" data-area="Αθήνα" role="listitem">
+        <div class="px-grid-card-img">
+          <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&q=75" alt="Brand identity για TechStartup" loading="lazy" width="600" height="400">
+          <span class="px-grid-card-tag">Branding</span>
+        </div>
+        <div class="px-grid-card-body">
+          <h3>TechStartup Identity</h3>
+          <p>Logo, brand guidelines, stationery και digital assets για B2B SaaS startup.</p>
+          <div class="px-grid-card-meta">
+            <span class="px-grid-card-price">€900</span>
+            <span class="px-grid-card-area">Αθήνα</span>
+          </div>
+        </div>
+        <a class="px-grid-card-link" href="#" aria-label="View TechStartup project">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </article>
+
+      <article class="px-grid-card" data-cat="seo" data-price="600" data-area="Πάτρα" role="listitem">
+        <div class="px-grid-card-img">
+          <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&q=75" alt="SEO campaign για LocalClinic" loading="lazy" width="600" height="400">
+          <span class="px-grid-card-tag">SEO &amp; Ads</span>
+        </div>
+        <div class="px-grid-card-body">
+          <h3>LocalClinic SEO</h3>
+          <p>Οργανική ανάπτυξη +340% traffic σε 6 μήνες με on-page SEO και local citations.</p>
+          <div class="px-grid-card-meta">
+            <span class="px-grid-card-price">€600/μήνα</span>
+            <span class="px-grid-card-area">Πάτρα</span>
+          </div>
+        </div>
+        <a class="px-grid-card-link" href="#" aria-label="View LocalClinic project">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </article>
+
+      <article class="px-grid-card" data-cat="web" data-price="2200" data-area="Αθήνα" role="listitem">
+        <div class="px-grid-card-img">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=75" alt="Landing page για RealEstate Co" loading="lazy" width="600" height="400">
+          <span class="px-grid-card-tag">Web Design</span>
+        </div>
+        <div class="px-grid-card-body">
+          <h3>RealEstate Landing</h3>
+          <p>High-conversion landing page με 3D renders, virtual tour embed και lead form.</p>
+          <div class="px-grid-card-meta">
+            <span class="px-grid-card-price">€2.200</span>
+            <span class="px-grid-card-area">Αθήνα</span>
+          </div>
+        </div>
+        <a class="px-grid-card-link" href="#" aria-label="View RealEstate project">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </article>
+
+      <article class="px-grid-card" data-cat="ecommerce" data-price="4800" data-area="Θεσσαλονίκη" role="listitem">
+        <div class="px-grid-card-img">
+          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=75" alt="B2B platform για SupplyChain" loading="lazy" width="600" height="400">
+          <span class="px-grid-card-tag">E-Commerce</span>
+        </div>
+        <div class="px-grid-card-body">
+          <h3>SupplyChain B2B Portal</h3>
+          <p>Custom B2B e-commerce με tiered pricing, bulk orders και ERP integration.</p>
+          <div class="px-grid-card-meta">
+            <span class="px-grid-card-price">€4.800</span>
+            <span class="px-grid-card-area">Θεσσαλονίκη</span>
+          </div>
+        </div>
+        <a class="px-grid-card-link" href="#" aria-label="View SupplyChain project">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </article>
+
+    </div>
+
+    <!-- Empty state -->
+    <div class="px-grid-empty" hidden aria-live="polite">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <p>Δεν βρέθηκαν αποτελέσματα για τα επιλεγμένα φίλτρα.</p>
+      <button class="px-grid-reset">Καθαρισμός φίλτρων</button>
+    </div>
+
+  </section>
+
+  <script src="block.js"></script>
+</body>
+</html>

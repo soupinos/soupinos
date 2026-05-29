@@ -1,0 +1,284 @@
+/*
+ * px-carousel — Fullscreen hero slideshow
+ * See index.html for full usage docs.
+ */
+
+/* ── Shell ─────────────────────────────────────────────────────────── */
+.px-carousel {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  min-height: 560px;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+/* ── Slides ────────────────────────────────────────────────────────── */
+.px-carousel-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.9s var(--ease);
+  /* Ken Burns zoom — applied via JS animation class */
+}
+
+.px-carousel-slide.is-active {
+  opacity: 1;
+}
+
+/* Ken Burns zoom effect */
+@keyframes px-ken-burns {
+  from { transform: scale(1);    }
+  to   { transform: scale(1.08); }
+}
+
+.px-carousel-slide.is-active .px-carousel-slide-bg {
+  animation: px-ken-burns 8s var(--ease) forwards;
+}
+
+/* Slide bg layer (separate element so zoom doesn't affect content) */
+.px-carousel-slide-bg {
+  position: absolute;
+  inset: -4%; /* bleed to hide zoom edge */
+  background-size: cover;
+  background-position: center;
+}
+
+/* Gradient overlay */
+.px-carousel-slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(8,8,8,.25) 0%,
+    rgba(8,8,8,.55) 60%,
+    rgba(8,8,8,.80) 100%
+  );
+  z-index: 1;
+}
+
+/* ── Slide content ─────────────────────────────────────────────────── */
+.px-carousel-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 var(--sp-lg) calc(var(--sp-2xl) + 60px);
+  max-width: var(--max-w);
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+}
+
+.px-carousel-headline {
+  font-family: var(--font-h);
+  font-size: clamp(2.2rem, 6vw, 5rem);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.1;
+  margin: 0 0 var(--sp-md);
+  max-width: 14ch;
+  /* Animate in */
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease) 0.3s, transform 0.7s var(--ease) 0.3s;
+}
+
+.px-carousel-sub {
+  font-family: var(--font-b);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--ink);
+  margin: 0 0 var(--sp-lg);
+  max-width: 44ch;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s var(--ease) 0.5s, transform 0.7s var(--ease) 0.5s;
+}
+
+.px-carousel-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  padding: 0.875rem 2rem;
+  background: var(--red);
+  color: var(--white);
+  font-family: var(--font-b);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius);
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s var(--ease) 0.7s, transform 0.7s var(--ease) 0.7s;
+}
+
+.px-carousel-cta:hover {
+  opacity: 0.88;
+  transform: translateY(-2px) !important;
+}
+
+.px-carousel-cta:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: 3px;
+}
+
+/* Animate content in when slide is active */
+.px-carousel-slide.is-active .px-carousel-headline,
+.px-carousel-slide.is-active .px-carousel-sub,
+.px-carousel-slide.is-active .px-carousel-cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Dots ──────────────────────────────────────────────────────────── */
+.px-carousel-dots {
+  position: absolute;
+  bottom: var(--sp-xl);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  gap: var(--sp-sm);
+  align-items: center;
+}
+
+.px-carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(240,237,232,.35);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.px-carousel-dot.is-active,
+.px-carousel-dot:hover {
+  background: var(--white);
+  transform: scale(1.3);
+}
+
+.px-carousel-dot:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+/* ── Arrows ────────────────────────────────────────────────────────── */
+.px-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: rgba(8,8,8,.5);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 50%;
+  color: var(--white);
+  cursor: pointer;
+  transition: background var(--transition-fast), opacity var(--transition-fast);
+  opacity: 0;
+}
+
+.px-carousel:hover .px-carousel-arrow {
+  opacity: 1;
+}
+
+.px-carousel-arrow:hover {
+  background: rgba(255,59,0,.6);
+}
+
+.px-carousel-arrow:focus-visible {
+  opacity: 1;
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+.px-carousel-prev { left: var(--sp-lg); }
+.px-carousel-next { right: var(--sp-lg); }
+
+/* ── Scroll hint ───────────────────────────────────────────────────── */
+.px-carousel-scroll-hint {
+  position: absolute;
+  bottom: var(--sp-lg);
+  right: var(--sp-lg);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-xs);
+  color: var(--muted);
+  font-family: var(--font-b);
+  font-size: 0.6875rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.px-carousel-scroll-hint span {
+  display: block;
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, transparent, var(--muted));
+  animation: px-scroll-line 1.5s var(--ease) infinite;
+}
+
+@keyframes px-scroll-line {
+  0%   { transform: scaleY(0); transform-origin: top; }
+  50%  { transform: scaleY(1); transform-origin: top; }
+  51%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ── Slide effect: "slide" variant ─────────────────────────────────── */
+.px-carousel[data-effect="slide"] .px-carousel-slide {
+  opacity: 1;
+  transform: translateX(100%);
+  transition: transform 0.7s var(--ease);
+}
+
+.px-carousel[data-effect="slide"] .px-carousel-slide.is-prev {
+  transform: translateX(-100%);
+}
+
+.px-carousel[data-effect="slide"] .px-carousel-slide.is-active {
+  transform: translateX(0);
+}
+
+/* ── Responsive ────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .px-carousel-content {
+    padding-bottom: calc(var(--sp-xl) + 60px);
+  }
+
+  .px-carousel-arrow {
+    display: none;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .px-carousel-slide,
+  .px-carousel-headline,
+  .px-carousel-sub,
+  .px-carousel-cta,
+  .px-carousel-scroll-hint span {
+    transition: none;
+    animation: none;
+  }
+  .px-carousel-slide { opacity: 0; }
+  .px-carousel-slide.is-active { opacity: 1; }
+  .px-carousel-slide.is-active .px-carousel-headline,
+  .px-carousel-slide.is-active .px-carousel-sub,
+  .px-carousel-slide.is-active .px-carousel-cta { opacity: 1; transform: none; }
+}

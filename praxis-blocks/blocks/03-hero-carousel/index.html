@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Block 03 — Hero Carousel</title>
+  <link rel="stylesheet" href="../../tokens.css">
+  <link rel="stylesheet" href="block.css">
+</head>
+<body style="background:var(--bg); margin:0;">
+
+  <!--
+    px-carousel — Fullscreen hero photo slideshow.
+
+    DATA ATTRIBUTES on .px-carousel:
+      data-interval="5000"     Auto-advance interval in ms (default: 5000)
+      data-effect="fade"       Transition effect: "fade" or "slide" (default: fade)
+
+    SLIDES:
+      Each .px-carousel-slide takes:
+        data-src="image.jpg"   Background image URL
+        data-headline="..."    Large headline text
+        data-sub="..."         Subtitle / tagline
+        data-cta-text="..."    CTA button label (optional)
+        data-cta-href="..."    CTA link (optional)
+
+    EXAMPLE:
+      <section class="px-carousel" data-interval="6000" data-effect="fade">
+        <div class="px-carousel-slide" data-src="hero1.jpg" data-headline="Title" data-sub="Sub"></div>
+        <div class="px-carousel-slide" data-src="hero2.jpg" data-headline="Title 2"></div>
+      </section>
+      <script src="block.js"></script>
+  -->
+
+  <section class="px-carousel" data-interval="5000" data-effect="fade" aria-roledescription="carousel" aria-label="Hero slideshow">
+
+    <!-- Slides — JS renders bg and content from data-* -->
+    <div class="px-carousel-slide"
+         data-src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1800&q=80"
+         data-headline="Δημιουργούμε&nbsp;Εμπειρίες"
+         data-sub="Web design που αφήνει εντύπωση — από το πρώτο scroll"
+         data-cta-text="Δείτε το Portfolio"
+         data-cta-href="#"
+         aria-roledescription="slide"
+         aria-label="Slide 1 of 3">
+    </div>
+
+    <div class="px-carousel-slide"
+         data-src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1800&q=80"
+         data-headline="Λύσεις&nbsp;που&nbsp;Πωλούν"
+         data-sub="E-commerce, landing pages και campaigns που μετατρέπουν"
+         data-cta-text="Επικοινωνήστε μαζί μας"
+         data-cta-href="#"
+         aria-roledescription="slide"
+         aria-label="Slide 2 of 3">
+    </div>
+
+    <div class="px-carousel-slide"
+         data-src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1800&q=80"
+         data-headline="Στρατηγική&nbsp;&amp;&nbsp;Αποτελέσματα"
+         data-sub="SEO, Google Ads και social που φέρνουν πραγματικούς πελάτες"
+         data-cta-text="Ξεκινήστε τώρα"
+         data-cta-href="#"
+         aria-roledescription="slide"
+         aria-label="Slide 3 of 3">
+    </div>
+
+    <!-- Dots navigation (rendered by JS, shown here for clarity) -->
+    <div class="px-carousel-dots" role="tablist" aria-label="Slide navigation"></div>
+
+    <!-- Prev / Next arrows -->
+    <button class="px-carousel-arrow px-carousel-prev" aria-label="Previous slide">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="px-carousel-arrow px-carousel-next" aria-label="Next slide">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+
+    <!-- Scroll indicator -->
+    <div class="px-carousel-scroll-hint" aria-hidden="true">
+      <span></span>
+      <p>Scroll</p>
+    </div>
+  </section>
+
+  <!-- A section below so scroll is visible -->
+  <section style="min-height:60vh; display:flex; align-items:center; justify-content:center; padding:4rem 2rem;">
+    <p style="color:var(--ink); font-family:var(--font-b);">Content below the hero carousel.</p>
+  </section>
+
+  <script src="block.js"></script>
+</body>
+</html>
