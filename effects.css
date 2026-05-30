@@ -1,0 +1,109 @@
+/**
+ * PRAXIS BLOCK LIBRARY — Font Effect Utilities (v1.1)
+ * Optional. Import AFTER tokens.css:
+ *   <link rel="stylesheet" href="/praxis-blocks/effects.css">
+ *
+ * Drop any class on a text element. All effects:
+ *   • are accent-aware (read --red / --red-rgb / --white / --bg* tokens),
+ *   • keep a READABLE fallback (never invisible text),
+ *   • render fine in Greek AND Latin,
+ *   • disable animation under prefers-reduced-motion.
+ *
+ * Classes:
+ *   .px-text-glow       soft accent glow (multi-layer text-shadow)
+ *   .px-text-gradient   accent→white gradient fill (background-clip:text)
+ *   .px-text-stroke     outline text (-webkit-text-stroke)
+ *   .px-text-shadow-3d  layered depth shadow
+ *   .px-text-reveal     animated gradient sweep
+ */
+
+/* ── Glow ──────────────────────────────────────────────────────────── */
+.px-text-glow {
+  color: var(--white);
+  text-shadow:
+    0 0 8px  rgba(var(--red-rgb), 0.45),
+    0 0 18px rgba(var(--red-rgb), 0.30),
+    0 0 36px rgba(var(--red-rgb), 0.18);
+}
+
+/* ── Gradient fill ─────────────────────────────────────────────────── */
+.px-text-gradient {
+  /* Readable fallback colour first */
+  color: var(--red);
+  background: linear-gradient(120deg, var(--red), var(--white));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+/* If background-clip:text is unsupported, fall back to solid accent */
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .px-text-gradient {
+    -webkit-text-fill-color: currentColor;
+    color: var(--red);
+  }
+}
+
+/* ── Outline / stroke ──────────────────────────────────────────────── */
+.px-text-stroke {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--white);
+  text-stroke: 1.5px var(--white);
+  paint-order: stroke fill;
+}
+/* No text-stroke support → solid readable text */
+@supports not ((-webkit-text-stroke: 1px red)) {
+  .px-text-stroke {
+    color: var(--white);
+    -webkit-text-stroke: 0;
+  }
+}
+
+/* ── 3D layered shadow ─────────────────────────────────────────────── */
+.px-text-shadow-3d {
+  color: var(--white);
+  text-shadow:
+    1px 1px 0 var(--bg3),
+    2px 2px 0 var(--bg3),
+    3px 3px 0 rgba(0, 0, 0, 0.55),
+    4px 4px 8px rgba(0, 0, 0, 0.40);
+}
+
+/* ── Animated gradient sweep ───────────────────────────────────────── */
+.px-text-reveal {
+  /* Readable solid fallback */
+  color: var(--white);
+  background: linear-gradient(
+    100deg,
+    var(--white) 0%,
+    var(--white) 38%,
+    var(--red)   50%,
+    var(--white) 62%,
+    var(--white) 100%
+  );
+  background-size: 250% 100%;
+  background-position: 130% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: px-text-sweep 3.2s var(--ease) infinite;
+}
+
+@keyframes px-text-sweep {
+  to { background-position: -130% 0; }
+}
+
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .px-text-reveal {
+    -webkit-text-fill-color: currentColor;
+    color: var(--white);
+    animation: none;
+  }
+}
+
+/* ── Reduced motion: freeze animated effects (stay readable) ───────── */
+@media (prefers-reduced-motion: reduce) {
+  .px-text-reveal {
+    animation: none;
+    background-position: 0 0;
+  }
+}

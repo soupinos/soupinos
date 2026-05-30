@@ -1,0 +1,124 @@
+/*
+ * px-lang — Language switcher dropdown
+ * See index.html for full usage docs.
+ */
+
+.px-lang {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-b);
+}
+
+/* ── Toggle button ─────────────────────────────────────────────────── */
+.px-lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-xs);
+  padding: 0.4rem 0.75rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius);
+  color: var(--white);
+  font-family: var(--font-b);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.px-lang-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.px-lang-toggle:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
+
+.px-lang-flag {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.px-lang-code {
+  letter-spacing: 0.04em;
+}
+
+/* Chevron */
+.px-lang-chevron {
+  width: 8px;
+  height: 8px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translateY(-1px);
+  transition: transform var(--transition-fast);
+  opacity: 0.7;
+}
+
+.px-lang-toggle[aria-expanded="true"] .px-lang-chevron {
+  transform: rotate(-135deg) translateY(-1px);
+}
+
+/* ── Dropdown menu ─────────────────────────────────────────────────── */
+.px-lang-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 1200;
+  min-width: 168px;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  background: var(--bg3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+}
+
+.px-lang-menu[hidden] { display: none; }
+
+.px-lang-menu li {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--radius);
+  color: var(--ink);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.px-lang-menu li:hover,
+.px-lang-menu li:focus-visible {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--white);
+  outline: none;
+}
+
+.px-lang-menu li[aria-selected="true"] {
+  color: var(--white);
+}
+
+.px-lang-menu li[aria-selected="true"]::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  margin-left: auto;
+  border-radius: 50%;
+  background: var(--red);
+}
+
+.px-lang-menu li:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: -2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .px-lang-toggle,
+  .px-lang-chevron,
+  .px-lang-menu li {
+    transition: none;
+  }
+}

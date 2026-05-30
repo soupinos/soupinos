@@ -27,8 +27,11 @@
   if (nav.dataset.logo) {
     const logoText = nav.querySelector('.px-nav-logo-text');
     const logoMark = nav.querySelector('.px-nav-logo-mark');
-    if (logoText) logoText.textContent = nav.dataset.logo;
+    // Logo is a drop-cap: the badge shows the first letter, the wordmark
+    // shows the remaining letters → together they read as the full word
+    // (not a doubled first letter, e.g. "P" + "RAXIS" = "PRAXIS").
     if (logoMark) logoMark.textContent = nav.dataset.logo.charAt(0).toUpperCase();
+    if (logoText) logoText.textContent = nav.dataset.logo.slice(1);
   }
 
   // ── Desktop dropdowns ──────────────────────────────────────────────

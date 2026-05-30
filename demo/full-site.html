@@ -7,6 +7,7 @@
 
   <!-- Foundation -->
   <link rel="stylesheet" href="../tokens.css">
+  <link rel="stylesheet" href="../effects.css">
 
   <!-- Blocks -->
   <link rel="stylesheet" href="../blocks/01-header-dropdown/block.css">
@@ -14,6 +15,7 @@
   <link rel="stylesheet" href="../blocks/09-video-section/block.css">
   <link rel="stylesheet" href="../blocks/05-grid-filters/block.css">
   <link rel="stylesheet" href="../blocks/11-counters/block.css">
+  <link rel="stylesheet" href="../blocks/14-schedule-table/block.css">
   <link rel="stylesheet" href="../blocks/07-gallery-lightbox/block.css">
   <link rel="stylesheet" href="../blocks/08-contact-form/block.css">
   <link rel="stylesheet" href="../blocks/10-scroll-reveal/block.css">
@@ -41,7 +43,7 @@
     <div class="px-nav-inner">
       <a class="px-nav-logo" href="#">
         <span class="px-nav-logo-mark">P</span>
-        <span class="px-nav-logo-text">PRAXIS</span>
+        <span class="px-nav-logo-text">RAXIS</span>
       </a>
 
       <nav class="px-nav-menu" aria-label="Main navigation">
@@ -298,6 +300,50 @@
 
   <hr class="px-section-divider">
 
+  <!-- ───────────── LEFKIMMI SKIN ROW (block 14 + Greek + effect) ────── -->
+  <!-- Scoped lefkimmi palette via inline CSS vars — cascades to children -->
+  <section id="schedule" class="px-lefkimmi"
+           style="--bg:#0A0A0A; --bg2:#121212; --bg3:#1A1A1A; --white:#F5F5F5; --ink:#B0B0B0; --muted:#6A6A6A; --red:#E30613; --red-rgb:227, 6, 19; --font-h:'Manrope',sans-serif; --font-b:'Inter',sans-serif; background:var(--bg); padding:var(--sp-2xl) 0;">
+
+    <div style="max-width:var(--max-w); margin:0 auto; padding:0 var(--sp-lg) var(--sp-md);">
+      <p style="font-family:var(--font-b); font-size:0.75rem; letter-spacing:.14em; text-transform:uppercase; color:var(--red); margin:0 0 var(--sp-sm);" data-reveal>Skin: Lefkimmi</p>
+      <h2 class="px-text-glow" data-reveal data-delay="100" style="font-family:var(--font-h); font-size:clamp(2rem,5vw,3.5rem); font-weight:800; color:var(--white); margin:0 0 var(--sp-sm);">Δρομολόγια Λευκίμμη — Ηγουμενίτσα</h2>
+      <p data-reveal data-delay="200" style="font-family:var(--font-b); font-size:1.0625rem; color:var(--ink); margin:0; max-width:54ch; line-height:1.7;">Καθημερινά πορθμεία, με τόνους και διαλυτικά σωστά: ά έ ή ί ό ύ ώ ϊ ϋ.</p>
+    </div>
+
+    <div data-reveal data-delay="300">
+      <section class="px-schedule" data-from="Λευκίμμη" data-to="Ηγουμενίτσα"
+               data-columns="Πλοίο,Αναχώρηση,Άφιξη,Διάρκεια,Τιμή" data-source="">
+        <div class="px-schedule-head">
+          <h2 class="px-schedule-title" style="font-size:1.25rem;">Πρόγραμμα ημέρας</h2>
+          <div class="px-schedule-toggle" role="group" aria-label="Επιλογή κατεύθυνσης">
+            <button class="px-schedule-dir is-active" data-dir="outbound" aria-pressed="true"></button>
+            <button class="px-schedule-dir" data-dir="return" aria-pressed="false"></button>
+          </div>
+        </div>
+        <table class="px-schedule-table">
+          <caption class="px-schedule-caption"></caption>
+          <thead><tr><th scope="col">Πλοίο</th><th scope="col">Αναχώρηση</th><th scope="col">Άφιξη</th><th scope="col">Διάρκεια</th><th scope="col">Τιμή</th></tr></thead>
+          <tbody data-dir="outbound">
+            <tr><td data-label="Πλοίο">Αγία Ειρήνη</td><td data-label="Αναχώρηση">07:00</td><td data-label="Άφιξη">08:15</td><td data-label="Διάρκεια">1ω 15′</td><td data-label="Τιμή">€2,50</td></tr>
+            <tr><td data-label="Πλοίο">Πόρθμειο Κέρκυρα</td><td data-label="Αναχώρηση">10:30</td><td data-label="Άφιξη">11:40</td><td data-label="Διάρκεια">1ω 10′</td><td data-label="Τιμή">€2,50</td></tr>
+            <tr><td data-label="Πλοίο">Αγία Ειρήνη</td><td data-label="Αναχώρηση">14:00</td><td data-label="Άφιξη">15:15</td><td data-label="Διάρκεια">1ω 15′</td><td data-label="Τιμή">€2,50</td></tr>
+            <tr><td data-label="Πλοίο">Πόρθμειο Κέρκυρα</td><td data-label="Αναχώρηση">18:30</td><td data-label="Άφιξη">19:40</td><td data-label="Διάρκεια">1ω 10′</td><td data-label="Τιμή">€2,50</td></tr>
+          </tbody>
+          <tbody data-dir="return" hidden>
+            <tr><td data-label="Πλοίο">Πόρθμειο Κέρκυρα</td><td data-label="Αναχώρηση">08:45</td><td data-label="Άφιξη">10:00</td><td data-label="Διάρκεια">1ω 15′</td><td data-label="Τιμή">€2,50</td></tr>
+            <tr><td data-label="Πλοίο">Αγία Ειρήνη</td><td data-label="Αναχώρηση">12:15</td><td data-label="Άφιξη">13:30</td><td data-label="Διάρκεια">1ω 15′</td><td data-label="Τιμή">€2,50</td></tr>
+            <tr><td data-label="Πλοίο">Πόρθμειο Κέρκυρα</td><td data-label="Αναχώρηση">16:00</td><td data-label="Άφιξη">17:10</td><td data-label="Διάρκεια">1ω 10′</td><td data-label="Τιμή">€2,50</td></tr>
+            <tr><td data-label="Πλοίο">Αγία Ειρήνη</td><td data-label="Αναχώρηση">20:30</td><td data-label="Άφιξη">21:45</td><td data-label="Διάρκεια">1ω 15′</td><td data-label="Τιμή">€2,50</td></tr>
+          </tbody>
+        </table>
+        <p class="px-schedule-note" hidden role="status"></p>
+      </section>
+    </div>
+  </section>
+
+  <hr class="px-section-divider">
+
   <!-- ─────────────────────── 07 GALLERY ───────────────────────────── -->
   <section id="gallery" style="max-width:var(--max-w); margin:0 auto; padding:var(--sp-2xl) var(--sp-lg);">
     <h2 data-reveal style="font-family:var(--font-h); font-size:clamp(1.75rem,4vw,3rem); font-weight:800; color:var(--white); margin:0 0 var(--sp-sm);">Gallery</h2>
@@ -404,7 +450,7 @@
   <footer class="px-footer" data-company="Praxis Studio" data-vat="123456789" data-gemi="000123456">
     <div class="px-footer-inner">
       <div class="px-footer-brand">
-        <a class="px-footer-logo" href="#"><span class="px-footer-logo-mark">P</span><span class="px-footer-logo-text">PRAXIS</span></a>
+        <a class="px-footer-logo" href="#"><span class="px-footer-logo-mark">P</span><span class="px-footer-logo-text">RAXIS</span></a>
         <p class="px-footer-tagline">Χτίζουμε digital παρουσίες που πωλούν — από web design έως performance marketing.</p>
         <div class="px-footer-social" aria-label="Social media links">
           <a href="#" aria-label="Facebook" class="px-footer-social-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
@@ -430,6 +476,7 @@
   <script src="../blocks/09-video-section/block.js"></script>
   <script src="../blocks/05-grid-filters/block.js"></script>
   <script src="../blocks/11-counters/block.js"></script>
+  <script src="../blocks/14-schedule-table/block.js"></script>
   <script src="../blocks/07-gallery-lightbox/block.js"></script>
   <script src="../blocks/08-contact-form/block.js"></script>
   <script src="../blocks/10-scroll-reveal/block.js"></script>

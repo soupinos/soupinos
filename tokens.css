@@ -5,21 +5,30 @@
  *
  * Usage:
  *   <link rel="stylesheet" href="/praxis-blocks/tokens.css">
+ *
+ * TYPOGRAPHY NOTE (v1.1):
+ *   Fonts are GREEK-SAFE. Manrope and Inter were verified against the
+ *   Google Fonts API to ship a real "greek" unicode-range subset (σωστοί
+ *   τόνοι & διαλυτικά: ά έ ή ί ό ύ ώ ϊ ϋ ΐ ΰ). The previous defaults (Exo 2 /
+ *   DM Sans) have NO Greek subset on Google Fonts, so Greek text fell back
+ *   to a system font — they were replaced. Never strip accents from markup;
+ *   use CSS text-transform:uppercase for caps.
  */
 
 :root {
   /* Colours */
-  --red:   #FF3B00;
-  --bg:    #080808;
-  --bg2:   #0f0f0f;
-  --bg3:   #161616;
-  --white: #F0EDE8;
-  --ink:   #a8a6a1;
-  --muted: #666;
+  --red:     #FF3B00;
+  --red-rgb: 255, 59, 0;   /* same accent as --red, for rgba() in effects */
+  --bg:      #080808;
+  --bg2:     #0f0f0f;
+  --bg3:     #161616;
+  --white:   #F0EDE8;
+  --ink:     #a8a6a1;
+  --muted:   #666;
 
-  /* Typography */
-  --font-h: 'Exo 2', sans-serif;
-  --font-b: 'DM Sans', sans-serif;
+  /* Typography — Greek-verified fonts */
+  --font-h: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-b: 'Inter',   system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   /* Motion */
   --ease: cubic-bezier(.22, .61, .36, 1);
@@ -42,8 +51,9 @@
   --transition-fast: 0.15s var(--ease);
 }
 
-/* Google Fonts import — remove if self-hosting */
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap');
+/* Google Fonts import — Greek subset auto-included by both families.
+   Remove if self-hosting. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;600;700;800&display=swap');
 
 /* Reset baseline — applied only inside px- blocks, safe to include globally */
 *, *::before, *::after {
