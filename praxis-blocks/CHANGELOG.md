@@ -23,3 +23,10 @@ This file is the first thing the next agent reads — it prevents duplicate work
 | 2026-05-29 | `13-theme-switcher` | Multi-skin switcher — overrides :root CSS vars, localStorage persistence, arrow-key nav |
 | 2026-05-29 | `demo/full-site.html` | Full assembled site: header + carousel + video-section + grid + counters + gallery + contact + footer |
 | 2026-05-29 | `preview/index.html` | All 13 blocks on one page with labels, isolated links, and dot TOC navigation |
+| 2026-05-30 | `01-header-dropdown` | Fix: logo drop-cap no longer doubles first letter ("PPRAXIS" → "PRAXIS") |
+| 2026-05-30 | `04-footer` | Fix: logo drop-cap no longer doubles first letter ("PPRAXIS" → "PRAXIS") |
+| 2026-05-30 | `tokens.css` | Greek typography: switched base fonts to Greek-verified Manrope + Inter (Exo 2 / DM Sans lack a Greek subset); added `--red-rgb` token |
+| 2026-05-30 | `effects.css` | New: px- font effect utilities — text-glow, text-gradient, text-stroke, text-shadow-3d, text-reveal (readable fallbacks, reduced-motion safe) |
+| 2026-05-30 | `14-schedule-table` | New: responsive timetable (ship/departure/arrival/duration/price), direction toggle, mobile stacked cards, table a11y, dormant Phase-2 auto-feed hook |
+| 2026-05-30 | `15-lang-switcher` | New: client-side i18n for static sites — data-i18n bindings (+attributes), dropdown switcher, navigator auto-detect (el→gr), localStorage, updates html lang |
+| 2026-05-30 | `13-theme-switcher` | Added "lefkimmi" skin (cinematic dark + #E30613 red + Manrope/Inter); existing skins untouched |

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Block 14 — Schedule Table</title>
+  <link rel="stylesheet" href="../../tokens.css">
+  <link rel="stylesheet" href="block.css">
+</head>
+<body style="background:var(--bg); padding:4rem 0;">
+
+  <!--
+    px-schedule — Responsive timetable / schedule table.
+    Reusable for: ferry, λεωφορεία, εκδρομές, ωράρια καταστημάτων.
+
+    DATA ATTRIBUTES on .px-schedule:
+      data-from="Λευκίμμη"     Label of origin (direction A)
+      data-to="Ηγουμενίτσα"    Label of destination (direction A)
+      data-columns="Πλοίο,Αναχώρηση,Άφιξη,Διάρκεια,Τιμή"
+                               Comma-separated column headers (parametric).
+                               Order maps to canonical keys:
+                               ship, departure, arrival, duration, price.
+      data-source=""           PHASE 2 (auto-feed). Leave EMPTY for static.
+                               If set to a URL, JS fetches JSON and renders.
+                               JSON shape:
+                                 { "outbound": [ {ship,departure,arrival,duration,price}, … ],
+                                   "return":   [ … ] }
+                               On any failure → graceful fallback to the
+                               static rows already in the markup.
+
+    MODES:
+      • PHASE 1 (default, ON): rows live inline in the two <tbody> blocks.
+      • PHASE 2 (optional, OFF): set data-source="…"; hook is written but
+        dormant until you add a URL.
+
+    DIRECTION TOGGLE: client-side, no reload. Two <tbody data-dir="outbound|return">.
+
+    MOBILE: rows become stacked cards (no horizontal scroll) via <td data-label>.
+    A11Y: real <table> + <caption> + <th scope="col">.
+
+    EXAMPLE:
+      <section class="px-schedule" data-from="Λευκίμμη" data-to="Ηγουμενίτσα">
+        … table markup …
+      </section>
+      <script src="block.js"></script>
+  -->
+
+  <section class="px-schedule"
+           data-from="Λευκίμμη"
+           data-to="Ηγουμενίτσα"
+           data-columns="Πλοίο,Αναχώρηση,Άφιξη,Διάρκεια,Τιμή"
+           data-source="">
+
+    <div class="px-schedule-head">
+      <h2 class="px-schedule-title">Δρομολόγια Ferry</h2>
+
+      <div class="px-schedule-toggle" role="group" aria-label="Επιλογή κατεύθυνσης">
+        <button class="px-schedule-dir is-active" data-dir="outbound" aria-pressed="true"></button>
+        <button class="px-schedule-dir" data-dir="return" aria-pressed="false"></button>
+      </div>
+    </div>
+
+    <table class="px-schedule-table">
+      <caption class="px-schedule-caption"></caption>
+
+      <thead>
+        <tr>
+          <th scope="col">Πλοίο</th>
+          <th scope="col">Αναχώρηση</th>
+          <th scope="col">Άφιξη</th>
+          <th scope="col">Διάρκεια</th>
+          <th scope="col">Τιμή</th>
+        </tr>
+      </thead>
+
+      <!-- Direction A: Λευκίμμη → Ηγουμενίτσα -->
+      <tbody data-dir="outbound">
+        <tr>
+          <td data-label="Πλοίο">Αγία Ειρήνη</td>
+          <td data-label="Αναχώρηση">07:00</td>
+          <td data-label="Άφιξη">08:15</td>
+          <td data-label="Διάρκεια">1ω 15′</td>
+          <td data-label="Τιμή">€2,50</td>
+        </tr>
+        <tr>
+          <td data-label="Πλοίο">Πόρθμειο Κέρκυρα</td>
+          <td data-label="Αναχώρηση">10:30</td>
+          <td data-label="Άφιξη">11:40</td>
+          <td data-label="Διάρκεια">1ω 10′</td>
+          <td data-label="Τιμή">€2,50</td>
+        </tr>
+        <tr>
+          <td data-label="Πλοίο">Αγία Ειρήνη</td>
+          <td data-label="Αναχώρηση">14:00</td>
+          <td data-label="Άφιξη">15:15</td>
+          <td data-label="Διάρκεια">1ω 15′</td>
+          <td data-label="Τιμή">€2,50</td>
+        </tr>
+        <tr>
+          <td data-label="Πλοίο">Πόρθμειο Κέρκυρα</td>
+          <td data-label="Αναχώρηση">18:30</td>
+          <td data-label="Άφιξη">19:40</td>
+          <td data-label="Διάρκεια">1ω 10′</td>
+          <td data-label="Τιμή">€2,50</td>
+        </tr>
+      </tbody>
+
+      <!-- Direction B: Ηγουμενίτσα → Λευκίμμη -->
+      <tbody data-dir="return" hidden>
+        <tr>
+          <td data-label="Πλοίο">Πόρθμειο Κέρκυρα</td>
+          <td data-label="Αναχώρηση">08:45</td>
+          <td data-label="Άφιξη">10:00</td>
+          <td data-label="Διάρκεια">1ω 15′</td>
+          <td data-label="Τιμή">€2,50</td>
+        </tr>
+        <tr>
+          <td data-label="Πλοίο">Αγία Ειρήνη</td>
+          <td data-label="Αναχώρηση">12:15</td>
+          <td data-label="Άφιξη">13:30</td>
+          <td data-label="Διάρκεια">1ω 15′</td>
+          <td data-label="Τιμή">€2,50</td>
+        </tr>
+        <tr>
+          <td data-label="Πλοίο">Πόρθμειο Κέρκυρα</td>
+          <td data-label="Αναχώρηση">16:00</td>
+          <td data-label="Άφιξη">17:10</td>
+          <td data-label="Διάρκεια">1ω 10′</td>
+          <td data-label="Τιμή">€2,50</td>
+        </tr>
+        <tr>
+          <td data-label="Πλοίο">Αγία Ειρήνη</td>
+          <td data-label="Αναχώρηση">20:30</td>
+          <td data-label="Άφιξη">21:45</td>
+          <td data-label="Διάρκεια">1ω 15′</td>
+          <td data-label="Τιμή">€2,50</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Shown only if Phase 2 fetch fails -->
+    <p class="px-schedule-note" hidden role="status"></p>
+  </section>
+
+  <script src="block.js"></script>
+</body>
+</html>

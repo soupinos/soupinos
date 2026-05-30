@@ -25,10 +25,12 @@
     footer.querySelectorAll('.px-footer-company').forEach(el => {
       el.textContent = footer.dataset.company;
     });
+    // Drop-cap logo: badge = first letter, wordmark = the rest, so the
+    // pair reads as the full company name without a doubled first letter.
     const logoText = footer.querySelector('.px-footer-logo-text');
-    if (logoText) logoText.textContent = footer.dataset.company;
     const logoMark = footer.querySelector('.px-footer-logo-mark');
     if (logoMark) logoMark.textContent = footer.dataset.company.charAt(0).toUpperCase();
+    if (logoText) logoText.textContent = footer.dataset.company.slice(1);
   }
 
   if (footer.dataset.vat) {

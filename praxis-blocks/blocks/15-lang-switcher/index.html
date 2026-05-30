@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Block 15 — Language Switcher</title>
+  <link rel="stylesheet" href="../../tokens.css">
+  <link rel="stylesheet" href="block.css">
+</head>
+<body style="background:var(--bg); min-height:100dvh;">
+
+  <!--
+    px-lang — Client-side i18n + language switcher for STATIC / mini sites
+    (no WordPress). Same philosophy as theme-switcher: build once, works
+    everywhere.
+
+    NOTE: For WordPress sites with serious multilingual SEO (separate URLs
+    per language, hreflang) use WPML / Polylang. This block is for static /
+    mini sites where a single page swaps text on the fly.
+
+    ── DICTIONARY ──
+    Put one JSON object per language in a <script type="application/json"
+    class="px-lang-i18n">. Add a language = add a key. Nothing else.
+
+    ── MARKUP BINDINGS ──
+      data-i18n="key"                 → element.textContent
+      data-i18n-placeholder="key"     → element.placeholder
+      data-i18n-aria-label="key"      → element aria-label
+      (any data-i18n-<attr>="key"     → sets that attribute)
+
+    ── SWITCHER (.px-lang) ──
+      data-default="gr"   Fallback language (default: gr)
+      data-persist="true" Remember choice in localStorage (default: true)
+      <li role="option" data-lang="gr"> … one per language
+
+    Behaviour: auto-detect from navigator.language on first load
+    (el → gr alias supported), persists choice, updates <html lang>,
+    switches WITHOUT reload.
+
+    EXAMPLE:
+      <h1 data-i18n="hero_title">…</h1>
+      <input data-i18n-placeholder="search_ph">
+      <div class="px-lang" data-default="gr"> … </div>
+      <script type="application/json" class="px-lang-i18n">{ … }</script>
+      <script src="block.js"></script>
+  -->
+
+  <!-- Dictionary: one object per language -->
+  <script type="application/json" class="px-lang-i18n">
+  {
+    "gr": {
+      "nav_home": "Αρχική",
+      "nav_routes": "Δρομολόγια",
+      "nav_contact": "Επικοινωνία",
+      "hero_title": "Καλώς ήρθατε στη Λευκίμμη",
+      "hero_sub": "Καθημερινά δρομολόγια προς Ηγουμενίτσα — γρήγορα, οικονομικά, αξιόπιστα.",
+      "cta": "Δείτε τα δρομολόγια",
+      "search_ph": "Αναζήτηση προορισμού…",
+      "switch_aria": "Επιλογή γλώσσας"
+    },
+    "en": {
+      "nav_home": "Home",
+      "nav_routes": "Routes",
+      "nav_contact": "Contact",
+      "hero_title": "Welcome to Lefkimmi",
+      "hero_sub": "Daily crossings to Igoumenitsa — fast, affordable, reliable.",
+      "cta": "View the timetable",
+      "search_ph": "Search destination…",
+      "switch_aria": "Select language"
+    },
+    "fr": {
+      "nav_home": "Accueil",
+      "nav_routes": "Horaires",
+      "nav_contact": "Contact",
+      "hero_title": "Bienvenue à Lefkimmi",
+      "hero_sub": "Traversées quotidiennes vers Igoumenitsa — rapides, économiques, fiables.",
+      "cta": "Voir les horaires",
+      "search_ph": "Rechercher une destination…",
+      "switch_aria": "Choisir la langue"
+    },
+    "de": {
+      "nav_home": "Startseite",
+      "nav_routes": "Fahrpläne",
+      "nav_contact": "Kontakt",
+      "hero_title": "Willkommen in Lefkimmi",
+      "hero_sub": "Tägliche Überfahrten nach Igoumenitsa — schnell, günstig, zuverlässig.",
+      "cta": "Fahrplan ansehen",
+      "search_ph": "Reiseziel suchen…",
+      "switch_aria": "Sprache wählen"
+    },
+    "it": {
+      "nav_home": "Home",
+      "nav_routes": "Orari",
+      "nav_contact": "Contatti",
+      "hero_title": "Benvenuti a Lefkimmi",
+      "hero_sub": "Traversate giornaliere per Igoumenitsa — veloci, economiche, affidabili.",
+      "cta": "Guarda gli orari",
+      "search_ph": "Cerca destinazione…",
+      "switch_aria": "Seleziona lingua"
+    }
+  }
+  </script>
+
+  <!-- Demo header with the switcher -->
+  <header style="display:flex; align-items:center; gap:var(--sp-lg); padding:1rem var(--sp-lg); border-bottom:1px solid rgba(255,255,255,.06);">
+    <strong style="font-family:var(--font-h); color:var(--white); letter-spacing:.04em;">LEFKIMMI&nbsp;LINES</strong>
+    <nav style="display:flex; gap:var(--sp-md); margin-left:var(--sp-md);">
+      <a href="#" data-i18n="nav_home"   style="font-family:var(--font-b); color:var(--ink); text-decoration:none;">Αρχική</a>
+      <a href="#" data-i18n="nav_routes" style="font-family:var(--font-b); color:var(--ink); text-decoration:none;">Δρομολόγια</a>
+      <a href="#" data-i18n="nav_contact" style="font-family:var(--font-b); color:var(--ink); text-decoration:none;">Επικοινωνία</a>
+    </nav>
+
+    <!-- The switcher -->
+    <div class="px-lang" data-default="gr" data-persist="true" style="margin-left:auto;">
+      <button class="px-lang-toggle" aria-haspopup="listbox" aria-expanded="false" aria-label="Επιλογή γλώσσας">
+        <span class="px-lang-flag" aria-hidden="true">🇬🇷</span>
+        <span class="px-lang-code">GR</span>
+        <span class="px-lang-chevron" aria-hidden="true"></span>
+      </button>
+      <ul class="px-lang-menu" role="listbox" hidden>
+        <li role="option" data-lang="gr"><span class="px-lang-flag" aria-hidden="true">🇬🇷</span> Ελληνικά</li>
+        <li role="option" data-lang="en"><span class="px-lang-flag" aria-hidden="true">🇬🇧</span> English</li>
+        <li role="option" data-lang="fr"><span class="px-lang-flag" aria-hidden="true">🇫🇷</span> Français</li>
+        <li role="option" data-lang="de"><span class="px-lang-flag" aria-hidden="true">🇩🇪</span> Deutsch</li>
+        <li role="option" data-lang="it"><span class="px-lang-flag" aria-hidden="true">🇮🇹</span> Italiano</li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Demo body -->
+  <main style="max-width:680px; margin:0 auto; padding:var(--sp-2xl) var(--sp-lg); text-align:center;">
+    <h1 data-i18n="hero_title" style="font-family:var(--font-h); font-size:clamp(2rem,5vw,3.5rem); font-weight:800; color:var(--white); margin:0 0 var(--sp-md);">Καλώς ήρθατε στη Λευκίμμη</h1>
+    <p data-i18n="hero_sub" style="font-family:var(--font-b); font-size:1.125rem; color:var(--ink); line-height:1.7; margin:0 0 var(--sp-xl);">Καθημερινά δρομολόγια προς Ηγουμενίτσα — γρήγορα, οικονομικά, αξιόπιστα.</p>
+    <input type="search" data-i18n-placeholder="search_ph" placeholder="Αναζήτηση προορισμού…"
+           style="width:100%; max-width:360px; padding:0.75rem 1rem; background:var(--bg2); border:1px solid rgba(255,255,255,.1); border-radius:var(--radius); color:var(--white); font-family:var(--font-b); margin-bottom:var(--sp-lg);">
+    <div>
+      <a href="#" data-i18n="cta" style="display:inline-block; padding:1rem 2rem; background:var(--red); color:var(--white); font-family:var(--font-b); font-weight:600; text-decoration:none; border-radius:var(--radius);">Δείτε τα δρομολόγια</a>
+    </div>
+  </main>
+
+  <script src="block.js"></script>
+</body>
+</html>

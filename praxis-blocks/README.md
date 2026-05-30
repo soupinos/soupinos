@@ -45,7 +45,23 @@ That's it. The block reads tokens from `:root`, self-initialises, and never poll
 | 10 | `scroll-reveal` | `data-reveal`, `data-delay` (ms) | Any element that should animate in on scroll |
 | 11 | `counters` | `data-target`, `data-suffix`, `data-duration` (ms) | Stats sections — numbers animate on first viewport entry |
 | 12 | `particle-bg` | `data-count`, `data-color`, `data-speed` | Hero/section backgrounds needing motion |
-| 13 | `theme-switcher` | `data-themes` (JSON), `data-persist` | Multi-skin demos or client white-labelling |
+| 13 | `theme-switcher` | `data-themes` (JSON), `data-persist` | Multi-skin demos or client white-labelling (incl. `lefkimmi` skin) |
+| 14 | `schedule-table` | `data-from`, `data-to`, `data-columns`, `data-source` (Phase 2) | Ferry/bus/excursion timetables, store hours — direction toggle, mobile cards |
+| 15 | `lang-switcher` | `data-default`, `data-persist`, `data-i18n="key"` on elements | Static / mini multilingual sites (no WordPress) — swaps text without reload |
+
+### Utility classes — `effects.css`
+
+Optional. Import after `tokens.css`. Drop a class on any text element:
+
+| Class | Effect |
+|-------|--------|
+| `.px-text-glow` | Soft accent glow (multi-layer text-shadow) |
+| `.px-text-gradient` | Accent→white gradient fill, solid fallback |
+| `.px-text-stroke` | Outline text, solid fallback |
+| `.px-text-shadow-3d` | Layered depth shadow |
+| `.px-text-reveal` | Animated gradient sweep (off under reduced-motion) |
+
+> **Typography note:** all fonts are Greek-verified (Manrope + Inter). `Exo 2` and `DM Sans` were dropped because they have no Greek subset on Google Fonts. `Marcellus` and `Sora` are **not** Greek-safe either — avoid them despite older notes.
 
 ---
 
