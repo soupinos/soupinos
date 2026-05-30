@@ -1,0 +1,196 @@
+/**
+ * LEFKIMMI LINES — site styles
+ * Consumes the Praxis Block Library. Two jobs only:
+ *   1) apply the `lefkimmi` skin to :root (brand palette over tokens.css)
+ *   2) lay out the content sections that are NOT a dedicated block
+ *      (story / why / prices / fleet intro / contact details).
+ * Everything else comes from the block CSS files.
+ */
+
+/* ── lefkimmi skin (overrides tokens.css; fonts stay Manrope/Inter) ──── */
+:root {
+  --bg:      #0A0A0A;
+  --bg2:     #121212;
+  --bg3:     #1A1A1A;
+  --white:   #F5F5F5;
+  --ink:     #B0B0B0;
+  --muted:   #6A6A6A;
+  --red:     #E30613;
+  --red-rgb: 227, 6, 19;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--white);
+  font-family: var(--font-b);
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+
+/* Anchor offset so the sticky header doesn't cover section tops */
+section[id] { scroll-margin-top: 90px; }
+
+/* ── Section primitives ────────────────────────────────────────────── */
+.ll-section {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: var(--sp-2xl) var(--sp-lg);
+}
+.ll-section--tight { padding: var(--sp-xl) var(--sp-lg); }
+.ll-alt { background: var(--bg2); }
+
+.ll-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  margin: 0 0 var(--sp-md);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+.ll-eyebrow::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: var(--red);
+}
+
+.ll-title {
+  font-family: var(--font-h);
+  font-weight: 800;
+  color: var(--white);
+  font-size: clamp(1.9rem, 4.5vw, 3.25rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin: 0 0 var(--sp-md);
+}
+
+.ll-lead {
+  font-size: 1.0625rem;
+  line-height: 1.85;
+  color: var(--ink);
+  max-width: 62ch;
+  margin: 0;
+}
+.ll-lead strong { color: var(--white); font-weight: 600; }
+.ll-lead + .ll-lead { margin-top: var(--sp-md); }
+
+/* ── Buttons / booking CTA ─────────────────────────────────────────── */
+.ll-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 2rem;
+  background: var(--red);
+  color: #fff;
+  font-family: var(--font-b);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: var(--radius);
+  transition: transform var(--transition-fast), filter var(--transition-fast);
+}
+.ll-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+.ll-btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.ll-btn-ghost {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+}
+.ll-btn-ghost:hover { background: rgba(255, 255, 255, 0.06); }
+
+/* ── Split layout (why / café fallback when not using a block) ─────── */
+.ll-split {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--sp-2xl);
+  align-items: center;
+}
+.ll-split-media {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+}
+.ll-split-media img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ── Prices ────────────────────────────────────────────────────────── */
+.ll-prices {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--sp-md);
+  margin: var(--sp-xl) 0 var(--sp-md);
+}
+.ll-price-card {
+  background: var(--bg3);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-lg);
+  text-align: center;
+}
+.ll-price-card h3 {
+  font-family: var(--font-b);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin: 0 0 var(--sp-sm);
+}
+.ll-price-card .ll-price {
+  font-family: var(--font-h);
+  font-weight: 800;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: var(--white);
+  line-height: 1;
+}
+.ll-price-card .ll-price small {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-top: var(--sp-xs);
+}
+.ll-note {
+  font-size: 0.8125rem;
+  color: var(--muted);
+  font-style: italic;
+  margin: var(--sp-md) 0 0;
+  max-width: 60ch;
+}
+
+/* ── Disclaimer banner (schedule "may change") ─────────────────────── */
+.ll-disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-sm);
+  max-width: var(--max-w);
+  margin: 0 auto var(--sp-md);
+  padding: 0 var(--sp-lg);
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+.ll-disclaimer svg { flex-shrink: 0; margin-top: 1px; color: var(--red); }
+
+/* ── Contact details ───────────────────────────────────────────────── */
+.ll-contact-list { list-style: none; margin: var(--sp-md) 0 0; padding: 0; display: grid; gap: var(--sp-md); }
+.ll-contact-list li { display: flex; gap: var(--sp-sm); align-items: flex-start; }
+.ll-contact-list svg { flex-shrink: 0; margin-top: 3px; color: var(--red); }
+.ll-contact-list .ll-ck { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 2px; }
+.ll-contact-list a, .ll-contact-list span { color: var(--ink); text-decoration: none; font-size: 0.9375rem; }
+.ll-contact-list a:hover { color: var(--white); }
+
+/* ── Section divider ───────────────────────────────────────────────── */
+.ll-divider { border: none; border-top: 1px solid rgba(255, 255, 255, 0.06); margin: 0; }
+
+/* ── Responsive ────────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .ll-split { grid-template-columns: 1fr; gap: var(--sp-lg); }
+  .ll-split--reverse .ll-split-media { order: -1; }
+}

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lefkimmi Lines — Ο συντομότερος δρόμος για την Κέρκυρα</title>
+  <meta name="description" content="Καθημερινά δρομολόγια Λευκίμμη ↔ Ηγουμενίτσα σε ~1 ώρα. Ο συντομότερος και πιο οικονομικός τρόπος για τη νότια Κέρκυρα. Από 7,30€ με Μεταφορικό Ισοδύναμο.">
+
+  <!-- Foundation -->
+  <link rel="stylesheet" href="../../tokens.css">
+  <link rel="stylesheet" href="../../effects.css">
+
+  <!-- Blocks used on this page -->
+  <link rel="stylesheet" href="../../blocks/01-header-dropdown/block.css">
+  <link rel="stylesheet" href="../../blocks/02-hero-video/block.css">
+  <link rel="stylesheet" href="../../blocks/11-counters/block.css">
+  <link rel="stylesheet" href="../../blocks/07-gallery-lightbox/block.css">
+  <link rel="stylesheet" href="../../blocks/14-schedule-table/block.css">
+  <link rel="stylesheet" href="../../blocks/06-map-pins/block.css">
+  <link rel="stylesheet" href="../../blocks/08-contact-form/block.css">
+  <link rel="stylesheet" href="../../blocks/10-scroll-reveal/block.css">
+  <link rel="stylesheet" href="../../blocks/04-footer/block.css">
+  <link rel="stylesheet" href="../../blocks/15-lang-switcher/block.css">
+
+  <!-- Site skin + layout -->
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+  <!--
+    LEFKIMMI LINES — mini-site (brand showcase). Assembles Praxis Block Library v1.
+    Booking is NOT handled here: every "Κλείσε / Κράτηση" CTA → lefkimmilines.gr.
+    Languages: GR (default) + EN now; switcher #15 is built for more (add a dict key).
+    PENDING (human gate): final seasonal timetable, Paxoi routes, HD photos/video,
+    EN review, Google Maps API key, owner story. Schedule shown is INDICATIVE.
+  -->
+
+  <!-- i18n dictionary (GR + EN). Add a language = add a key here + an <li>. -->
+  <script type="application/json" class="px-lang-i18n">
+  {
+    "gr": {
+      "nav_about": "Ποιοι είμαστε", "nav_why": "Γιατί Λευκίμμη", "nav_prices": "Τιμές",
+      "nav_fleet": "Στόλος", "nav_schedule": "Δρομολόγια", "nav_contact": "Επικοινωνία",
+      "cta_book": "Κλείσε εισιτήριο", "cta_schedule": "Δες τα δρομολόγια",
+      "cta_book_online": "Κλείσε το εισιτήριό σου online →",
+      "hero_eyebrow": "ΛΕΥΚΙΜΜΗ · ΗΓΟΥΜΕΝΙΤΣΑ · ΠΑΞΟΙ",
+      "hero_h": "Ο συντομότερος δρόμος για την Κέρκυρα.",
+      "hero_sub": "Καθημερινά δρομολόγια από τη Λευκίμμη. Μία ώρα ταξίδι, απόλυτη ασφάλεια, οικονομικό εισιτήριο.",
+      "usp1": "ώρα ταξίδι", "usp2": "δρομολόγια κάθε μέρα", "usp3": "σύγχρονα πλοία", "usp4": "στη θάλασσα από τότε",
+      "about_eyebrow": "Ποιοι είμαστε", "about_h": "Η θάλασσα είναι ο δρόμος μας.",
+      "about_p": "Η Lefkimmi Lines συνδέει καθημερινά τη νότια Κέρκυρα με την Ηγουμενίτσα, από το λιμάνι της Λευκίμμης. Εδώ και πάνω από μία δεκαετία, μεταφέρουμε επιβάτες και οχήματα με συνέπεια, ασφάλεια και σεβασμό σε κάθε ταξιδιώτη. Δεν είμαστε απλώς ένα πέρασμα — είμαστε η αρχή των διακοπών σας.",
+      "why_eyebrow": "Γιατί Λευκίμμη", "why_h": "Πιο κοντά απ' όσο νομίζεις.",
+      "why_p": "Πολλοί ψάχνουν το πλοίο για την Κέρκυρα και καταλήγουν στη μακρινή, ακριβότερη γραμμή της πόλης. Η Λευκίμμη, στη νότια Κέρκυρα, είναι ο συντομότερος και φθηνότερος τρόπος να πατήσεις το νησί: μόλις 50 λεπτά από την Ηγουμενίτσα. Ιδανικό αν πας νότια Κέρκυρα — Κάβος, Λευκίμμη, Μπούκαρι, Άγιος Γεώργιος.",
+      "prices_eyebrow": "Τιμές", "prices_h": "Από 7,30€ το εισιτήριο.",
+      "prices_p": "Με το Μεταφορικό Ισοδύναμο (κρατική επιδότηση), το πέρασμα προς την Κέρκυρα γίνεται από τα πιο οικονομικά της Ελλάδας.",
+      "price1_l": "Επιβάτης", "price2_l": "Με μηχανή", "price3_l": "Με αυτοκίνητο", "price_mi": "με Μ.Ι.",
+      "prices_note": "Οι τιμές με Μεταφορικό Ισοδύναμο ισχύουν για δικαιούχους. Για οριστικές τιμές και κράτηση, πάτησε «Κλείσε εισιτήριο».",
+      "fleet_eyebrow": "Στόλος", "fleet_h": "Δύο πλοία, μία υπόσχεση: ασφάλεια.",
+      "fleet_p": "Τα πλοία μας εξυπηρετούν πιστά και συστηματικά τις ανάγκες του επιβατικού κοινού, με απόλυτη ασφάλεια και υψηλές ανέσεις.",
+      "ship1": "Φ/Β Αγία Τριάδα", "ship2": "Φ/Β Ιωάννης Καποδίστριας",
+      "cafe_eyebrow": "Εν πλω", "cafe_h": "Καθίστε αναπαυτικά. Ταξιδεύουμε.",
+      "cafe_p": "Μία ώρα φτάνει για να πάρετε μια ανάσα. Απολαύστε τον καφέ σας, ένα δροσιστικό ή ένα ζεστό τοστ από το κυλικείο του πλοίου, αφήστε τη θέα του Ιονίου να περάσει μπροστά σας — και πριν το καταλάβετε, είστε Κέρκυρα. Ταχύτητα και ασφάλεια, πάντα με χαμόγελο.",
+      "sch_eyebrow": "Δρομολόγια", "sch_h": "Δρομολόγια",
+      "sch_intro": "Δες τις ώρες και διάλεξε το δρομολόγιο που σε βολεύει.",
+      "sch_note": "Τα δρομολόγια είναι ενδεικτικά και ενδέχεται να αλλάζουν ανά εποχή. Για οριστική επιβεβαίωση και κράτηση, πάτησε «Κλείσε εισιτήριο».",
+      "map_eyebrow": "Χάρτης", "map_h": "1 ώρα ταξίδι.", "map_p": "Από το λιμάνι της Λευκίμμης στο λιμάνι της Ηγουμενίτσας.",
+      "contact_eyebrow": "Επικοινωνία", "contact_h": "Είμαστε εδώ.",
+      "contact_p": "Για πληροφορίες δρομολογίων, εισιτήρια και ομαδικές μεταφορές, επικοινώνησε μαζί μας.",
+      "contact_email_k": "Email", "contact_phoneA_k": "Λευκίμμη → Ηγουμενίτσα", "contact_phoneB_k": "Ηγουμενίτσα → Λευκίμμη",
+      "footer_tag": "Ο συντομότερος δρόμος για την Κέρκυρα.",
+      "footer_nav": "Πλοήγηση", "footer_useful": "Χρήσιμα",
+      "footer_mi": "Μεταφορικό Ισοδύναμο", "footer_terms": "Όροι ταξιδίου", "footer_privacy": "Απόρρητο",
+      "footer_rights": "Όλα τα δικαιώματα διατηρούνται."
+    },
+    "en": {
+      "nav_about": "About us", "nav_why": "Why Lefkimmi", "nav_prices": "Fares",
+      "nav_fleet": "Fleet", "nav_schedule": "Timetable", "nav_contact": "Contact",
+      "cta_book": "Book a ticket", "cta_schedule": "See the timetable",
+      "cta_book_online": "Book your ticket online →",
+      "hero_eyebrow": "LEFKIMMI · IGOUMENITSA · PAXOI",
+      "hero_h": "The shortest way to Corfu.",
+      "hero_sub": "Daily crossings from Lefkimmi. One hour at sea, total safety, an affordable fare.",
+      "usp1": "hour crossing", "usp2": "crossings every day", "usp3": "modern ships", "usp4": "at sea ever since",
+      "about_eyebrow": "About us", "about_h": "The sea is our road.",
+      "about_p": "Lefkimmi Lines connects southern Corfu with Igoumenitsa every day, from the port of Lefkimmi. For over a decade we have carried passengers and vehicles with consistency, safety and respect for every traveller. We are not just a crossing — we are the start of your holidays.",
+      "why_eyebrow": "Why Lefkimmi", "why_h": "Closer than you think.",
+      "why_p": "Many look for the ferry to Corfu and end up on the longer, more expensive town line. Lefkimmi, in the south of the island, is the shortest and cheapest way to set foot on Corfu: just 50 minutes from Igoumenitsa. Ideal if you are heading to southern Corfu — Kavos, Lefkimmi, Boukari, Agios Georgios.",
+      "prices_eyebrow": "Fares", "prices_h": "Tickets from €7.30.",
+      "prices_p": "With the Transport Equivalent (a state subsidy), the crossing to Corfu is among the most affordable in Greece.",
+      "price1_l": "Passenger", "price2_l": "With a motorbike", "price3_l": "With a car", "price_mi": "with T.E.",
+      "prices_note": "Transport Equivalent prices apply to eligible travellers. For final prices and booking, tap “Book a ticket”.",
+      "fleet_eyebrow": "Fleet", "fleet_h": "Two ships, one promise: safety.",
+      "fleet_p": "Our ships serve passengers faithfully and systematically, with total safety and high standards of comfort.",
+      "ship1": "F/B Agia Triada", "ship2": "F/B Ioannis Kapodistrias",
+      "cafe_eyebrow": "On board", "cafe_h": "Sit back. We'll do the sailing.",
+      "cafe_p": "One hour is all it takes to catch your breath. Enjoy your coffee, a cold drink or a warm toastie from the ship's café, let the Ionian view drift past — and before you know it, you're in Corfu. Speed and safety, always with a smile.",
+      "sch_eyebrow": "Timetable", "sch_h": "Timetable",
+      "sch_intro": "Check the times and pick the crossing that suits you.",
+      "sch_note": "Times are indicative and may change by season. For final confirmation and booking, tap “Book a ticket”.",
+      "map_eyebrow": "Map", "map_h": "One hour at sea.", "map_p": "From the port of Lefkimmi to the port of Igoumenitsa.",
+      "contact_eyebrow": "Contact", "contact_h": "We're here.",
+      "contact_p": "For timetable information, tickets and group transfers, get in touch with us.",
+      "contact_email_k": "Email", "contact_phoneA_k": "Lefkimmi → Igoumenitsa", "contact_phoneB_k": "Igoumenitsa → Lefkimmi",
+      "footer_tag": "The shortest way to Corfu.",
+      "footer_nav": "Navigation", "footer_useful": "Useful",
+      "footer_mi": "Transport Equivalent", "footer_terms": "Travel terms", "footer_privacy": "Privacy",
+      "footer_rights": "All rights reserved."
+    }
+  }
+  </script>
+
+  <!-- ═══════════════════ 1 · HEADER ═══════════════════ -->
+  <header class="px-nav" data-logo="Lefkimmi Lines" data-transparent="true">
+    <div class="px-nav-inner">
+      <a class="px-nav-logo" href="#hero" aria-label="Lefkimmi Lines — αρχική">
+        <span class="px-nav-logo-mark">L</span>
+        <span class="px-nav-logo-text">efkimmi Lines</span>
+      </a>
+
+      <nav class="px-nav-menu" aria-label="Κύρια πλοήγηση">
+        <ul role="list">
+          <li><a href="#about"    data-i18n="nav_about">Ποιοι είμαστε</a></li>
+          <li><a href="#why"      data-i18n="nav_why">Γιατί Λευκίμμη</a></li>
+          <li><a href="#prices"   data-i18n="nav_prices">Τιμές</a></li>
+          <li><a href="#fleet"    data-i18n="nav_fleet">Στόλος</a></li>
+          <li><a href="#schedule" data-i18n="nav_schedule">Δρομολόγια</a></li>
+          <li><a href="#contact"  data-i18n="nav_contact">Επικοινωνία</a></li>
+        </ul>
+      </nav>
+
+      <!-- Language switcher (GR + EN) -->
+      <div class="px-lang" data-default="gr" data-persist="true">
+        <button class="px-lang-toggle" aria-haspopup="listbox" aria-expanded="false" aria-label="Επιλογή γλώσσας">
+          <span class="px-lang-flag" aria-hidden="true">🇬🇷</span><span class="px-lang-code">GR</span><span class="px-lang-chevron" aria-hidden="true"></span>
+        </button>
+        <ul class="px-lang-menu" role="listbox" hidden>
+          <li role="option" data-lang="gr"><span class="px-lang-flag" aria-hidden="true">🇬🇷</span> Ελληνικά</li>
+          <li role="option" data-lang="en"><span class="px-lang-flag" aria-hidden="true">🇬🇧</span> English</li>
+        </ul>
+      </div>
+
+      <a class="px-nav-cta" href="https://lefkimmilines.gr/el/arxiki/" target="_blank" rel="noopener" data-i18n="cta_book">Κλείσε εισιτήριο</a>
+
+      <button class="px-nav-hamburger" aria-label="Μενού" aria-expanded="false" aria-controls="ll-mobile">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="px-nav-mobile" id="ll-mobile" aria-hidden="true">
+      <nav aria-label="Πλοήγηση κινητού">
+        <ul role="list">
+          <li><a href="#about"    data-i18n="nav_about">Ποιοι είμαστε</a></li>
+          <li><a href="#why"      data-i18n="nav_why">Γιατί Λευκίμμη</a></li>
+          <li><a href="#prices"   data-i18n="nav_prices">Τιμές</a></li>
+          <li><a href="#fleet"    data-i18n="nav_fleet">Στόλος</a></li>
+          <li><a href="#schedule" data-i18n="nav_schedule">Δρομολόγια</a></li>
+          <li><a href="#contact"  data-i18n="nav_contact">Επικοινωνία</a></li>
+          <li><a class="px-nav-cta" href="https://lefkimmilines.gr/el/arxiki/" target="_blank" rel="noopener" data-i18n="cta_book">Κλείσε εισιτήριο</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ═══════════════════ 2 · HERO ═══════════════════ -->
+  <!-- Real HD footage pending (human gate). Poster carries the hero if video fails. -->
+  <section id="hero" class="px-hero-video"
+           data-src="https://cdn.coverr.co/videos/coverr-a-boat-sailing-in-the-sea-2470/1080p.mp4"
+           data-poster="https://images.unsplash.com/photo-1505761671935-60b3a7427bad?w=1920&q=80"
+           data-eyebrow="ΛΕΥΚΙΜΜΗ · ΗΓΟΥΜΕΝΙΤΣΑ · ΠΑΞΟΙ"
+           data-i18n-eyebrow="hero_eyebrow"
+           data-headline="Ο συντομότερος δρόμος για την Κέρκυρα."
+           data-i18n-headline="hero_h"
+           data-sub="Καθημερινά δρομολόγια από τη Λευκίμμη. Μία ώρα ταξίδι, απόλυτη ασφάλεια, οικονομικό εισιτήριο."
+           data-i18n-sub="hero_sub"
+           data-cta-text="Κλείσε εισιτήριο"
+           data-i18n-cta="cta_book"
+           data-cta-href="https://lefkimmilines.gr/el/arxiki/"
+           data-cta2-text="Δες τα δρομολόγια"
+           data-i18n-cta2="cta_schedule"
+           data-cta2-href="#schedule">
+  </section>
+
+  <!-- ═══════════════════ 3 · USP BAR (counters) ═══════════════════ -->
+  <section class="ll-section ll-section--tight">
+    <div class="px-counters">
+      <div class="px-counter" data-reveal data-delay="0">
+        <span class="px-counter-value" data-target="1" data-duration="1200">0</span>
+        <p class="px-counter-label" data-i18n="usp1">ώρα ταξίδι</p>
+      </div>
+      <div class="px-counter" data-reveal data-delay="100">
+        <span class="px-counter-value" data-target="6" data-suffix="+" data-duration="1800">0</span>
+        <p class="px-counter-label" data-i18n="usp2">δρομολόγια κάθε μέρα</p>
+      </div>
+      <div class="px-counter" data-reveal data-delay="200">
+        <span class="px-counter-value" data-target="2" data-duration="1200">0</span>
+        <p class="px-counter-label" data-i18n="usp3">σύγχρονα πλοία</p>
+      </div>
+      <div class="px-counter" data-reveal data-delay="300">
+        <span class="px-counter-value" data-target="2012" data-duration="2200">0</span>
+        <p class="px-counter-label" data-i18n="usp4">στη θάλασσα από τότε</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="ll-divider">
+
+  <!-- ═══════════════════ 4 · ΠΟΙΟΙ ΕΙΜΑΣΤΕ ═══════════════════ -->
+  <section id="about" class="ll-section">
+    <p class="ll-eyebrow" data-reveal data-i18n="about_eyebrow">Ποιοι είμαστε</p>
+    <h2 class="ll-title" data-reveal data-delay="100" data-i18n="about_h">Η θάλασσα είναι ο δρόμος μας.</h2>
+    <p class="ll-lead" data-reveal data-delay="200" data-i18n="about_p">Η Lefkimmi Lines συνδέει καθημερινά τη νότια Κέρκυρα με την Ηγουμενίτσα, από το λιμάνι της Λευκίμμης. Εδώ και πάνω από μία δεκαετία, μεταφέρουμε επιβάτες και οχήματα με συνέπεια, ασφάλεια και σεβασμό σε κάθε ταξιδιώτη. Δεν είμαστε απλώς ένα πέρασμα — είμαστε η αρχή των διακοπών σας.</p>
+  </section>
+
+  <!-- ═══════════════════ 5 · ΓΙΑΤΙ ΛΕΥΚΙΜΜΗ ═══════════════════ -->
+  <section id="why" class="ll-alt">
+    <div class="ll-section ll-split ll-split--reverse">
+      <div>
+        <p class="ll-eyebrow" data-reveal data-i18n="why_eyebrow">Γιατί Λευκίμμη</p>
+        <h2 class="ll-title" data-reveal data-delay="100" data-i18n="why_h">Πιο κοντά απ' όσο νομίζεις.</h2>
+        <p class="ll-lead" data-reveal data-delay="200" data-i18n="why_p">Πολλοί ψάχνουν το πλοίο για την Κέρκυρα και καταλήγουν στη μακρινή, ακριβότερη γραμμή της πόλης. Η Λευκίμμη, στη νότια Κέρκυρα, είναι ο συντομότερος και φθηνότερος τρόπος να πατήσεις το νησί: μόλις 50 λεπτά από την Ηγουμενίτσα. Ιδανικό αν πας νότια Κέρκυρα — Κάβος, Λευκίμμη, Μπούκαρι, Άγιος Γεώργιος.</p>
+      </div>
+      <div class="ll-split-media" data-reveal data-delay="200">
+        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=900&q=80" alt="Νότια Κέρκυρα — θάλασσα και ακτή" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ 6 · ΤΙΜΕΣ ═══════════════════ -->
+  <section id="prices" class="ll-section">
+    <p class="ll-eyebrow" data-reveal data-i18n="prices_eyebrow">Τιμές</p>
+    <h2 class="ll-title" data-reveal data-delay="100" data-i18n="prices_h">Από 7,30€ το εισιτήριο.</h2>
+    <p class="ll-lead" data-reveal data-delay="200" data-i18n="prices_p">Με το Μεταφορικό Ισοδύναμο (κρατική επιδότηση), το πέρασμα προς την Κέρκυρα γίνεται από τα πιο οικονομικά της Ελλάδας.</p>
+
+    <div class="ll-prices" data-reveal data-delay="250">
+      <div class="ll-price-card">
+        <h3 data-i18n="price1_l">Επιβάτης</h3>
+        <div class="ll-price">7,30€<small data-i18n="price_mi">με Μ.Ι.</small></div>
+      </div>
+      <div class="ll-price-card">
+        <h3 data-i18n="price2_l">Με μηχανή</h3>
+        <div class="ll-price">~16€<small data-i18n="price_mi">με Μ.Ι.</small></div>
+      </div>
+      <div class="ll-price-card">
+        <h3 data-i18n="price3_l">Με αυτοκίνητο</h3>
+        <div class="ll-price">~30€<small data-i18n="price_mi">με Μ.Ι.</small></div>
+      </div>
+    </div>
+    <p class="ll-note" data-reveal data-i18n="prices_note">Οι τιμές με Μεταφορικό Ισοδύναμο ισχύουν για δικαιούχους. Για οριστικές τιμές και κράτηση, πάτησε «Κλείσε εισιτήριο».</p>
+  </section>
+
+  <hr class="ll-divider">
+
+  <!-- ═══════════════════ 7 · ΣΤΟΛΟΣ (gallery) ═══════════════════ -->
+  <section id="fleet" class="ll-section">
+    <p class="ll-eyebrow" data-reveal data-i18n="fleet_eyebrow">Στόλος</p>
+    <h2 class="ll-title" data-reveal data-delay="100" data-i18n="fleet_h">Δύο πλοία, μία υπόσχεση: ασφάλεια.</h2>
+    <p class="ll-lead" data-reveal data-delay="200" data-i18n="fleet_p" style="margin-bottom:var(--sp-xl);">Τα πλοία μας εξυπηρετούν πιστά και συστηματικά τις ανάγκες του επιβατικού κοινού, με απόλυτη ασφάλεια και υψηλές ανέσεις.</p>
+
+    <!-- Placeholder ship photos — real HD pending (human gate) -->
+    <div class="px-gallery" data-cols="2" data-layout="grid" data-reveal data-delay="250">
+      <button class="px-gallery-item" data-src="https://images.unsplash.com/photo-1559125148-869baf508c95?w=1600&q=85" data-caption="Φ/Β Αγία Τριάδα">
+        <img src="https://images.unsplash.com/photo-1559125148-869baf508c95?w=800&q=75" alt="Φ/Β Αγία Τριάδα" loading="lazy" width="800" height="600">
+      </button>
+      <button class="px-gallery-item" data-src="https://images.unsplash.com/photo-1520255870062-bd79d3865de7?w=1600&q=85" data-caption="Φ/Β Ιωάννης Καποδίστριας">
+        <img src="https://images.unsplash.com/photo-1520255870062-bd79d3865de7?w=800&q=75" alt="Φ/Β Ιωάννης Καποδίστριας" loading="lazy" width="800" height="600">
+      </button>
+    </div>
+  </section>
+
+  <!-- Lightbox for the fleet gallery -->
+  <div class="px-lightbox" id="px-lightbox" role="dialog" aria-modal="true" aria-label="Φωτογραφίες στόλου" hidden>
+    <div class="px-lightbox-backdrop"></div>
+    <button class="px-lightbox-close" aria-label="Κλείσιμο"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <button class="px-lightbox-arrow px-lightbox-prev" aria-label="Προηγούμενη"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <div class="px-lightbox-stage"><img class="px-lightbox-img" src="" alt="" loading="lazy"><p class="px-lightbox-caption"></p></div>
+    <button class="px-lightbox-arrow px-lightbox-next" aria-label="Επόμενη"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+    <p class="px-lightbox-counter" aria-live="polite"></p>
+  </div>
+
+  <!-- ═══════════════════ 8 · ΕΝ ΠΛΩ ═══════════════════ -->
+  <!-- Mapped to video-section in the spec; real on-board footage is pending
+       (human gate), so this uses an image split to avoid a broken <video>. -->
+  <section id="cafe" class="ll-alt">
+    <div class="ll-section ll-split">
+      <div>
+        <p class="ll-eyebrow" data-reveal data-i18n="cafe_eyebrow">Εν πλω</p>
+        <h2 class="ll-title" data-reveal data-delay="100" data-i18n="cafe_h">Καθίστε αναπαυτικά. Ταξιδεύουμε.</h2>
+        <p class="ll-lead" data-reveal data-delay="200" data-i18n="cafe_p">Μία ώρα φτάνει για να πάρετε μια ανάσα. Απολαύστε τον καφέ σας, ένα δροσιστικό ή ένα ζεστό τοστ από το κυλικείο του πλοίου, αφήστε τη θέα του Ιονίου να περάσει μπροστά σας — και πριν το καταλάβετε, είστε Κέρκυρα. Ταχύτητα και ασφάλεια, πάντα με χαμόγελο.</p>
+        <p style="margin-top:var(--sp-lg);"><a class="ll-btn" href="https://lefkimmilines.gr/el/arxiki/" target="_blank" rel="noopener" data-i18n="cta_book" data-reveal data-delay="300">Κλείσε εισιτήριο</a></p>
+      </div>
+      <div class="ll-split-media" data-reveal data-delay="200">
+        <img src="https://images.unsplash.com/photo-1514890547357-a9ee288728e0?w=900&q=80" alt="Καφές με θέα τη θάλασσα εν πλω" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ 9 · ΔΡΟΜΟΛΟΓΙΑ (schedule-table) ═══════════════════ -->
+  <section id="schedule" class="ll-section">
+    <p class="ll-eyebrow" data-reveal data-i18n="sch_eyebrow">Δρομολόγια</p>
+    <h2 class="ll-title" data-reveal data-delay="100" data-i18n="sch_h">Δρομολόγια</h2>
+    <p class="ll-lead" data-reveal data-delay="200" data-i18n="sch_intro" style="margin-bottom:var(--sp-lg);">Δες τις ώρες και διάλεξε το δρομολόγιο που σε βολεύει.</p>
+  </section>
+
+  <p class="ll-disclaimer" data-reveal>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <span data-i18n="sch_note">Τα δρομολόγια είναι ενδεικτικά και ενδέχεται να αλλάζουν ανά εποχή. Για οριστική επιβεβαίωση και κράτηση, πάτησε «Κλείσε εισιτήριο».</span>
+  </p>
+
+  <div data-reveal data-delay="100">
+    <section class="px-schedule" data-from="Λευκίμμη" data-to="Ηγουμενίτσα"
+             data-columns="Πλοίο,Αναχώρηση,Άφιξη,Διάρκεια,Τιμή" data-source="">
+      <div class="px-schedule-head">
+        <h2 class="px-schedule-title" style="font-size:1.25rem;">Πρόγραμμα ημέρας</h2>
+        <div class="px-schedule-toggle" role="group" aria-label="Επιλογή κατεύθυνσης">
+          <button class="px-schedule-dir is-active" data-dir="outbound" aria-pressed="true"></button>
+          <button class="px-schedule-dir" data-dir="return" aria-pressed="false"></button>
+        </div>
+      </div>
+      <table class="px-schedule-table">
+        <caption class="px-schedule-caption"></caption>
+        <thead><tr><th scope="col">Πλοίο</th><th scope="col">Αναχώρηση</th><th scope="col">Άφιξη</th><th scope="col">Διάρκεια</th><th scope="col">Τιμή</th></tr></thead>
+        <tbody data-dir="outbound">
+          <tr><td data-label="Πλοίο">Αγία Τριάδα</td><td data-label="Αναχώρηση">06:00</td><td data-label="Άφιξη">06:50</td><td data-label="Διάρκεια">50′</td><td data-label="Τιμή">από 7,30€</td></tr>
+          <tr><td data-label="Πλοίο">Ιωάννης Καποδίστριας</td><td data-label="Αναχώρηση">09:00</td><td data-label="Άφιξη">09:50</td><td data-label="Διάρκεια">50′</td><td data-label="Τιμή">από 7,30€</td></tr>
+          <tr><td data-label="Πλοίο">Αγία Τριάδα</td><td data-label="Αναχώρηση">11:45</td><td data-label="Άφιξη">12:35</td><td data-label="Διάρκεια">50′</td><td data-label="Τιμή">από 7,30€</td></tr>
+          <tr><td data-label="Πλοίο">Ιωάννης Καποδίστριας</td><td data-label="Αναχώρηση">14:00</td><td data-label="Άφιξη">14:50</td><td data-label="Διάρκεια">50′</td><td data-label="Τιμή">από 7,30€</td></tr>
+          <tr><td data-label="Πλοίο">Αγία Τριάδα</td><td data-label="Αναχώρηση">16:00</td><td data-label="Άφιξη">16:50</td><td data-label="Διάρκεια">50′</td><td data-label="Τιμή">από 7,30€</td></tr>
+          <tr><td data-label="Πλοίο">Ιωάννης Καποδίστριας</td><td data-label="Αναχώρηση">19:00</td><td data-label="Άφιξη">19:50</td><td data-label="Διάρκεια">50′</td><td data-label="Τιμή">από 7,30€</td></tr>
+        </tbody>
+        <tbody data-dir="return" hidden>
+          <tr><td data-label="Πλοίο">Ιωάννης Καποδίστριας</td><td data-label="Αναχώρηση">07:30</td><td data-label="Άφιξη">08:20</td><td data-label="Διάρκεια">50′</td><td data-label="Τιμή">από 7,30€</td></tr>
+          <tr><td data-label="Πλοίο">Αγία Τριάδα</td><td data-label="Αναχώρηση">10:30</td><td data-label="Άφιξη">11:20</td><td data-label="Διάρκεια">50′</td><td data-label="Τιμή">από 7,30€</td></tr>
+          <tr><td data-label="Πλοίο">Ιωάννης Καποδίστριας</td><td data-label="Αναχώρηση">13:00</td><td data-label="Άφιξη">13:50</td><td data-label="Διάρκεια">50′</td><td data-label="Τιμή">από 7,30€</td></tr>
+          <tr><td data-label="Πλοίο">Αγία Τριάδα</td><td data-label="Αναχώρηση">15:30</td><td data-label="Άφιξη">16:20</td><td data-label="Διάρκεια">50′</td><td data-label="Τιμή">από 7,30€</td></tr>
+          <tr><td data-label="Πλοίο">Ιωάννης Καποδίστριας</td><td data-label="Αναχώρηση">17:30</td><td data-label="Άφιξη">18:20</td><td data-label="Διάρκεια">50′</td><td data-label="Τιμή">από 7,30€</td></tr>
+          <tr><td data-label="Πλοίο">Αγία Τριάδα</td><td data-label="Αναχώρηση">20:30</td><td data-label="Άφιξη">21:20</td><td data-label="Διάρκεια">50′</td><td data-label="Τιμή">από 7,30€</td></tr>
+        </tbody>
+      </table>
+      <p class="px-schedule-note" hidden role="status"></p>
+    </section>
+  </div>
+
+  <hr class="ll-divider">
+
+  <!-- ═══════════════════ 10 · ΧΑΡΤΗΣ (map-pins) ═══════════════════ -->
+  <section id="map" class="ll-section ll-section--tight">
+    <p class="ll-eyebrow" data-reveal data-i18n="map_eyebrow">Χάρτης</p>
+    <h2 class="ll-title" data-reveal data-delay="100" data-i18n="map_h">1 ώρα ταξίδι.</h2>
+    <p class="ll-lead" data-reveal data-delay="200" data-i18n="map_p" style="margin-bottom:var(--sp-lg);">Από το λιμάνι της Λευκίμμης στο λιμάνι της Ηγουμενίτσας.</p>
+  </section>
+  <!-- Add a Google Maps API key in data-apikey to activate; shows a notice until then -->
+  <div class="px-map" data-apikey="YOUR_GOOGLE_MAPS_API_KEY" data-center="39.476,20.179" data-zoom="10">
+    <script type="application/json" class="px-map-data">
+    [
+      {"lat":39.4490,"lng":20.0935,"title":"Λιμάνι Λευκίμμης","address":"Λευκίμμη, Κέρκυρα","url":"#"},
+      {"lat":39.5036,"lng":20.2655,"title":"Λιμάνι Ηγουμενίτσας","address":"Ηγουμενίτσα, Θεσπρωτία","url":"#"}
+    ]
+    </script>
+    <div class="px-map-placeholder" aria-hidden="true"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><p>Φόρτωση χάρτη…</p></div>
+  </div>
+
+  <!-- ═══════════════════ 11 · ΕΠΙΚΟΙΝΩΝΙΑ (contact-form) ═══════════════════ -->
+  <section id="contact" class="px-contact ll-alt" data-email="info@lefkimmilines.gr">
+    <div class="px-contact-inner">
+      <div class="px-contact-info">
+        <p class="px-contact-eyebrow" data-i18n="contact_eyebrow">Επικοινωνία</p>
+        <h2 class="px-contact-title" data-reveal data-i18n="contact_h">Είμαστε εδώ.</h2>
+        <p class="px-contact-sub" data-reveal data-delay="100" data-i18n="contact_p">Για πληροφορίες δρομολογίων, εισιτήρια και ομαδικές μεταφορές, επικοινώνησε μαζί μας.</p>
+
+        <ul class="ll-contact-list">
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span><span class="ll-ck" data-i18n="contact_email_k">Email</span><a href="mailto:info@lefkimmilines.gr">info@lefkimmilines.gr</a></span>
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span><span class="ll-ck" data-i18n="contact_phoneA_k">Λευκίμμη → Ηγουμενίτσα</span><a href="tel:+302662023200">(+30) 26620-23200</a> · <a href="tel:+302662023917">26620-23917</a></span>
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span><span class="ll-ck" data-i18n="contact_phoneB_k">Ηγουμενίτσα → Λευκίμμη</span><a href="tel:+302665029280">(+30) 26650-29280</a></span>
+          </li>
+        </ul>
+
+        <p style="margin-top:var(--sp-lg);">
+          <a class="ll-btn" href="https://lefkimmilines.gr/el/arxiki/" target="_blank" rel="noopener" data-i18n="cta_book_online">Κλείσε το εισιτήριό σου online →</a>
+        </p>
+      </div>
+
+      <div class="px-contact-form-wrap">
+        <form class="px-contact-form" novalidate aria-label="Φόρμα επικοινωνίας">
+          <div class="px-contact-row">
+            <div class="px-contact-field">
+              <label for="ll-name">Ονοματεπώνυμο *</label>
+              <input type="text" id="ll-name" name="name" autocomplete="name" placeholder="Όνομα" required aria-required="true" aria-describedby="ll-name-err">
+              <span class="px-contact-error" id="ll-name-err" role="alert"></span>
+            </div>
+            <div class="px-contact-field">
+              <label for="ll-email">Email *</label>
+              <input type="email" id="ll-email" name="email" autocomplete="email" placeholder="email@example.com" required aria-required="true" aria-describedby="ll-email-err">
+              <span class="px-contact-error" id="ll-email-err" role="alert"></span>
+            </div>
+          </div>
+          <div class="px-contact-field">
+            <label for="ll-message">Μήνυμα *</label>
+            <textarea id="ll-message" name="message" rows="5" placeholder="Το μήνυμά σας…" required aria-required="true" aria-describedby="ll-message-err"></textarea>
+            <span class="px-contact-error" id="ll-message-err" role="alert"></span>
+          </div>
+          <div class="px-contact-field px-contact-consent">
+            <label class="px-contact-checkbox-label">
+              <input type="checkbox" name="consent" required aria-required="true" aria-describedby="ll-consent-err">
+              <span>Αποδέχομαι την <a href="#" target="_blank">Πολιτική Απορρήτου</a></span>
+            </label>
+            <span class="px-contact-error" id="ll-consent-err" role="alert"></span>
+          </div>
+          <button type="submit" class="px-contact-submit">
+            <span class="px-contact-submit-label">Αποστολή</span>
+            <svg class="px-contact-submit-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </form>
+        <div class="px-contact-success" hidden aria-live="polite">
+          <div class="px-contact-success-icon" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <h3>Το μήνυμά σας εστάλη!</h3>
+          <p>Θα επικοινωνήσουμε μαζί σας σύντομα.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ 12 · FOOTER ═══════════════════ -->
+  <footer class="px-footer" data-company="Lefkimmi Lines" data-vat="—" data-gemi="—">
+    <div class="px-footer-inner">
+      <div class="px-footer-brand">
+        <a class="px-footer-logo" href="#hero"><span class="px-footer-logo-mark">L</span><span class="px-footer-logo-text">efkimmi Lines</span></a>
+        <p class="px-footer-tagline" data-i18n="footer_tag">Ο συντομότερος δρόμος για την Κέρκυρα.</p>
+        <div class="px-footer-social" aria-label="Social">
+          <a href="https://www.facebook.com/lefkimmilines" target="_blank" rel="noopener" aria-label="Facebook" class="px-footer-social-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="https://www.instagram.com/lefkimmi_lines" target="_blank" rel="noopener" aria-label="Instagram" class="px-footer-social-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        </div>
+      </div>
+      <nav class="px-footer-nav" aria-label="Πλοήγηση">
+        <h3 data-i18n="footer_nav">Πλοήγηση</h3>
+        <ul role="list">
+          <li><a href="#about"    data-i18n="nav_about">Ποιοι είμαστε</a></li>
+          <li><a href="#why"      data-i18n="nav_why">Γιατί Λευκίμμη</a></li>
+          <li><a href="#prices"   data-i18n="nav_prices">Τιμές</a></li>
+          <li><a href="#schedule" data-i18n="nav_schedule">Δρομολόγια</a></li>
+        </ul>
+      </nav>
+      <nav class="px-footer-nav" aria-label="Χρήσιμα">
+        <h3 data-i18n="footer_useful">Χρήσιμα</h3>
+        <ul role="list">
+          <li><a href="https://lefkimmilines.gr/metaforiko-isodynamo/" target="_blank" rel="noopener" data-i18n="footer_mi">Μεταφορικό Ισοδύναμο</a></li>
+          <li><a href="https://lefkimmilines.gr/genikoi-oroi-taksidiou/" target="_blank" rel="noopener" data-i18n="footer_terms">Όροι ταξιδίου</a></li>
+          <li><a href="#" data-i18n="footer_privacy">Απόρρητο</a></li>
+        </ul>
+      </nav>
+      <div class="px-footer-contact">
+        <h3 data-i18n="nav_contact">Επικοινωνία</h3>
+        <ul role="list">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:info@lefkimmilines.gr">info@lefkimmilines.gr</a></li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+302662023200">(+30) 26620-23200</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="px-footer-bottom">
+      <div class="px-footer-bottom-inner">
+        <p class="px-footer-legal">© <span class="px-footer-year"></span> <span class="px-footer-company">Lefkimmi Lines</span> — Λευκίμμη, Κέρκυρα. <span data-i18n="footer_rights">Όλα τα δικαιώματα διατηρούνται.</span></p>
+        <nav class="px-footer-legal-links" aria-label="Νομικά">
+          <a href="https://lefkimmilines.gr/genikoi-oroi-taksidiou/" target="_blank" rel="noopener" data-i18n="footer_terms">Όροι ταξιδίου</a>
+          <a href="#" data-i18n="footer_privacy">Απόρρητο</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════ SCRIPTS ═══════════════════ -->
+  <!-- Blocks first; lang-switcher LAST so it translates block-built content too. -->
+  <script src="../../blocks/01-header-dropdown/block.js"></script>
+  <script src="../../blocks/02-hero-video/block.js"></script>
+  <script src="../../blocks/11-counters/block.js"></script>
+  <script src="../../blocks/07-gallery-lightbox/block.js"></script>
+  <script src="../../blocks/14-schedule-table/block.js"></script>
+  <script src="../../blocks/06-map-pins/block.js"></script>
+  <script src="../../blocks/08-contact-form/block.js"></script>
+  <script src="../../blocks/10-scroll-reveal/block.js"></script>
+  <script src="../../blocks/04-footer/block.js"></script>
+  <script src="../../blocks/15-lang-switcher/block.js"></script>
+</body>
+</html>

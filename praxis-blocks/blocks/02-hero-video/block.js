@@ -52,15 +52,25 @@
   const content = document.createElement('div');
   content.className = 'px-hero-video-content';
 
-  const eyebrow = document.createElement('p');
-  eyebrow.className = 'px-hero-video-eyebrow';
-  eyebrow.textContent = 'Web Agency';
-  content.appendChild(eyebrow);
+  // Forward an i18n key from the host onto a generated node, so the
+  // lang-switcher (if loaded after this block) can translate built content.
+  const i18n = (node, key) => { if (key) node.dataset.i18n = key; };
+
+  // Eyebrow — parametric: data-eyebrow="" hides it; absent → default label.
+  const eyebrowText = 'eyebrow' in hero.dataset ? hero.dataset.eyebrow : 'Web Agency';
+  if (eyebrowText !== '') {
+    const eyebrow = document.createElement('p');
+    eyebrow.className = 'px-hero-video-eyebrow';
+    eyebrow.textContent = eyebrowText;
+    i18n(eyebrow, hero.dataset.i18nEyebrow);
+    content.appendChild(eyebrow);
+  }
 
   if (hero.dataset.headline) {
     const h1 = document.createElement('h1');
     h1.className = 'px-hero-video-headline';
     h1.innerHTML = hero.dataset.headline;
+    i18n(h1, hero.dataset.i18nHeadline);
     content.appendChild(h1);
   }
 
@@ -68,6 +78,7 @@
     const p = document.createElement('p');
     p.className = 'px-hero-video-sub';
     p.textContent = hero.dataset.sub;
+    i18n(p, hero.dataset.i18nSub);
     content.appendChild(p);
   }
 
@@ -79,6 +90,7 @@
     a.className = 'px-hero-video-cta';
     a.href      = hero.dataset.ctaHref || '#';
     a.textContent = hero.dataset.ctaText;
+    i18n(a, hero.dataset.i18nCta);
     actions.appendChild(a);
   }
 
@@ -87,6 +99,7 @@
     a2.className  = 'px-hero-video-cta2';
     a2.href       = hero.dataset.cta2Href || '#';
     a2.textContent = hero.dataset.cta2Text;
+    i18n(a2, hero.dataset.i18nCta2);
     actions.appendChild(a2);
   }
 
