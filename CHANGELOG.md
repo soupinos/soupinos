@@ -30,3 +30,5 @@ This file is the first thing the next agent reads — it prevents duplicate work
 | 2026-05-30 | `14-schedule-table` | New: responsive timetable (ship/departure/arrival/duration/price), direction toggle, mobile stacked cards, table a11y, dormant Phase-2 auto-feed hook |
 | 2026-05-30 | `15-lang-switcher` | New: client-side i18n for static sites — data-i18n bindings (+attributes), dropdown switcher, navigator auto-detect (el→gr), localStorage, updates html lang |
 | 2026-05-30 | `13-theme-switcher` | Added "lefkimmi" skin (cinematic dark + #E30613 red + Manrope/Inter); existing skins untouched |
+| 2026-05-30 | `02-hero-video` | Additive: parametric `data-eyebrow` (was hardcoded "Web Agency") + `data-i18n-*` passthrough so lang-switcher can translate block-built hero content |
+| 2026-05-30 | `sites/lefkimmi-lines` | First real site assembled from the library — lefkimmi skin, GR+EN i18n, 10 sections, booking CTAs → lefkimmilines.gr (no booking on-site) |
