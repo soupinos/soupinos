@@ -1,0 +1,372 @@
+/*
+ * px-contact — Contact form with validation
+ * See index.html for full usage docs.
+ */
+
+/* ── Section shell ─────────────────────────────────────────────────── */
+.px-contact {
+  padding: var(--sp-2xl) 0;
+}
+
+.px-contact-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: var(--sp-2xl);
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--sp-lg);
+  align-items: start;
+}
+
+/* ── Info side ─────────────────────────────────────────────────────── */
+.px-contact-eyebrow {
+  font-family: var(--font-b);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin: 0 0 var(--sp-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+}
+
+.px-contact-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--red);
+}
+
+.px-contact-title {
+  font-family: var(--font-h);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.15;
+  margin: 0 0 var(--sp-md);
+}
+
+.px-contact-sub {
+  font-family: var(--font-b);
+  font-size: 1rem;
+  color: var(--ink);
+  line-height: 1.7;
+  margin: 0 0 var(--sp-xl);
+}
+
+/* Quick CTA buttons */
+.px-contact-quick {
+  display: flex;
+  gap: var(--sp-sm);
+  margin-bottom: var(--sp-xl);
+  flex-wrap: wrap;
+}
+
+.px-contact-quick-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius);
+  font-family: var(--font-b);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.px-contact-quick-btn:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.px-contact-quick-btn:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+.px-contact-whatsapp {
+  background: #25D366;
+  color: #fff;
+}
+
+.px-contact-email {
+  background: rgba(255,255,255,.08);
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,.12);
+}
+
+/* Contact details list */
+.px-contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+  margin: 0;
+  padding: 0;
+}
+
+.px-contact-details > div {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-sm);
+}
+
+.px-contact-details dt {
+  flex-shrink: 0;
+  color: var(--red);
+  margin-top: 2px;
+}
+
+.px-contact-details dd {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-b);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.px-contact-details a {
+  color: var(--ink);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.px-contact-details a:hover { color: var(--white); }
+
+/* Visually hidden utility */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Form side ─────────────────────────────────────────────────────── */
+.px-contact-form-wrap {
+  background: var(--bg3);
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-xl);
+}
+
+.px-contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+}
+
+.px-contact-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-md);
+}
+
+/* Field */
+.px-contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-xs);
+}
+
+.px-contact-field label {
+  font-family: var(--font-b);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.px-contact-field input,
+.px-contact-field textarea,
+.px-contact-field select {
+  background: var(--bg2);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: var(--radius);
+  color: var(--white);
+  font-family: var(--font-b);
+  font-size: 0.9375rem;
+  padding: 0.75rem 1rem;
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  width: 100%;
+}
+
+.px-contact-field textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.px-contact-field select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+.px-contact-field select option {
+  background: var(--bg3);
+  color: var(--white);
+}
+
+.px-contact-field input::placeholder,
+.px-contact-field textarea::placeholder {
+  color: var(--muted);
+}
+
+.px-contact-field input:focus,
+.px-contact-field textarea:focus,
+.px-contact-field select:focus {
+  border-color: rgba(255,255,255,.25);
+  box-shadow: 0 0 0 3px rgba(255,59,0,.12);
+}
+
+.px-contact-field.has-error input,
+.px-contact-field.has-error textarea,
+.px-contact-field.has-error select {
+  border-color: var(--red);
+}
+
+/* Error message */
+.px-contact-error {
+  font-family: var(--font-b);
+  font-size: 0.75rem;
+  color: var(--red);
+  min-height: 1em;
+  display: block;
+}
+
+/* Checkbox / consent */
+.px-contact-consent { margin-top: var(--sp-xs); }
+
+.px-contact-checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-sm);
+  cursor: pointer;
+  font-family: var(--font-b);
+  font-size: 0.8125rem;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.px-contact-checkbox-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  accent-color: var(--red);
+  margin: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+.px-contact-checkbox-label a {
+  color: var(--red);
+  text-decoration: none;
+}
+
+.px-contact-checkbox-label a:hover { text-decoration: underline; }
+
+/* Submit button */
+.px-contact-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-sm);
+  padding: 1rem 2rem;
+  background: var(--red);
+  color: var(--white);
+  font-family: var(--font-b);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+  align-self: flex-start;
+}
+
+.px-contact-submit:hover:not(:disabled) {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.px-contact-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.px-contact-submit:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: 3px;
+}
+
+/* ── Success state ─────────────────────────────────────────────────── */
+.px-contact-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--sp-2xl) var(--sp-lg);
+  gap: var(--sp-md);
+  animation: px-contact-success-in 0.5s var(--ease);
+}
+
+@keyframes px-contact-success-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1);    }
+}
+
+.px-contact-success-icon {
+  width: 64px;
+  height: 64px;
+  background: rgba(255,59,0,.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--red);
+}
+
+.px-contact-success h3 {
+  font-family: var(--font-h);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
+  margin: 0;
+}
+
+.px-contact-success p {
+  font-family: var(--font-b);
+  font-size: 1rem;
+  color: var(--ink);
+  margin: 0;
+}
+
+/* ── Responsive ────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .px-contact-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .px-contact-row {
+    grid-template-columns: 1fr;
+  }
+  .px-contact-form-wrap {
+    padding: var(--sp-lg) var(--sp-md);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .px-contact-success { animation: none; }
+}

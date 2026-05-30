@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Block 01 — Header Dropdown</title>
+  <link rel="stylesheet" href="../../tokens.css">
+  <link rel="stylesheet" href="block.css">
+</head>
+<body style="background:var(--bg); min-height:200vh;">
+
+  <!--
+    px-nav — Sticky header with dropdown menus and mobile hamburger.
+
+    DATA ATTRIBUTES:
+      data-logo="Brand Name"     Override logo text (default: "PRAXIS")
+      data-transparent="true"    Start transparent, go solid on scroll (default: true)
+
+    STRUCTURE:
+      .px-nav-logo               Brand mark / logo image
+      .px-nav-menu               Top-level nav links
+      .px-nav-dropdown           Dropdown panel (child of <li>)
+      .px-nav-cta                Right-side CTA button
+
+    EXAMPLE:
+      <header class="px-nav" data-logo="My Brand" data-transparent="true">
+        … copy markup below …
+      </header>
+      <script src="block.js"></script>
+  -->
+
+  <header class="px-nav" data-logo="PRAXIS" data-transparent="true">
+    <div class="px-nav-inner">
+
+      <!-- Logo -->
+      <a class="px-nav-logo" href="#">
+        <span class="px-nav-logo-mark">P</span>
+        <span class="px-nav-logo-text">PRAXIS</span>
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="px-nav-menu" aria-label="Main navigation">
+        <ul role="list">
+          <li><a href="#">Αρχική</a></li>
+
+          <li class="px-nav-has-dropdown">
+            <button aria-expanded="false" aria-haspopup="true">
+              Υπηρεσίες <span class="px-nav-chevron" aria-hidden="true"></span>
+            </button>
+            <div class="px-nav-dropdown" role="region">
+              <ul role="list">
+                <li>
+                  <a href="#">
+                    <strong>Web Design</strong>
+                    <span>Responsive sites & landing pages</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <strong>E-Commerce</strong>
+                    <span>WooCommerce & custom shops</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <strong>Branding</strong>
+                    <span>Logo, identity & brand guidelines</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <strong>SEO & Ads</strong>
+                    <span>Google, Meta & organic growth</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="px-nav-has-dropdown">
+            <button aria-expanded="false" aria-haspopup="true">
+              Portfolio <span class="px-nav-chevron" aria-hidden="true"></span>
+            </button>
+            <div class="px-nav-dropdown" role="region">
+              <ul role="list">
+                <li><a href="#"><strong>Κατηγορία Α</strong><span>Υπότιτλος</span></a></li>
+                <li><a href="#"><strong>Κατηγορία Β</strong><span>Υπότιτλος</span></a></li>
+              </ul>
+            </div>
+          </li>
+
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Επικοινωνία</a></li>
+        </ul>
+      </nav>
+
+      <!-- CTA -->
+      <a class="px-nav-cta" href="#">Ξεκινήστε</a>
+
+      <!-- Mobile hamburger -->
+      <button class="px-nav-hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="px-nav-mobile">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="px-nav-mobile" id="px-nav-mobile" aria-hidden="true">
+      <nav aria-label="Mobile navigation">
+        <ul role="list">
+          <li><a href="#">Αρχική</a></li>
+          <li>
+            <button class="px-nav-mobile-toggle" aria-expanded="false">
+              Υπηρεσίες <span class="px-nav-chevron" aria-hidden="true"></span>
+            </button>
+            <ul class="px-nav-mobile-sub" role="list" hidden>
+              <li><a href="#">Web Design</a></li>
+              <li><a href="#">E-Commerce</a></li>
+              <li><a href="#">Branding</a></li>
+              <li><a href="#">SEO & Ads</a></li>
+            </ul>
+          </li>
+          <li>
+            <button class="px-nav-mobile-toggle" aria-expanded="false">
+              Portfolio <span class="px-nav-chevron" aria-hidden="true"></span>
+            </button>
+            <ul class="px-nav-mobile-sub" role="list" hidden>
+              <li><a href="#">Κατηγορία Α</a></li>
+              <li><a href="#">Κατηγορία Β</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Επικοινωνία</a></li>
+          <li><a class="px-nav-cta" href="#">Ξεκινήστε</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Spacer so scroll behaviour is visible -->
+  <main style="padding:8rem 2rem; color:var(--ink); font-family:var(--font-b);">
+    <h1 style="color:var(--white); font-family:var(--font-h);">Scroll down to see the nav transition</h1>
+    <p>The header starts transparent and becomes solid + blurred after 60px of scroll.</p>
+  </main>
+
+  <script src="block.js"></script>
+</body>
+</html>

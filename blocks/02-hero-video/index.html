@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Block 02 — Hero Video</title>
+  <link rel="stylesheet" href="../../tokens.css">
+  <link rel="stylesheet" href="block.css">
+</head>
+<body style="background:var(--bg); margin:0;">
+
+  <!--
+    px-hero-video — Fullscreen hero with video background.
+
+    DATA ATTRIBUTES on .px-hero-video:
+      data-src="video.mp4"         Video file URL
+      data-poster="poster.jpg"     Poster image (shown before video loads / on mobile)
+      data-headline="..."          Main headline HTML (supports &nbsp;)
+      data-sub="..."               Subtitle / tagline text
+      data-cta-text="..."          Primary CTA button label
+      data-cta-href="..."          Primary CTA link
+      data-cta2-text="..."         Secondary CTA label (optional)
+      data-cta2-href="..."         Secondary CTA link (optional)
+
+    VIDEO:  autoplay, muted, loop, playsinline — no audio, no controls.
+            Falls back to poster image when video can't load or prefers-reduced-motion.
+
+    EXAMPLE:
+      <section class="px-hero-video"
+               data-src="hero.mp4"
+               data-poster="hero.jpg"
+               data-headline="Bold&nbsp;Statement"
+               data-sub="Tagline goes here"
+               data-cta-text="Get started"
+               data-cta-href="#contact">
+      </section>
+      <script src="block.js"></script>
+  -->
+
+  <section class="px-hero-video"
+           data-src="https://www.w3schools.com/html/mov_bbb.mp4"
+           data-poster="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1800&q=80"
+           data-headline="Χτίζουμε&nbsp;το&nbsp;Digital&nbsp;σας&nbsp;Αύριο"
+           data-sub="Web design, e-commerce και performance marketing που παράγουν αποτελέσματα."
+           data-cta-text="Δείτε τo Portfolio"
+           data-cta-href="#"
+           data-cta2-text="Επικοινωνία"
+           data-cta2-href="#">
+  </section>
+
+  <section style="min-height:50vh; display:flex; align-items:center; justify-content:center;">
+    <p style="color:var(--ink); font-family:var(--font-b);">Content below hero.</p>
+  </section>
+
+  <script src="block.js"></script>
+</body>
+</html>

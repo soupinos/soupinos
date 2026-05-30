@@ -1,0 +1,244 @@
+/*
+ * px-gallery — Grid gallery with lightbox
+ * See index.html for full usage docs.
+ */
+
+/* ── Gallery grid ──────────────────────────────────────────────────── */
+.px-gallery {
+  display: grid;
+  grid-template-columns: repeat(var(--px-gcols, 3), 1fr);
+  gap: var(--sp-sm);
+}
+
+/* Masonry variant */
+.px-gallery[data-layout="masonry"] {
+  grid-template-rows: masonry; /* native where supported */
+  align-items: start;
+}
+
+/* Fallback masonry via column count for unsupported browsers */
+@supports not (grid-template-rows: masonry) {
+  .px-gallery[data-layout="masonry"] {
+    display: block;
+    column-count: var(--px-gcols, 3);
+    column-gap: var(--sp-sm);
+  }
+  .px-gallery[data-layout="masonry"] .px-gallery-item {
+    display: block;
+    break-inside: avoid;
+    margin-bottom: var(--sp-sm);
+  }
+}
+
+/* ── Thumbnail button ──────────────────────────────────────────────── */
+.px-gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--bg3);
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  display: block;
+  width: 100%;
+}
+
+.px-gallery-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 4/3;
+  transition: transform 0.5s var(--ease);
+}
+
+.px-gallery[data-layout="masonry"] .px-gallery-item img {
+  aspect-ratio: auto;
+  height: auto;
+}
+
+/* Hover overlay */
+.px-gallery-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,59,0,.2);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.px-gallery-item:hover img,
+.px-gallery-item:focus-visible img {
+  transform: scale(1.06);
+}
+
+.px-gallery-item:hover::after,
+.px-gallery-item:focus-visible::after {
+  opacity: 1;
+}
+
+.px-gallery-item:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+/* Zoom icon */
+.px-gallery-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23F0EDE8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3Cline x1='11' y1='8' x2='11' y2='14'/%3E%3Cline x1='8' y1='11' x2='14' y2='11'/%3E%3C/svg%3E") center / 24px no-repeat;
+  opacity: 0;
+  z-index: 1;
+  transition: opacity var(--transition);
+}
+
+.px-gallery-item:hover::before,
+.px-gallery-item:focus-visible::before {
+  opacity: 1;
+}
+
+/* ── Lightbox backdrop ─────────────────────────────────────────────── */
+.px-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.px-lightbox[hidden] { display: none; }
+
+.px-lightbox.is-open {
+  display: flex;
+  animation: px-lb-in 0.25s var(--ease);
+}
+
+@keyframes px-lb-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.px-lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8,8,8,.96);
+  cursor: pointer;
+}
+
+/* ── Stage ─────────────────────────────────────────────────────────── */
+.px-lightbox-stage {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: min(90vw, 1100px);
+  max-height: 90dvh;
+}
+
+.px-lightbox-img {
+  display: block;
+  max-width: 100%;
+  max-height: 80dvh;
+  object-fit: contain;
+  border-radius: var(--radius);
+  transition: opacity 0.2s var(--ease);
+}
+
+.px-lightbox-img.is-loading {
+  opacity: 0;
+}
+
+.px-lightbox-caption {
+  margin: var(--sp-sm) 0 0;
+  color: var(--ink);
+  font-family: var(--font-b);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+/* ── Arrows ────────────────────────────────────────────────────────── */
+.px-lightbox-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  background: rgba(22,22,22,.8);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 50%;
+  color: var(--white);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.px-lightbox-arrow:hover { background: rgba(255,59,0,.6); }
+.px-lightbox-arrow:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+
+.px-lightbox-prev { left: var(--sp-md); }
+.px-lightbox-next { right: var(--sp-md); }
+
+/* ── Close ─────────────────────────────────────────────────────────── */
+.px-lightbox-close {
+  position: absolute;
+  top: var(--sp-md);
+  right: var(--sp-md);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(22,22,22,.8);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 50%;
+  color: var(--white);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.px-lightbox-close:hover    { background: rgba(255,59,0,.6); }
+.px-lightbox-close:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+
+/* ── Counter ───────────────────────────────────────────────────────── */
+.px-lightbox-counter {
+  position: absolute;
+  bottom: var(--sp-md);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: var(--muted);
+  font-family: var(--font-b);
+  font-size: 0.75rem;
+  letter-spacing: .06em;
+}
+
+/* ── Responsive ────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .px-gallery { --px-gcols: 2; }
+  @supports not (grid-template-rows: masonry) {
+    .px-gallery[data-layout="masonry"] { column-count: 2; }
+  }
+}
+
+@media (max-width: 500px) {
+  .px-gallery { --px-gcols: 1; }
+  @supports not (grid-template-rows: masonry) {
+    .px-gallery[data-layout="masonry"] { column-count: 1; }
+  }
+  .px-lightbox-arrow { display: none; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .px-gallery-item img,
+  .px-gallery-item::after,
+  .px-lightbox.is-open,
+  .px-lightbox-img { transition: none; animation: none; }
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Block 10 — Scroll Reveal</title>
+  <link rel="stylesheet" href="../../tokens.css">
+  <link rel="stylesheet" href="block.css">
+</head>
+<body style="background:var(--bg); padding:2rem;">
+
+  <!--
+    px-reveal — IntersectionObserver staggered fade-up animation.
+
+    ADD TO ANY ELEMENT:
+      data-reveal                 Triggers fade-up on scroll-into-view
+      data-delay="200"            Delay in ms before animation starts (default: 0)
+      data-reveal-dir="up"        Direction: "up" (default), "left", "right", "fade"
+
+    The CSS class .px-reveal is optional — you can use data-reveal on existing elements.
+    Include block.js once per page; it observes ALL [data-reveal] elements.
+
+    EXAMPLE:
+      <h2 data-reveal data-delay="0">Title</h2>
+      <p  data-reveal data-delay="150">Body copy</p>
+      <div data-reveal data-delay="300" data-reveal-dir="left">Card</div>
+      <script src="block.js"></script>
+  -->
+
+  <!-- Tall spacer so first section requires scrolling -->
+  <div style="height:80vh; display:flex; align-items:center; justify-content:center;">
+    <p style="color:var(--ink); font-family:var(--font-b);">Scroll down to see scroll-reveal in action ↓</p>
+  </div>
+
+  <!-- Demo section 1 -->
+  <section style="max-width:var(--max-w); margin:0 auto; padding:var(--sp-2xl) 0;">
+    <p data-reveal data-delay="0"   style="font-family:var(--font-b); font-size:0.75rem; letter-spacing:.12em; text-transform:uppercase; color:var(--red); margin:0 0 var(--sp-sm);">Scroll Reveal Demo</p>
+    <h2 data-reveal data-delay="100" style="font-family:var(--font-h); font-size:clamp(2rem,5vw,4rem); font-weight:800; color:var(--white); margin:0 0 var(--sp-md);">Fade-up στοιχεία</h2>
+    <p data-reveal data-delay="200"  style="font-family:var(--font-b); font-size:1.0625rem; color:var(--ink); max-width:50ch; line-height:1.7; margin:0 0 var(--sp-xl);">
+      Κάθε element με <code style="color:var(--red)">data-reveal</code> ζωντανεύει μόλις μπει στο viewport.
+      Χρησιμοποιήστε <code style="color:var(--red)">data-delay</code> για staggered εφέ.
+    </p>
+
+    <!-- Cards staggered -->
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:var(--sp-md);">
+      <div data-reveal data-delay="0"   style="background:var(--bg3); border:1px solid rgba(255,255,255,.07); border-radius:var(--radius-lg); padding:var(--sp-lg);">
+        <p style="font-family:var(--font-h); font-size:1.5rem; font-weight:700; color:var(--white); margin:0 0 var(--sp-sm);">Card 1</p>
+        <p style="font-family:var(--font-b); color:var(--ink); font-size:0.875rem; margin:0;">data-delay="0"</p>
+      </div>
+      <div data-reveal data-delay="100" style="background:var(--bg3); border:1px solid rgba(255,255,255,.07); border-radius:var(--radius-lg); padding:var(--sp-lg);">
+        <p style="font-family:var(--font-h); font-size:1.5rem; font-weight:700; color:var(--white); margin:0 0 var(--sp-sm);">Card 2</p>
+        <p style="font-family:var(--font-b); color:var(--ink); font-size:0.875rem; margin:0;">data-delay="100"</p>
+      </div>
+      <div data-reveal data-delay="200" style="background:var(--bg3); border:1px solid rgba(255,255,255,.07); border-radius:var(--radius-lg); padding:var(--sp-lg);">
+        <p style="font-family:var(--font-h); font-size:1.5rem; font-weight:700; color:var(--white); margin:0 0 var(--sp-sm);">Card 3</p>
+        <p style="font-family:var(--font-b); color:var(--ink); font-size:0.875rem; margin:0;">data-delay="200"</p>
+      </div>
+      <div data-reveal data-delay="300" style="background:var(--bg3); border:1px solid rgba(255,255,255,.07); border-radius:var(--radius-lg); padding:var(--sp-lg);">
+        <p style="font-family:var(--font-h); font-size:1.5rem; font-weight:700; color:var(--white); margin:0 0 var(--sp-sm);">Card 4</p>
+        <p style="font-family:var(--font-b); color:var(--ink); font-size:0.875rem; margin:0;">data-delay="300"</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Direction variants -->
+  <section style="max-width:var(--max-w); margin:0 auto; padding:var(--sp-2xl) 0;">
+    <h3 data-reveal data-delay="0" style="font-family:var(--font-h); font-size:1.5rem; color:var(--white); margin:0 0 var(--sp-lg);">Direction variants</h3>
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:var(--sp-md);">
+      <div data-reveal data-reveal-dir="up"    data-delay="0"   style="background:var(--bg3); padding:var(--sp-lg); border-radius:var(--radius-lg); font-family:var(--font-b); color:var(--ink);">↑ up (default)</div>
+      <div data-reveal data-reveal-dir="left"  data-delay="100" style="background:var(--bg3); padding:var(--sp-lg); border-radius:var(--radius-lg); font-family:var(--font-b); color:var(--ink);">← left</div>
+      <div data-reveal data-reveal-dir="right" data-delay="200" style="background:var(--bg3); padding:var(--sp-lg); border-radius:var(--radius-lg); font-family:var(--font-b); color:var(--ink);">→ right</div>
+      <div data-reveal data-reveal-dir="fade"  data-delay="300" style="background:var(--bg3); padding:var(--sp-lg); border-radius:var(--radius-lg); font-family:var(--font-b); color:var(--ink);">⬤ fade only</div>
+    </div>
+  </section>
+
+  <script src="block.js"></script>
+</body>
+</html>

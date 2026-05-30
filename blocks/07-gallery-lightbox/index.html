@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Block 07 — Gallery Lightbox</title>
+  <link rel="stylesheet" href="../../tokens.css">
+  <link rel="stylesheet" href="block.css">
+</head>
+<body style="background:var(--bg); padding:4rem 0;">
+
+  <!--
+    px-gallery — Grid/masonry gallery with click-to-lightbox.
+
+    DATA ATTRIBUTES on .px-gallery:
+      data-cols="3"             Columns on desktop (default: 3)
+      data-layout="grid"        "grid" or "masonry" (default: grid)
+
+    EACH .px-gallery-item:
+      data-src="full-res.jpg"   Full-size image for lightbox
+      data-alt="..."            Alt text (shared between thumb and lightbox)
+      data-caption="..."        Optional caption in lightbox
+
+    EXAMPLE:
+      <div class="px-gallery" data-cols="3" data-layout="grid">
+        <button class="px-gallery-item" data-src="big.jpg" data-alt="Photo 1">
+          <img src="thumb.jpg" alt="Photo 1" loading="lazy">
+        </button>
+      </div>
+      <script src="block.js"></script>
+  -->
+
+  <section style="max-width:var(--max-w); margin:0 auto; padding:0 var(--sp-lg) var(--sp-xl);">
+    <h2 style="font-family:var(--font-h); color:var(--white); font-size:clamp(1.75rem,4vw,3rem); font-weight:800; margin:0 0 var(--sp-sm);">Gallery</h2>
+    <p style="font-family:var(--font-b); color:var(--ink); margin:0 0 var(--sp-xl);">Κλικ σε οποιαδήποτε φωτογραφία για μεγέθυνση.</p>
+
+    <div class="px-gallery" data-cols="3" data-layout="grid">
+
+      <button class="px-gallery-item"
+              data-src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1600&q=85"
+              data-alt="Web design project"
+              data-caption="Εταιρικό website για RestaurantXY — 2025">
+        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=75" alt="Web design project" loading="lazy" width="600" height="400">
+      </button>
+
+      <button class="px-gallery-item"
+              data-src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=85"
+              data-alt="Φωτογραφία εταιρείας"
+              data-caption="Brand shoot για tech startup — Αθήνα">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=75" alt="Φωτογραφία εταιρείας" loading="lazy" width="600" height="400">
+      </button>
+
+      <button class="px-gallery-item"
+              data-src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1600&q=85"
+              data-alt="Team at work"
+              data-caption="Η ομάδα μας στο studio">
+        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&q=75" alt="Team at work" loading="lazy" width="600" height="400">
+      </button>
+
+      <button class="px-gallery-item"
+              data-src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=1600&q=85"
+              data-alt="Branding project"
+              data-caption="Brand identity για TechStartup">
+        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&q=75" alt="Branding project" loading="lazy" width="600" height="400">
+      </button>
+
+      <button class="px-gallery-item"
+              data-src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1600&q=85"
+              data-alt="E-commerce"
+              data-caption="FashionBrand e-shop — 500+ SKU">
+        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=75" alt="E-commerce" loading="lazy" width="600" height="400">
+      </button>
+
+      <button class="px-gallery-item"
+              data-src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&q=85"
+              data-alt="Office space"
+              data-caption="Γραφεία πελάτη — Θεσσαλονίκη">
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=75" alt="Office space" loading="lazy" width="600" height="400">
+      </button>
+
+    </div>
+  </section>
+
+  <!-- Lightbox (built by JS) -->
+  <div class="px-lightbox" id="px-lightbox" role="dialog" aria-modal="true" aria-label="Image lightbox" hidden>
+    <div class="px-lightbox-backdrop"></div>
+    <button class="px-lightbox-close" aria-label="Close lightbox">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <button class="px-lightbox-arrow px-lightbox-prev" aria-label="Previous image">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <div class="px-lightbox-stage">
+      <img class="px-lightbox-img" src="" alt="" loading="lazy">
+      <p class="px-lightbox-caption"></p>
+    </div>
+    <button class="px-lightbox-arrow px-lightbox-next" aria-label="Next image">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <p class="px-lightbox-counter" aria-live="polite"></p>
+  </div>
+
+  <script src="block.js"></script>
+</body>
+</html>

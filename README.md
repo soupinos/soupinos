@@ -1,0 +1,72 @@
+# Praxis Block Library
+
+Reusable UI blocks — vanilla HTML/CSS/JS, zero dependencies, zero build step.
+Drop any block into a WordPress theme or a standalone HTML page in minutes.
+
+---
+
+## How to plug in a block (3 steps)
+
+**1. Copy the block folder**
+```
+cp -r praxis-blocks/blocks/01-header-dropdown/ your-project/blocks/
+```
+
+**2. Import tokens + block styles in your `<head>`**
+```html
+<link rel="stylesheet" href="/praxis-blocks/tokens.css">
+<link rel="stylesheet" href="/blocks/01-header-dropdown/block.css">
+```
+
+**3. Paste the markup and pass your params via `data-*` attributes**
+```html
+<!-- example: header with a logo text override -->
+<header class="px-nav" data-logo="My Brand">…</header>
+<script src="/blocks/01-header-dropdown/block.js"></script>
+```
+
+That's it. The block reads tokens from `:root`, self-initialises, and never pollutes the global namespace.
+
+---
+
+## Block reference
+
+| # | Block | Key `data-*` / params | When to use |
+|---|-------|----------------------|-------------|
+| 01 | `header-dropdown` | `data-logo`, `data-transparent` | Every site — sticky nav with dropdown menus & mobile hamburger |
+| 02 | `hero-video` | `data-src`, `data-poster`, `data-headline`, `data-cta-text`, `data-cta-href` | Landing pages needing a cinematic fullscreen intro |
+| 03 | `hero-carousel` | `data-interval`, `data-effect` (`fade`/`slide`) | Sites with multiple hero images; Ken Burns zoom |
+| 04 | `footer` | `data-company`, `data-vat`, `data-gemi` | Every site — multi-column footer with social + legal |
+| 05 | `grid-filters` | `data-categories`, `data-price-max`, JSON cards in `.px-grid-data` | Portfolios, product listings, directories |
+| 06 | `map-pins` | `data-apikey`, `data-center`, JSON pins inline | Store locators, office maps |
+| 07 | `gallery-lightbox` | `data-cols`, `data-layout` (`masonry`/`grid`) | Photo galleries with keyboard + swipe lightbox |
+| 08 | `contact-form` | `data-whatsapp`, `data-email`, `data-action` | Contact pages — ready for CF7/Gravity or mailto |
+| 09 | `video-section` | `data-video-src`, `data-poster`, `data-autoplay` | Feature sections with side-by-side video + text |
+| 10 | `scroll-reveal` | `data-reveal`, `data-delay` (ms) | Any element that should animate in on scroll |
+| 11 | `counters` | `data-target`, `data-suffix`, `data-duration` (ms) | Stats sections — numbers animate on first viewport entry |
+| 12 | `particle-bg` | `data-count`, `data-color`, `data-speed` | Hero/section backgrounds needing motion |
+| 13 | `theme-switcher` | `data-themes` (JSON), `data-persist` | Multi-skin demos or client white-labelling |
+
+---
+
+## Working principles (for the next agent or human)
+
+These are the rules this library is built on. Follow them exactly — they are what makes the library fast and consistent:
+
+- **Think before acting.** What is the *minimum change* that solves the client's problem? Start there.
+- **Read CHANGELOG.md first.** If a block already exists, extend/parameterise it — never write a duplicate.
+- **Less code > more code.** Elegance is what you *don't* write.
+- **Every pattern you see more than once → becomes a block.** The library grows intentionally.
+- **Respect brand tokens.** Never hardcode a colour or font — always use a `var(--…)`.
+- **Test the block in isolation before shipping.** If you haven't seen it work, it's not done.
+- **When something is unclear, ask.** One good question saves hours of wrong work.
+
+---
+
+## Conventions
+
+- All classes prefixed `px-` to prevent collisions with host pages.
+- JS: IIFE-wrapped, no globals, guard `if (!el) return;` at the top of every init.
+- Accessibility: `aria-*` attributes, full keyboard navigation, `prefers-reduced-motion` respected.
+- Performance: heavy assets (maps, video) are lazy-loaded; all scroll listeners use `passive: true`.
+- Mobile-first: base styles for mobile, `@media (min-width: …)` for desktop.

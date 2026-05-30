@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Block 06 — Map Pins</title>
+  <link rel="stylesheet" href="../../tokens.css">
+  <link rel="stylesheet" href="block.css">
+</head>
+<body style="background:var(--bg); padding:4rem 0;">
+
+  <!--
+    px-map — Google Maps with custom pins and info windows.
+
+    DATA ATTRIBUTES on .px-map:
+      data-apikey="YOUR_KEY"    Google Maps API key (required)
+      data-center="37.97,23.73" Lat,lng for initial map center
+      data-zoom="12"            Initial zoom level (default: 12)
+      data-mapid="..."          Google Map ID for Cloud Styling (optional)
+
+    PINS — inline JSON in <script type="application/json" class="px-map-data">:
+      [
+        {
+          "lat": 37.97,
+          "lng": 23.73,
+          "title": "Office Name",
+          "address": "Street 123",
+          "phone": "+30 210...",
+          "url": "https://..."
+        }
+      ]
+
+    The Maps script is lazy-loaded only when the map enters the viewport.
+
+    EXAMPLE:
+      <div class="px-map" data-apikey="AIza..." data-center="37.97,23.73" data-zoom="12">
+        <script type="application/json" class="px-map-data">[…]</script>
+      </div>
+      <script src="block.js"></script>
+  -->
+
+  <section style="max-width:var(--max-w); margin:0 auto; padding:0 var(--sp-lg);">
+    <h2 style="font-family:var(--font-h); color:var(--white); font-size:clamp(1.75rem,4vw,3rem); font-weight:800; margin:0 0 var(--sp-sm);">Βρείτε μας</h2>
+    <p style="font-family:var(--font-b); color:var(--ink); margin:0 0 var(--sp-xl);">Επισκεφτείτε τα γραφεία μας ή επικοινωνήστε μαζί μας.</p>
+  </section>
+
+  <div class="px-map"
+       data-apikey="YOUR_GOOGLE_MAPS_API_KEY"
+       data-center="37.9715,23.7265"
+       data-zoom="13">
+
+    <!-- Pin data — replace with your locations -->
+    <script type="application/json" class="px-map-data">
+    [
+      {
+        "lat": 37.9715,
+        "lng": 23.7265,
+        "title": "Praxis Studio — Κεντρικά",
+        "address": "Λεωφ. Κηφισίας 123, Αθήνα 115 24",
+        "phone": "+30 210 123 4567",
+        "url": "#"
+      },
+      {
+        "lat": 37.9650,
+        "lng": 23.7320,
+        "title": "Praxis Studio — Υποκατάστημα",
+        "address": "Λ. Αλεξάνδρας 45, Αθήνα 114 73",
+        "phone": "+30 210 987 6543",
+        "url": "#"
+      }
+    ]
+    </script>
+
+    <!-- Fallback shown while map loads or if JS disabled -->
+    <div class="px-map-placeholder" aria-hidden="true">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <p>Φόρτωση χάρτη…</p>
+    </div>
+  </div>
+
+  <script src="block.js"></script>
+</body>
+</html>

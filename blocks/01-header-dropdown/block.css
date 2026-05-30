@@ -1,0 +1,368 @@
+/*
+ * px-nav — Sticky header
+ * See index.html for full usage docs.
+ */
+
+/* ── Layout shell ─────────────────────────────────────────────────── */
+.px-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: background var(--transition), backdrop-filter var(--transition),
+              box-shadow var(--transition);
+}
+
+/* Transparent start state */
+.px-nav[data-transparent="true"] {
+  background: transparent;
+}
+
+/* Scrolled / solid state (toggled by JS) */
+.px-nav.is-scrolled {
+  background: rgba(8, 8, 8, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 1px 0 rgba(255,255,255,.06);
+}
+
+/* Always solid (no transparent attr) */
+.px-nav:not([data-transparent="true"]) {
+  background: rgba(8, 8, 8, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.px-nav-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-lg);
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--sp-lg);
+  height: 68px;
+}
+
+/* ── Logo ──────────────────────────────────────────────────────────── */
+.px-nav-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.px-nav-logo-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--red);
+  color: var(--white);
+  font-family: var(--font-h);
+  font-weight: 800;
+  font-size: 1rem;
+  border-radius: var(--radius);
+  line-height: 1;
+}
+
+.px-nav-logo-text {
+  font-family: var(--font-h);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--white);
+  letter-spacing: .08em;
+}
+
+/* ── Desktop menu ──────────────────────────────────────────────────── */
+.px-nav-menu {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.px-nav-menu ul {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.px-nav-menu li {
+  position: relative;
+}
+
+.px-nav-menu > ul > li > a,
+.px-nav-menu > ul > li > button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 var(--sp-md);
+  height: 68px;
+  color: var(--ink);
+  font-family: var(--font-b);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.px-nav-menu > ul > li > a:hover,
+.px-nav-menu > ul > li > button:hover,
+.px-nav-menu > ul > li > a:focus-visible,
+.px-nav-menu > ul > li > button:focus-visible {
+  color: var(--white);
+  outline: none;
+}
+
+.px-nav-menu > ul > li > button:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: -2px;
+}
+
+/* ── Chevron ───────────────────────────────────────────────────────── */
+.px-nav-chevron {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform var(--transition-fast);
+}
+
+[aria-expanded="true"] .px-nav-chevron {
+  transform: rotate(-135deg) translateY(-2px);
+}
+
+/* ── Dropdown panel ────────────────────────────────────────────────── */
+.px-nav-dropdown {
+  position: absolute;
+  top: calc(100% - 4px);
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  min-width: 280px;
+  background: var(--bg3);
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-sm);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.px-nav-dropdown.is-open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.px-nav-dropdown ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.px-nav-dropdown a {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--sp-sm) var(--sp-md);
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: background var(--transition-fast);
+}
+
+.px-nav-dropdown a:hover,
+.px-nav-dropdown a:focus-visible {
+  background: rgba(255,255,255,.05);
+  outline: none;
+}
+
+.px-nav-dropdown a:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: -2px;
+}
+
+.px-nav-dropdown a strong {
+  color: var(--white);
+  font-family: var(--font-b);
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.px-nav-dropdown a span {
+  color: var(--muted);
+  font-family: var(--font-b);
+  font-size: 0.75rem;
+}
+
+/* ── CTA button ────────────────────────────────────────────────────── */
+.px-nav-cta {
+  flex-shrink: 0;
+  padding: 0.5rem 1.25rem;
+  background: var(--red);
+  color: var(--white);
+  font-family: var(--font-b);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius);
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.px-nav-cta:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.px-nav-cta:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+/* ── Hamburger ─────────────────────────────────────────────────────── */
+.px-nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.px-nav-hamburger span {
+  display: block;
+  height: 2px;
+  background: var(--white);
+  border-radius: 2px;
+  transition: transform var(--transition), opacity var(--transition);
+  transform-origin: center;
+}
+
+.px-nav-hamburger[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.px-nav-hamburger[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.px-nav-hamburger[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.px-nav-hamburger:focus-visible {
+  outline: 2px solid var(--red);
+  border-radius: var(--radius);
+}
+
+/* ── Mobile drawer ─────────────────────────────────────────────────── */
+.px-nav-mobile {
+  display: none;
+  background: var(--bg2);
+  border-top: 1px solid rgba(255,255,255,.06);
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s var(--ease);
+}
+
+.px-nav-mobile.is-open {
+  max-height: 100dvh;
+}
+
+.px-nav-mobile nav {
+  padding: var(--sp-md) var(--sp-lg) var(--sp-lg);
+}
+
+.px-nav-mobile ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.px-nav-mobile li > a,
+.px-nav-mobile li > button.px-nav-mobile-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--sp-sm) var(--sp-md);
+  color: var(--ink);
+  font-family: var(--font-b);
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius);
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.px-nav-mobile li > a:hover,
+.px-nav-mobile li > button.px-nav-mobile-toggle:hover {
+  color: var(--white);
+  background: rgba(255,255,255,.04);
+}
+
+.px-nav-mobile-sub {
+  padding-left: var(--sp-md);
+  overflow: hidden;
+}
+
+.px-nav-mobile-sub li > a {
+  font-size: 0.875rem;
+  padding: 0.375rem var(--sp-md);
+}
+
+.px-nav-mobile .px-nav-cta {
+  display: block;
+  text-align: center;
+  margin-top: var(--sp-md);
+  padding: 0.75rem;
+}
+
+/* ── Responsive ────────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .px-nav-menu,
+  .px-nav-cta:not(.px-nav-mobile .px-nav-cta) {
+    display: none;
+  }
+
+  .px-nav-hamburger {
+    display: flex;
+  }
+
+  .px-nav-mobile {
+    display: block;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .px-nav,
+  .px-nav-dropdown,
+  .px-nav-hamburger span,
+  .px-nav-mobile {
+    transition: none;
+  }
+}

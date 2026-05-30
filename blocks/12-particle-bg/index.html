@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Block 12 — Particle Background</title>
+  <link rel="stylesheet" href="../../tokens.css">
+  <link rel="stylesheet" href="block.css">
+</head>
+<body style="background:var(--bg); margin:0;">
+
+  <!--
+    px-particles — Canvas particle network background.
+
+    DATA ATTRIBUTES on .px-particles:
+      data-count="60"       Number of particles (default: 60; reduce on mobile)
+      data-color="#FF3B00"  Particle/line colour (default: brand --red)
+      data-speed="0.4"      Movement speed multiplier (default: 0.4)
+      data-connect="120"    Max distance for drawing connecting lines (default: 120px)
+
+    The canvas fills the parent element.
+    Add content as children — canvas is z-index 0, content above.
+    Pauses when tab is not visible (Page Visibility API).
+    Respects prefers-reduced-motion (static dots, no movement).
+
+    EXAMPLE:
+      <div class="px-particles" data-count="60" data-color="#FF3B00">
+        <div style="position:relative; z-index:1;">…content…</div>
+      </div>
+      <script src="block.js"></script>
+  -->
+
+  <section class="px-particles" data-count="70" data-color="#FF3B00" data-speed="0.35" data-connect="130"
+           style="min-height:100dvh; display:flex; align-items:center; justify-content:center;">
+    <div style="position:relative; z-index:1; text-align:center; padding:var(--sp-lg); max-width:640px;">
+      <p style="font-family:var(--font-b); font-size:0.75rem; letter-spacing:.14em; text-transform:uppercase; color:var(--red); margin:0 0 var(--sp-md);">Particle Background</p>
+      <h1 style="font-family:var(--font-h); font-size:clamp(2.5rem,7vw,5rem); font-weight:800; color:var(--white); margin:0 0 var(--sp-md); line-height:1.1;">Network&nbsp;in&nbsp;Motion</h1>
+      <p style="font-family:var(--font-b); font-size:1.125rem; color:var(--ink); margin:0 0 var(--sp-xl); line-height:1.7;">
+        Τοποθετήστε οποιοδήποτε περιεχόμενο πάνω από το particle canvas.
+        Ρυθμιστέ count, color, speed και connect distance μέσω data attributes.
+      </p>
+      <a href="#" style="display:inline-flex; align-items:center; gap:var(--sp-sm); padding:1rem 2rem; background:var(--red); color:var(--white); font-family:var(--font-b); font-weight:600; text-decoration:none; border-radius:var(--radius);">Ξεκινήστε</a>
+    </div>
+  </section>
+
+  <script src="block.js"></script>
+</body>
+</html>
