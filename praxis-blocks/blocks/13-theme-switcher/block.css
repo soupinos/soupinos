@@ -1,0 +1,58 @@
+/*
+ * px-theme-switcher — Multi-skin theme switcher
+ * See index.html for full usage docs.
+ */
+
+.px-theme-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-xs);
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 100px;
+  padding: 4px;
+}
+
+/* Each theme button */
+.px-theme-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-xs);
+  padding: 0.3rem 0.75rem;
+  background: none;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  font-family: var(--font-b);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--ink);
+  transition: background var(--transition-fast), color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.px-theme-btn:hover {
+  color: var(--white);
+  background: rgba(255,255,255,.07);
+}
+
+.px-theme-btn.is-active {
+  background: var(--bg3);
+  color: var(--white);
+  box-shadow: 0 1px 4px rgba(0,0,0,.3);
+}
+
+.px-theme-btn:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
+
+/* Colour swatch dot */
+.px-theme-swatch {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,.2);
+  flex-shrink: 0;
+}

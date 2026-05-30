@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Praxis Studio — Full Site Demo</title>
+
+  <!-- Foundation -->
+  <link rel="stylesheet" href="../tokens.css">
+
+  <!-- Blocks -->
+  <link rel="stylesheet" href="../blocks/01-header-dropdown/block.css">
+  <link rel="stylesheet" href="../blocks/03-hero-carousel/block.css">
+  <link rel="stylesheet" href="../blocks/09-video-section/block.css">
+  <link rel="stylesheet" href="../blocks/05-grid-filters/block.css">
+  <link rel="stylesheet" href="../blocks/11-counters/block.css">
+  <link rel="stylesheet" href="../blocks/07-gallery-lightbox/block.css">
+  <link rel="stylesheet" href="../blocks/08-contact-form/block.css">
+  <link rel="stylesheet" href="../blocks/10-scroll-reveal/block.css">
+  <link rel="stylesheet" href="../blocks/12-particle-bg/block.css">
+  <link rel="stylesheet" href="../blocks/04-footer/block.css">
+
+  <style>
+    /* Page resets */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--white); }
+
+    /* Section divider utility */
+    .px-section-divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,.06);
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─────────────────────── 01 HEADER ─────────────────────────── -->
+  <header class="px-nav" data-logo="PRAXIS" data-transparent="true">
+    <div class="px-nav-inner">
+      <a class="px-nav-logo" href="#">
+        <span class="px-nav-logo-mark">P</span>
+        <span class="px-nav-logo-text">PRAXIS</span>
+      </a>
+
+      <nav class="px-nav-menu" aria-label="Main navigation">
+        <ul role="list">
+          <li><a href="#hero">Αρχική</a></li>
+          <li class="px-nav-has-dropdown">
+            <button aria-expanded="false" aria-haspopup="true">
+              Υπηρεσίες <span class="px-nav-chevron" aria-hidden="true"></span>
+            </button>
+            <div class="px-nav-dropdown" role="region">
+              <ul role="list">
+                <li><a href="#portfolio"><strong>Web Design</strong><span>Responsive sites & landing pages</span></a></li>
+                <li><a href="#portfolio"><strong>E-Commerce</strong><span>WooCommerce & custom shops</span></a></li>
+                <li><a href="#portfolio"><strong>Branding</strong><span>Logo, identity & guidelines</span></a></li>
+                <li><a href="#portfolio"><strong>SEO & Ads</strong><span>Google, Meta & organic growth</span></a></li>
+              </ul>
+            </div>
+          </li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Επικοινωνία</a></li>
+        </ul>
+      </nav>
+
+      <a class="px-nav-cta" href="#contact">Ξεκινήστε</a>
+
+      <button class="px-nav-hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="px-nav-mobile">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="px-nav-mobile" id="px-nav-mobile" aria-hidden="true">
+      <nav aria-label="Mobile navigation">
+        <ul role="list">
+          <li><a href="#hero">Αρχική</a></li>
+          <li>
+            <button class="px-nav-mobile-toggle" aria-expanded="false">
+              Υπηρεσίες <span class="px-nav-chevron" aria-hidden="true"></span>
+            </button>
+            <ul class="px-nav-mobile-sub" role="list" hidden>
+              <li><a href="#portfolio">Web Design</a></li>
+              <li><a href="#portfolio">E-Commerce</a></li>
+              <li><a href="#portfolio">Branding</a></li>
+              <li><a href="#portfolio">SEO &amp; Ads</a></li>
+            </ul>
+          </li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Επικοινωνία</a></li>
+          <li><a class="px-nav-cta" href="#contact">Ξεκινήστε</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ─────────────────────── 03 HERO CAROUSEL ─────────────────────── -->
+  <section id="hero" class="px-carousel" data-interval="6000" data-effect="fade"
+           aria-roledescription="carousel" aria-label="Hero slideshow">
+
+    <div class="px-carousel-slide"
+         data-src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1800&q=80"
+         data-headline="Χτίζουμε&nbsp;Εμπειρίες"
+         data-sub="Web design που αφήνει εντύπωση — από το πρώτο scroll"
+         data-cta-text="Δείτε το Portfolio"
+         data-cta-href="#portfolio"
+         aria-roledescription="slide" aria-label="Slide 1 of 3"></div>
+
+    <div class="px-carousel-slide"
+         data-src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1800&q=80"
+         data-headline="Λύσεις&nbsp;που&nbsp;Πωλούν"
+         data-sub="E-commerce, landing pages και campaigns που μετατρέπουν"
+         data-cta-text="Μάθετε περισσότερα"
+         data-cta-href="#video"
+         aria-roledescription="slide" aria-label="Slide 2 of 3"></div>
+
+    <div class="px-carousel-slide"
+         data-src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1800&q=80"
+         data-headline="Στρατηγική&nbsp;&amp;&nbsp;Αποτελέσματα"
+         data-sub="SEO, Google Ads και social που φέρνουν πραγματικούς πελάτες"
+         data-cta-text="Επικοινωνήστε μαζί μας"
+         data-cta-href="#contact"
+         aria-roledescription="slide" aria-label="Slide 3 of 3"></div>
+
+    <div class="px-carousel-dots" role="tablist" aria-label="Slide navigation"></div>
+    <button class="px-carousel-arrow px-carousel-prev" aria-label="Previous slide">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="px-carousel-arrow px-carousel-next" aria-label="Next slide">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <div class="px-carousel-scroll-hint" aria-hidden="true"><span></span><p>Scroll</p></div>
+  </section>
+
+  <!-- ─────────────────────── 09 VIDEO SECTION ─────────────────────── -->
+  <section id="video" class="px-video-section"
+           data-video-src="https://www.youtube.com/embed/ScMzIvxBSi4?rel=0&modestbranding=1"
+           data-layout="right">
+    <div class="px-video-section-content">
+      <p class="px-vs-eyebrow">Η Προσέγγισή μας</p>
+      <h2 class="px-vs-title" data-reveal>Από το concept<br>στην εκτέλεση</h2>
+      <p class="px-vs-body" data-reveal data-delay="100">
+        Κάθε project ξεκινά με μια σε βάθος κατανόηση της επιχείρησής σας.
+        Σχεδιάζουμε, κτίζουμε, μετράμε και βελτιστοποιούμε.
+      </p>
+      <ul class="px-vs-bullets">
+        <li data-reveal data-delay="150">Ανάλυση αγοράς και ανταγωνιστών</li>
+        <li data-reveal data-delay="200">UX Research και wireframing</li>
+        <li data-reveal data-delay="250">Pixel-perfect υλοποίηση</li>
+        <li data-reveal data-delay="300">Δοκιμές απόδοσης και παράδοση</li>
+      </ul>
+      <a class="px-vs-cta" href="#contact" data-reveal data-delay="350">Ξεκινήστε το project σας →</a>
+    </div>
+  </section>
+
+  <hr class="px-section-divider">
+
+  <!-- ─────────────────────── 05 GRID FILTERS ──────────────────────── -->
+  <section id="portfolio" class="px-grid" data-cols="3">
+    <header class="px-grid-header" data-reveal>
+      <h2 class="px-grid-title">Portfolio</h2>
+      <p class="px-grid-subtitle">Επιλεγμένα projects που παράγουν αποτελέσματα.</p>
+    </header>
+
+    <div class="px-grid-filters" role="search" aria-label="Filter cards">
+      <div class="px-grid-filter-cats" role="group" aria-label="Filter by category">
+        <button class="px-grid-cat-btn is-active" data-cat="all">Όλα</button>
+        <button class="px-grid-cat-btn" data-cat="web">Web Design</button>
+        <button class="px-grid-cat-btn" data-cat="ecommerce">E-Commerce</button>
+        <button class="px-grid-cat-btn" data-cat="branding">Branding</button>
+        <button class="px-grid-cat-btn" data-cat="seo">SEO &amp; Ads</button>
+      </div>
+      <div class="px-grid-filter-search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="search" placeholder="Αναζήτηση..." aria-label="Search cards">
+      </div>
+    </div>
+
+    <p class="px-grid-count" aria-live="polite" aria-atomic="true"></p>
+
+    <div class="px-grid-cards" role="list">
+      <article class="px-grid-card" data-cat="web" data-price="1800" role="listitem">
+        <div class="px-grid-card-img">
+          <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=75" alt="RestaurantXY Website" loading="lazy" width="600" height="400">
+          <span class="px-grid-card-tag">Web Design</span>
+        </div>
+        <div class="px-grid-card-body">
+          <h3>RestaurantXY Website</h3>
+          <p>Εταιρικό website με online κρατήσεις και menu manager.</p>
+          <div class="px-grid-card-meta"><span class="px-grid-card-price">€1.800</span><span class="px-grid-card-area">Αθήνα</span></div>
+        </div>
+        <a class="px-grid-card-link" href="#" aria-label="View project"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </article>
+
+      <article class="px-grid-card" data-cat="ecommerce" data-price="3500" role="listitem">
+        <div class="px-grid-card-img">
+          <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=75" alt="FashionBrand E-Shop" loading="lazy" width="600" height="400">
+          <span class="px-grid-card-tag">E-Commerce</span>
+        </div>
+        <div class="px-grid-card-body">
+          <h3>FashionBrand E-Shop</h3>
+          <p>WooCommerce store με custom theme και 500+ προϊόντα.</p>
+          <div class="px-grid-card-meta"><span class="px-grid-card-price">€3.500</span><span class="px-grid-card-area">Θεσσαλονίκη</span></div>
+        </div>
+        <a class="px-grid-card-link" href="#" aria-label="View project"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </article>
+
+      <article class="px-grid-card" data-cat="branding" data-price="900" role="listitem">
+        <div class="px-grid-card-img">
+          <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&q=75" alt="TechStartup Identity" loading="lazy" width="600" height="400">
+          <span class="px-grid-card-tag">Branding</span>
+        </div>
+        <div class="px-grid-card-body">
+          <h3>TechStartup Identity</h3>
+          <p>Logo, brand guidelines, stationery και digital assets.</p>
+          <div class="px-grid-card-meta"><span class="px-grid-card-price">€900</span><span class="px-grid-card-area">Αθήνα</span></div>
+        </div>
+        <a class="px-grid-card-link" href="#" aria-label="View project"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </article>
+
+      <article class="px-grid-card" data-cat="seo" data-price="600" role="listitem">
+        <div class="px-grid-card-img">
+          <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&q=75" alt="LocalClinic SEO" loading="lazy" width="600" height="400">
+          <span class="px-grid-card-tag">SEO &amp; Ads</span>
+        </div>
+        <div class="px-grid-card-body">
+          <h3>LocalClinic SEO</h3>
+          <p>+340% organic traffic σε 6 μήνες με on-page SEO.</p>
+          <div class="px-grid-card-meta"><span class="px-grid-card-price">€600/μήνα</span><span class="px-grid-card-area">Πάτρα</span></div>
+        </div>
+        <a class="px-grid-card-link" href="#" aria-label="View project"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </article>
+
+      <article class="px-grid-card" data-cat="web" data-price="2200" role="listitem">
+        <div class="px-grid-card-img">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=75" alt="RealEstate Landing" loading="lazy" width="600" height="400">
+          <span class="px-grid-card-tag">Web Design</span>
+        </div>
+        <div class="px-grid-card-body">
+          <h3>RealEstate Landing</h3>
+          <p>High-conversion landing page με 3D renders και virtual tour.</p>
+          <div class="px-grid-card-meta"><span class="px-grid-card-price">€2.200</span><span class="px-grid-card-area">Αθήνα</span></div>
+        </div>
+        <a class="px-grid-card-link" href="#" aria-label="View project"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </article>
+
+      <article class="px-grid-card" data-cat="ecommerce" data-price="4800" role="listitem">
+        <div class="px-grid-card-img">
+          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=75" alt="SupplyChain B2B Portal" loading="lazy" width="600" height="400">
+          <span class="px-grid-card-tag">E-Commerce</span>
+        </div>
+        <div class="px-grid-card-body">
+          <h3>SupplyChain B2B Portal</h3>
+          <p>Custom B2B e-commerce με tiered pricing και ERP integration.</p>
+          <div class="px-grid-card-meta"><span class="px-grid-card-price">€4.800</span><span class="px-grid-card-area">Θεσσαλονίκη</span></div>
+        </div>
+        <a class="px-grid-card-link" href="#" aria-label="View project"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </article>
+    </div>
+
+    <div class="px-grid-empty" hidden aria-live="polite">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <p>Δεν βρέθηκαν αποτελέσματα.</p>
+      <button class="px-grid-reset">Καθαρισμός φίλτρων</button>
+    </div>
+  </section>
+
+  <hr class="px-section-divider">
+
+  <!-- ─────────────────────── 11 COUNTERS ──────────────────────────── -->
+  <section class="px-counters-section">
+    <div class="px-counters-header" data-reveal>
+      <h2>Αποτελέσματα σε αριθμούς</h2>
+      <p>Πραγματικές μετρήσεις από πραγματικά projects.</p>
+    </div>
+    <div class="px-counters">
+      <div class="px-counter" data-reveal data-delay="0">
+        <span class="px-counter-value" data-target="180" data-suffix="+" data-duration="2000">0</span>
+        <p class="px-counter-label">Ολοκληρωμένα Projects</p>
+      </div>
+      <div class="px-counter" data-reveal data-delay="100">
+        <span class="px-counter-value" data-target="340" data-suffix="%" data-duration="2200">0</span>
+        <p class="px-counter-label">Αύξηση Organic Traffic</p>
+      </div>
+      <div class="px-counter" data-reveal data-delay="200">
+        <span class="px-counter-value" data-target="98" data-suffix="%" data-duration="1800">0</span>
+        <p class="px-counter-label">Ικανοποίηση Πελατών</p>
+      </div>
+      <div class="px-counter" data-reveal data-delay="300">
+        <span class="px-counter-value" data-target="4.8" data-suffix="/5" data-duration="1500" data-decimals="1">0</span>
+        <p class="px-counter-label">Βαθμολογία Google</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="px-section-divider">
+
+  <!-- ─────────────────────── 07 GALLERY ───────────────────────────── -->
+  <section id="gallery" style="max-width:var(--max-w); margin:0 auto; padding:var(--sp-2xl) var(--sp-lg);">
+    <h2 data-reveal style="font-family:var(--font-h); font-size:clamp(1.75rem,4vw,3rem); font-weight:800; color:var(--white); margin:0 0 var(--sp-sm);">Gallery</h2>
+    <p data-reveal data-delay="100" style="font-family:var(--font-b); color:var(--ink); margin:0 0 var(--sp-xl);">Κλικ σε οποιαδήποτε φωτογραφία για μεγέθυνση.</p>
+
+    <div class="px-gallery" data-cols="3" data-layout="grid">
+      <button class="px-gallery-item" data-src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1600&q=85" data-alt="Project 1" data-caption="RestaurantXY Website — 2025">
+        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=75" alt="Project 1" loading="lazy" width="600" height="400">
+      </button>
+      <button class="px-gallery-item" data-src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=85" data-alt="Project 2" data-caption="Brand shoot — Αθήνα">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=75" alt="Project 2" loading="lazy" width="600" height="400">
+      </button>
+      <button class="px-gallery-item" data-src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1600&q=85" data-alt="Project 3" data-caption="Studio team">
+        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&q=75" alt="Project 3" loading="lazy" width="600" height="400">
+      </button>
+      <button class="px-gallery-item" data-src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=1600&q=85" data-alt="Project 4" data-caption="Branding project">
+        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&q=75" alt="Project 4" loading="lazy" width="600" height="400">
+      </button>
+      <button class="px-gallery-item" data-src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1600&q=85" data-alt="Project 5" data-caption="FashionBrand e-shop">
+        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=75" alt="Project 5" loading="lazy" width="600" height="400">
+      </button>
+      <button class="px-gallery-item" data-src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&q=85" data-alt="Project 6" data-caption="Γραφεία πελάτη">
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=75" alt="Project 6" loading="lazy" width="600" height="400">
+      </button>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="px-lightbox" id="px-lightbox" role="dialog" aria-modal="true" aria-label="Image lightbox" hidden>
+    <div class="px-lightbox-backdrop"></div>
+    <button class="px-lightbox-close" aria-label="Close lightbox"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <button class="px-lightbox-arrow px-lightbox-prev" aria-label="Previous image"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <div class="px-lightbox-stage"><img class="px-lightbox-img" src="" alt="" loading="lazy"><p class="px-lightbox-caption"></p></div>
+    <button class="px-lightbox-arrow px-lightbox-next" aria-label="Next image"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+    <p class="px-lightbox-counter" aria-live="polite"></p>
+  </div>
+
+  <hr class="px-section-divider">
+
+  <!-- ─────────────────────── 08 CONTACT ───────────────────────────── -->
+  <section id="contact" class="px-contact" data-whatsapp="+306900000000" data-email="hello@praxis.gr">
+    <div class="px-contact-inner">
+      <div class="px-contact-info">
+        <p class="px-contact-eyebrow">Επικοινωνία</p>
+        <h2 class="px-contact-title" data-reveal>Ας μιλήσουμε για το project σας</h2>
+        <p class="px-contact-sub" data-reveal data-delay="100">Συμπληρώστε τη φόρμα ή επικοινωνήστε άμεσα. Απαντάμε σε &lt;4 ώρες.</p>
+        <div class="px-contact-quick">
+          <a class="px-contact-quick-btn px-contact-whatsapp" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.997 0C5.375 0 0 5.373 0 11.994c0 2.117.554 4.104 1.523 5.831L.064 23.405a.5.5 0 0 0 .611.612l5.683-1.484A11.932 11.932 0 0 0 11.997 24C18.62 24 24 18.627 24 12.006 24 5.376 18.62 0 11.997 0zm0 21.818a9.773 9.773 0 0 1-5.043-1.4l-.361-.214-3.737.977.999-3.648-.235-.374a9.731 9.731 0 0 1-1.477-5.165c0-5.388 4.383-9.771 9.854-9.771 5.473 0 9.855 4.383 9.855 9.771 0 5.389-4.382 9.824-9.855 9.824z"/></svg>
+            WhatsApp
+          </a>
+          <a class="px-contact-quick-btn px-contact-email" href="#" aria-label="Email">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Email
+          </a>
+        </div>
+        <dl class="px-contact-details">
+          <div><dt><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span class="sr-only">Διεύθυνση</span></dt><dd>Λεωφ. Κηφισίας 123, Αθήνα 115 24</dd></div>
+          <div><dt><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span class="sr-only">Τηλέφωνο</span></dt><dd><a href="tel:+302101234567">+30 210 123 4567</a></dd></div>
+        </dl>
+      </div>
+
+      <div class="px-contact-form-wrap">
+        <form class="px-contact-form" novalidate aria-label="Contact form">
+          <div class="px-contact-row">
+            <div class="px-contact-field">
+              <label for="px-cf-name">Ονοματεπώνυμο *</label>
+              <input type="text" id="px-cf-name" name="name" autocomplete="name" placeholder="Γιώργης Παπαδόπουλος" required aria-required="true" aria-describedby="px-cf-name-err">
+              <span class="px-contact-error" id="px-cf-name-err" role="alert"></span>
+            </div>
+            <div class="px-contact-field">
+              <label for="px-cf-email">Email *</label>
+              <input type="email" id="px-cf-email" name="email" autocomplete="email" placeholder="email@example.com" required aria-required="true" aria-describedby="px-cf-email-err">
+              <span class="px-contact-error" id="px-cf-email-err" role="alert"></span>
+            </div>
+          </div>
+          <div class="px-contact-field">
+            <label for="px-cf-message">Μήνυμα *</label>
+            <textarea id="px-cf-message" name="message" rows="5" placeholder="Περιγράψτε το project σας…" required aria-required="true" aria-describedby="px-cf-message-err"></textarea>
+            <span class="px-contact-error" id="px-cf-message-err" role="alert"></span>
+          </div>
+          <div class="px-contact-field px-contact-consent">
+            <label class="px-contact-checkbox-label">
+              <input type="checkbox" name="consent" required aria-required="true" aria-describedby="px-cf-consent-err">
+              <span>Αποδέχομαι την <a href="#" target="_blank">Πολιτική Απορρήτου</a></span>
+            </label>
+            <span class="px-contact-error" id="px-cf-consent-err" role="alert"></span>
+          </div>
+          <button type="submit" class="px-contact-submit">
+            <span class="px-contact-submit-label">Αποστολή μηνύματος</span>
+            <svg class="px-contact-submit-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </form>
+        <div class="px-contact-success" hidden aria-live="polite">
+          <div class="px-contact-success-icon" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <h3>Το μήνυμά σας εστάλη!</h3>
+          <p>Θα επικοινωνήσουμε μαζί σας εντός 4 ωρών.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────── 04 FOOTER ────────────────────────────── -->
+  <footer class="px-footer" data-company="Praxis Studio" data-vat="123456789" data-gemi="000123456">
+    <div class="px-footer-inner">
+      <div class="px-footer-brand">
+        <a class="px-footer-logo" href="#"><span class="px-footer-logo-mark">P</span><span class="px-footer-logo-text">PRAXIS</span></a>
+        <p class="px-footer-tagline">Χτίζουμε digital παρουσίες που πωλούν — από web design έως performance marketing.</p>
+        <div class="px-footer-social" aria-label="Social media links">
+          <a href="#" aria-label="Facebook" class="px-footer-social-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" aria-label="Instagram" class="px-footer-social-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" aria-label="LinkedIn" class="px-footer-social-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        </div>
+      </div>
+      <nav class="px-footer-nav" aria-label="Company links"><h3>Εταιρεία</h3><ul role="list"><li><a href="#">Σχετικά</a></li><li><a href="#">Portfolio</a></li><li><a href="#">Blog</a></li><li><a href="#contact">Επικοινωνία</a></li></ul></nav>
+      <nav class="px-footer-nav" aria-label="Services links"><h3>Υπηρεσίες</h3><ul role="list"><li><a href="#">Web Design</a></li><li><a href="#">E-Commerce</a></li><li><a href="#">Branding</a></li><li><a href="#">SEO</a></li></ul></nav>
+      <div class="px-footer-contact"><h3>Επικοινωνία</h3><ul role="list"><li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+302101234567">+30 210 123 4567</a></li><li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:hello@praxis.gr">hello@praxis.gr</a></li></ul></div>
+    </div>
+    <div class="px-footer-bottom">
+      <div class="px-footer-bottom-inner">
+        <p class="px-footer-legal">© <span class="px-footer-year"></span> <span class="px-footer-company">Praxis Studio</span>. Όλα τα δικαιώματα διατηρούνται. <span class="px-footer-vat-info">ΑΦΜ: <span class="px-footer-vat">123456789</span> | ΓΕΜΗ: <span class="px-footer-gemi">000123456</span></span></p>
+        <nav class="px-footer-legal-links" aria-label="Legal links"><a href="#">Πολιτική Απορρήτου</a><a href="#">Όροι Χρήσης</a><a href="#">Cookies</a></nav>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─────────────────────── SCRIPTS ──────────────────────────────── -->
+  <script src="../blocks/01-header-dropdown/block.js"></script>
+  <script src="../blocks/03-hero-carousel/block.js"></script>
+  <script src="../blocks/09-video-section/block.js"></script>
+  <script src="../blocks/05-grid-filters/block.js"></script>
+  <script src="../blocks/11-counters/block.js"></script>
+  <script src="../blocks/07-gallery-lightbox/block.js"></script>
+  <script src="../blocks/08-contact-form/block.js"></script>
+  <script src="../blocks/10-scroll-reveal/block.js"></script>
+  <script src="../blocks/04-footer/block.js"></script>
+</body>
+</html>

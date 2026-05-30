@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Block 09 — Video Section</title>
+  <link rel="stylesheet" href="../../tokens.css">
+  <link rel="stylesheet" href="block.css">
+</head>
+<body style="background:var(--bg); padding:4rem 0;">
+
+  <!--
+    px-video-section — Content section with side-by-side video and text.
+
+    DATA ATTRIBUTES on .px-video-section:
+      data-video-src="..."      Video URL (mp4) or YouTube/Vimeo embed URL
+      data-poster="..."         Poster image for native video
+      data-autoplay="true"      Autoplay (muted, loop) for native video
+      data-layout="left"        Video position: "left" or "right" (default: right)
+
+    NATIVE VIDEO (mp4):
+      Use data-video-src ending in .mp4/.webm. Renders a <video> element.
+
+    EMBED (YouTube / Vimeo):
+      Use a full iframe embed URL. Renders an <iframe> with lazy loading.
+
+    EXAMPLE:
+      <section class="px-video-section"
+               data-video-src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+               data-layout="right">
+        <!-- content slot -->
+        <div class="px-video-section-content">
+          <p class="px-vs-eyebrow">Label</p>
+          <h2>Headline</h2>
+          <p>Body copy…</p>
+          <a class="px-vs-cta" href="#">CTA</a>
+        </div>
+      </section>
+      <script src="block.js"></script>
+  -->
+
+  <section class="px-video-section"
+           data-video-src="https://www.youtube.com/embed/ScMzIvxBSi4?autoplay=0&rel=0&modestbranding=1"
+           data-layout="right">
+
+    <div class="px-video-section-content">
+      <p class="px-vs-eyebrow">Η Προσέγγισή μας</p>
+      <h2 class="px-vs-title">Από το concept<br>στην εκτέλεση</h2>
+      <p class="px-vs-body">
+        Κάθε project ξεκινά με μια σε βάθος κατανόηση της επιχείρησής σας,
+        του κοινού σας και των στόχων σας. Μόνο τότε σχεδιάζουμε και κτίζουμε
+        λύσεις που πραγματικά δουλεύουν.
+      </p>
+      <ul class="px-vs-bullets">
+        <li>Ανάλυση αγοράς και ανταγωνιστών</li>
+        <li>UX Research και wireframing</li>
+        <li>Pixel-perfect υλοποίηση</li>
+        <li>Δοκιμές απόδοσης και παράδοση</li>
+      </ul>
+      <a class="px-vs-cta" href="#">Δείτε τη διαδικασία →</a>
+    </div>
+
+  </section>
+
+  <script src="block.js"></script>
+</body>
+</html>

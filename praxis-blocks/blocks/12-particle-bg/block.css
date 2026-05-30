@@ -1,0 +1,26 @@
+/*
+ * px-particles — Canvas particle background
+ * See index.html for full usage docs.
+ */
+
+.px-particles {
+  position: relative;
+  overflow: hidden;
+}
+
+.px-particles-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  display: block;
+  pointer-events: none;
+}
+
+/* Reduced motion — canvas hidden, background shows through */
+@media (prefers-reduced-motion: reduce) {
+  .px-particles-canvas {
+    display: none;
+  }
+}

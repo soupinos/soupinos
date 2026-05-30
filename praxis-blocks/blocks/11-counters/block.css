@@ -1,0 +1,105 @@
+/*
+ * px-counters — Animated number counters
+ * See index.html for full usage docs.
+ */
+
+/* ── Section ───────────────────────────────────────────────────────── */
+.px-counters-section {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: var(--sp-2xl) var(--sp-lg);
+}
+
+.px-counters-header {
+  text-align: center;
+  margin-bottom: var(--sp-2xl);
+}
+
+.px-counters-header h2 {
+  font-family: var(--font-h);
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--white);
+  margin: 0 0 var(--sp-sm);
+}
+
+.px-counters-header p {
+  font-family: var(--font-b);
+  font-size: 1.0625rem;
+  color: var(--ink);
+  margin: 0;
+}
+
+/* ── Grid ──────────────────────────────────────────────────────────── */
+.px-counters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--sp-lg);
+}
+
+/* ── Counter card ──────────────────────────────────────────────────── */
+.px-counter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--sp-xl) var(--sp-md);
+  background: var(--bg3);
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle red accent line at top */
+.px-counter::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s var(--ease);
+}
+
+.px-counter.is-counted::before {
+  transform: scaleX(1);
+}
+
+/* Number */
+.px-counter-value {
+  font-family: var(--font-h);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1;
+  display: block;
+  margin-bottom: var(--sp-sm);
+  /* Tabular numbers so digits don't jump */
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+/* Label */
+.px-counter-label {
+  font-family: var(--font-b);
+  font-size: 0.875rem;
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ── Responsive ────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .px-counters {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .px-counter::before { transition: none; }
+}

@@ -1,0 +1,49 @@
+/*
+ * px-reveal — Scroll-triggered fade-up animation
+ * See index.html for full usage docs.
+ *
+ * Initial hidden state for all [data-reveal] elements.
+ * JS adds .px-revealed when the element enters the viewport.
+ */
+
+[data-reveal] {
+  opacity: 0;
+  transition: opacity 0.65s var(--ease), transform 0.65s var(--ease);
+  will-change: opacity, transform;
+}
+
+/* Direction: up (default) */
+[data-reveal]:not([data-reveal-dir]),
+[data-reveal][data-reveal-dir="up"] {
+  transform: translateY(28px);
+}
+
+/* Direction: left */
+[data-reveal][data-reveal-dir="left"] {
+  transform: translateX(-28px);
+}
+
+/* Direction: right */
+[data-reveal][data-reveal-dir="right"] {
+  transform: translateX(28px);
+}
+
+/* Direction: fade only */
+[data-reveal][data-reveal-dir="fade"] {
+  transform: none;
+}
+
+/* Revealed state */
+[data-reveal].px-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* Reduced motion — skip animation entirely */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

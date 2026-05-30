@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Block 13 — Theme Switcher</title>
+  <link rel="stylesheet" href="../../tokens.css">
+  <link rel="stylesheet" href="block.css">
+</head>
+<body style="min-height:100dvh; padding:4rem var(--sp-lg);">
+
+  <!--
+    px-theme-switcher — Multi-skin theme switcher with persistence.
+
+    DATA ATTRIBUTES on .px-theme-switcher:
+      data-persist="true"      Save selection to localStorage (default: true)
+      data-themes='[…]'        JSON array of theme objects:
+                               [{ "id": "dark", "label": "Dark", "vars": { "--bg": "#080808", … } }]
+
+    THEMES are applied by overriding CSS variables on :root.
+    Any block that reads var(--…) tokens will update instantly.
+
+    EXAMPLE:
+      <div class="px-theme-switcher" data-persist="true"
+           data-themes='[{"id":"dark","label":"Dark","vars":{"--bg":"#080808","--red":"#FF3B00"}}]'>
+      </div>
+      <script src="block.js"></script>
+  -->
+
+  <!-- Demo content so theme changes are visible -->
+  <header class="px-nav" data-transparent="false" style="position:relative; top:auto; margin-bottom:var(--sp-2xl);">
+    <div class="px-nav-inner" style="max-width:100%;">
+      <a class="px-nav-logo" href="#">
+        <span class="px-nav-logo-mark">P</span>
+        <span class="px-nav-logo-text">PRAXIS</span>
+      </a>
+      <div style="margin-left:auto;">
+        <!-- Theme switcher mounts here -->
+        <div class="px-theme-switcher"
+             data-persist="true"
+             data-themes='[
+               {"id":"dark",  "label":"Dark",  "swatch":"#080808",
+                "vars":{"--bg":"#080808","--bg2":"#0f0f0f","--bg3":"#161616","--white":"#F0EDE8","--ink":"#a8a6a1","--red":"#FF3B00"}},
+               {"id":"navy",  "label":"Navy",  "swatch":"#0a0f1e",
+                "vars":{"--bg":"#0a0f1e","--bg2":"#0d1428","--bg3":"#121a35","--white":"#e8edf5","--ink":"#8a9bb5","--red":"#4a8fff"}},
+               {"id":"forest","label":"Forest","swatch":"#0a1208",
+                "vars":{"--bg":"#0a1208","--bg2":"#0e1a0b","--bg3":"#132310","--white":"#e8f0e4","--ink":"#8aaa82","--red":"#4caf50"}},
+               {"id":"light", "label":"Light", "swatch":"#f5f4f0",
+                "vars":{"--bg":"#f5f4f0","--bg2":"#eeede8","--bg3":"#e6e4df","--white":"#181716","--ink":"#555","--red":"#FF3B00"}}
+             ]'>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main style="max-width:var(--max-w); margin:0 auto;">
+    <p style="font-family:var(--font-b); font-size:0.75rem; letter-spacing:.14em; text-transform:uppercase; color:var(--red); margin:0 0 var(--sp-sm);">Theme Switcher</p>
+    <h1 style="font-family:var(--font-h); font-size:clamp(2rem,5vw,4rem); font-weight:800; color:var(--white); margin:0 0 var(--sp-md);">Multi-skin demo</h1>
+    <p style="font-family:var(--font-b); font-size:1.0625rem; color:var(--ink); max-width:50ch; line-height:1.7; margin:0 0 var(--sp-xl);">
+      Χρησιμοποιήστε τον switcher για να αλλάξετε skin. Όλα τα blocks ανανεώνονται αμέσως γιατί διαβάζουν CSS variables.
+    </p>
+
+    <!-- Sample cards -->
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:var(--sp-md);">
+      <div style="background:var(--bg3); border:1px solid rgba(0,0,0,.05); border-radius:var(--radius-lg); padding:var(--sp-lg);">
+        <p style="font-family:var(--font-h); font-weight:700; color:var(--white); margin:0 0 var(--sp-xs);">Card One</p>
+        <p style="font-family:var(--font-b); color:var(--ink); font-size:0.875rem; margin:0;">Αλλάξτε theme →</p>
+      </div>
+      <div style="background:var(--bg3); border:1px solid rgba(0,0,0,.05); border-radius:var(--radius-lg); padding:var(--sp-lg);">
+        <p style="font-family:var(--font-h); font-weight:700; color:var(--white); margin:0 0 var(--sp-xs);">Card Two</p>
+        <p style="font-family:var(--font-b); color:var(--ink); font-size:0.875rem; margin:0;">Όλα τα tokens αλλάζουν</p>
+      </div>
+      <div style="background:var(--red); border-radius:var(--radius-lg); padding:var(--sp-lg);">
+        <p style="font-family:var(--font-h); font-weight:700; color:var(--white); margin:0 0 var(--sp-xs);">Accent Card</p>
+        <p style="font-family:var(--font-b); color:rgba(255,255,255,.8); font-size:0.875rem; margin:0;">--red token</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="block.js"></script>
+</body>
+</html>

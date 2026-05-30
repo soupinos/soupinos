@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Block 11 — Counters</title>
+  <link rel="stylesheet" href="../../tokens.css">
+  <link rel="stylesheet" href="block.css">
+</head>
+<body style="background:var(--bg); padding:4rem 0;">
+
+  <!--
+    px-counters — Animated number counters triggered on scroll.
+
+    DATA ATTRIBUTES on each .px-counter-value:
+      data-target="500"     Target number (required)
+      data-suffix="+"       String appended after number (optional, e.g. "+", "%", "k")
+      data-prefix="€"       String prepended before number (optional)
+      data-duration="2000"  Animation duration in ms (default: 2000)
+      data-decimals="0"     Decimal places (default: 0)
+
+    CONTAINER:
+      .px-counters           Wraps all counters; JS uses IntersectionObserver to trigger.
+
+    EXAMPLE:
+      <div class="px-counters">
+        <div class="px-counter">
+          <span class="px-counter-value" data-target="340" data-suffix="%">0%</span>
+          <p class="px-counter-label">Traffic Growth</p>
+        </div>
+      </div>
+      <script src="block.js"></script>
+  -->
+
+  <!-- Spacer -->
+  <div style="height:40vh;"></div>
+
+  <section class="px-counters-section">
+    <div class="px-counters-header" data-reveal>
+      <h2>Αποτελέσματα σε αριθμούς</h2>
+      <p>Πραγματικές μετρήσεις από πραγματικά projects.</p>
+    </div>
+
+    <div class="px-counters">
+
+      <div class="px-counter" data-reveal data-delay="0">
+        <span class="px-counter-value" data-target="180" data-suffix="+" data-duration="2000">0</span>
+        <p class="px-counter-label">Ολοκληρωμένα Projects</p>
+      </div>
+
+      <div class="px-counter" data-reveal data-delay="100">
+        <span class="px-counter-value" data-target="340" data-suffix="%" data-duration="2200">0</span>
+        <p class="px-counter-label">Αύξηση Organic Traffic</p>
+      </div>
+
+      <div class="px-counter" data-reveal data-delay="200">
+        <span class="px-counter-value" data-target="98" data-suffix="%" data-duration="1800">0</span>
+        <p class="px-counter-label">Ικανοποίηση Πελατών</p>
+      </div>
+
+      <div class="px-counter" data-reveal data-delay="300">
+        <span class="px-counter-value" data-target="4.8" data-suffix="/5" data-duration="1500" data-decimals="1">0</span>
+        <p class="px-counter-label">Βαθμολογία Google</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div style="height:40vh;"></div>
+
+  <script src="../../blocks/10-scroll-reveal/block.js"></script>
+  <script src="block.js"></script>
+</body>
+</html>
