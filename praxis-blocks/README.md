@@ -48,6 +48,9 @@ That's it. The block reads tokens from `:root`, self-initialises, and never poll
 | 13 | `theme-switcher` | `data-themes` (JSON), `data-persist` | Multi-skin demos or client white-labelling (incl. `lefkimmi` skin) |
 | 14 | `schedule-table` | `data-from`, `data-to`, `data-columns`, `data-source` (Phase 2) | Ferry/bus/excursion timetables, store hours — direction toggle, mobile cards |
 | 15 | `lang-switcher` | `data-default`, `data-persist`, `data-i18n="key"` on elements | Static / mini multilingual sites (no WordPress) — swaps text without reload |
+| 16 | `seo-head` | JSON config `.px-seo-cfg` — `canonical`, `og`, `langs{title,description}` | Per-language title/description/OG meta; updates on lang-switch via MutationObserver |
+| 17 | `schema-injector` | JSON config `.px-schema-cfg` — array of typed schema objects | JSON-LD structured data: LocalBusiness, FerryTrip, AggregateRating, BreadcrumbList, FAQPage |
+| 18 | `hreflang` | JSON config `.px-hreflang-cfg` — `langs[{code,url}]`, `xDefault` | `<link rel="alternate" hreflang>` for multilingual; see note on single-URL limitation |
 
 ### Utility classes — `effects.css`
 
@@ -62,6 +65,42 @@ Optional. Import after `tokens.css`. Drop a class on any text element:
 | `.px-text-reveal` | Animated gradient sweep (off under reduced-motion) |
 
 > **Typography note:** all fonts are Greek-verified (Manrope + Inter). `Exo 2` and `DM Sans` were dropped because they have no Greek subset on Google Fonts. `Marcellus` and `Sora` are **not** Greek-safe either — avoid them despite older notes.
+
+---
+
+## SEO modules — τι κάνουν, τι ΔΕΝ κάνουν, πώς μπαίνουν
+
+### Τι κάνουν (on-page / technical SEO)
+| Module | Αρχείο | Δουλειά |
+|--------|--------|---------|
+| 16 `seo-head` | `block.js` | `<title>`, `<meta description>`, Open Graph, Twitter Card ανά γλώσσα. Ενημερώνεται αυτόματα με τον lang-switcher μέσω MutationObserver. |
+| 17 `schema-injector` | `block.js` | Εγχέει `<script type="application/ld+json">` στο `<head>`. Types: LocalBusiness, FerryTrip, AggregateRating, BreadcrumbList, FAQPage. |
+| 18 `hreflang` | `block.js` | Εγχέει `<link rel="alternate" hreflang="…">` για κάθε γλώσσα + `x-default`. |
+| sitemap.xml | template | Λίστα σελίδων + lastmod + hreflang alternates. |
+| robots.txt | template | `User-agent: * Allow: /` + Sitemap reference. |
+
+### Πώς μπαίνουν σε κάθε νέο site
+1. Αντίγραψε τα 3 block folders (16, 17, 18) στο project.
+2. Γράψε τα 3 JSON config blocks στο `<body>` πριν το `</body>`:
+   - `.px-seo-cfg` — titles/descs ανά γλώσσα + og/canonical
+   - `.px-schema-cfg` — array τύπων schema (ξεκίνα με LocalBusiness)
+   - `.px-hreflang-cfg` — langs array + xDefault
+3. Φόρτωσε τα 3 scripts (μετά τον lang-switcher ή πριν — χωρίς διαφορά):
+   ```html
+   <script src="…/16-seo-head/block.js"></script>
+   <script src="…/17-schema-injector/block.js"></script>
+   <script src="…/18-hreflang/block.js"></script>
+   ```
+4. Αντίγραψε `sitemap.xml` + `robots.txt` templates, βάλε το production URL.
+5. Validate schema: [Google Rich Results Test](https://search.google.com/test/rich-results)
+
+### Τι ΔΕΝ εγγυώνται μόνα τους
+Αυτά τα modules καλύπτουν **technical / on-page SEO**. Δεν αρκούν για #1 ranking. Χρειάζεται επιπλέον:
+- **Domain authority** + **backlinks** (off-page — human/agent δουλειά)
+- **Google Business Profile** (δωρεάν, κρίσιμο για local SEO)
+- **Content quality** (σωστό copywriting, keywords φυσικά ενσωματωμένα)
+- **Χρόνος** — η Google χρειάζεται εβδομάδες/μήνες για indexing
+- **hreflang πλήρης αποδοτικότητα** μόνο με ξεχωριστά URLs ανά γλώσσα (`/el/`, `/en/` κλπ.) — αυτό θέλει WordPress/routing, είναι εκτός scope του block
 
 ---
 

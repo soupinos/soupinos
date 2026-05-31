@@ -505,6 +505,55 @@
     </footer>
   </div>
 
+  <!-- ─── SEO UTILITY BLOCKS (16–18) — non-visual, output to <head> ──── -->
+
+  <!-- Configs (minimal examples for preview) -->
+  <script type="application/json" class="px-seo-cfg">
+  { "default": "el", "langs": { "el": { "title": "Praxis Preview", "description": "Praxis Block Library preview page." } } }
+  </script>
+  <script type="application/json" class="px-schema-cfg">
+  [{ "type": "LocalBusiness", "name": "Praxis Studio", "url": "https://praxis.gr" }]
+  </script>
+  <script type="application/json" class="px-hreflang-cfg">
+  { "xDefault": "https://praxis.gr/", "langs": [{ "code": "el", "url": "https://praxis.gr/el/" }, { "code": "en", "url": "https://praxis.gr/en/" }] }
+  </script>
+
+  <div id="b16" style="padding:2rem var(--sp-lg);">
+    <div class="pv-label" style="margin-bottom:1rem;">
+      16 — seo-head (utility — no visual output)
+      <a href="../blocks/16-seo-head/block.js">View source →</a>
+    </div>
+    <div style="background:var(--bg3);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius-lg);padding:var(--sp-lg);font-family:var(--font-b);font-size:.875rem;color:var(--ink);line-height:1.7;">
+      <p style="color:var(--white);font-weight:600;margin:0 0 .5rem;">px-seo-head — Dynamic meta tag manager</p>
+      <p style="margin:0 0 .5rem;">Manages <code style="color:var(--red);">&lt;title&gt;</code>, <code style="color:var(--red);">&lt;meta name="description"&gt;</code>, Open Graph &amp; Twitter Card. Updates on lang-switch via MutationObserver.</p>
+      <p style="margin:0;color:var(--muted);">Config: <code>&lt;script type="application/json" class="px-seo-cfg"&gt;{...}&lt;/script&gt;</code> — see block.js for full schema.</p>
+    </div>
+  </div>
+
+  <div id="b17" style="padding:2rem var(--sp-lg);">
+    <div class="pv-label" style="margin-bottom:1rem;">
+      17 — schema-injector (utility — injects JSON-LD to &lt;head&gt;)
+      <a href="../blocks/17-schema-injector/block.js">View source →</a>
+    </div>
+    <div style="background:var(--bg3);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius-lg);padding:var(--sp-lg);font-family:var(--font-b);font-size:.875rem;color:var(--ink);line-height:1.7;">
+      <p style="color:var(--white);font-weight:600;margin:0 0 .5rem;">px-schema-injector — JSON-LD structured data</p>
+      <p style="margin:0 0 .5rem;">Supported types: <code style="color:var(--red);">LocalBusiness</code>, <code style="color:var(--red);">FerryTrip</code>, <code style="color:var(--red);">AggregateRating</code>, <code style="color:var(--red);">BreadcrumbList</code>, <code style="color:var(--red);">FAQPage</code>.</p>
+      <p style="margin:0;color:var(--muted);">Config: <code>&lt;script type="application/json" class="px-schema-cfg"&gt;[{...}]&lt;/script&gt;</code></p>
+    </div>
+  </div>
+
+  <div id="b18" style="padding:2rem var(--sp-lg);">
+    <div class="pv-label" style="margin-bottom:1rem;">
+      18 — hreflang (utility — injects link tags to &lt;head&gt;)
+      <a href="../blocks/18-hreflang/block.js">View source →</a>
+    </div>
+    <div style="background:var(--bg3);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius-lg);padding:var(--sp-lg);font-family:var(--font-b);font-size:.875rem;color:var(--ink);line-height:1.7;">
+      <p style="color:var(--white);font-weight:600;margin:0 0 .5rem;">px-hreflang — Language alternates</p>
+      <p style="margin:0 0 .5rem;">Injects <code style="color:var(--red);">&lt;link rel="alternate" hreflang="…"&gt;</code> for each language + <code style="color:var(--red);">x-default</code>.</p>
+      <p style="margin:0;color:var(--muted);">⚠ Single-URL sites: hreflang has limited impact — full effect requires separate URLs per language (/el/, /en/ …).</p>
+    </div>
+  </div>
+
   <!-- ─── SCRIPTS ───────────────────────────────────────────────────── -->
   <script src="../blocks/01-header-dropdown/block.js"></script>
   <script src="../blocks/02-hero-video/block.js"></script>
@@ -521,5 +570,8 @@
   <script src="../blocks/13-theme-switcher/block.js"></script>
   <script src="../blocks/14-schedule-table/block.js"></script>
   <script src="../blocks/15-lang-switcher/block.js"></script>
+  <script src="../blocks/16-seo-head/block.js"></script>
+  <script src="../blocks/17-schema-injector/block.js"></script>
+  <script src="../blocks/18-hreflang/block.js"></script>
 </body>
 </html>
