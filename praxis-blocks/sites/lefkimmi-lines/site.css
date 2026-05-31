@@ -189,6 +189,13 @@ section[id] { scroll-margin-top: 90px; }
 /* ── Section divider ───────────────────────────────────────────────── */
 .ll-divider { border: none; border-top: 1px solid rgba(255, 255, 255, 0.06); margin: 0; }
 
+/* ── Greek uppercase fix: GR labels pre-uppercased in dict, no CSS transform ── */
+:lang(el) .ll-eyebrow              { text-transform: none; }
+:lang(el) .px-contact-eyebrow      { text-transform: none; }
+:lang(el) .px-footer-nav h3        { text-transform: none; }
+:lang(el) .px-footer-contact h3    { text-transform: none; }
+:lang(el) .ll-contact-list .ll-ck  { text-transform: none; }
+
 /* ── Responsive ────────────────────────────────────────────────────── */
 @media (max-width: 860px) {
   .ll-split { grid-template-columns: 1fr; gap: var(--sp-lg); }
