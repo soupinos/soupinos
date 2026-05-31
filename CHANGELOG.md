@@ -36,3 +36,8 @@ This file is the first thing the next agent reads — it prevents duplicate work
 | 2026-05-31 | Multilingual uppercase rule | GR χωρίς τόνο στα κεφαλαία (όχι text-transform σε ελληνικό), άλλες γλώσσες κρατούν διακριτικά. Τεκμηρίωση στο README. |
 | 2026-05-31 | `14-schedule-table/block.css` | Αφαίρεση text-transform:uppercase από thead th + mobile td::before — τα labels pre-uppercased στο markup. |
 | 2026-05-31 | `sites/lefkimmi-lines/site.css` | :lang(el) overrides για μηδενισμό text-transform σε eyebrows, footer headers, contact labels. |
+| 2026-05-31 | `16-seo-head` | New: per-language title/description + OG/Twitter Card meta manager; MutationObserver για lang-switcher sync |
+| 2026-05-31 | `17-schema-injector` | New: JSON-LD injector — LocalBusiness, FerryTrip, AggregateRating, BreadcrumbList, FAQPage |
+| 2026-05-31 | `18-hreflang` | New: hreflang link injector (single-URL note in block.js; πλήρης αποδοτικότητα μόνο με ξεχωριστά URLs) |
+| 2026-05-31 | `sites/lefkimmi-lines` | SEO applied: seo-head (9 langs, keyword titles/descs), schema (LocalBusiness+FerryTrip), hreflang, sitemap.xml, robots.txt, <main> wrapper, sch_title i18n |
+| 2026-05-31 | `README.md` | SEO modules section: τι κάνουν, τι ΔΕΝ κάνουν, πώς μπαίνουν; blocks 16-18 στο block reference |
