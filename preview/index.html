@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="../blocks/13-theme-switcher/block.css">
   <link rel="stylesheet" href="../blocks/14-schedule-table/block.css">
   <link rel="stylesheet" href="../blocks/15-lang-switcher/block.css">
+  <link rel="stylesheet" href="../blocks/19-booking-cta/block.css">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; }
@@ -554,6 +555,23 @@
     </div>
   </div>
 
+  <div id="b19" style="padding:2rem var(--sp-lg);">
+    <div class="pv-label" style="margin-bottom:1rem;">
+      19 — booking-cta (link mode demo)
+      <a href="../blocks/19-booking-cta/block.js">View source →</a>
+    </div>
+    <div style="background:var(--bg3);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius-lg);padding:var(--sp-lg);">
+      <div class="px-booking" data-mode="link"
+           data-url="https://example.com/book"
+           data-label="Κλείσε εισιτήριο"
+           data-trust="Ασφαλής κράτηση — booktickets.gr"
+           style="margin-bottom:var(--sp-lg);"></div>
+      <p style="font-family:var(--font-b);font-size:.8125rem;color:var(--muted);margin:0;">
+        Modes: <code>link</code> (above) · <code>embed</code> (iframe + auto-fallback) · <code>inline-widget</code> (SDK hook). See block.js docs.
+      </p>
+    </div>
+  </div>
+
   <!-- ─── SCRIPTS ───────────────────────────────────────────────────── -->
   <script src="../blocks/01-header-dropdown/block.js"></script>
   <script src="../blocks/02-hero-video/block.js"></script>
@@ -569,6 +587,7 @@
   <script src="../blocks/12-particle-bg/block.js"></script>
   <script src="../blocks/13-theme-switcher/block.js"></script>
   <script src="../blocks/14-schedule-table/block.js"></script>
+  <script src="../blocks/19-booking-cta/block.js"></script>
   <script src="../blocks/15-lang-switcher/block.js"></script>
   <script src="../blocks/16-seo-head/block.js"></script>
   <script src="../blocks/17-schema-injector/block.js"></script>
