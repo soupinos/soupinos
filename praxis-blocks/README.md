@@ -51,6 +51,7 @@ That's it. The block reads tokens from `:root`, self-initialises, and never poll
 | 16 | `seo-head` | JSON config `.px-seo-cfg` — `canonical`, `og`, `langs{title,description}` | Per-language title/description/OG meta; updates on lang-switch via MutationObserver |
 | 17 | `schema-injector` | JSON config `.px-schema-cfg` — array of typed schema objects | JSON-LD structured data: LocalBusiness, FerryTrip, AggregateRating, BreadcrumbList, FAQPage |
 | 18 | `hreflang` | JSON config `.px-hreflang-cfg` — `langs[{code,url}]`, `xDefault` | `<link rel="alternate" hreflang>` for multilingual; see note on single-URL limitation |
+| 19 | `booking-cta` | `data-mode` (`link`/`embed`/`inline-widget`), `data-url`, `data-label`, `data-trust`, `data-i18n-label` | External booking bridge — links/embeds any third-party booking provider |
 
 ### Utility classes — `effects.css`
 
@@ -65,6 +66,33 @@ Optional. Import after `tokens.css`. Drop a class on any text element:
 | `.px-text-reveal` | Animated gradient sweep (off under reduced-motion) |
 
 > **Typography note:** all fonts are Greek-verified (Manrope + Inter). `Exo 2` and `DM Sans` were dropped because they have no Greek subset on Google Fonts. `Marcellus` and `Sora` are **not** Greek-safe either — avoid them despite older notes.
+
+---
+
+## Πώς συνδέουμε external booking (block 19)
+
+**Κανόνας #1: ΠΟΤΕ δεν χτίζουμε δικό μας booking/payment.**
+Νομικά (PCI-DSS), ασφάλεια και συντήρηση το κάνουν απαγορευτικό. Πάντα συνδέουμε με τον πάροχο του πελάτη.
+
+**Πώς διαλέγεις mode:**
+
+| Mode | Πότε | Πώς ελέγχεις |
+|------|------|--------------|
+| `link` | Πάντα ασφαλές | — |
+| `embed` (iframe) | Μόνο αν ο πάροχος το επιτρέπει | `curl -I URL \| grep -i "x-frame\|frame-ancestors"` — αν DENY/SAMEORIGIN → χρησιμοποίησε `link` |
+| `inline-widget` | Αν ο πάροχος δίνει JS SDK | Διάβασε την τεκμηρίωσή τους |
+
+**Παραδείγματα providers ανά κλάδο:**
+
+| Κλάδος | Provider | Mode |
+|--------|----------|------|
+| Ferry/πλοία | booktickets.gr, ferries.gr | `link` (blocks iframe) |
+| Εστιατόριο | e-table.gr, reservista.gr | `link` ή `embed` (τσέκαρε headers) |
+| Ξενοδοχείο | booking.com widget, HotelBeds | `embed` (widget επιτρέπεται) |
+| Γιατρός/ραντεβού | doctoranytime.gr | `link` |
+| Γενικό | Calendly, Acuity | `embed` ή `inline-widget` (JS SDK) |
+
+**Το block ανοίγει το URL σε `_blank` + `noopener noreferrer`** — ασφαλές, δεν δίνει πρόσβαση στο parent window.
 
 ---
 

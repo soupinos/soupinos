@@ -41,3 +41,6 @@ This file is the first thing the next agent reads — it prevents duplicate work
 | 2026-05-31 | `18-hreflang` | New: hreflang link injector (single-URL note in block.js; πλήρης αποδοτικότητα μόνο με ξεχωριστά URLs) |
 | 2026-05-31 | `sites/lefkimmi-lines` | SEO applied: seo-head (9 langs, keyword titles/descs), schema (LocalBusiness+FerryTrip), hreflang, sitemap.xml, robots.txt, <main> wrapper, sch_title i18n |
 | 2026-05-31 | `README.md` | SEO modules section: τι κάνουν, τι ΔΕΝ κάνουν, πώς μπαίνουν; blocks 16-18 στο block reference |
+| 2026-05-31 | `19-booking-cta` | New: external booking bridge — link/embed/inline-widget modes, iframe fallback logic, brand-styled CTA + trust line, i18n passthrough |
+| 2026-05-31 | `sites/lefkimmi-lines` | booking-cta applied (mode=link, booktickets.gr); booking_trust i18n key × 9 langs; standalone ll-btn CTAs replaced with px-booking |
+| 2026-05-31 | `README.md` | External booking section: πότε link/embed/widget, providers ανά κλάδο, iframe check method |
