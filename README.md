@@ -77,6 +77,21 @@ These are the rules this library is built on. Follow them exactly — they are w
 - **Test the block in isolation before shipping.** If you haven't seen it work, it's not done.
 - **When something is unclear, ask.** One good question saves hours of wrong work.
 
+── ΚΕΦΑΛΑΙΑ & ΤΟΝΟΙ (multilingual) ──
+Ο χειρισμός κεφαλαίων διαφέρει ανά γλώσσα. ΜΗΝ εφαρμόζεις τον ίδιο κανόνα παντού.
+
+• ΕΛΛΗΝΙΚΑ: Τα κεφαλαία ΔΕΝ παίρνουν τόνο (ΠΛΟΙΟ, όχι ΠΛΟΊΟ).
+  Το CSS text-transform:uppercase ΔΕΝ αφαιρεί τον ελληνικό τόνο — τον κρατάει (λάθος). Γι' αυτό:
+    - Για ελληνικό κείμενο που πρέπει να εμφανιστεί ΚΕΦΑΛΑΙΟ, γράψ' το ΗΔΗ κεφαλαίο-χωρίς-τόνο στο markup/dictionary και ΜΗΝ βάζεις text-transform:uppercase.
+    - ΕΞΑΙΡΕΣΗ: το διαλυτικό ΜΕΝΕΙ (ΑΫΛΟΣ, ΕΥΦΥΪΑ→ΕΥΦΥΪΑ). Μόνο ο οξύς τόνος φεύγει.
+    - Πεζά ελληνικά παραμένουν κανονικά τονισμένα.
+
+• ΟΛΕΣ ΟΙ ΑΛΛΕΣ ΓΛΩΣΣΕΣ (EN, FR, IT, DE, ES, RO, BG, RU, …):
+  ΚΡΑΤΑΝΕ τα διακριτικά τους στα κεφαλαία (É, Á, Ñ, Ă, Î, Ü). Το text-transform:uppercase είναι ΟΚ γι' αυτές. ΜΗΝ αφαιρείς διακριτικά.
+
+ΚΑΝΟΝΑΣ: ο "χωρίς τόνο στα κεφαλαία" ισχύει ΜΟΝΟ στα ελληνικά.
+Σε κάθε νέο site, έλεγξε ΟΛΑ τα ελληνικά κεφαλαία (eyebrows, labels, κουμπιά, headers).
+
 ---
 
 ## Conventions
