@@ -1,0 +1,209 @@
+/*
+ * Block #23 — px-booking-form
+ * -------------------------------------------------------
+ * Booking search widget for ferry route selection.
+ * Renders a form row with From / To dropdowns, date picker,
+ * passenger counter, vehicle type, and a submit button.
+ *
+ * Params (data-* on .px-bf-root):
+ *   data-book-url   Submit redirect URL (default: https://lefkimmilines.gr/el/reservation/)
+ *
+ * i18n attrs (data-i18n on rendered elements):
+ *   book.title      Widget eyebrow label
+ *   book.from       "Από" field label
+ *   book.to         "Προς" field label
+ *   book.date       "Ημερομηνία" field label
+ *   book.pax        "Επιβάτες" field label
+ *   book.vehicle    "Όχημα" field label
+ *   book.search     Submit button text
+ *
+ * Example usage:
+ *   <div class="px-bf-root" data-book-url="https://lefkimmilines.gr/el/reservation/"></div>
+ *   <!-- block.js auto-renders the inner markup -->
+ */
+
+/* ─── Container ─── */
+.px-bf-root {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--navy-deep, #0d2238);
+  border: 1px solid var(--gold, #a6863c);
+  border-radius: 8px;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+/* ─── Eyebrow title ─── */
+.px-bf-title {
+  color: var(--gold, #a6863c);
+  font-family: var(--fontB, 'Inter', system-ui, sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+/* ─── Form row ─── */
+.px-bf-form {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+/* ─── Individual field wrapper ─── */
+.px-bf-field {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 140px;
+}
+
+/* ─── Field label ─── */
+.px-bf-label {
+  font-family: var(--fontB, 'Inter', system-ui, sans-serif);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-soft, #c2a35b);
+  margin-bottom: 8px;
+}
+
+/* ─── Select & text inputs ─── */
+.px-bf-select,
+.px-bf-input {
+  width: 100%;
+  background: var(--navy-deep, #0d2238);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 12px 14px;
+  border-radius: 4px;
+  font-family: var(--fontB, 'Inter', system-ui, sans-serif);
+  font-size: 14px;
+  box-sizing: border-box;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color 0.2s var(--ease, cubic-bezier(.22,.61,.36,1));
+}
+
+.px-bf-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c2a35b' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+.px-bf-select option {
+  background: var(--navy-deep, #0d2238);
+  color: #ffffff;
+}
+
+.px-bf-input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(70%) sepia(30%) saturate(400%) hue-rotate(5deg);
+  cursor: pointer;
+}
+
+.px-bf-select:focus,
+.px-bf-input:focus {
+  border-color: var(--gold, #a6863c);
+  outline: none;
+}
+
+/* ─── Passenger counter ─── */
+.px-bf-counter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  height: 44px; /* match input height */
+}
+
+.px-bf-counter-btn {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  background: transparent;
+  border: 1px solid var(--gold, #a6863c);
+  color: var(--gold, #a6863c);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s var(--ease, cubic-bezier(.22,.61,.36,1)),
+              color 0.2s var(--ease, cubic-bezier(.22,.61,.36,1));
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.px-bf-counter-btn:hover {
+  background: var(--gold, #a6863c);
+  color: #ffffff;
+}
+
+.px-bf-counter-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.px-bf-counter-val {
+  min-width: 32px;
+  text-align: center;
+  color: #ffffff;
+  font-family: var(--fontB, 'Inter', system-ui, sans-serif);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* ─── Submit button ─── */
+.px-bf-submit {
+  background: var(--gold, #a6863c);
+  color: #ffffff;
+  font-family: var(--fontB, 'Inter', system-ui, sans-serif);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  align-self: flex-end;
+  transition: background 0.3s var(--ease, cubic-bezier(.22,.61,.36,1));
+  flex-shrink: 0;
+}
+
+.px-bf-submit:hover {
+  background: var(--gold-deep, #8a6e2e);
+}
+
+/* ─── Mobile ─── */
+@media (max-width: 600px) {
+  .px-bf-root {
+    padding: 24px 20px;
+  }
+
+  .px-bf-form {
+    flex-direction: column;
+  }
+
+  .px-bf-field {
+    width: 100%;
+    flex: none;
+    min-width: 0;
+  }
+
+  .px-bf-submit {
+    width: 100%;
+    text-align: center;
+    align-self: stretch;
+  }
+}

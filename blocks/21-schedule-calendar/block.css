@@ -1,0 +1,512 @@
+/*
+ * px-schedule-calendar — 4-direction ferry timetable with mini date picker.
+ *
+ * What it does:
+ *   Renders a tabbed schedule block (4 route directions) with a mini calendar
+ *   on the left and a timetable on the right. Selecting a calendar day
+ *   highlights it (cosmetic only — same schedule runs every day). On mobile
+ *   the calendar collapses and each table row becomes a stacked card.
+ *
+ * CSS custom properties consumed (must be set on :root by host page):
+ *   --navy, --navy-deep, --gold, --gold-soft, --gold-deep, --gold-tint,
+ *   --paper, --paper-2, --white, --line, --body-ink, --muted,
+ *   --fontH, --fontB, --ease
+ *
+ * All class names are prefixed with px-sc-.
+ *
+ * Example markup:
+ *   <div class="px-sc-root" data-book-url="https://lefkimmilines.gr/el/reservation/">
+ *     <script type="application/json" class="px-sched-data">
+ *       {"ll":[{"ship":"Αγία Τριάδα","dep":"06:00","arr":"06:50"}],
+ *        "hl":[...],"lp":[...],"pl":[...]}
+ *     </script>
+ *   </div>
+ */
+
+/* ── Root container ─────────────────────────────────────────────────────── */
+.px-sc-root {
+  font-family: var(--fontB);
+  color: var(--body-ink);
+  background: var(--paper);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px color-mix(in srgb, var(--navy) 8%, transparent);
+}
+
+/* ── Tab bar ────────────────────────────────────────────────────────────── */
+.px-sc-tabs {
+  display: flex;
+  background: var(--navy);
+  border-bottom: 2px solid var(--navy-deep);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.px-sc-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Individual tab button ──────────────────────────────────────────────── */
+.px-sc-tab {
+  flex: 1 1 0;
+  min-width: 120px;
+  padding: 0.875rem 1rem;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: color-mix(in srgb, var(--white) 65%, transparent);
+  font-family: var(--fontB);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease),
+              background 0.2s var(--ease);
+  margin-bottom: -2px;
+}
+
+.px-sc-tab:hover {
+  color: var(--white);
+  background: color-mix(in srgb, var(--white) 6%, transparent);
+}
+
+.px-sc-tab:focus-visible {
+  outline: 2px solid var(--gold-soft);
+  outline-offset: -3px;
+}
+
+.px-sc-tab.active {
+  color: var(--white);
+  border-bottom-color: var(--gold);
+  background: color-mix(in srgb, var(--white) 4%, transparent);
+}
+
+/* ── Content panels ─────────────────────────────────────────────────────── */
+.px-sc-panel {
+  display: none;
+  padding: 1.5rem;
+}
+
+.px-sc-panel.active {
+  display: block;
+}
+
+/* ── Calendar + table row ───────────────────────────────────────────────── */
+.px-sc-cal-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+/* ── Mini month calendar ────────────────────────────────────────────────── */
+.px-sc-calendar {
+  flex-shrink: 0;
+  width: 280px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+/* ── Calendar header: month name + nav arrows ───────────────────────────── */
+.px-sc-cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  gap: 0.5rem;
+}
+
+.px-sc-cal-title {
+  font-family: var(--fontH);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--navy);
+  text-align: center;
+  flex: 1;
+  margin: 0;
+}
+
+.px-sc-cal-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--body-ink);
+  font-size: 0.875rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s var(--ease), border-color 0.15s var(--ease),
+              color 0.15s var(--ease);
+  line-height: 1;
+}
+
+.px-sc-cal-nav:hover {
+  background: var(--gold-tint);
+  border-color: var(--gold-soft);
+  color: var(--navy);
+}
+
+.px-sc-cal-nav:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ── Day-of-week header row ─────────────────────────────────────────────── */
+.px-sc-cal-dow {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 0.25rem;
+}
+
+.px-sc-cal-dow-cell {
+  text-align: center;
+  font-family: var(--fontB);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0.25rem 0;
+}
+
+/* ── 7-column day grid ──────────────────────────────────────────────────── */
+.px-sc-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+/* ── Individual day cell ────────────────────────────────────────────────── */
+.px-sc-cal-day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-width: 40px;
+  max-height: 40px;
+  margin: 0 auto;
+  padding: 0;
+  background: none;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  font-family: var(--fontB);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--body-ink);
+  cursor: pointer;
+  transition: background 0.15s var(--ease), color 0.15s var(--ease),
+              border-color 0.15s var(--ease);
+}
+
+.px-sc-cal-day:hover {
+  background: var(--gold-tint);
+  color: var(--navy);
+}
+
+.px-sc-cal-day:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Today: ringed with gold border */
+.px-sc-cal-day.today {
+  border-color: var(--gold);
+  color: var(--navy);
+  font-weight: 600;
+}
+
+/* Selected: filled gold background */
+.px-sc-cal-day.selected {
+  background: var(--gold);
+  color: var(--white);
+  border-color: var(--gold);
+  font-weight: 700;
+}
+
+.px-sc-cal-day.selected:hover {
+  background: var(--gold-deep);
+  border-color: var(--gold-deep);
+}
+
+/* Days from adjacent month: muted */
+.px-sc-cal-day.other-month {
+  opacity: 0.35;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Empty placeholder cells */
+.px-sc-cal-day.empty {
+  cursor: default;
+  pointer-events: none;
+}
+
+/* ── Table wrapper (scrollable on small viewports) ──────────────────────── */
+.px-sc-table-wrap {
+  flex: 1 1 0;
+  min-width: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+}
+
+/* ── Timetable ──────────────────────────────────────────────────────────── */
+.px-sc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--fontB);
+  background: var(--white);
+}
+
+.px-sc-table thead th {
+  padding: 0.625rem 1rem;
+  background: var(--navy-deep);
+  color: var(--white);
+  font-family: var(--fontB);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: left;
+  white-space: nowrap;
+  border-bottom: 2px solid var(--navy);
+}
+
+.px-sc-table thead th:last-child {
+  text-align: center;
+}
+
+.px-sc-table tbody td {
+  padding: 0.75rem 1rem;
+  font-size: 0.9375rem;
+  color: var(--body-ink);
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+
+.px-sc-table tbody tr:nth-child(even) td {
+  background: var(--paper);
+}
+
+.px-sc-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.px-sc-table tbody tr:hover td {
+  background: var(--gold-tint);
+}
+
+/* ── Ship name cell with gold dot ───────────────────────────────────────── */
+.px-sc-ship {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: var(--navy);
+  white-space: nowrap;
+}
+
+.px-sc-ship::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+/* ── Time cells ─────────────────────────────────────────────────────────── */
+.px-sc-time {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* ── Duration cell ──────────────────────────────────────────────────────── */
+.px-sc-dur {
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+/* ── Fare cell (right-aligned, gold accent) ─────────────────────────────── */
+.px-sc-fare {
+  text-align: right;
+  color: var(--gold-deep);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Book button ────────────────────────────────────────────────────────── */
+.px-sc-btn {
+  display: inline-block;
+  padding: 0.375rem 1.125rem;
+  background: var(--gold);
+  color: var(--white);
+  font-family: var(--fontB);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 4px;
+  white-space: nowrap;
+  transition: background 0.15s var(--ease), transform 0.15s var(--ease);
+}
+
+.px-sc-btn:hover {
+  background: var(--gold-deep);
+  transform: translateY(-1px);
+}
+
+.px-sc-btn:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: 3px;
+}
+
+/* Book column — centred */
+.px-sc-table tbody td:last-child {
+  text-align: center;
+}
+
+/* ── Disclaimer text ────────────────────────────────────────────────────── */
+.px-sc-disclaimer {
+  margin-top: 0.875rem;
+  font-family: var(--fontB);
+  font-size: 0.75rem;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+/* ── Mobile ─────────────────────────────────────────────────────────────── */
+@media (max-width: 599px) {
+  .px-sc-panel {
+    padding: 1rem;
+  }
+
+  .px-sc-cal-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* Hide calendar on mobile — it's display:none to not clutter the view */
+  .px-sc-calendar {
+    display: none;
+  }
+
+  /* Table wrapper fills full width */
+  .px-sc-table-wrap {
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    overflow-x: visible;
+  }
+
+  /* Table becomes stacked cards */
+  .px-sc-table {
+    background: transparent;
+  }
+
+  .px-sc-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .px-sc-table tbody {
+    display: block;
+  }
+
+  .px-sc-table tbody tr {
+    display: block;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 0.5rem 0.875rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .px-sc-table tbody tr:nth-child(even) {
+    background: var(--white);
+  }
+
+  .px-sc-table tbody tr:hover td {
+    background: transparent;
+  }
+
+  .px-sc-table tbody td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--line);
+    text-align: right;
+    font-size: 0.875rem;
+  }
+
+  .px-sc-table tbody tr td:last-child {
+    border-bottom: none;
+    justify-content: flex-end;
+    padding-top: 0.625rem;
+  }
+
+  /* Label on the left from data-label attribute */
+  .px-sc-table tbody td::before {
+    content: attr(data-label);
+    font-family: var(--fontB);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    flex-shrink: 0;
+  }
+
+  /* Ship cell: full-width card heading */
+  .px-sc-table tbody td:first-child {
+    font-family: var(--fontH);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--navy);
+    border-bottom: 1px solid var(--gold-tint);
+    padding-bottom: 0.625rem;
+    margin-bottom: 0.125rem;
+  }
+}
+
+/* ── Reduced motion ─────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .px-sc-tab,
+  .px-sc-cal-day,
+  .px-sc-cal-nav,
+  .px-sc-btn,
+  .px-sc-table tbody tr:hover td {
+    transition: none;
+  }
+
+  .px-sc-btn:hover {
+    transform: none;
+  }
+}

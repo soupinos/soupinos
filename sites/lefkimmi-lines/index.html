@@ -1,1128 +1,464 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Δρομολόγια Ηγουμενίτσα – Κέρκυρα (Λευκίμμη) | Lefkimmi Lines</title>
-  <meta name="description" content="Καθημερινά δρομολόγια Λευκίμμη–Ηγουμενίτσα σε 1 ώρα. Ο συντομότερος &amp; φθηνότερος δρόμος για την Κέρκυρα. Εισιτήρια από 7,30€.">
-
-  <!-- Foundation -->
-  <link rel="stylesheet" href="../../tokens.css">
-  <link rel="stylesheet" href="../../effects.css">
-
-  <!-- Blocks used on this page -->
-  <link rel="stylesheet" href="../../blocks/01-header-dropdown/block.css">
-  <link rel="stylesheet" href="../../blocks/02-hero-video/block.css">
-  <link rel="stylesheet" href="../../blocks/11-counters/block.css">
-  <link rel="stylesheet" href="../../blocks/07-gallery-lightbox/block.css">
-  <link rel="stylesheet" href="../../blocks/14-schedule-table/block.css">
-  <link rel="stylesheet" href="../../blocks/06-map-pins/block.css">
-  <link rel="stylesheet" href="../../blocks/08-contact-form/block.css">
-  <link rel="stylesheet" href="../../blocks/10-scroll-reveal/block.css">
-  <link rel="stylesheet" href="../../blocks/04-footer/block.css">
-  <link rel="stylesheet" href="../../blocks/15-lang-switcher/block.css">
-  <link rel="stylesheet" href="../../blocks/19-booking-cta/block.css">
-
-  <!-- Site skin + layout -->
-  <link rel="stylesheet" href="site.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Καθημερινά δρομολόγια Λευκίμμη–Ηγουμενίτσα σε 50 λεπτά. Ο συντομότερος &amp; φθηνότερος δρόμος για την Κέρκυρα. Εισιτήρια από 7,30€." />
+<title>Δρομολόγια Ηγουμενίτσα – Κέρκυρα (Λευκίμμη) | Lefkimmi Lines</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/caldera.css" />
+<link rel="stylesheet" href="../../blocks/21-schedule-calendar/block.css" />
+<link rel="stylesheet" href="../../blocks/23-booking-form/block.css" />
 </head>
 <body>
 
-  <!--
-    LEFKIMMI LINES — mini-site (brand showcase). Assembles Praxis Block Library v1.
-    Booking is NOT handled here: every "Κλείσε / Κράτηση" CTA → lefkimmilines.gr.
-    Languages: GR (default) + EN now; switcher #15 is built for more (add a dict key).
-    PENDING (human gate): final seasonal timetable, Paxoi routes, HD photos/video,
-    EN review, Google Maps API key, owner story. Schedule shown is INDICATIVE.
-  -->
+<!-- ============================ HEADER ============================ -->
+<header class="site-header">
+  <a class="lockup" href="#hero" aria-label="Lefkimmi Lines">
+    <span class="mark">
+      <svg width="34" height="40" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17 2L29 13V36H5V13L17 2Z" stroke="#c2a35b" stroke-width="1.4"/>
+        <path d="M9 26C12 23 22 23 25 26C22 30 12 30 9 26Z" fill="#c2a35b"/>
+        <path d="M17 11L17 24" stroke="#c2a35b" stroke-width="1.4"/>
+        <path d="M17 13L23 21H11L17 13Z" fill="#c2a35b" opacity=".55"/>
+      </svg>
+    </span>
+    <span class="lk-txt">
+      <span class="ln1">Lefkimmi Lines</span>
+      <span class="ln2">Κέρκυρα · Ηγουμενίτσα</span>
+    </span>
+  </a>
 
-  <!-- i18n dictionary (9 languages). Add a language = add a key here + an <li> in the switcher. -->
-  <!-- BG & RU use Cyrillic. Manrope/Inter fall back to system-ui for Cyrillic glyphs — renders correctly on all modern platforms. Native review recommended before going live. -->
-  <script type="application/json" class="px-lang-i18n">
-  {
-  "gr": {
-    "nav_about": "Ποιοι είμαστε",
-    "nav_why": "Γιατί Λευκίμμη",
-    "nav_prices": "Τιμές",
-    "nav_fleet": "Στόλος",
-    "nav_schedule": "Δρομολόγια",
-    "nav_contact": "Επικοινωνία",
-    "cta_book": "Κλείσε εισιτήριο",
-    "cta_schedule": "Δες τα δρομολόγια",
-    "cta_book_online": "Κλείσε το εισιτήριό σου online →",
-    "booking_trust": "Ασφαλής κράτηση — booktickets.gr",
-    "hero_eyebrow": "ΛΕΥΚΙΜΜΗ · ΗΓΟΥΜΕΝΙΤΣΑ · ΠΑΞΟΙ",
-    "hero_h": "Ο συντομότερος δρόμος για την Κέρκυρα.",
-    "hero_sub": "Καθημερινά δρομολόγια από τη Λευκίμμη. Μία ώρα ταξίδι, απόλυτη ασφάλεια, οικονομικό εισιτήριο.",
-    "usp1": "ώρα ταξίδι",
-    "usp2": "δρομολόγια κάθε μέρα",
-    "usp3": "σύγχρονα πλοία",
-    "usp4": "στη θάλασσα από τότε",
-    "about_eyebrow": "ΠΟΙΟΙ ΕΙΜΑΣΤΕ",
-    "about_h": "Η θάλασσα είναι ο δρόμος μας.",
-    "about_p": "Η Lefkimmi Lines συνδέει καθημερινά τη νότια Κέρκυρα με την Ηγουμενίτσα, από το λιμάνι της Λευκίμμης. Εδώ και πάνω από μία δεκαετία, μεταφέρουμε επιβάτες και οχήματα με συνέπεια, ασφάλεια και σεβασμό σε κάθε ταξιδιώτη. Δεν είμαστε απλώς ένα πέρασμα — είμαστε η αρχή των διακοπών σας.",
-    "why_eyebrow": "ΓΙΑΤΙ ΛΕΥΚΙΜΜΗ",
-    "why_h": "Πιο κοντά απ' όσο νομίζεις.",
-    "why_p": "Πολλοί ψάχνουν το πλοίο για την Κέρκυρα και καταλήγουν στη μακρινή, ακριβότερη γραμμή της πόλης. Η Λευκίμμη, στη νότια Κέρκυρα, είναι ο συντομότερος και φθηνότερος τρόπος να πατήσεις το νησί: μόλις 50 λεπτά από την Ηγουμενίτσα. Ιδανικό αν πας νότια Κέρκυρα — Κάβος, Λευκίμμη, Μπούκαρι, Άγιος Γεώργιος.",
-    "prices_eyebrow": "ΤΙΜΕΣ",
-    "prices_h": "Από 7,30€ το εισιτήριο.",
-    "prices_p": "Με το Μεταφορικό Ισοδύναμο (κρατική επιδότηση), το πέρασμα προς την Κέρκυρα γίνεται από τα πιο οικονομικά της Ελλάδας.",
-    "price1_l": "Επιβάτης",
-    "price2_l": "Με μηχανή",
-    "price3_l": "Με αυτοκίνητο",
-    "price_mi": "με Μ.Ι.",
-    "prices_note": "Οι τιμές με Μεταφορικό Ισοδύναμο ισχύουν για δικαιούχους. Για οριστικές τιμές και κράτηση, πάτησε «Κλείσε εισιτήριο».",
-    "fleet_eyebrow": "ΣΤΟΛΟΣ",
-    "fleet_h": "Δύο πλοία, μία υπόσχεση: ασφάλεια.",
-    "fleet_p": "Τα πλοία μας εξυπηρετούν πιστά και συστηματικά τις ανάγκες του επιβατικού κοινού, με απόλυτη ασφάλεια και υψηλές ανέσεις.",
-    "ship1": "Φ/Β Αγία Τριάδα",
-    "ship2": "Φ/Β Ιωάννης Καποδίστριας",
-    "cafe_eyebrow": "ΕΝ ΠΛΩ",
-    "cafe_h": "Καθίστε αναπαυτικά. Ταξιδεύουμε.",
-    "cafe_p": "Μία ώρα φτάνει για να πάρετε μια ανάσα. Απολαύστε τον καφέ σας, ένα δροσιστικό ή ένα ζεστό τοστ από το κυλικείο του πλοίου, αφήστε τη θέα του Ιονίου να περάσει μπροστά σας — και πριν το καταλάβετε, είστε Κέρκυρα. Ταχύτητα και ασφάλεια, πάντα με χαμόγελο.",
-    "sch_eyebrow": "ΔΡΟΜΟΛΟΓΙΑ",
-    "sch_h": "Δρομολόγια",
-    "sch_intro": "Δες τις ώρες και διάλεξε το δρομολόγιο που σε βολεύει.",
-    "sch_title": "Πρόγραμμα ημέρας",
-    "sch_note": "Τα δρομολόγια είναι ενδεικτικά και ενδέχεται να αλλάζουν ανά εποχή. Για οριστική επιβεβαίωση και κράτηση, πάτησε «Κλείσε εισιτήριο».",
-    "map_eyebrow": "ΧΑΡΤΗΣ",
-    "map_h": "1 ώρα ταξίδι.",
-    "map_p": "Από το λιμάνι της Λευκίμμης στο λιμάνι της Ηγουμενίτσας.",
-    "contact_eyebrow": "ΕΠΙΚΟΙΝΩΝΙΑ",
-    "contact_h": "Είμαστε εδώ.",
-    "contact_p": "Για πληροφορίες δρομολογίων, εισιτήρια και ομαδικές μεταφορές, επικοινώνησε μαζί μας.",
-    "contact_email_k": "Email",
-    "contact_phoneA_k": "ΛΕΥΚΙΜΜΗ → ΗΓΟΥΜΕΝΙΤΣΑ",
-    "contact_phoneB_k": "ΗΓΟΥΜΕΝΙΤΣΑ → ΛΕΥΚΙΜΜΗ",
-    "footer_tag": "Ο συντομότερος δρόμος για την Κέρκυρα.",
-    "footer_nav": "ΠΛΟΗΓΗΣΗ",
-    "footer_useful": "ΧΡΗΣΙΜΑ",
-    "footer_mi": "Μεταφορικό Ισοδύναμο",
-    "footer_terms": "Όροι ταξιδίου",
-    "footer_privacy": "Απόρρητο",
-    "footer_rights": "Όλα τα δικαιώματα διατηρούνται."
-  },
-  "en": {
-    "nav_about": "About us",
-    "nav_why": "Why Lefkimmi",
-    "nav_prices": "Fares",
-    "nav_fleet": "Fleet",
-    "nav_schedule": "Timetable",
-    "nav_contact": "Contact",
-    "cta_book": "Book a ticket",
-    "cta_schedule": "See the timetable",
-    "cta_book_online": "Book your ticket online →",
-    "booking_trust": "Secure booking — booktickets.gr",
-    "hero_eyebrow": "LEFKIMMI · IGOUMENITSA · PAXOI",
-    "hero_h": "The shortest way to Corfu.",
-    "hero_sub": "Daily crossings from Lefkimmi. One hour at sea, total safety, an affordable fare.",
-    "usp1": "hour crossing",
-    "usp2": "crossings every day",
-    "usp3": "modern ships",
-    "usp4": "at sea ever since",
-    "about_eyebrow": "About us",
-    "about_h": "The sea is our road.",
-    "about_p": "Lefkimmi Lines connects southern Corfu with Igoumenitsa every day, from the port of Lefkimmi. For over a decade we have carried passengers and vehicles with consistency, safety and respect for every traveller. We are not just a crossing — we are the start of your holidays.",
-    "why_eyebrow": "Why Lefkimmi",
-    "why_h": "Closer than you think.",
-    "why_p": "Many look for the ferry to Corfu and end up on the longer, more expensive town line. Lefkimmi, in the south of the island, is the shortest and cheapest way to set foot on Corfu: just 50 minutes from Igoumenitsa. Ideal if you are heading to southern Corfu — Kavos, Lefkimmi, Boukari, Agios Georgios.",
-    "prices_eyebrow": "Fares",
-    "prices_h": "Tickets from €7.30.",
-    "prices_p": "With the Transport Equivalent (a state subsidy), the crossing to Corfu is among the most affordable in Greece.",
-    "price1_l": "Passenger",
-    "price2_l": "With a motorbike",
-    "price3_l": "With a car",
-    "price_mi": "with T.E.",
-    "prices_note": "Transport Equivalent prices apply to eligible travellers. For final prices and booking, tap «Book a ticket».",
-    "fleet_eyebrow": "Fleet",
-    "fleet_h": "Two ships, one promise: safety.",
-    "fleet_p": "Our ships serve passengers faithfully and systematically, with total safety and high standards of comfort.",
-    "ship1": "F/B Agia Triada",
-    "ship2": "F/B Ioannis Kapodistrias",
-    "cafe_eyebrow": "On board",
-    "cafe_h": "Sit back. We'll do the sailing.",
-    "cafe_p": "One hour is all it takes to catch your breath. Enjoy your coffee, a cold drink or a warm toastie from the ship's café, let the Ionian view drift past — and before you know it, you're in Corfu. Speed and safety, always with a smile.",
-    "sch_eyebrow": "Timetable",
-    "sch_h": "Timetable",
-    "sch_intro": "Check the times and pick the crossing that suits you.",
-    "sch_title": "Daily schedule",
-    "sch_note": "Times are indicative and may change by season. For final confirmation and booking, tap «Book a ticket».",
-    "map_eyebrow": "Map",
-    "map_h": "One hour at sea.",
-    "map_p": "From the port of Lefkimmi to the port of Igoumenitsa.",
-    "contact_eyebrow": "Contact",
-    "contact_h": "We're here.",
-    "contact_p": "For timetable information, tickets and group transfers, get in touch with us.",
-    "contact_email_k": "Email",
-    "contact_phoneA_k": "Lefkimmi → Igoumenitsa",
-    "contact_phoneB_k": "Igoumenitsa → Lefkimmi",
-    "footer_tag": "The shortest way to Corfu.",
-    "footer_nav": "Navigation",
-    "footer_useful": "Useful",
-    "footer_mi": "Transport Equivalent",
-    "footer_terms": "Travel terms",
-    "footer_privacy": "Privacy",
-    "footer_rights": "All rights reserved."
-  },
-  "fr": {
-    "nav_about": "À propos",
-    "nav_why": "Pourquoi Lefkimmi",
-    "nav_prices": "Tarifs",
-    "nav_fleet": "Flotte",
-    "nav_schedule": "Horaires",
-    "nav_contact": "Contact",
-    "cta_book": "Réserver un billet",
-    "cta_schedule": "Voir les horaires",
-    "cta_book_online": "Réservez votre billet en ligne →",
-    "booking_trust": "Réservation sécurisée — booktickets.gr",
-    "hero_eyebrow": "LEFKIMMI · IGOUMENITSA · PAXOI",
-    "hero_h": "Le chemin le plus court vers Corfou.",
-    "hero_sub": "Traversées quotidiennes depuis Lefkimmi. Une heure de trajet, une sécurité totale, un tarif économique.",
-    "usp1": "heure de trajet",
-    "usp2": "traversées par jour",
-    "usp3": "ferries modernes",
-    "usp4": "en mer depuis",
-    "about_eyebrow": "À propos",
-    "about_h": "La mer est notre route.",
-    "about_p": "Lefkimmi Lines relie chaque jour le sud de Corfou à Igoumenitsa, depuis le port de Lefkimmi. Depuis plus de dix ans, nous transportons passagers et véhicules avec régularité, sécurité et le sourire. Nous ne sommes pas qu'une traversée — nous sommes le début de vos vacances.",
-    "why_eyebrow": "Pourquoi Lefkimmi",
-    "why_h": "Plus proche qu'on ne le pense.",
-    "why_p": "Beaucoup cherchent le ferry pour Corfou et finissent sur la ligne plus longue et plus chère de la ville. Lefkimmi, au sud de Corfou, est le moyen le plus court et le moins cher d'atteindre l'île : à seulement une heure d'Igoumenitsa. Idéal pour le sud — Kavos, Lefkimmi, Boukari, Agios Georgios.",
-    "prices_eyebrow": "Tarifs",
-    "prices_h": "Billets dès 7,30 €.",
-    "prices_p": "Avec l'Équivalent Transport (une subvention d'État), la traversée vers Corfou est parmi les plus abordables de Grèce.",
-    "price1_l": "Passager",
-    "price2_l": "Avec une moto",
-    "price3_l": "Avec une voiture",
-    "price_mi": "via Éq. T.",
-    "prices_note": "Les tarifs réduits s'appliquent avec la subvention «Équivalent Transport», pour les ayants droit. Pour les prix définitifs et la réservation, cliquez sur «Réserver un billet».",
-    "fleet_eyebrow": "Flotte",
-    "fleet_h": "Deux navires, une promesse : la sécurité.",
-    "fleet_p": "Nos navires — Agia Triada & Ioannis Kapodistrias — assurent un service fidèle et fiable, en toute sécurité et avec un grand confort.",
-    "ship1": "F/B Agia Triada",
-    "ship2": "F/B Ioannis Kapodistrias",
-    "cafe_eyebrow": "À bord",
-    "cafe_h": "Détendez-vous. Nous naviguons.",
-    "cafe_p": "Une heure suffit pour souffler. Savourez votre café, une boisson fraîche ou un toast chaud au bar, laissez défiler la vue sur la mer Ionienne — et avant même de vous en rendre compte, vous êtes à Corfou. Toujours avec le sourire.",
-    "sch_eyebrow": "Horaires",
-    "sch_h": "Horaires",
-    "sch_intro": "Consultez les horaires et choisissez la traversée qui vous convient.",
-    "sch_title": "Programme du jour",
-    "sch_note": "Les horaires sont indicatifs et peuvent varier selon la saison. Pour confirmation et réservation, cliquez sur «Réserver un billet».",
-    "map_eyebrow": "Carte",
-    "map_h": "Un trajet d'une heure.",
-    "map_p": "Du port de Lefkimmi au port d'Igoumenitsa.",
-    "contact_eyebrow": "Contact",
-    "contact_h": "Nous sommes là.",
-    "contact_p": "Pour des informations sur les horaires, des billets et des transferts de groupe, contactez-nous.",
-    "contact_email_k": "E-mail",
-    "contact_phoneA_k": "Lefkimmi → Igoumenitsa",
-    "contact_phoneB_k": "Igoumenitsa → Lefkimmi",
-    "footer_tag": "Le chemin le plus court vers Corfou.",
-    "footer_nav": "Navigation",
-    "footer_useful": "Utiles",
-    "footer_mi": "Équivalent Transport",
-    "footer_terms": "Conditions du voyage",
-    "footer_privacy": "Confidentialité",
-    "footer_rights": "Tous droits réservés."
-  },
-  "it": {
-    "nav_about": "Chi siamo",
-    "nav_why": "Perché Lefkimmi",
-    "nav_prices": "Prezzi",
-    "nav_fleet": "Flotta",
-    "nav_schedule": "Orari",
-    "nav_contact": "Contatti",
-    "cta_book": "Prenota un biglietto",
-    "cta_schedule": "Vedi gli orari",
-    "cta_book_online": "Prenota il tuo biglietto online →",
-    "booking_trust": "Prenotazione sicura — booktickets.gr",
-    "hero_eyebrow": "LEFKIMMI · IGOUMENITSA · PAXOI",
-    "hero_h": "La via più breve per Corfù.",
-    "hero_sub": "Traversate giornaliere da Lefkimmi. Un'ora di viaggio, massima sicurezza, un biglietto conveniente.",
-    "usp1": "ora di viaggio",
-    "usp2": "traversate al giorno",
-    "usp3": "navi moderne",
-    "usp4": "in mare dal",
-    "about_eyebrow": "Chi siamo",
-    "about_h": "Il mare è la nostra strada.",
-    "about_p": "Lefkimmi Lines collega ogni giorno il sud di Corfù con Igoumenitsa, dal porto di Lefkimmi. Da oltre dieci anni trasportiamo passeggeri e veicoli con costanza, sicurezza e un sorriso. Non siamo solo una traversata — siamo l'inizio della tua vacanza.",
-    "why_eyebrow": "Perché Lefkimmi",
-    "why_h": "Più vicina di quanto pensi.",
-    "why_p": "Molti cercano il traghetto per Corfù e finiscono sulla rotta cittadina più lunga e costosa. Lefkimmi, nel sud di Corfù, è il modo più breve ed economico per raggiungere l'isola: a solo un'ora da Igoumenitsa. Ideale per il sud — Kavos, Lefkimmi, Boukari, Agios Georgios.",
-    "prices_eyebrow": "Prezzi",
-    "prices_h": "Biglietti da 7,30 €.",
-    "prices_p": "Con l'Equivalente di Trasporto (un sussidio statale), la traversata verso Corfù è tra le più convenienti in Grecia.",
-    "price1_l": "Passeggero",
-    "price2_l": "Con la moto",
-    "price3_l": "Con l'auto",
-    "price_mi": "con E.T.",
-    "prices_note": "Le tariffe ridotte si applicano con il sussidio «Equivalente di Trasporto», per gli aventi diritto. Per prezzi definitivi e prenotazione, tocca «Prenota un biglietto».",
-    "fleet_eyebrow": "Flotta",
-    "fleet_h": "Due navi, una promessa: sicurezza.",
-    "fleet_p": "Le nostre navi — Agia Triada e Ioannis Kapodistrias — servono con fedeltà e affidabilità, in totale sicurezza e con grande comfort.",
-    "ship1": "F/B Agia Triada",
-    "ship2": "F/B Ioannis Kapodistrias",
-    "cafe_eyebrow": "A bordo",
-    "cafe_h": "Mettiti comodo. Si salpa.",
-    "cafe_p": "Un'ora basta per respirare. Goditi il caffè, una bibita fresca o un toast caldo al bar, lascia scorrere la vista sul Mar Ionio — e prima di accorgertene sei a Corfù. Sempre con il sorriso.",
-    "sch_eyebrow": "Orari",
-    "sch_h": "Orari",
-    "sch_intro": "Controlla gli orari e scegli la traversata più comoda.",
-    "sch_title": "Programma giornaliero",
-    "sch_note": "Gli orari sono indicativi e possono variare secondo la stagione. Per conferma e prenotazione, tocca «Prenota un biglietto».",
-    "map_eyebrow": "Mappa",
-    "map_h": "Un viaggio di un'ora.",
-    "map_p": "Dal porto di Lefkimmi al porto di Igoumenitsa.",
-    "contact_eyebrow": "Contatti",
-    "contact_h": "Siamo qui.",
-    "contact_p": "Per informazioni sugli orari, biglietti e trasferimenti di gruppo, contattaci.",
-    "contact_email_k": "E-mail",
-    "contact_phoneA_k": "Lefkimmi → Igoumenitsa",
-    "contact_phoneB_k": "Igoumenitsa → Lefkimmi",
-    "footer_tag": "La via più breve per Corfù.",
-    "footer_nav": "Navigazione",
-    "footer_useful": "Utili",
-    "footer_mi": "Equivalente di Trasporto",
-    "footer_terms": "Termini di viaggio",
-    "footer_privacy": "Privacy",
-    "footer_rights": "Tutti i diritti riservati."
-  },
-  "de": {
-    "nav_about": "Über uns",
-    "nav_why": "Warum Lefkimmi",
-    "nav_prices": "Preise",
-    "nav_fleet": "Flotte",
-    "nav_schedule": "Fahrplan",
-    "nav_contact": "Kontakt",
-    "cta_book": "Ticket buchen",
-    "cta_schedule": "Fahrplan ansehen",
-    "cta_book_online": "Buchen Sie Ihr Ticket online →",
-    "booking_trust": "Sichere Buchung — booktickets.gr",
-    "hero_eyebrow": "LEFKIMMI · IGOUMENITSA · PAXOI",
-    "hero_h": "Der kürzeste Weg nach Korfu.",
-    "hero_sub": "Tägliche Überfahrten von Lefkimmi. Eine Stunde Fahrt, absolute Sicherheit, ein günstiger Preis.",
-    "usp1": "Stunde Fahrtzeit",
-    "usp2": "Überfahrten täglich",
-    "usp3": "moderne Fähren",
-    "usp4": "auf See seit",
-    "about_eyebrow": "Über uns",
-    "about_h": "Das Meer ist unser Weg.",
-    "about_p": "Lefkimmi Lines verbindet täglich den Süden Korfus mit Igoumenitsa, vom Hafen Lefkimmi aus. Seit über zehn Jahren befördern wir Passagiere und Fahrzeuge zuverlässig, sicher und mit einem Lächeln. Wir sind nicht nur eine Überfahrt — wir sind der Anfang Ihres Urlaubs.",
-    "why_eyebrow": "Warum Lefkimmi",
-    "why_h": "Näher als gedacht.",
-    "why_p": "Viele suchen die Fähre nach Korfu und landen auf der längeren, teureren Stadtroute. Lefkimmi im Süden Korfus ist der kürzeste und günstigste Weg auf die Insel: nur eine Stunde von Igoumenitsa. Ideal für den Süden — Kavos, Lefkimmi, Boukari, Agios Georgios.",
-    "prices_eyebrow": "Preise",
-    "prices_h": "Tickets ab 7,30 €.",
-    "prices_p": "Mit dem Transportäquivalent (eine staatliche Förderung) zählt die Überfahrt nach Korfu zu den günstigsten in Griechenland.",
-    "price1_l": "Passagier",
-    "price2_l": "Mit Motorrad",
-    "price3_l": "Mit Auto",
-    "price_mi": "mit T.-Äquiv.",
-    "prices_note": "Ermäßigte Preise gelten mit dem Zuschuss «Transportäquivalent», für Berechtigte. Endgültige Preise & Buchung über «Ticket buchen».",
-    "fleet_eyebrow": "Flotte",
-    "fleet_h": "Zwei Schiffe, ein Versprechen: Sicherheit.",
-    "fleet_p": "Unsere Schiffe — Agia Triada & Ioannis Kapodistrias — fahren zuverlässig und treu, in absoluter Sicherheit und mit großem Komfort.",
-    "ship1": "F/B Agia Triada",
-    "ship2": "F/B Ioannis Kapodistrias",
-    "cafe_eyebrow": "An Bord",
-    "cafe_h": "Lehnen Sie sich zurück. Wir fahren los.",
-    "cafe_p": "Eine Stunde reicht zum Durchatmen. Genießen Sie Ihren Kaffee, ein kühles Getränk oder einen warmen Toast an der Bar, lassen Sie den Blick aufs Ionische Meer vorbeiziehen — und ehe Sie sich versehen, sind Sie auf Korfu. Immer mit einem Lächeln.",
-    "sch_eyebrow": "Fahrplan",
-    "sch_h": "Fahrplan",
-    "sch_intro": "Prüfen Sie die Zeiten und wählen Sie die passende Überfahrt.",
-    "sch_title": "Tagesfahrplan",
-    "sch_note": "Die Zeiten sind unverbindlich und können je nach Saison variieren. Zur Bestätigung und Buchung «Ticket buchen» tippen.",
-    "map_eyebrow": "Karte",
-    "map_h": "Eine Stunde Fahrt.",
-    "map_p": "Vom Hafen Lefkimmi zum Hafen Igoumenitsa.",
-    "contact_eyebrow": "Kontakt",
-    "contact_h": "Wir sind für Sie da.",
-    "contact_p": "Für Fahrplaninformationen, Tickets und Gruppenreisen kontaktieren Sie uns.",
-    "contact_email_k": "E-Mail",
-    "contact_phoneA_k": "Lefkimmi → Igoumenitsa",
-    "contact_phoneB_k": "Igoumenitsa → Lefkimmi",
-    "footer_tag": "Der kürzeste Weg nach Korfu.",
-    "footer_nav": "Navigation",
-    "footer_useful": "Nützliches",
-    "footer_mi": "Transportäquivalent",
-    "footer_terms": "Reisebedingungen",
-    "footer_privacy": "Datenschutz",
-    "footer_rights": "Alle Rechte vorbehalten."
-  },
-  "es": {
-    "nav_about": "Quiénes somos",
-    "nav_why": "Por qué Lefkimmi",
-    "nav_prices": "Precios",
-    "nav_fleet": "Flota",
-    "nav_schedule": "Horarios",
-    "nav_contact": "Contacto",
-    "cta_book": "Reservar billete",
-    "cta_schedule": "Ver horarios",
-    "cta_book_online": "Reserva tu billete en línea →",
-    "booking_trust": "Reserva segura — booktickets.gr",
-    "hero_eyebrow": "LEFKIMMI · IGOUMENITSA · PAXOI",
-    "hero_h": "El camino más corto a Corfú.",
-    "hero_sub": "Travesías diarias desde Lefkimmi. Una hora de viaje, total seguridad, un billete económico.",
-    "usp1": "hora de viaje",
-    "usp2": "travesías al día",
-    "usp3": "ferris modernos",
-    "usp4": "en el mar desde",
-    "about_eyebrow": "Quiénes somos",
-    "about_h": "El mar es nuestro camino.",
-    "about_p": "Lefkimmi Lines conecta cada día el sur de Corfú con Igoumenitsa, desde el puerto de Lefkimmi. Durante más de una década hemos transportado pasajeros y vehículos con constancia, seguridad y una sonrisa. No somos solo una travesía — somos el inicio de tus vacaciones.",
-    "why_eyebrow": "Por qué Lefkimmi",
-    "why_h": "Más cerca de lo que crees.",
-    "why_p": "Muchos buscan el ferri a Corfú y acaban en la ruta de la ciudad, más larga y cara. Lefkimmi, en el sur de Corfú, es la forma más corta y barata de llegar a la isla: a solo una hora de Igoumenitsa. Ideal para el sur — Kavos, Lefkimmi, Boukari, Agios Georgios.",
-    "prices_eyebrow": "Precios",
-    "prices_h": "Billetes desde 7,30 €.",
-    "prices_p": "Con el Equivalente de Transporte (una subvención estatal), el trayecto hacia Corfú es de los más asequibles de Grecia.",
-    "price1_l": "Pasajero",
-    "price2_l": "Con moto",
-    "price3_l": "Con coche",
-    "price_mi": "con Eq. T.",
-    "prices_note": "Las tarifas reducidas se aplican con la subvención «Equivalente de Transporte», para beneficiarios. Para precios finales y reserva, pulsa «Reservar billete».",
-    "fleet_eyebrow": "Flota",
-    "fleet_h": "Dos barcos, una promesa: seguridad.",
-    "fleet_p": "Nuestros barcos — Agia Triada e Ioannis Kapodistrias — sirven con fidelidad y fiabilidad, con total seguridad y gran comodidad.",
-    "ship1": "F/B Agia Triada",
-    "ship2": "F/B Ioannis Kapodistrias",
-    "cafe_eyebrow": "A bordo",
-    "cafe_h": "Relájate. Zarpamos.",
-    "cafe_p": "Una hora basta para respirar. Disfruta de tu café, un refresco o una tostada caliente en el bar, deja pasar la vista del mar Jónico — y antes de darte cuenta, estás en Corfú. Siempre con una sonrisa.",
-    "sch_eyebrow": "Horarios",
-    "sch_h": "Horarios",
-    "sch_intro": "Consulta los horarios y elige la travesía que más te convenga.",
-    "sch_title": "Programa del día",
-    "sch_note": "Los horarios son indicativos y pueden variar según la temporada. Para confirmación y reserva, pulsa «Reservar billete».",
-    "map_eyebrow": "Mapa",
-    "map_h": "Un viaje de una hora.",
-    "map_p": "Del puerto de Lefkimmi al puerto de Igoumenitsa.",
-    "contact_eyebrow": "Contacto",
-    "contact_h": "Estamos aquí.",
-    "contact_p": "Para información sobre horarios, billetes y traslados de grupo, contáctanos.",
-    "contact_email_k": "Correo",
-    "contact_phoneA_k": "Lefkimmi → Igoumenitsa",
-    "contact_phoneB_k": "Igoumenitsa → Lefkimmi",
-    "footer_tag": "El camino más corto a Corfú.",
-    "footer_nav": "Navegación",
-    "footer_useful": "Útiles",
-    "footer_mi": "Equivalente de Transporte",
-    "footer_terms": "Condiciones del viaje",
-    "footer_privacy": "Privacidad",
-    "footer_rights": "Todos los derechos reservados."
-  },
-  "ro": {
-    "nav_about": "Despre noi",
-    "nav_why": "De ce Lefkimmi",
-    "nav_prices": "Prețuri",
-    "nav_fleet": "Flotă",
-    "nav_schedule": "Orar",
-    "nav_contact": "Contact",
-    "cta_book": "Rezervă bilet",
-    "cta_schedule": "Vezi orarul",
-    "cta_book_online": "Rezervă-ți biletul online →",
-    "booking_trust": "Rezervare sigură — booktickets.gr",
-    "hero_eyebrow": "LEFKIMMI · IGOUMENITSA · PAXOI",
-    "hero_h": "Cel mai scurt drum spre Corfu.",
-    "hero_sub": "Curse zilnice din Lefkimmi. O oră de călătorie, siguranță totală, un bilet economic.",
-    "usp1": "oră de călătorie",
-    "usp2": "curse pe zi",
-    "usp3": "feriboturi moderne",
-    "usp4": "pe mare din",
-    "about_eyebrow": "Despre noi",
-    "about_h": "Marea este drumul nostru.",
-    "about_p": "Lefkimmi Lines leagă zilnic sudul Corfuului de Igoumenitsa, din portul Lefkimmi. De peste zece ani transportăm pasageri și vehicule cu consecvență, siguranță și un zâmbet. Nu suntem doar o traversare — suntem începutul vacanței tale.",
-    "why_eyebrow": "De ce Lefkimmi",
-    "why_h": "Mai aproape decât crezi.",
-    "why_p": "Mulți caută feribotul spre Corfu și ajung pe ruta orașului, mai lungă și mai scumpă. Lefkimmi, în sudul Corfuului, este cel mai scurt și mai ieftin mod de a ajunge pe insulă: la doar o oră de Igoumenitsa. Ideal pentru sud — Kavos, Lefkimmi, Boukari, Agios Georgios.",
-    "prices_eyebrow": "Prețuri",
-    "prices_h": "Bilete de la 7,30 €.",
-    "prices_p": "Cu Echivalentul de Transport (o subvenție de stat), traversarea spre Corfu este printre cele mai accesibile din Grecia.",
-    "price1_l": "Pasager",
-    "price2_l": "Cu motocicletă",
-    "price3_l": "Cu mașina",
-    "price_mi": "cu Ech. T.",
-    "prices_note": "Tarifele reduse se aplică prin subvenția «Echivalentul de Transport», pentru beneficiari. Pentru prețuri finale și rezervare, apasă «Rezervă bilet».",
-    "fleet_eyebrow": "Flotă",
-    "fleet_h": "Două nave, o promisiune: siguranța.",
-    "fleet_p": "Navele noastre — Agia Triada și Ioannis Kapodistrias — servesc cu fidelitate și fiabilitate, în siguranță deplină și cu mare confort.",
-    "ship1": "F/B Agia Triada",
-    "ship2": "F/B Ioannis Kapodistrias",
-    "cafe_eyebrow": "La bord",
-    "cafe_h": "Relaxați-vă. Pornim.",
-    "cafe_p": "O oră ajunge pentru un răgaz. Bucurați-vă de cafea, o băutură rece sau un toast cald de la bar, lăsați priveliștea Mării Ionice să treacă — și până să vă dați seama, sunteți în Corfu. Mereu cu zâmbetul pe buze.",
-    "sch_eyebrow": "Orar",
-    "sch_h": "Orar",
-    "sch_intro": "Verificați orele și alegeți cursa potrivită.",
-    "sch_title": "Programul zilei",
-    "sch_note": "Orele sunt orientative și pot varia în funcție de sezon. Pentru confirmare și rezervare, apăsați «Rezervă bilet».",
-    "map_eyebrow": "Hartă",
-    "map_h": "O călătorie de o oră.",
-    "map_p": "Din portul Lefkimmi în portul Igoumenitsa.",
-    "contact_eyebrow": "Contact",
-    "contact_h": "Suntem aici.",
-    "contact_p": "Pentru informații despre orar, bilete și transferuri de grup, contactați-ne.",
-    "contact_email_k": "E-mail",
-    "contact_phoneA_k": "Lefkimmi → Igoumenitsa",
-    "contact_phoneB_k": "Igoumenitsa → Lefkimmi",
-    "footer_tag": "Cel mai scurt drum spre Corfu.",
-    "footer_nav": "Navigare",
-    "footer_useful": "Utile",
-    "footer_mi": "Echivalentul de Transport",
-    "footer_terms": "Termeni de călătorie",
-    "footer_privacy": "Confidențialitate",
-    "footer_rights": "Toate drepturile rezervate."
-  },
-  "bg": {
-    "nav_about": "За нас",
-    "nav_why": "Защо Лефкими",
-    "nav_prices": "Цени",
-    "nav_fleet": "Флота",
-    "nav_schedule": "Разписание",
-    "nav_contact": "Контакти",
-    "cta_book": "Резервирай билет",
-    "cta_schedule": "Виж разписанието",
-    "cta_book_online": "Резервирайте билета си онлайн →",
-    "booking_trust": "Сигурна резервация — booktickets.gr",
-    "hero_eyebrow": "ЛЕФКИМИ · ИГУМЕНИЦА · ПАКСОИ",
-    "hero_h": "Най-краткият път до Корфу.",
-    "hero_sub": "Ежедневни курсове от Лефкими. Един час път, пълна безопасност, икономичен билет.",
-    "usp1": "продължителност на пътуването",
-    "usp2": "курса на ден",
-    "usp3": "модерни фериботи",
-    "usp4": "в морето от",
-    "about_eyebrow": "За нас",
-    "about_h": "Морето е нашият път.",
-    "about_p": "Lefkimmi Lines свързва всеки ден южната част на Корфу с Игуменица, от пристанището на Лефкими. От повече от десет години превозваме пътници и превозни средства последователно, безопасно и с усмивка. Ние не сме просто преминаване — ние сме началото на вашата почивка.",
-    "why_eyebrow": "Защо Лефкими",
-    "why_h": "По-близо, отколкото си мислите.",
-    "why_p": "Мнозина търсят ферибота за Корфу и се озовават на по-дългия и по-скъп градски маршрут. Лефкими, в южната част на Корфу, е най-краткият и най-евтиният начин да стигнете до острова: само на един час от Игуменица. Идеално за юга — Кавос, Лефкими, Букари, Агиос Георгиос.",
-    "prices_eyebrow": "Цени",
-    "prices_h": "Билети от 7,30 €.",
-    "prices_p": "С Транспортния еквивалент (държавна субсидия) преминаването към Корфу е сред най-достъпните в Гърция.",
-    "price1_l": "Пътник",
-    "price2_l": "С мотоциклет",
-    "price3_l": "С автомобил",
-    "price_mi": "с Тр. екв.",
-    "prices_note": "Намалените цени важат с субсидията «Транспортен еквивалент», за правоимащи. За окончателни цени и резервация натиснете «Резервирай билет».",
-    "fleet_eyebrow": "Флота",
-    "fleet_h": "Два кораба, едно обещание: безопасност.",
-    "fleet_p": "Нашите кораби — Агия Триада и Йоанис Каподистрияс — обслужват вярно и надеждно, при пълна безопасност и голям комфорт.",
-    "ship1": "Ф/Б Агия Триада",
-    "ship2": "Ф/Б Йоанис Каподистрияс",
-    "cafe_eyebrow": "На борда",
-    "cafe_h": "Настанете се удобно. Отплаваме.",
-    "cafe_p": "Един час стига за глътка въздух. Насладете се на кафето си, разхладителна напитка или топъл тост от бара, оставете гледката към Йонийско море да преминава — и преди да усетите, сте в Корфу. Винаги с усмивка.",
-    "sch_eyebrow": "Разписание",
-    "sch_h": "Разписание",
-    "sch_intro": "Проверете часовете и изберете удобния курс.",
-    "sch_title": "Дневна програма",
-    "sch_note": "Разписанието е ориентировъчно и може да варира според сезона. За потвърждение и резервация натиснете «Резервирай билет».",
-    "map_eyebrow": "Карта",
-    "map_h": "Пътуване от един час.",
-    "map_p": "От пристанището на Лефкими до пристанището на Игуменица.",
-    "contact_eyebrow": "Контакти",
-    "contact_h": "Тук сме.",
-    "contact_p": "За информация за разписанието, билети и групови трансфери, свържете се с нас.",
-    "contact_email_k": "Имейл",
-    "contact_phoneA_k": "Лефкими → Игуменица",
-    "contact_phoneB_k": "Игуменица → Лефкими",
-    "footer_tag": "Най-краткият път до Корфу.",
-    "footer_nav": "Навигация",
-    "footer_useful": "Полезно",
-    "footer_mi": "Транспортен еквивалент",
-    "footer_terms": "Условия за пътуване",
-    "footer_privacy": "Поверителност",
-    "footer_rights": "Всички права запазени."
-  },
-  "ru": {
-    "nav_about": "О нас",
-    "nav_why": "Почему Лефкими",
-    "nav_prices": "Цены",
-    "nav_fleet": "Флот",
-    "nav_schedule": "Расписание",
-    "nav_contact": "Контакты",
-    "cta_book": "Забронировать билет",
-    "cta_schedule": "Смотреть расписание",
-    "cta_book_online": "Забронируйте билет онлайн →",
-    "booking_trust": "Безопасное бронирование — booktickets.gr",
-    "hero_eyebrow": "ЛЕФКИМИ · ИГУМЕНИЦА · ПАКСОИ",
-    "hero_h": "Кратчайший путь на Корфу.",
-    "hero_sub": "Ежедневные рейсы из Лефкими. Час в пути, полная безопасность, доступный билет.",
-    "usp1": "время в пути",
-    "usp2": "рейсов в день",
-    "usp3": "современных парома",
-    "usp4": "в море с",
-    "about_eyebrow": "О нас",
-    "about_h": "Море — наша дорога.",
-    "about_p": "Lefkimmi Lines ежедневно соединяет юг Корфу с Игуменицей, из порта Лефкими. Более десяти лет мы перевозим пассажиров и автомобили стабильно, безопасно и с улыбкой. Мы не просто переправа — мы начало вашего отдыха.",
-    "why_eyebrow": "Почему Лефкими",
-    "why_h": "Ближе, чем вы думаете.",
-    "why_p": "Многие ищут паром на Корфу и оказываются на более длинном и дорогом городском маршруте. Лефкими на юге Корфу — это самый короткий и дешёвый способ добраться до острова: всего час от Игуменицы. Идеально для юга — Кавос, Лефкими, Букари, Агиос-Георгиос.",
-    "prices_eyebrow": "Цены",
-    "prices_h": "Билеты от 7,30 €.",
-    "prices_p": "Благодаря субсидии «Транспортный эквивалент» переправа на Корфу входит в число самых доступных по цене в Греции.",
-    "price1_l": "Пассажир",
-    "price2_l": "С мотоциклом",
-    "price3_l": "С автомобилем",
-    "price_mi": "по Тр. экв.",
-    "prices_note": "Сниженные цены действуют по субсидии «Транспортный эквивалент» для имеющих право. Окончательные цены и бронирование — по кнопке «Забронировать билет».",
-    "fleet_eyebrow": "Флот",
-    "fleet_h": "Два судна, одно обещание: безопасность.",
-    "fleet_p": "Наши суда — «Агия Триада» и «Иоаннис Каподистриас» — работают надёжно и преданно, в полной безопасности и с большим комфортом.",
-    "ship1": "Ф/Б «Агия Триада»",
-    "ship2": "Ф/Б «Иоаннис Каподистриас»",
-    "cafe_eyebrow": "На борту",
-    "cafe_h": "Располагайтесь. Отправляемся.",
-    "cafe_p": "Часа достаточно, чтобы перевести дух. Насладитесь кофе, прохладительным напитком или горячим тостом из бара, дайте виду Ионического моря проплыть мимо — и не успеете оглянуться, как вы на Корфу. Всегда с улыбкой.",
-    "sch_eyebrow": "Расписание",
-    "sch_h": "Расписание",
-    "sch_intro": "Проверьте время и выберите удобный рейс.",
-    "sch_title": "Расписание дня",
-    "sch_note": "Расписание носит ориентировочный характер и может меняться по сезону. Для подтверждения и бронирования нажмите «Забронировать билет».",
-    "map_eyebrow": "Карта",
-    "map_h": "Час в пути.",
-    "map_p": "От порта Лефкими до порта Игуменица.",
-    "contact_eyebrow": "Контакты",
-    "contact_h": "Мы здесь.",
-    "contact_p": "Для получения информации о расписании, билетах и групповых трансферах свяжитесь с нами.",
-    "contact_email_k": "Эл. почта",
-    "contact_phoneA_k": "Лефкими → Игуменица",
-    "contact_phoneB_k": "Игуменица → Лефкими",
-    "footer_tag": "Кратчайший путь на Корфу.",
-    "footer_nav": "Навигация",
-    "footer_useful": "Полезное",
-    "footer_mi": "Транспортный эквивалент",
-    "footer_terms": "Условия проезда",
-    "footer_privacy": "Конфиденциальность",
-    "footer_rights": "Все права защищены."
-  }
-}
-  </script>
+  <nav class="main-nav">
+    <a class="navlink" href="#about"    data-i18n="nav.about">Ποιοι είμαστε</a>
+    <a class="navlink" href="#why"      data-i18n="nav.why">Γιατί Λευκίμμη</a>
+    <a class="navlink" href="#prices"   data-i18n="nav.prices">Τιμές</a>
+    <a class="navlink" href="#fleet"    data-i18n="nav.fleet">Στόλος</a>
+    <a class="navlink" href="#schedule" data-i18n="nav.schedule">Δρομολόγια</a>
+    <a class="navlink" href="#contact"  data-i18n="nav.contact">Επικοινωνία</a>
 
-  <!-- ═══════════════════ SEO CONFIGS ═══════════════════
-       Consumed by blocks 16 (seo-head), 17 (schema-injector), 18 (hreflang).
-       UPDATE canonical, og.url, og.image, sitemap URL before going live.
-  ═════════════════════════════════════════════════════════ -->
+    <div class="lang" data-lang>
+      <button class="lang-btn" data-lang-btn aria-label="Language">
+        <span data-lang-current>EL</span><span class="chev"></span>
+      </button>
+      <div class="lang-menu" data-lang-menu></div>
+    </div>
 
-  <!-- seo-head: per-language <title> + <meta description> + OG/Twitter -->
-  <script type="application/json" class="px-seo-cfg">
-  {
-    "canonical": "https://www.lefkimmilines.gr/",
-    "robots": "index,follow",
-    "og": {
-      "image":    "https://www.lefkimmilines.gr/og-image.jpg",
-      "url":      "https://www.lefkimmilines.gr/",
-      "type":     "website",
-      "siteName": "Lefkimmi Lines"
-    },
-    "default": "el",
-    "langs": {
-      "el": {
-        "title":       "Δρομολόγια Ηγουμενίτσα – Κέρκυρα (Λευκίμμη) | Lefkimmi Lines",
-        "description": "Καθημερινά δρομολόγια Λευκίμμη–Ηγουμενίτσα σε 1 ώρα. Ο συντομότερος & φθηνότερος δρόμος για την Κέρκυρα. Εισιτήρια από 7,30€."
-      },
-      "en": {
-        "title":       "Igoumenitsa – Corfu Ferry (Lefkimmi) | Lefkimmi Lines",
-        "description": "Daily ferry crossings Lefkimmi–Igoumenitsa in 1 hour. The shortest & cheapest route to Corfu. Tickets from €7.30."
-      },
-      "fr": {
-        "title":       "Ferry Igoumenitsa – Corfou (Lefkimmi) | Lefkimmi Lines",
-        "description": "Traversées quotidiennes Lefkimmi–Igoumenitsa en 1 heure. La route la plus courte & la moins chère pour Corfou. Billets dès 7,30€."
-      },
-      "it": {
-        "title":       "Traghetto Igoumenitsa – Corfù (Lefkimmi) | Lefkimmi Lines",
-        "description": "Traversate giornaliere Lefkimmi–Igoumenitsa in 1 ora. Il percorso più breve & economico per Corfù. Biglietti da 7,30€."
-      },
-      "de": {
-        "title":       "Fähre Igoumenitsa – Korfu (Lefkimmi) | Lefkimmi Lines",
-        "description": "Tägliche Fährverbindungen Lefkimmi–Igoumenitsa in 1 Stunde. Die kürzeste & günstigste Route nach Korfu. Tickets ab 7,30€."
-      },
-      "es": {
-        "title":       "Ferry Igoumenitsa – Corfú (Lefkimmi) | Lefkimmi Lines",
-        "description": "Travesías diarias Lefkimmi–Igoumenitsa en 1 hora. La ruta más corta & económica a Corfú. Billetes desde 7,30€."
-      },
-      "ro": {
-        "title":       "Feribot Igoumenitsa – Corfu (Lefkimmi) | Lefkimmi Lines",
-        "description": "Traversări zilnice Lefkimmi–Igoumenitsa în 1 oră. Cea mai scurtă & ieftină rută spre Corfu. Bilete de la 7,30€."
-      },
-      "bg": {
-        "title":       "Ферибот Игуменица – Корфу (Лефкими) | Lefkimmi Lines",
-        "description": "Ежедневни преходи Лефкими–Игуменица за 1 час. Най-краткият & евтин маршрут до Корфу. Билети от 7,30€."
-      },
-      "ru": {
-        "title":       "Паром Игуменица – Корфу (Лефкими) | Lefkimmi Lines",
-        "description": "Ежедневные переправы Лефкими–Игуменица за 1 час. Самый короткий & дешёвый маршрут на Корфу. Билеты от 7,30€."
+    <a class="btn btn-gold" href="https://lefkimmilines.gr/el/arxiki/" data-i18n="nav.book">Κλείσε εισιτήριο</a>
+    <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<!-- mobile drawer -->
+<div class="drawer">
+  <button class="close" aria-label="Close">&times;</button>
+  <a href="#about"    data-i18n="nav.about">Ποιοι είμαστε</a>
+  <a href="#why"      data-i18n="nav.why">Γιατί Λευκίμμη</a>
+  <a href="#prices"   data-i18n="nav.prices">Τιμές</a>
+  <a href="#fleet"    data-i18n="nav.fleet">Στόλος</a>
+  <a href="#schedule" data-i18n="nav.schedule">Δρομολόγια</a>
+  <a href="#contact"  data-i18n="nav.contact">Επικοινωνία</a>
+</div>
+
+<!-- ============================ HERO ============================ -->
+<section class="hero" id="hero" data-screen-label="Hero" data-layout="center">
+  <div class="media">
+    <img class="kb" crossorigin="anonymous" alt="" src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1700&q=80" />
+    <video class="hero-video" autoplay muted loop playsinline preload="none"
+           poster="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1700&q=80">
+      <source src="https://videos.pexels.com/video-files/1409899/1409899-hd_1920_1080_25fps.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div class="scrim"></div>
+
+  <div class="hero-inner">
+    <div class="hero-block">
+      <div class="hero-eyebrow"><span class="ln"></span><span data-i18n="hero.eyebrow">Λευκίμμη → Κέρκυρα · από το 2012</span></div>
+      <div class="tier tier-lg" data-i18n="hero.t1">Ο ΣΥΝΤΟΜΟΤΕΡΟΣ ΔΡΟΜΟΣ</div>
+      <div class="tier-sm" data-i18n="hero.t2">για την</div>
+      <div class="tier tier-lg"><span class="gold" data-i18n="hero.t3">ΚΕΡΚΥΡΑ</span></div>
+      <div class="hr-rule"></div>
+      <p class="hero-sub left-only" data-i18n="hero.sub">50 λεπτά από την Ηγουμενίτσα. Καθημερινά δρομολόγια, σύγχρονα πλοία και η θέα του Ιονίου να σε συνοδεύει μέχρι το νησί.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-gold" href="https://lefkimmilines.gr/el/arxiki/" data-i18n="hero.cta1">Κλείσε εισιτήριο</a>
+        <a class="btn btn-ghost" href="#schedule" data-i18n="hero.cta2">Δες τα δρομολόγια</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-pricetag">
+    <div class="lbl" data-i18n="hero.priceLbl">Με Μεταφορικό Ισοδύναμο</div>
+    <div class="val">απο 7,30<small>€</small></div>
+  </div>
+
+  <a class="scroll-cue" href="#stats" aria-label="Scroll">
+    <span data-i18n="hero.scroll">ΕΞΕΡΕΥΝΗΣΕ</span><span class="chev"></span>
+  </a>
+</section>
+
+<!-- ============================ STATS ============================ -->
+<section class="stats" id="stats">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="num" data-count="1" data-suffix="">1</div>
+        <div class="lbl" data-i18n="stat.1l">ώρα ταξίδι</div>
+      </div>
+      <div class="stat">
+        <div class="num" data-count="6" data-suffix="+">6+</div>
+        <div class="lbl" data-i18n="stat.2l">δρομολόγια κάθε μέρα</div>
+      </div>
+      <div class="stat">
+        <div class="num" data-count="2" data-suffix="">2</div>
+        <div class="lbl" data-i18n="stat.3l">σύγχρονα πλοία</div>
+      </div>
+      <div class="stat">
+        <div class="num" data-count="2012" data-suffix="">2012</div>
+        <div class="lbl" data-i18n="stat.4l">στη θάλασσα από τότε</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ABOUT ============================ -->
+<section class="section paper" id="about" data-screen-label="About">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow"><span class="ln"></span><span data-i18n="about.eyebrow">Ποιοι είμαστε</span></span>
+      <h2 class="h2" data-i18n="about.title">Η θάλασσα είναι ο δρόμος μας.</h2>
+      <p class="lede" style="margin:0 auto;" data-i18n="about.body">Η Lefkimmi Lines συνδέει καθημερινά τη νότια Κέρκυρα με την Ηγουμενίτσα, από το λιμάνι της Λευκίμμης. Εδώ και πάνω από μία δεκαετία, μεταφέρουμε επιβάτες και οχήματα με συνέπεια, ασφάλεια και σεβασμό σε κάθε ταξιδιώτη. Δεν είμαστε απλώς ένα πέρασμα — είμαστε η αρχή των διακοπών σας.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ WHY ============================ -->
+<section class="section paper-2" id="why" data-screen-label="Why Lefkimmi">
+  <div class="wrap">
+    <div class="offset reveal">
+      <div class="ph">
+        <img crossorigin="anonymous" alt="Νότια Κέρκυρα — θάλασσα και ακτή" src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=1100&q=80" />
+      </div>
+      <div class="card">
+        <span class="eyebrow" data-i18n="why.eyebrow">Γιατί Λευκίμμη</span>
+        <h2 class="h2" data-i18n="why.title">Πιο κοντά απ' όσο νομίζεις.</h2>
+        <p class="lede" data-i18n="why.body">Πολλοί ψάχνουν το πλοίο για την Κέρκυρα και καταλήγουν στη μακρινή, ακριβότερη γραμμή της πόλης. Η Λευκίμμη, στη νότια Κέρκυρα, είναι ο συντομότερος και φθηνότερος τρόπος να πατήσεις το νησί: μόλις 50 λεπτά από την Ηγουμενίτσα. Ιδανικό αν πας νότια Κέρκυρα — Κάβος, Λευκίμμη, Μπούκαρι, Άγιος Γεώργιος.</p>
+        <div class="usp-tabs">
+          <a href="#schedule"><span class="t" data-i18n="why.tab1t">Σύντομο</span><span class="v" data-i18n="why.tab1v">50 λεπτά</span></a>
+          <a href="#prices"><span class="t" data-i18n="why.tab2t">Οικονομικό</span><span class="v" data-i18n="why.tab2v">απο 7,30€</span></a>
+          <a href="#why"><span class="t" data-i18n="why.tab3t">Νότια</span><span class="v" data-i18n="why.tab3v">Κέρκυρα</span></a>
+          <a href="#schedule"><span class="t" data-i18n="why.tab4t">Καθημερινά</span><span class="v" data-i18n="why.tab4v">6+ δρομολόγια</span></a>
+        </div>
+        <a class="explore" href="#prices" style="margin-top:28px;">
+          <span class="lbl"><span data-i18n="explore">ΕΞΕΡΕΥΝΗΣΕ</span> &rarr;</span>
+          <svg class="wave" width="100" height="9" viewBox="0 0 100 9" fill="none">
+            <path d="M1 5C8 0 15 0 22 5C29 10 36 10 43 5C50 0 57 0 64 5C71 10 78 10 85 5C90 1.5 94 1.5 99 4"
+              stroke="#a6863c" stroke-width="2" stroke-linecap="round" stroke-dasharray="120" stroke-dashoffset="0"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PRICES ============================ -->
+<section class="section paper" id="prices" data-screen-label="Fares">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow"><span class="ln"></span><span data-i18n="prices.eyebrow">Τιμές</span></span>
+      <h2 class="h2" data-i18n="prices.title">Από 7,30€ το εισιτήριο.</h2>
+      <p class="lede" style="margin:0 auto;" data-i18n="prices.body">Με το Μεταφορικό Ισοδύναμο (κρατική επιδότηση), το πέρασμα προς την Κέρκυρα γίνεται από τα πιο οικονομικά της Ελλάδας.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price-card feat reveal">
+        <div class="ribbon" data-i18n="prices.feat">Πιο δημοφιλές</div>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="7" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+        <h3 data-i18n="prices.c1">Επιβάτης</h3>
+        <div class="price"><span data-i18n="prices.c1p">7,30€</span><small data-i18n="prices.c1u">με Μ.Ι.</small></div>
+      </div>
+      <div class="price-card reveal d1">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M6 17h6l3-7h3M9 10h4"/></svg>
+        <h3 data-i18n="prices.c2">Με μηχανή</h3>
+        <div class="price"><span data-i18n="prices.c2p">~16€</span><small data-i18n="prices.c2u">με Μ.Ι.</small></div>
+      </div>
+      <div class="price-card reveal d2">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 13l2-5h14l2 5v5h-3v-2H6v2H3z"/><circle cx="7" cy="16" r="1.4"/><circle cx="17" cy="16" r="1.4"/></svg>
+        <h3 data-i18n="prices.c3">Με αυτοκίνητο</h3>
+        <div class="price"><span data-i18n="prices.c3p">~30€</span><small data-i18n="prices.c3u">με Μ.Ι.</small></div>
+      </div>
+    </div>
+    <p class="price-note" data-i18n="prices.note">Οι τιμές με Μεταφορικό Ισοδύναμο ισχύουν για δικαιούχους. Για οριστικές τιμές και κράτηση, πάτησε «Κλείσε εισιτήριο».</p>
+  </div>
+</section>
+
+<!-- ============================ FLEET ============================ -->
+<section class="section navy" id="fleet" data-screen-label="Fleet">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow on-dark"><span class="ln"></span><span data-i18n="fleet.eyebrow">Στόλος</span></span>
+      <h2 class="h2 on-dark" data-i18n="fleet.title">Δύο πλοία, μία υπόσχεση: ασφάλεια.</h2>
+      <p class="lede" style="margin:0 auto;color:rgba(255,255,255,.84);" data-i18n="fleet.body">Τα πλοία μας εξυπηρετούν πιστά και συστηματικά τις ανάγκες του επιβατικού κοινού, με απόλυτη ασφάλεια και υψηλές ανέσεις.</p>
+    </div>
+    <div class="fleet-grid">
+      <div class="ship-card reveal">
+        <img crossorigin="anonymous" alt="Φ/Β Αγία Τριάδα" src="https://images.unsplash.com/photo-1695479315311-d3e8fb693390?w=900&q=80" />
+        <div class="frame-acc"></div>
+        <div class="ov"></div>
+        <div class="meta"><div class="tag" data-i18n="fleet.tag">Επιβατηγό / Οχηματαγωγό</div><div class="nm">Φ/Β Αγία Τριάδα</div></div>
+      </div>
+      <div class="ship-card reveal d1">
+        <img crossorigin="anonymous" alt="Φ/Β Ιωάννης Καποδίστριας" src="https://images.unsplash.com/photo-1693780860490-39520bb85643?w=900&q=80" />
+        <div class="frame-acc"></div>
+        <div class="ov"></div>
+        <div class="meta"><div class="tag" data-i18n="fleet.tag">Επιβατηγό / Οχηματαγωγό</div><div class="nm">Φ/Β Ιωάννης Καποδίστριας</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ON BOARD ============================ -->
+<section class="section paper" id="onboard" data-screen-label="On board">
+  <div class="wrap">
+    <div class="offset flip reveal">
+      <div class="card">
+        <span class="eyebrow" data-i18n="onboard.eyebrow">Εν πλω</span>
+        <h2 class="h2" data-i18n="onboard.title">Καθίστε αναπαυτικά. Ταξιδεύουμε.</h2>
+        <p class="lede" data-i18n="onboard.body">Μία ώρα φτάνει για να πάρετε μια ανάσα. Απολαύστε τον καφέ σας, ένα δροσιστικό ή ένα ζεστό τοστ από το κυλικείο του πλοίου, αφήστε τη θέα του Ιονίου να περάσει μπροστά σας — και πριν το καταλάβετε, είστε Κέρκυρα. Ταχύτητα και ασφάλεια, πάντα με χαμόγελο.</p>
+        <a class="explore" href="#schedule" style="margin-top:24px;">
+          <span class="lbl"><span data-i18n="explore">ΕΞΕΡΕΥΝΗΣΕ</span> &rarr;</span>
+          <svg class="wave" width="100" height="9" viewBox="0 0 100 9" fill="none">
+            <path d="M1 5C8 0 15 0 22 5C29 10 36 10 43 5C50 0 57 0 64 5C71 10 78 10 85 5C90 1.5 94 1.5 99 4"
+              stroke="#a6863c" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </a>
+      </div>
+      <div class="ph">
+        <img crossorigin="anonymous" alt="Καφές με θέα τη θάλασσα εν πλω" src="https://images.unsplash.com/photo-1743628113907-42d01d469d0c?w=1100&q=80" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SCHEDULE (block #21) ============================ -->
+<section class="section paper-2" id="schedule" data-screen-label="Schedule">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow"><span class="ln"></span><span data-i18n="sched.eyebrow">Δρομολόγια</span></span>
+      <h2 class="h2" data-i18n="sched.title">Πρόγραμμα ημέρας</h2>
+      <p class="lede" style="margin:0 auto;" data-i18n="sched.body">Δες τις ώρες και διάλεξε το δρομολόγιο που σε βολεύει.</p>
+    </div>
+
+    <!-- Block #21: schedule-calendar — JS renders before i18n.js so data-i18n attrs are in DOM -->
+    <div class="px-sc-root reveal" data-book-url="https://lefkimmilines.gr/el/reservation/">
+      <script type="application/json" class="px-sched-data">
+      {
+        "ll": [
+          {"ship": "Αγία Τριάδα",          "dep": "06:00", "arr": "06:50"},
+          {"ship": "Αγία Τριάδα",          "dep": "09:00", "arr": "09:50"},
+          {"ship": "Ιωάννης Καποδίστριας", "dep": "11:45", "arr": "12:35"},
+          {"ship": "Αγία Τριάδα",          "dep": "14:00", "arr": "14:50"},
+          {"ship": "Ιωάννης Καποδίστριας", "dep": "16:00", "arr": "16:50"},
+          {"ship": "Ιωάννης Καποδίστριας", "dep": "19:00", "arr": "19:50"}
+        ],
+        "hl": [
+          {"ship": "Λευκίμμη",             "dep": "07:30", "arr": "08:20"},
+          {"ship": "Αγία Τριάδα",          "dep": "09:00", "arr": "09:50"},
+          {"ship": "Λευκίμμη",             "dep": "11:30", "arr": "12:20"},
+          {"ship": "Αγία Τριάδα",          "dep": "13:00", "arr": "13:50"},
+          {"ship": "Ιωάννης Καποδίστριας", "dep": "14:00", "arr": "14:50"},
+          {"ship": "Λευκίμμη",             "dep": "15:30", "arr": "16:20"},
+          {"ship": "Αγία Τριάδα",          "dep": "16:30", "arr": "17:20"},
+          {"ship": "Ιωάννης Καποδίστριας", "dep": "18:00", "arr": "18:50"},
+          {"ship": "Ιωάννης Καποδίστριας", "dep": "21:00", "arr": "21:50"}
+        ],
+        "lp": [
+          {"ship": "Δέσποινα Π.", "dep": "09:15", "arr": "10:00"},
+          {"ship": "Δέσποινα Π.", "dep": "14:30", "arr": "15:15"},
+          {"ship": "Δέσποινα Π.", "dep": "17:45", "arr": "18:30"}
+        ],
+        "pl": [
+          {"ship": "Δέσποινα Π.", "dep": "07:45", "arr": "08:30"},
+          {"ship": "Δέσποινα Π.", "dep": "12:00", "arr": "12:45"},
+          {"ship": "Δέσποινα Π.", "dep": "16:30", "arr": "17:15"}
+        ]
       }
-    }
-  }
-  </script>
-
-  <!-- schema-injector: LocalBusiness + FerryTrip JSON-LD -->
-  <script type="application/json" class="px-schema-cfg">
-  [
-    {
-      "type":        "LocalBusiness",
-      "name":        "Lefkimmi Lines",
-      "description": "Ακτοπλοϊκές γραμμές Λευκίμμη–Ηγουμενίτσα. Καθημερινά δρομολόγια, επιβάτες και οχήματα.",
-      "url":         "https://www.lefkimmilines.gr/",
-      "telephone":   "+302662023200",
-      "email":       "info@lefkimmilines.gr",
-      "image":       "https://www.lefkimmilines.gr/og-image.jpg",
-      "priceRange":  "€€",
-      "address": {
-        "street":  "Λιμάνι Λευκίμμης",
-        "city":    "Λευκίμμη",
-        "region":  "Κέρκυρα",
-        "zip":     "491 00",
-        "country": "GR"
-      },
-      "geo": { "lat": 39.449, "lng": 20.0935 },
-      "openingHours": ["Mo-Su 05:30-22:00"],
-      "sameAs": [
-        "https://www.facebook.com/lefkimmilines",
-        "https://www.instagram.com/lefkimmi_lines"
-      ]
-    },
-    {
-      "type":        "FerryTrip",
-      "name":        "Λευκίμμη – Ηγουμενίτσα ferry",
-      "description": "Ακτοπλοϊκή γραμμή Λευκίμμη Κέρκυρας – Ηγουμενίτσα. Διάρκεια 50 λεπτά, από 7,30€.",
-      "from":        "Λιμάνι Λευκίμμης, Κέρκυρα",
-      "fromAddress": "Λευκίμμη, Κέρκυρα, GR",
-      "to":          "Λιμάνι Ηγουμενίτσας, Θεσπρωτία",
-      "toAddress":   "Ηγουμενίτσα, Θεσπρωτία, GR",
-      "duration":    "PT50M",
-      "price":       "7.30",
-      "currency":    "EUR",
-      "provider":    "Lefkimmi Lines"
-    }
-  ]
-  </script>
-
-  <!-- hreflang: single-URL site — see block.js comment for limitation note -->
-  <script type="application/json" class="px-hreflang-cfg">
-  {
-    "xDefault": "https://www.lefkimmilines.gr/",
-    "langs": [
-      { "code": "el", "url": "https://www.lefkimmilines.gr/" },
-      { "code": "en", "url": "https://www.lefkimmilines.gr/" },
-      { "code": "fr", "url": "https://www.lefkimmilines.gr/" },
-      { "code": "it", "url": "https://www.lefkimmilines.gr/" },
-      { "code": "de", "url": "https://www.lefkimmilines.gr/" },
-      { "code": "es", "url": "https://www.lefkimmilines.gr/" },
-      { "code": "ro", "url": "https://www.lefkimmilines.gr/" },
-      { "code": "bg", "url": "https://www.lefkimmilines.gr/" },
-      { "code": "ru", "url": "https://www.lefkimmilines.gr/" }
-    ]
-  }
-  </script>
-
-  <!-- ═══════════════════ 1 · HEADER ═══════════════════ -->
-  <header class="px-nav" data-logo="Lefkimmi Lines" data-transparent="true">
-    <div class="px-nav-inner">
-      <a class="px-nav-logo" href="#hero" aria-label="Lefkimmi Lines — αρχική">
-        <span class="px-nav-logo-mark">L</span>
-        <span class="px-nav-logo-text">efkimmi Lines</span>
-      </a>
-
-      <nav class="px-nav-menu" aria-label="Κύρια πλοήγηση">
-        <ul role="list">
-          <li><a href="#about"    data-i18n="nav_about">Ποιοι είμαστε</a></li>
-          <li><a href="#why"      data-i18n="nav_why">Γιατί Λευκίμμη</a></li>
-          <li><a href="#prices"   data-i18n="nav_prices">Τιμές</a></li>
-          <li><a href="#fleet"    data-i18n="nav_fleet">Στόλος</a></li>
-          <li><a href="#schedule" data-i18n="nav_schedule">Δρομολόγια</a></li>
-          <li><a href="#contact"  data-i18n="nav_contact">Επικοινωνία</a></li>
-        </ul>
-      </nav>
-
-      <!-- Language switcher (GR + EN) -->
-      <div class="px-lang" data-default="gr" data-persist="true">
-        <button class="px-lang-toggle" aria-haspopup="listbox" aria-expanded="false" aria-label="Επιλογή γλώσσας">
-          <span class="px-lang-flag" aria-hidden="true">🇬🇷</span><span class="px-lang-code">GR</span><span class="px-lang-chevron" aria-hidden="true"></span>
-        </button>
-        <ul class="px-lang-menu" role="listbox" hidden>
-          <li role="option" data-lang="gr"><span class="px-lang-flag" aria-hidden="true">🇬🇷</span> Ελληνικά</li>
-          <li role="option" data-lang="en"><span class="px-lang-flag" aria-hidden="true">🇬🇧</span> English</li>
-          <li role="option" data-lang="fr"><span class="px-lang-flag" aria-hidden="true">🇫🇷</span> Français</li>
-          <li role="option" data-lang="it"><span class="px-lang-flag" aria-hidden="true">🇮🇹</span> Italiano</li>
-          <li role="option" data-lang="de"><span class="px-lang-flag" aria-hidden="true">🇩🇪</span> Deutsch</li>
-          <li role="option" data-lang="es"><span class="px-lang-flag" aria-hidden="true">🇪🇸</span> Español</li>
-          <li role="option" data-lang="ro"><span class="px-lang-flag" aria-hidden="true">🇷🇴</span> Română</li>
-          <li role="option" data-lang="bg"><span class="px-lang-flag" aria-hidden="true">🇧🇬</span> Български</li>
-          <li role="option" data-lang="ru"><span class="px-lang-flag" aria-hidden="true">🇷🇺</span> Русский</li>
-        </ul>
-      </div>
-
-      <a class="px-nav-cta" href="https://lefkimmilines.gr/el/arxiki/" target="_blank" rel="noopener" data-i18n="cta_book">Κλείσε εισιτήριο</a>
-
-      <button class="px-nav-hamburger" aria-label="Μενού" aria-expanded="false" aria-controls="ll-mobile">
-        <span></span><span></span><span></span>
-      </button>
+      </script>
     </div>
-
-    <div class="px-nav-mobile" id="ll-mobile" aria-hidden="true">
-      <nav aria-label="Πλοήγηση κινητού">
-        <ul role="list">
-          <li><a href="#about"    data-i18n="nav_about">Ποιοι είμαστε</a></li>
-          <li><a href="#why"      data-i18n="nav_why">Γιατί Λευκίμμη</a></li>
-          <li><a href="#prices"   data-i18n="nav_prices">Τιμές</a></li>
-          <li><a href="#fleet"    data-i18n="nav_fleet">Στόλος</a></li>
-          <li><a href="#schedule" data-i18n="nav_schedule">Δρομολόγια</a></li>
-          <li><a href="#contact"  data-i18n="nav_contact">Επικοινωνία</a></li>
-          <li><a class="px-nav-cta" href="https://lefkimmilines.gr/el/arxiki/" target="_blank" rel="noopener" data-i18n="cta_book">Κλείσε εισιτήριο</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main id="main-content">
-
-  <!-- ═══════════════════ 2 · HERO ═══════════════════ -->
-  <!-- Real HD footage pending (human gate). Poster carries the hero if video fails. -->
-  <section id="hero" class="px-hero-video"
-           data-src="https://cdn.coverr.co/videos/coverr-a-boat-sailing-in-the-sea-2470/1080p.mp4"
-           data-poster="https://images.unsplash.com/photo-1505761671935-60b3a7427bad?w=1920&q=80"
-           data-eyebrow="ΛΕΥΚΙΜΜΗ · ΗΓΟΥΜΕΝΙΤΣΑ · ΠΑΞΟΙ"
-           data-i18n-eyebrow="hero_eyebrow"
-           data-headline="Ο συντομότερος δρόμος για την Κέρκυρα."
-           data-i18n-headline="hero_h"
-           data-sub="Καθημερινά δρομολόγια από τη Λευκίμμη. Μία ώρα ταξίδι, απόλυτη ασφάλεια, οικονομικό εισιτήριο."
-           data-i18n-sub="hero_sub"
-           data-cta-text="Κλείσε εισιτήριο"
-           data-i18n-cta="cta_book"
-           data-cta-href="https://lefkimmilines.gr/el/arxiki/"
-           data-cta2-text="Δες τα δρομολόγια"
-           data-i18n-cta2="cta_schedule"
-           data-cta2-href="#schedule">
-  </section>
-
-  <!-- ═══════════════════ 3 · USP BAR (counters) ═══════════════════ -->
-  <section class="ll-section ll-section--tight">
-    <div class="px-counters">
-      <div class="px-counter" data-reveal data-delay="0">
-        <span class="px-counter-value" data-target="1" data-duration="1200">0</span>
-        <p class="px-counter-label" data-i18n="usp1">ώρα ταξίδι</p>
-      </div>
-      <div class="px-counter" data-reveal data-delay="100">
-        <span class="px-counter-value" data-target="6" data-suffix="+" data-duration="1800">0</span>
-        <p class="px-counter-label" data-i18n="usp2">δρομολόγια κάθε μέρα</p>
-      </div>
-      <div class="px-counter" data-reveal data-delay="200">
-        <span class="px-counter-value" data-target="2" data-duration="1200">0</span>
-        <p class="px-counter-label" data-i18n="usp3">σύγχρονα πλοία</p>
-      </div>
-      <div class="px-counter" data-reveal data-delay="300">
-        <span class="px-counter-value" data-target="2012" data-duration="2200">0</span>
-        <p class="px-counter-label" data-i18n="usp4">στη θάλασσα από τότε</p>
-      </div>
-    </div>
-  </section>
-
-  <hr class="ll-divider">
-
-  <!-- ═══════════════════ 4 · ΠΟΙΟΙ ΕΙΜΑΣΤΕ ═══════════════════ -->
-  <section id="about" class="ll-section">
-    <p class="ll-eyebrow" data-reveal data-i18n="about_eyebrow">Ποιοι είμαστε</p>
-    <h2 class="ll-title" data-reveal data-delay="100" data-i18n="about_h">Η θάλασσα είναι ο δρόμος μας.</h2>
-    <p class="ll-lead" data-reveal data-delay="200" data-i18n="about_p">Η Lefkimmi Lines συνδέει καθημερινά τη νότια Κέρκυρα με την Ηγουμενίτσα, από το λιμάνι της Λευκίμμης. Εδώ και πάνω από μία δεκαετία, μεταφέρουμε επιβάτες και οχήματα με συνέπεια, ασφάλεια και σεβασμό σε κάθε ταξιδιώτη. Δεν είμαστε απλώς ένα πέρασμα — είμαστε η αρχή των διακοπών σας.</p>
-  </section>
-
-  <!-- ═══════════════════ 5 · ΓΙΑΤΙ ΛΕΥΚΙΜΜΗ ═══════════════════ -->
-  <section id="why" class="ll-alt">
-    <div class="ll-section ll-split ll-split--reverse">
-      <div>
-        <p class="ll-eyebrow" data-reveal data-i18n="why_eyebrow">Γιατί Λευκίμμη</p>
-        <h2 class="ll-title" data-reveal data-delay="100" data-i18n="why_h">Πιο κοντά απ' όσο νομίζεις.</h2>
-        <p class="ll-lead" data-reveal data-delay="200" data-i18n="why_p">Πολλοί ψάχνουν το πλοίο για την Κέρκυρα και καταλήγουν στη μακρινή, ακριβότερη γραμμή της πόλης. Η Λευκίμμη, στη νότια Κέρκυρα, είναι ο συντομότερος και φθηνότερος τρόπος να πατήσεις το νησί: μόλις 50 λεπτά από την Ηγουμενίτσα. Ιδανικό αν πας νότια Κέρκυρα — Κάβος, Λευκίμμη, Μπούκαρι, Άγιος Γεώργιος.</p>
-      </div>
-      <div class="ll-split-media" data-reveal data-delay="200">
-        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=900&q=80" alt="Νότια Κέρκυρα — θάλασσα και ακτή" loading="lazy">
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════ 6 · ΤΙΜΕΣ ═══════════════════ -->
-  <section id="prices" class="ll-section">
-    <p class="ll-eyebrow" data-reveal data-i18n="prices_eyebrow">Τιμές</p>
-    <h2 class="ll-title" data-reveal data-delay="100" data-i18n="prices_h">Από 7,30€ το εισιτήριο.</h2>
-    <p class="ll-lead" data-reveal data-delay="200" data-i18n="prices_p">Με το Μεταφορικό Ισοδύναμο (κρατική επιδότηση), το πέρασμα προς την Κέρκυρα γίνεται από τα πιο οικονομικά της Ελλάδας.</p>
-
-    <div class="ll-prices" data-reveal data-delay="250">
-      <div class="ll-price-card">
-        <h3 data-i18n="price1_l">Επιβάτης</h3>
-        <div class="ll-price">7,30€<small data-i18n="price_mi">με Μ.Ι.</small></div>
-      </div>
-      <div class="ll-price-card">
-        <h3 data-i18n="price2_l">Με μηχανή</h3>
-        <div class="ll-price">~16€<small data-i18n="price_mi">με Μ.Ι.</small></div>
-      </div>
-      <div class="ll-price-card">
-        <h3 data-i18n="price3_l">Με αυτοκίνητο</h3>
-        <div class="ll-price">~30€<small data-i18n="price_mi">με Μ.Ι.</small></div>
-      </div>
-    </div>
-    <p class="ll-note" data-reveal data-i18n="prices_note">Οι τιμές με Μεταφορικό Ισοδύναμο ισχύουν για δικαιούχους. Για οριστικές τιμές και κράτηση, πάτησε «Κλείσε εισιτήριο».</p>
-  </section>
-
-  <hr class="ll-divider">
-
-  <!-- ═══════════════════ 7 · ΣΤΟΛΟΣ (gallery) ═══════════════════ -->
-  <section id="fleet" class="ll-section">
-    <p class="ll-eyebrow" data-reveal data-i18n="fleet_eyebrow">Στόλος</p>
-    <h2 class="ll-title" data-reveal data-delay="100" data-i18n="fleet_h">Δύο πλοία, μία υπόσχεση: ασφάλεια.</h2>
-    <p class="ll-lead" data-reveal data-delay="200" data-i18n="fleet_p" style="margin-bottom:var(--sp-xl);">Τα πλοία μας εξυπηρετούν πιστά και συστηματικά τις ανάγκες του επιβατικού κοινού, με απόλυτη ασφάλεια και υψηλές ανέσεις.</p>
-
-    <!-- Placeholder ship photos — real HD pending (human gate) -->
-    <div class="px-gallery" data-cols="2" data-layout="grid" data-reveal data-delay="250">
-      <button class="px-gallery-item" data-src="https://images.unsplash.com/photo-1559125148-869baf508c95?w=1600&q=85" data-caption="Φ/Β Αγία Τριάδα">
-        <img src="https://images.unsplash.com/photo-1559125148-869baf508c95?w=800&q=75" alt="Φ/Β Αγία Τριάδα" loading="lazy" width="800" height="600">
-      </button>
-      <button class="px-gallery-item" data-src="https://images.unsplash.com/photo-1520255870062-bd79d3865de7?w=1600&q=85" data-caption="Φ/Β Ιωάννης Καποδίστριας">
-        <img src="https://images.unsplash.com/photo-1520255870062-bd79d3865de7?w=800&q=75" alt="Φ/Β Ιωάννης Καποδίστριας" loading="lazy" width="800" height="600">
-      </button>
-    </div>
-  </section>
-
-  <!-- Lightbox for the fleet gallery -->
-  <div class="px-lightbox" id="px-lightbox" role="dialog" aria-modal="true" aria-label="Φωτογραφίες στόλου" hidden>
-    <div class="px-lightbox-backdrop"></div>
-    <button class="px-lightbox-close" aria-label="Κλείσιμο"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-    <button class="px-lightbox-arrow px-lightbox-prev" aria-label="Προηγούμενη"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
-    <div class="px-lightbox-stage"><img class="px-lightbox-img" alt="" loading="lazy"><p class="px-lightbox-caption"></p></div>
-    <button class="px-lightbox-arrow px-lightbox-next" aria-label="Επόμενη"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
-    <p class="px-lightbox-counter" aria-live="polite"></p>
   </div>
+</section>
 
-  <!-- ═══════════════════ 8 · ΕΝ ΠΛΩ ═══════════════════ -->
-  <!-- Mapped to video-section in the spec; real on-board footage is pending
-       (human gate), so this uses an image split to avoid a broken <video>. -->
-  <section id="cafe" class="ll-alt">
-    <div class="ll-section ll-split">
-      <div>
-        <p class="ll-eyebrow" data-reveal data-i18n="cafe_eyebrow">Εν πλω</p>
-        <h2 class="ll-title" data-reveal data-delay="100" data-i18n="cafe_h">Καθίστε αναπαυτικά. Ταξιδεύουμε.</h2>
-        <p class="ll-lead" data-reveal data-delay="200" data-i18n="cafe_p">Μία ώρα φτάνει για να πάρετε μια ανάσα. Απολαύστε τον καφέ σας, ένα δροσιστικό ή ένα ζεστό τοστ από το κυλικείο του πλοίου, αφήστε τη θέα του Ιονίου να περάσει μπροστά σας — και πριν το καταλάβετε, είστε Κέρκυρα. Ταχύτητα και ασφάλεια, πάντα με χαμόγελο.</p>
-        <div class="px-booking" data-mode="link"
-             data-url="https://lefkimmilines.gr/el/arxiki/"
-             data-label="Κλείσε εισιτήριο"
-             data-i18n-label="cta_book"
-             data-trust="Ασφαλής κράτηση — booktickets.gr"
-             data-i18n-trust="booking_trust"
-             data-reveal data-delay="300"
-             style="margin-top:var(--sp-lg);"></div>
-      </div>
-      <div class="ll-split-media" data-reveal data-delay="200">
-        <img src="https://images.unsplash.com/photo-1514890547357-a9ee288728e0?w=900&q=80" alt="Καφές με θέα τη θάλασσα εν πλω" loading="lazy">
-      </div>
+<!-- ============================ BOOKING FORM (block #23) ============================ -->
+<section class="section paper" id="booking" data-screen-label="Book">
+  <div class="wrap">
+    <!-- Block #23: booking-form demo mode — JS renders before i18n.js -->
+    <div class="px-bf-root reveal" data-book-url="https://lefkimmilines.gr/el/reservation/"></div>
+  </div>
+</section>
+
+<!-- ============================ MAP ============================ -->
+<section class="section paper-2" id="map" data-screen-label="Map">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow"><span class="ln"></span><span data-i18n="map.eyebrow">Χάρτης</span></span>
+      <h2 class="h2" data-i18n="map.title">1 ώρα ταξίδι.</h2>
+      <p class="lede" style="margin:0 auto;" data-i18n="map.body">Από το λιμάνι της Λευκίμμης στο λιμάνι της Ηγουμενίτσας.</p>
     </div>
-  </section>
+    <div class="map-card reveal">
+      <div class="map-badge"><div class="v">1 <span style="font-size:18px">ώρα</span></div><div class="l" data-i18n="map.badge">ταξίδι</div></div>
+      <iframe title="Lefkimmi – Igoumenitsa" loading="lazy"
+        data-src="https://www.openstreetmap.org/export/embed.html?bbox=19.95%2C39.34%2C20.40%2C39.62&amp;layer=mapnik&amp;marker=39.49%2C20.18"></iframe>
+    </div>
+  </div>
+</section>
 
-  <!-- ═══════════════════ 9 · ΔΡΟΜΟΛΟΓΙΑ (schedule-table) ═══════════════════ -->
-  <section id="schedule" class="ll-section">
-    <p class="ll-eyebrow" data-reveal data-i18n="sch_eyebrow">Δρομολόγια</p>
-    <h2 class="ll-title" data-reveal data-delay="100" data-i18n="sch_h">Δρομολόγια</h2>
-    <p class="ll-lead" data-reveal data-delay="200" data-i18n="sch_intro" style="margin-bottom:var(--sp-lg);">Δες τις ώρες και διάλεξε το δρομολόγιο που σε βολεύει.</p>
-  </section>
-
-  <p class="ll-disclaimer" data-reveal>
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-    <span data-i18n="sch_note">Τα δρομολόγια είναι ενδεικτικά και ενδέχεται να αλλάζουν ανά εποχή. Για οριστική επιβεβαίωση και κράτηση, πάτησε «Κλείσε εισιτήριο».</span>
-  </p>
-
-  <div data-reveal data-delay="100">
-    <section class="px-schedule" data-from="Λευκίμμη" data-to="Ηγουμενίτσα"
-             data-columns="ΠΛΟΙΟ,ΑΝΑΧΩΡΗΣΗ,ΑΦΙΞΗ,ΔΙΑΡΚΕΙΑ,ΤΙΜΗ" data-source="">
-      <div class="px-schedule-head">
-        <h2 class="px-schedule-title" style="font-size:1.25rem;" data-i18n="sch_title">Πρόγραμμα ημέρας</h2>
-        <div class="px-schedule-toggle" role="group" aria-label="Επιλογή κατεύθυνσης">
-          <button class="px-schedule-dir is-active" data-dir="outbound" aria-pressed="true"></button>
-          <button class="px-schedule-dir" data-dir="return" aria-pressed="false"></button>
+<!-- ============================ REVIEWS ============================ -->
+<section class="section navy" id="reviews" data-screen-label="Reviews">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow on-dark"><span class="ln"></span><span data-i18n="reviews.eyebrow">Κριτικές</span></span>
+      <h2 class="h2 on-dark" data-i18n="reviews.title">Οι ταξιδιώτες αγαπούν το πέρασμα.</h2>
+      <p class="lede" style="margin:0 auto;color:rgba(255,255,255,.84);" data-i18n="reviews.body">Πραγματικές εντυπώσεις από επιβάτες της γραμμής Λευκίμμη–Ηγουμενίτσα.</p>
+    </div>
+    <div class="reviews-strip reveal">
+      <div class="rating-badge">
+        <div class="score">4,8</div>
+        <div>
+          <div class="stars">★★★★★</div>
+          <div class="cnt" data-i18n="reviews.count">με βάση 240+ κριτικές</div>
         </div>
       </div>
-      <table class="px-schedule-table">
-        <caption class="px-schedule-caption"></caption>
-        <thead><tr><th scope="col">ΠΛΟΙΟ</th><th scope="col">ΑΝΑΧΩΡΗΣΗ</th><th scope="col">ΑΦΙΞΗ</th><th scope="col">ΔΙΑΡΚΕΙΑ</th><th scope="col">ΤΙΜΗ</th></tr></thead>
-        <tbody data-dir="outbound">
-          <tr><td data-label="ΠΛΟΙΟ">Αγία Τριάδα</td><td data-label="ΑΝΑΧΩΡΗΣΗ">06:00</td><td data-label="ΑΦΙΞΗ">06:50</td><td data-label="ΔΙΑΡΚΕΙΑ">50′</td><td data-label="ΤΙΜΗ">από 7,30€</td></tr>
-          <tr><td data-label="ΠΛΟΙΟ">Ιωάννης Καποδίστριας</td><td data-label="ΑΝΑΧΩΡΗΣΗ">09:00</td><td data-label="ΑΦΙΞΗ">09:50</td><td data-label="ΔΙΑΡΚΕΙΑ">50′</td><td data-label="ΤΙΜΗ">από 7,30€</td></tr>
-          <tr><td data-label="ΠΛΟΙΟ">Αγία Τριάδα</td><td data-label="ΑΝΑΧΩΡΗΣΗ">11:45</td><td data-label="ΑΦΙΞΗ">12:35</td><td data-label="ΔΙΑΡΚΕΙΑ">50′</td><td data-label="ΤΙΜΗ">από 7,30€</td></tr>
-          <tr><td data-label="ΠΛΟΙΟ">Ιωάννης Καποδίστριας</td><td data-label="ΑΝΑΧΩΡΗΣΗ">14:00</td><td data-label="ΑΦΙΞΗ">14:50</td><td data-label="ΔΙΑΡΚΕΙΑ">50′</td><td data-label="ΤΙΜΗ">από 7,30€</td></tr>
-          <tr><td data-label="ΠΛΟΙΟ">Αγία Τριάδα</td><td data-label="ΑΝΑΧΩΡΗΣΗ">16:00</td><td data-label="ΑΦΙΞΗ">16:50</td><td data-label="ΔΙΑΡΚΕΙΑ">50′</td><td data-label="ΤΙΜΗ">από 7,30€</td></tr>
-          <tr><td data-label="ΠΛΟΙΟ">Ιωάννης Καποδίστριας</td><td data-label="ΑΝΑΧΩΡΗΣΗ">19:00</td><td data-label="ΑΦΙΞΗ">19:50</td><td data-label="ΔΙΑΡΚΕΙΑ">50′</td><td data-label="ΤΙΜΗ">από 7,30€</td></tr>
-        </tbody>
-        <tbody data-dir="return" hidden>
-          <tr><td data-label="ΠΛΟΙΟ">Ιωάννης Καποδίστριας</td><td data-label="ΑΝΑΧΩΡΗΣΗ">07:30</td><td data-label="ΑΦΙΞΗ">08:20</td><td data-label="ΔΙΑΡΚΕΙΑ">50′</td><td data-label="ΤΙΜΗ">από 7,30€</td></tr>
-          <tr><td data-label="ΠΛΟΙΟ">Αγία Τριάδα</td><td data-label="ΑΝΑΧΩΡΗΣΗ">10:30</td><td data-label="ΑΦΙΞΗ">11:20</td><td data-label="ΔΙΑΡΚΕΙΑ">50′</td><td data-label="ΤΙΜΗ">από 7,30€</td></tr>
-          <tr><td data-label="ΠΛΟΙΟ">Ιωάννης Καποδίστριας</td><td data-label="ΑΝΑΧΩΡΗΣΗ">13:00</td><td data-label="ΑΦΙΞΗ">13:50</td><td data-label="ΔΙΑΡΚΕΙΑ">50′</td><td data-label="ΤΙΜΗ">από 7,30€</td></tr>
-          <tr><td data-label="ΠΛΟΙΟ">Αγία Τριάδα</td><td data-label="ΑΝΑΧΩΡΗΣΗ">15:30</td><td data-label="ΑΦΙΞΗ">16:20</td><td data-label="ΔΙΑΡΚΕΙΑ">50′</td><td data-label="ΤΙΜΗ">από 7,30€</td></tr>
-          <tr><td data-label="ΠΛΟΙΟ">Ιωάννης Καποδίστριας</td><td data-label="ΑΝΑΧΩΡΗΣΗ">17:30</td><td data-label="ΑΦΙΞΗ">18:20</td><td data-label="ΔΙΑΡΚΕΙΑ">50′</td><td data-label="ΤΙΜΗ">από 7,30€</td></tr>
-          <tr><td data-label="ΠΛΟΙΟ">Αγία Τριάδα</td><td data-label="ΑΝΑΧΩΡΗΣΗ">20:30</td><td data-label="ΑΦΙΞΗ">21:20</td><td data-label="ΔΙΑΡΚΕΙΑ">50′</td><td data-label="ΤΙΜΗ">από 7,30€</td></tr>
-        </tbody>
-      </table>
-      <p class="px-schedule-note" hidden role="status"></p>
-    </section>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="quote-mk">&ldquo;</div>
+        <div class="stars">★★★★★</div>
+        <p class="txt" data-i18n="reviews.r1">Γρήγορο, εύκολο και πολύ πιο ήρεμο από τη γραμμή της πόλης. Βρεθήκαμε στη νότια Κέρκυρα ακαριαία.</p>
+        <div class="who"><span class="av">Μ</span><div><div class="nm">Μαρία Κ.</div><div class="src" data-i18n="reviews.r1r">Καλοκαίρι 2025 · Google</div></div></div>
+      </div>
+      <div class="review-card reveal d1">
+        <div class="quote-mk">&ldquo;</div>
+        <div class="stars">★★★★★</div>
+        <p class="txt" data-i18n="reviews.r2">Ο πιο οικονομικός τρόπος να περάσεις με το αυτοκίνητο. Φιλικό πλήρωμα και υπέροχη θέα στο Ιόνιο.</p>
+        <div class="who"><span class="av">A</span><div><div class="nm">Andreas P.</div><div class="src" data-i18n="reviews.r2r">Αύγουστος 2025 · TripAdvisor</div></div></div>
+      </div>
+      <div class="review-card reveal d2">
+        <div class="quote-mk">&ldquo;</div>
+        <div class="stars">★★★★★</div>
+        <p class="txt" data-i18n="reviews.r3">Ομαλό ταξίδι, καθαρό πλοίο και ωραίος καφές εν πλω. Του χρόνου πάλι από Λευκίμμη.</p>
+        <div class="who"><span class="av">S</span><div><div class="nm">Sofia R.</div><div class="src" data-i18n="reviews.r3r">Καλοκαίρι 2025 · Google</div></div></div>
+      </div>
+    </div>
+    <div class="review-ph"><span>●</span>&nbsp;<span data-i18n="reviews.ph">Ενδεικτικές κριτικές — αντικαθίστανται με πραγματικές αξιολογήσεις.</span></div>
   </div>
+</section>
 
-  <hr class="ll-divider">
-
-  <!-- ═══════════════════ 10 · ΧΑΡΤΗΣ (map-pins) ═══════════════════ -->
-  <section id="map" class="ll-section ll-section--tight">
-    <p class="ll-eyebrow" data-reveal data-i18n="map_eyebrow">Χάρτης</p>
-    <h2 class="ll-title" data-reveal data-delay="100" data-i18n="map_h">1 ώρα ταξίδι.</h2>
-    <p class="ll-lead" data-reveal data-delay="200" data-i18n="map_p" style="margin-bottom:var(--sp-lg);">Από το λιμάνι της Λευκίμμης στο λιμάνι της Ηγουμενίτσας.</p>
-  </section>
-  <!-- Add a Google Maps API key in data-apikey to activate; shows a notice until then -->
-  <div class="px-map" data-apikey="YOUR_GOOGLE_MAPS_API_KEY" data-center="39.476,20.179" data-zoom="10">
-    <script type="application/json" class="px-map-data">
-    [
-      {"lat":39.4490,"lng":20.0935,"title":"Λιμάνι Λευκίμμης","address":"Λευκίμμη, Κέρκυρα","url":"#"},
-      {"lat":39.5036,"lng":20.2655,"title":"Λιμάνι Ηγουμενίτσας","address":"Ηγουμενίτσα, Θεσπρωτία","url":"#"}
-    ]
-    </script>
-    <div class="px-map-placeholder" aria-hidden="true"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><p>Φόρτωση χάρτη…</p></div>
-  </div>
-
-  <!-- ═══════════════════ 11 · ΕΠΙΚΟΙΝΩΝΙΑ (contact-form) ═══════════════════ -->
-  <section id="contact" class="px-contact ll-alt" data-email="info@lefkimmilines.gr">
-    <div class="px-contact-inner">
-      <div class="px-contact-info">
-        <p class="px-contact-eyebrow" data-i18n="contact_eyebrow">Επικοινωνία</p>
-        <h2 class="px-contact-title" data-reveal data-i18n="contact_h">Είμαστε εδώ.</h2>
-        <p class="px-contact-sub" data-reveal data-delay="100" data-i18n="contact_p">Για πληροφορίες δρομολογίων, εισιτήρια και ομαδικές μεταφορές, επικοινώνησε μαζί μας.</p>
-
-        <ul class="ll-contact-list">
-          <li>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            <span><span class="ll-ck" data-i18n="contact_email_k">Email</span><a href="mailto:info@lefkimmilines.gr">info@lefkimmilines.gr</a></span>
-          </li>
-          <li>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <span><span class="ll-ck" data-i18n="contact_phoneA_k">Λευκίμμη → Ηγουμενίτσα</span><a href="tel:+302662023200">(+30) 26620-23200</a> · <a href="tel:+302662023917">26620-23917</a></span>
-          </li>
-          <li>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <span><span class="ll-ck" data-i18n="contact_phoneB_k">Ηγουμενίτσα → Λευκίμμη</span><a href="tel:+302665029280">(+30) 26650-29280</a></span>
-          </li>
-        </ul>
-
-        <p style="margin-top:var(--sp-lg);">
-          <div class="px-booking" data-mode="link"
-               data-url="https://lefkimmilines.gr/el/arxiki/"
-               data-label="Κλείσε το εισιτήριό σου online →"
-               data-i18n-label="cta_book_online"
-               data-trust="Ασφαλής κράτηση — booktickets.gr"
-               data-i18n-trust="booking_trust"></div>
-        </p>
+<!-- ============================ CONTACT ============================ -->
+<section class="section paper-2" id="contact" data-screen-label="Contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <span class="eyebrow"><span class="ln"></span><span data-i18n="contact.eyebrow">Επικοινωνία</span></span>
+        <h2 class="h2" data-i18n="contact.title">Είμαστε εδώ.</h2>
+        <p class="lede" style="margin-bottom:14px;" data-i18n="contact.body">Για πληροφορίες δρομολογίων, εισιτήρια και ομαδικές μεταφορές, επικοινώνησε μαζί μας.</p>
+        <div class="row">
+          <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+          <div><div class="k" data-i18n="contact.email">Email</div><div class="v"><a href="mailto:info@lefkimmilines.gr">info@lefkimmilines.gr</a></div></div>
+        </div>
+        <div class="row">
+          <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h4l2 5-3 2a12 12 0 005 5l2-3 5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></span>
+          <div><div class="k" data-i18n="contact.outbound">Λευκίμμη → Ηγουμενίτσα</div><div class="v"><a href="tel:+302662023200">(+30) 26620-23200</a> · <a href="tel:+302662023917">26620-23917</a></div></div>
+        </div>
+        <div class="row">
+          <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h4l2 5-3 2a12 12 0 005 5l2-3 5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></span>
+          <div><div class="k" data-i18n="contact.inbound">Ηγουμενίτσα → Λευκίμμη</div><div class="v"><a href="tel:+302665029280">(+30) 26650-29280</a></div></div>
+        </div>
       </div>
 
-      <div class="px-contact-form-wrap">
-        <form class="px-contact-form" novalidate aria-label="Φόρμα επικοινωνίας">
-          <div class="px-contact-row">
-            <div class="px-contact-field">
-              <label for="ll-name">Ονοματεπώνυμο *</label>
-              <input type="text" id="ll-name" name="name" autocomplete="name" placeholder="Όνομα" required aria-required="true" aria-describedby="ll-name-err">
-              <span class="px-contact-error" id="ll-name-err" role="alert"></span>
-            </div>
-            <div class="px-contact-field">
-              <label for="ll-email">Email *</label>
-              <input type="email" id="ll-email" name="email" autocomplete="email" placeholder="email@example.com" required aria-required="true" aria-describedby="ll-email-err">
-              <span class="px-contact-error" id="ll-email-err" role="alert"></span>
-            </div>
+      <div class="cform reveal d1">
+        <form>
+          <div class="field">
+            <label data-i18n="contact.fname">Ονοματεπώνυμο *</label>
+            <input type="text" required data-i18n-ph="contact.fname" placeholder="Ονοματεπώνυμο" />
           </div>
-          <div class="px-contact-field">
-            <label for="ll-message">Μήνυμα *</label>
-            <textarea id="ll-message" name="message" rows="5" placeholder="Το μήνυμά σας…" required aria-required="true" aria-describedby="ll-message-err"></textarea>
-            <span class="px-contact-error" id="ll-message-err" role="alert"></span>
+          <div class="field">
+            <label data-i18n="contact.femail">Email *</label>
+            <input type="email" required data-i18n-ph="contact.femail" placeholder="Email" />
           </div>
-          <div class="px-contact-field px-contact-consent">
-            <label class="px-contact-checkbox-label">
-              <input type="checkbox" name="consent" required aria-required="true" aria-describedby="ll-consent-err">
-              <span>Αποδέχομαι την <a href="#" target="_blank">Πολιτική Απορρήτου</a></span>
-            </label>
-            <span class="px-contact-error" id="ll-consent-err" role="alert"></span>
+          <div class="field">
+            <label data-i18n="contact.fmsg">Μήνυμα *</label>
+            <textarea required data-i18n-ph="contact.fmsg" placeholder="Μήνυμα"></textarea>
           </div>
-          <button type="submit" class="px-contact-submit">
-            <span class="px-contact-submit-label">Αποστολή</span>
-            <svg class="px-contact-submit-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-          </button>
+          <label class="consent">
+            <input type="checkbox" required />
+            <span><span data-i18n="contact.consent">Αποδέχομαι την</span> <a href="#" data-i18n="contact.privacy">Πολιτική Απορρήτου</a></span>
+          </label>
+          <button type="submit" class="btn btn-gold" style="width:100%;" data-i18n="contact.send">Αποστολή</button>
         </form>
-        <div class="px-contact-success" hidden aria-live="polite">
-          <div class="px-contact-success-icon" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-          <h3>Το μήνυμά σας εστάλη!</h3>
-          <p>Θα επικοινωνήσουμε μαζί σας σύντομα.</p>
+        <div class="form-ok">
+          <div class="tick"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg></div>
+          <h3 data-i18n="contact.okTitle">Το μήνυμά σας εστάλη!</h3>
+          <p data-i18n="contact.okBody">Θα επικοινωνήσουμε μαζί σας σύντομα.</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  </main><!-- /#main-content -->
+<!-- ============================ STICKY ACTION BAR (mobile) ============================ -->
+<div class="action-bar">
+  <a class="btn btn-gold" href="https://lefkimmilines.gr/el/arxiki/" data-i18n="nav.book">Κλείσε εισιτήριο</a>
+  <a class="btn btn-ghost ab-ghost" href="#schedule" data-i18n="hero.cta2">Δες τα δρομολόγια</a>
+</div>
 
-  <!-- ═══════════════════ 12 · FOOTER ═══════════════════ -->
-  <footer class="px-footer" data-company="Lefkimmi Lines" data-vat="—" data-gemi="—">
-    <div class="px-footer-inner">
-      <div class="px-footer-brand">
-        <a class="px-footer-logo" href="#hero"><span class="px-footer-logo-mark">L</span><span class="px-footer-logo-text">efkimmi Lines</span></a>
-        <p class="px-footer-tagline" data-i18n="footer_tag">Ο συντομότερος δρόμος για την Κέρκυρα.</p>
-        <div class="px-footer-social" aria-label="Social">
-          <a href="https://www.facebook.com/lefkimmilines" target="_blank" rel="noopener" aria-label="Facebook" class="px-footer-social-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-          <a href="https://www.instagram.com/lefkimmi_lines" target="_blank" rel="noopener" aria-label="Instagram" class="px-footer-social-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+<!-- ============================ FOOTER ============================ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="lk-txt"><span class="ln1">Lefkimmi Lines</span></div>
+        <p data-i18n="footer.tagline">Ο συντομότερος δρόμος για την Κέρκυρα.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/lefkimmilines" aria-label="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2 0-3 1-3 3v2H9v3h2v7h3v-7h2.5l.5-3H14V9z"/></svg></a>
+          <a href="https://www.instagram.com/lefkimmi_lines" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
         </div>
       </div>
-      <nav class="px-footer-nav" aria-label="Πλοήγηση">
-        <h3 data-i18n="footer_nav">Πλοήγηση</h3>
-        <ul role="list">
-          <li><a href="#about"    data-i18n="nav_about">Ποιοι είμαστε</a></li>
-          <li><a href="#why"      data-i18n="nav_why">Γιατί Λευκίμμη</a></li>
-          <li><a href="#prices"   data-i18n="nav_prices">Τιμές</a></li>
-          <li><a href="#schedule" data-i18n="nav_schedule">Δρομολόγια</a></li>
-        </ul>
-      </nav>
-      <nav class="px-footer-nav" aria-label="Χρήσιμα">
-        <h3 data-i18n="footer_useful">Χρήσιμα</h3>
-        <ul role="list">
-          <li><a href="https://lefkimmilines.gr/metaforiko-isodynamo/" target="_blank" rel="noopener" data-i18n="footer_mi">Μεταφορικό Ισοδύναμο</a></li>
-          <li><a href="https://lefkimmilines.gr/genikoi-oroi-taksidiou/" target="_blank" rel="noopener" data-i18n="footer_terms">Όροι ταξιδίου</a></li>
-          <li><a href="#" data-i18n="footer_privacy">Απόρρητο</a></li>
-        </ul>
-      </nav>
-      <div class="px-footer-contact">
-        <h3 data-i18n="nav_contact">Επικοινωνία</h3>
-        <ul role="list">
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:info@lefkimmilines.gr">info@lefkimmilines.gr</a></li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+302662023200">(+30) 26620-23200</a></li>
-        </ul>
+      <div class="footer-col">
+        <h4 data-i18n="footer.nav">Πλοήγηση</h4>
+        <a href="#about" data-i18n="nav.about">Ποιοι είμαστε</a>
+        <a href="#why" data-i18n="nav.why">Γιατί Λευκίμμη</a>
+        <a href="#prices" data-i18n="nav.prices">Τιμές</a>
+        <a href="#schedule" data-i18n="nav.schedule">Δρομολόγια</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.useful">Χρήσιμα</h4>
+        <a href="https://lefkimmilines.gr/metaforiko-isodynamo/" data-i18n="footer.mi">Μεταφορικό Ισοδύναμο</a>
+        <a href="https://lefkimmilines.gr/genikoi-oroi-taksidiou/" data-i18n="footer.terms">Όροι ταξιδιού</a>
+        <a href="#" data-i18n="footer.privacy">Απόρρητο</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.contact">Επικοινωνία</h4>
+        <a href="mailto:info@lefkimmilines.gr">info@lefkimmilines.gr</a>
+        <a href="tel:+302662023200">(+30) 26620-23200</a>
       </div>
     </div>
-    <div class="px-footer-bottom">
-      <div class="px-footer-bottom-inner">
-        <p class="px-footer-legal">© <span class="px-footer-year"></span> <span class="px-footer-company">Lefkimmi Lines</span> — Λευκίμμη, Κέρκυρα. <span data-i18n="footer_rights">Όλα τα δικαιώματα διατηρούνται.</span></p>
-        <nav class="px-footer-legal-links" aria-label="Νομικά">
-          <a href="https://lefkimmilines.gr/genikoi-oroi-taksidiou/" target="_blank" rel="noopener" data-i18n="footer_terms">Όροι ταξιδίου</a>
-          <a href="#" data-i18n="footer_privacy">Απόρρητο</a>
-        </nav>
+    <div class="footer-bottom">
+      <span>© <span id="yr"></span> <span data-i18n="footer.rights">Lefkimmi Lines — Λευκίμμη, Κέρκυρα. Όλα τα δικαιώματα διατηρούνται.</span></span>
+      <div class="links">
+        <a href="https://lefkimmilines.gr/genikoi-oroi-taksidiou/" data-i18n="footer.terms">Όροι ταξιδιού</a>
+        <a href="#" data-i18n="footer.privacy">Απόρρητο</a>
       </div>
     </div>
-  </footer>
+  </div>
+</footer>
 
-  <!-- ═══════════════════ SCRIPTS ═══════════════════ -->
-  <!-- Blocks first; lang-switcher LAST so it translates block-built content too. -->
-  <!-- SEO modules (16-18) run after lang-switcher via MutationObserver / no dep. -->
-  <script src="../../blocks/01-header-dropdown/block.js"></script>
-  <script src="../../blocks/02-hero-video/block.js"></script>
-  <script src="../../blocks/11-counters/block.js"></script>
-  <script src="../../blocks/07-gallery-lightbox/block.js"></script>
-  <script src="../../blocks/14-schedule-table/block.js"></script>
-  <script src="../../blocks/06-map-pins/block.js"></script>
-  <script src="../../blocks/08-contact-form/block.js"></script>
-  <script src="../../blocks/10-scroll-reveal/block.js"></script>
-  <script src="../../blocks/04-footer/block.js"></script>
-  <script src="../../blocks/19-booking-cta/block.js"></script>
-  <script src="../../blocks/15-lang-switcher/block.js"></script>
-  <script src="../../blocks/16-seo-head/block.js"></script>
-  <script src="../../blocks/17-schema-injector/block.js"></script>
-  <script src="../../blocks/18-hreflang/block.js"></script>
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+
+<!-- Blocks run BEFORE i18n.js so their data-i18n elements are in DOM when i18n.js caches -->
+<script src="../../blocks/21-schedule-calendar/block.js"></script>
+<script src="../../blocks/23-booking-form/block.js"></script>
+<script src="assets/i18n.js"></script>
+<script src="assets/app.js"></script>
+<script src="assets/skin-picker.js"></script>
 </body>
 </html>
