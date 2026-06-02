@@ -49,3 +49,4 @@ This file is the first thing the next agent reads — it prevents duplicate work
 | 2026-06-02 | `23-booking-form` | New: demo-mode booking search form (from/to/date/pax/vehicle), submits to provider URL in _blank |
 | 2026-06-02 | `sites/lefkimmi-lines` | Full rebuild on Caldera design (gold+navy, Marcellus/Inter); ZIP as base; blocks #21+#23 integrated; skin picker 5 skins; i18n.js +13 new keys (sched.tab*/colBook/disclaimer + book.*) × 8 langs |
 | 2026-06-02 | `sites/lefkimmi-lines` | Added: Reviews section, USP tabs, hero price badge, OpenStreetMap, real ship images, skin-picker corner widget |
+| 2026-06-02 | `sites/lefkimmi-lines` | Batch fixes: calendar chars 18px; logo ln2 11.5px; 10th HL route 22:30; booking banner section; hero video Pexels 2795419; offset card text stagger CSS; SVG map Λευκίμμη↔Ηγουμενίτσα; fleet Αγία Τριάδα photo replaced; banner.* i18n × 8 langs |
