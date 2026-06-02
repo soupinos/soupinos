@@ -30,7 +30,7 @@
   background: var(--paper);
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 2px 16px rgba(20, 51, 82, 0.08);
+  box-shadow: 0 2px 16px color-mix(in srgb, var(--navy) 8%, transparent);
 }
 
 /* ── Tab bar ────────────────────────────────────────────────────────────── */
@@ -55,7 +55,7 @@
   background: none;
   border: none;
   border-bottom: 3px solid transparent;
-  color: rgba(255, 255, 255, 0.65);
+  color: color-mix(in srgb, var(--white) 65%, transparent);
   font-family: var(--fontB);
   font-size: 0.8125rem;
   font-weight: 600;
