@@ -44,3 +44,8 @@ This file is the first thing the next agent reads — it prevents duplicate work
 | 2026-05-31 | `19-booking-cta` | New: external booking bridge — link/embed/inline-widget modes, iframe fallback logic, brand-styled CTA + trust line, i18n passthrough |
 | 2026-05-31 | `sites/lefkimmi-lines` | booking-cta applied (mode=link, booktickets.gr); booking_trust i18n key × 9 langs; standalone ll-btn CTAs replaced with px-booking |
 | 2026-05-31 | `README.md` | External booking section: πότε link/embed/widget, providers ανά κλάδο, iframe check method |
+| 2026-06-02 | `21-schedule-calendar` | New: 4-tab ferry timetable (LL/HL/LP/PL) + mini date picker + per-row booking CTA; mobile stacked cards; full i18n; data-driven via embedded JSON |
+| 2026-06-02 | `22-schedule-cms` | New: WordPress plugin — admin UI 4 tabs, nonce-secured save, JSON import/export, REST endpoint `/wp-json/ll/v1/schedule` |
+| 2026-06-02 | `23-booking-form` | New: demo-mode booking search form (from/to/date/pax/vehicle), submits to provider URL in _blank |
+| 2026-06-02 | `sites/lefkimmi-lines` | Full rebuild on Caldera design (gold+navy, Marcellus/Inter); ZIP as base; blocks #21+#23 integrated; skin picker 5 skins; i18n.js +13 new keys (sched.tab*/colBook/disclaimer + book.*) × 8 langs |
+| 2026-06-02 | `sites/lefkimmi-lines` | Added: Reviews section, USP tabs, hero price badge, OpenStreetMap, real ship images, skin-picker corner widget |
