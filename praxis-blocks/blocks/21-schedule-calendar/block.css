@@ -200,8 +200,8 @@
   border: 2px solid transparent;
   border-radius: 6px;
   font-family: var(--fontB);
-  font-size: 0.8125rem;
-  font-weight: 400;
+  font-size: 1.125rem;
+  font-weight: 500;
   color: var(--body-ink);
   cursor: pointer;
   transition: background 0.15s var(--ease), color 0.15s var(--ease),

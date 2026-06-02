@@ -86,7 +86,10 @@
       "sched.disclaimer": "Schedules are indicative and may change by season. For final booking tap \"Book a ticket\".",
       "book.title": "Search Crossings", "book.from": "From", "book.to": "To",
       "book.date": "Departure date", "book.pax": "Passengers", "book.vehicle": "Vehicle",
-      "book.search": "SEARCH CROSSINGS"
+      "book.search": "SEARCH CROSSINGS",
+      "banner.eyebrow": "Booking", "banner.title": "Book tickets online",
+      "banner.sub": "Fast, easy, secure. Passenger, motorbike or car — secure your seat in 2 minutes.",
+      "banner.cta": "BOOK YOUR TICKET NOW"
     },
 
     fr: {
@@ -149,7 +152,10 @@
       "sched.disclaimer": "Les horaires sont indicatifs et peuvent varier selon la saison. Pour la réservation définitive, cliquez sur « Réserver ».",
       "book.title": "Rechercher des traversées", "book.from": "De", "book.to": "À",
       "book.date": "Date de départ", "book.pax": "Passagers", "book.vehicle": "Véhicule",
-      "book.search": "RECHERCHER DES TRAVERSÉES"
+      "book.search": "RECHERCHER DES TRAVERSÉES",
+      "banner.eyebrow": "Réservation", "banner.title": "Réservez vos billets en ligne",
+      "banner.sub": "Rapide, facile, sécurisé. Passager, moto ou voiture — réservez en 2 minutes.",
+      "banner.cta": "RÉSERVEZ MAINTENANT"
     },
 
     it: {
@@ -212,7 +218,10 @@
       "sched.disclaimer": "Gli orari sono indicativi e possono variare secondo la stagione. Per la prenotazione definitiva, tocca «Prenota».",
       "book.title": "Cerca traversate", "book.from": "Da", "book.to": "A",
       "book.date": "Data di partenza", "book.pax": "Passeggeri", "book.vehicle": "Veicolo",
-      "book.search": "CERCA TRAVERSATE"
+      "book.search": "CERCA TRAVERSATE",
+      "banner.eyebrow": "Prenotazione", "banner.title": "Prenota biglietti online",
+      "banner.sub": "Rapido, facile, sicuro. Passeggero, moto o auto — assicurati il tuo posto in 2 minuti.",
+      "banner.cta": "PRENOTA ORA"
     },
 
     de: {
@@ -275,7 +284,10 @@
       "sched.disclaimer": "Die Fahrpläne sind Richtwerte und können je nach Saison variieren. Zur endgültigen Buchung «Ticket buchen» tippen.",
       "book.title": "Überfahrten suchen", "book.from": "Von", "book.to": "Nach",
       "book.date": "Abfahrtsdatum", "book.pax": "Passagiere", "book.vehicle": "Fahrzeug",
-      "book.search": "ÜBERFAHRTEN SUCHEN"
+      "book.search": "ÜBERFAHRTEN SUCHEN",
+      "banner.eyebrow": "Buchung", "banner.title": "Tickets online buchen",
+      "banner.sub": "Schnell, einfach, sicher. Passagier, Motorrad oder Auto — sichern Sie sich Ihren Platz in 2 Minuten.",
+      "banner.cta": "JETZT BUCHEN"
     },
 
     es: {
@@ -338,7 +350,10 @@
       "sched.disclaimer": "Los horarios son indicativos y pueden variar según la temporada. Para la reserva definitiva, pulsa «Reservar».",
       "book.title": "Buscar travesías", "book.from": "Desde", "book.to": "Hasta",
       "book.date": "Fecha de salida", "book.pax": "Pasajeros", "book.vehicle": "Vehículo",
-      "book.search": "BUSCAR TRAVESÍAS"
+      "book.search": "BUSCAR TRAVESÍAS",
+      "banner.eyebrow": "Reserva", "banner.title": "Reserva billetes online",
+      "banner.sub": "Rápido, fácil, seguro. Pasajero, moto o coche — asegura tu plaza en 2 minutos.",
+      "banner.cta": "RESERVAR AHORA"
     },
 
     ro: {
@@ -401,7 +416,10 @@
       "sched.disclaimer": "Orarele sunt orientative și pot varia în funcție de sezon. Pentru rezervare finală, apasă «Rezervă».",
       "book.title": "Caută curse", "book.from": "De la", "book.to": "Spre",
       "book.date": "Data plecării", "book.pax": "Pasageri", "book.vehicle": "Vehicul",
-      "book.search": "CAUTĂ CURSE"
+      "book.search": "CAUTĂ CURSE",
+      "banner.eyebrow": "Rezervare", "banner.title": "Rezervă bilete online",
+      "banner.sub": "Rapid, ușor, sigur. Pasager, motocicletă sau mașină — asigură-ți locul în 2 minute.",
+      "banner.cta": "REZERVĂ ACUM"
     },
 
     bg: {
@@ -464,7 +482,10 @@
       "sched.disclaimer": "Разписанията са ориентировъчни и може да се променят. За окончателна резервация натиснете «Резервирай».",
       "book.title": "Търсене на курсове", "book.from": "От", "book.to": "До",
       "book.date": "Дата на заминаване", "book.pax": "Пътници", "book.vehicle": "Превозно средство",
-      "book.search": "ТЪРСЕНЕ НА КУРСОВЕ"
+      "book.search": "ТЪРСЕНЕ НА КУРСОВЕ",
+      "banner.eyebrow": "Резервация", "banner.title": "Резервирайте билети онлайн",
+      "banner.sub": "Бързо, лесно, сигурно. Пътник, мотоциклет или автомобил — осигурете си място за 2 минути.",
+      "banner.cta": "РЕЗЕРВИРАЙ СЕГА"
     },
 
     ru: {
@@ -527,7 +548,10 @@
       "sched.disclaimer": "Расписание ориентировочное и может меняться по сезону. Для бронирования нажмите «Купить билет».",
       "book.title": "Поиск рейсов", "book.from": "Откуда", "book.to": "Куда",
       "book.date": "Дата отправления", "book.pax": "Пассажиры", "book.vehicle": "Транспортное средство",
-      "book.search": "ПОИСК РЕЙСОВ"
+      "book.search": "ПОИСК РЕЙСОВ",
+      "banner.eyebrow": "Бронирование", "banner.title": "Купить билеты онлайн",
+      "banner.sub": "Быстро, легко, безопасно. Пассажир, мотоцикл или автомобиль — займите место за 2 минуты.",
+      "banner.cta": "КУПИТЬ БИЛЕТ СЕЙЧАС"
     }
   };
 

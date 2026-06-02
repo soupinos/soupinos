@@ -67,8 +67,8 @@
   <div class="media">
     <img class="kb" crossorigin="anonymous" alt="" src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1700&q=80" />
     <video class="hero-video" autoplay muted loop playsinline preload="none"
-           poster="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1700&q=80">
-      <source src="https://videos.pexels.com/video-files/1409899/1409899-hd_1920_1080_25fps.mp4" type="video/mp4" />
+           poster="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1700&q=80">
+      <source src="https://videos.pexels.com/video-files/2795419/2795419-hd_1920_1080_25fps.mp4" type="video/mp4" />
     </video>
   </div>
   <div class="scrim"></div>
@@ -202,7 +202,7 @@
     </div>
     <div class="fleet-grid">
       <div class="ship-card reveal">
-        <img crossorigin="anonymous" alt="Φ/Β Αγία Τριάδα" src="https://images.unsplash.com/photo-1695479315311-d3e8fb693390?w=900&q=80" />
+        <img crossorigin="anonymous" alt="Φ/Β Αγία Τριάδα" src="https://images.unsplash.com/photo-1580752300992-559f8e0734e0?w=900&q=80" />
         <div class="frame-acc"></div>
         <div class="ov"></div>
         <div class="meta"><div class="tag" data-i18n="fleet.tag">Επιβατηγό / Οχηματαγωγό</div><div class="nm">Φ/Β Αγία Τριάδα</div></div>
@@ -270,7 +270,8 @@
           {"ship": "Λευκίμμη",             "dep": "15:30", "arr": "16:20"},
           {"ship": "Αγία Τριάδα",          "dep": "16:30", "arr": "17:20"},
           {"ship": "Ιωάννης Καποδίστριας", "dep": "18:00", "arr": "18:50"},
-          {"ship": "Ιωάννης Καποδίστριας", "dep": "21:00", "arr": "21:50"}
+          {"ship": "Ιωάννης Καποδίστριας", "dep": "21:00", "arr": "21:50"},
+          {"ship": "Αγία Τριάδα",          "dep": "22:30", "arr": "23:20"}
         ],
         "lp": [
           {"ship": "Δέσποινα Π.", "dep": "09:15", "arr": "10:00"},
@@ -284,6 +285,20 @@
         ]
       }
       </script>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ BOOKING BANNER ============================ -->
+<section class="book-banner">
+  <div class="wrap">
+    <div class="bb-inner reveal">
+      <span class="eyebrow on-dark" style="justify-content:center;"><span class="ln"></span><span data-i18n="banner.eyebrow">Κράτηση</span></span>
+      <h2 class="h2 on-dark" data-i18n="banner.title">Online κράτηση εισιτηρίων</h2>
+      <p class="bb-sub" data-i18n="banner.sub">Γρήγορα, εύκολα, ασφαλώς. Επιβάτης, μηχανή ή αυτοκίνητο — εξασφάλισε τη θέση σου σε 2 λεπτά.</p>
+      <div class="bb-cta">
+        <a class="btn btn-gold btn-xl" href="https://lefkimmilines.gr/el/arxiki/" target="_blank" rel="noopener" data-i18n="banner.cta">ΚΛΕΙΣΕ ΕΙΣΙΤΗΡΙΟ ΤΩΡΑ</a>
+      </div>
     </div>
   </div>
 </section>
@@ -304,10 +319,49 @@
       <h2 class="h2" data-i18n="map.title">1 ώρα ταξίδι.</h2>
       <p class="lede" style="margin:0 auto;" data-i18n="map.body">Από το λιμάνι της Λευκίμμης στο λιμάνι της Ηγουμενίτσας.</p>
     </div>
-    <div class="map-card reveal">
-      <div class="map-badge"><div class="v">1 <span style="font-size:18px">ώρα</span></div><div class="l" data-i18n="map.badge">ταξίδι</div></div>
-      <iframe title="Lefkimmi – Igoumenitsa" loading="lazy"
-        data-src="https://www.openstreetmap.org/export/embed.html?bbox=19.95%2C39.34%2C20.40%2C39.62&amp;layer=mapnik&amp;marker=39.49%2C20.18"></iframe>
+    <div class="map-card reveal" style="background:var(--navy-deep);">
+      <div class="map-badge" style="z-index:4;">
+        <div class="v">50<small style="font-size:18px;font-weight:400;">'</small></div>
+        <div class="l" data-i18n="map.badge">ταξίδι</div>
+      </div>
+      <svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;" aria-label="Χάρτης Λευκίμμη – Ηγουμενίτσα">
+        <defs>
+          <linearGradient id="seaBg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0d2238"/>
+            <stop offset="100%" stop-color="#143352"/>
+          </linearGradient>
+          <filter id="pinShadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="rgba(0,0,0,0.45)"/>
+          </filter>
+        </defs>
+        <!-- Sea -->
+        <rect width="800" height="440" fill="url(#seaBg)"/>
+        <!-- Subtle sea ripples -->
+        <path d="M0,230 Q200,218 400,238 Q600,258 800,244" stroke="rgba(255,255,255,0.035)" stroke-width="1.5" fill="none"/>
+        <path d="M0,310 Q180,302 380,316 Q580,330 800,318" stroke="rgba(255,255,255,0.025)" stroke-width="1.5" fill="none"/>
+        <!-- Corfu island — elongated NE-SW, simplified -->
+        <path d="M 88,78 L 118,56 L 152,50 L 188,60 L 218,84 L 244,118 L 260,162 L 272,216 L 274,278 L 264,332 L 244,374 L 218,394 L 186,392 L 158,374 L 132,344 L 108,300 L 90,246 L 76,186 L 72,132 Z" fill="#d8d2be" stroke="#a6863c" stroke-width="1.3" opacity="0.88"/>
+        <text x="180" y="228" text-anchor="middle" fill="rgba(255,255,255,0.46)" font-size="12" font-family="system-ui,-apple-system,sans-serif" font-style="italic" letter-spacing="0.04em">Κέρκυρα</text>
+        <!-- Mainland Epirus (right) -->
+        <path d="M 492,0 L 800,0 L 800,440 L 544,440 L 506,406 L 478,360 L 462,310 L 454,262 L 462,218 L 476,172 L 484,124 L 490,76 Z" fill="#d8d2be" stroke="#a6863c" stroke-width="1.3" opacity="0.88"/>
+        <text x="640" y="228" text-anchor="middle" fill="rgba(255,255,255,0.36)" font-size="12" font-family="system-ui,-apple-system,sans-serif" font-style="italic" letter-spacing="0.04em">Ηπειρος</text>
+        <!-- Ionian Sea label -->
+        <text x="358" y="175" text-anchor="middle" fill="rgba(255,255,255,0.16)" font-size="11" font-family="system-ui,-apple-system,sans-serif" font-weight="500" letter-spacing="5">ΙΟΝΙΟ ΠΕΛΑΓΟΣ</text>
+        <!-- Route: curved dashed red line Λευκίμμη → Ηγουμενίτσα -->
+        <path d="M 242,350 C 308,328 386,294 454,272" stroke="#e30613" stroke-width="3.8" fill="none" stroke-dasharray="14,9" stroke-linecap="round" opacity="0.92"/>
+        <!-- Direction arrow mid-route -->
+        <path d="M 345,313 L 357,308 L 345,303" stroke="#e30613" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.75"/>
+        <!-- Λευκίμμη pin -->
+        <circle cx="242" cy="350" r="12" fill="#e30613" opacity="0.18"/>
+        <circle cx="242" cy="350" r="6" fill="#e30613" filter="url(#pinShadow)"/>
+        <rect x="175" y="364" width="134" height="24" rx="12" fill="rgba(13,34,56,0.7)"/>
+        <text x="242" y="380" text-anchor="middle" fill="white" font-size="12.5" font-family="system-ui,-apple-system,sans-serif" font-weight="600" letter-spacing="0.02em">Λευκίμμη</text>
+        <!-- Ηγουμενίτσα pin -->
+        <circle cx="454" cy="272" r="12" fill="#e30613" opacity="0.18"/>
+        <circle cx="454" cy="272" r="6" fill="#e30613" filter="url(#pinShadow)"/>
+        <rect x="377" y="286" width="154" height="24" rx="12" fill="rgba(13,34,56,0.7)"/>
+        <text x="454" y="302" text-anchor="middle" fill="white" font-size="12.5" font-family="system-ui,-apple-system,sans-serif" font-weight="600" letter-spacing="0.02em">Ηγουμενίτσα</text>
+      </svg>
     </div>
   </div>
 </section>

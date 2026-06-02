@@ -93,7 +93,7 @@ h1,h2,h3{font-family:var(--fontH);font-weight:400;color:var(--navy-ink);margin:0
 .lockup .mark{flex:none;}
 .lockup .lk-txt{display:flex;flex-direction:column;line-height:1;}
 .lockup .lk-txt .ln1{font-family:var(--fontH);font-size:20px;letter-spacing:.14em;white-space:nowrap;}
-.lockup .lk-txt .ln2{font-family:var(--fontB);font-size:8.5px;letter-spacing:.4em;text-transform:uppercase;
+.lockup .lk-txt .ln2{font-family:var(--fontB);font-size:11.5px;letter-spacing:.4em;text-transform:uppercase;
   margin-top:5px;color:var(--gold-soft);font-weight:600;white-space:nowrap;}
 
 .main-nav{display:flex;align-items:center;gap:24px;}
@@ -353,6 +353,30 @@ h1,h2,h3{font-family:var(--fontH);font-weight:400;color:var(--navy-ink);margin:0
 .reveal{opacity:0;transform:translateY(28px);transition:.8s var(--ease);}
 .reveal.in{opacity:1;transform:none;}
 .reveal.d1{transition-delay:.08s;}.reveal.d2{transition-delay:.16s;}.reveal.d3{transition-delay:.24s;}
+
+/* ---- offset card children stagger (#8 Ken Burns + text fade-in) ---- */
+@keyframes oc-up{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+.offset.in .card .eyebrow{animation:oc-up .62s var(--ease) both;}
+.offset.in .card .h2{animation:oc-up .66s var(--ease) .12s both;}
+.offset.in .card .lede{animation:oc-up .66s var(--ease) .22s both;}
+.offset.in .card .usp-tabs{animation:oc-up .56s var(--ease) .34s both;}
+.offset.in .card .explore{animation:oc-up .5s var(--ease) .44s both;}
+@media(prefers-reduced-motion:reduce){
+  .offset .card .eyebrow,.offset .card .h2,.offset .card .lede,
+  .offset .card .usp-tabs,.offset .card .explore{animation:none;}
+}
+
+/* ============================================================ BOOKING BANNER */
+.book-banner{background:var(--navy-deep);padding:96px 0;
+  border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);}
+.book-banner .bb-inner{text-align:center;}
+.book-banner .h2{color:#fff;font-size:clamp(38px,5.2vw,64px);margin:16px auto 22px;}
+.book-banner .bb-sub{font-size:18px;line-height:1.72;color:rgba(255,255,255,.8);
+  max-width:50ch;margin:0 auto 44px;}
+.book-banner .bb-cta{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;}
+.book-banner .btn-xl{font-size:15px;padding:22px 56px;letter-spacing:.1em;
+  box-shadow:0 16px 40px -16px rgba(166,134,60,.55);}
+.book-banner .btn-xl:hover{box-shadow:0 22px 50px -18px rgba(166,134,60,.7);}
 
 /* ============================================================ RESPONSIVE */
 @media(max-width:1024px){
