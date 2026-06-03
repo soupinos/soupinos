@@ -432,3 +432,20 @@ h1,h2,h3{font-family:var(--fontH);font-weight:400;color:var(--navy-ink);margin:0
   .action-bar{display:flex;}
   .site-footer{padding-bottom:96px;}
 }
+
+/* ============================================================ FAQ */
+.faq-list{max-width:740px;margin:0 auto;}
+.faq-item{border-bottom:1px solid var(--line);padding:0;}
+.faq-item:first-child{border-top:1px solid var(--line);}
+.faq-q{
+  cursor:pointer;list-style:none;padding:20px 0;
+  font-family:var(--fontH);font-size:18px;color:var(--navy);
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  user-select:none;
+}
+.faq-q::-webkit-details-marker{display:none;}
+.faq-q::after{content:'+';font-size:22px;font-family:var(--fontB);color:var(--gold);flex-shrink:0;
+  transition:transform .25s var(--ease);}
+.faq-item[open] .faq-q::after{transform:rotate(45deg);}
+.faq-a{margin:0;padding:0 0 20px;color:var(--body-ink);font-size:15px;line-height:1.65;}
+

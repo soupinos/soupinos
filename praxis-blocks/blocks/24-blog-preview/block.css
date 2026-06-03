@@ -1,0 +1,99 @@
+/* ============================================================
+   BLOCK #24 — blog-preview
+   Grid of 3 article cards with caldera skin tokens.
+   Responsive: 3 cols → 2 → 1.
+   ============================================================ */
+
+.px-bp-root {
+  --bp-gap: 28px;
+}
+
+.px-bp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--bp-gap);
+}
+
+@media (max-width: 900px) {
+  .px-bp-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .px-bp-grid { grid-template-columns: 1fr; }
+}
+
+/* card */
+.px-bp-card {
+  background: var(--paper, #faf8f3);
+  border: 1px solid var(--line, #e6e0d4);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow .25s var(--ease, ease), transform .25s var(--ease, ease);
+}
+.px-bp-card:hover {
+  box-shadow: 0 12px 36px rgba(20,51,82,.12);
+  transform: translateY(-3px);
+}
+
+/* image */
+.px-bp-img {
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: var(--paper-2, #f1ede4);
+}
+.px-bp-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .5s var(--ease, ease);
+}
+.px-bp-card:hover .px-bp-img img { transform: scale(1.04); }
+
+/* body */
+.px-bp-body {
+  padding: 22px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.px-bp-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--gold, #a6863c);
+  margin-bottom: 10px;
+}
+
+.px-bp-title {
+  font-family: var(--fontH, serif);
+  font-size: 18px;
+  color: var(--navy, #143352);
+  line-height: 1.35;
+  margin: 0 0 10px;
+}
+
+.px-bp-excerpt {
+  font-size: 14px;
+  color: var(--muted, #6b7682);
+  line-height: 1.6;
+  margin: 0 0 20px;
+  flex: 1;
+}
+
+.px-bp-cta {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold, #a6863c);
+  text-decoration: none;
+  letter-spacing: .03em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap .2s var(--ease, ease);
+}
+.px-bp-cta::after { content: '→'; }
+.px-bp-cta:hover { gap: 10px; }

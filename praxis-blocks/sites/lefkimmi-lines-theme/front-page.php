@@ -3,9 +3,10 @@
 <!-- ============================ HERO ============================ -->
 <section class="hero" id="hero" data-screen-label="Hero" data-layout="center">
   <div class="media">
-    <img class="kb" crossorigin="anonymous" alt=""
+    <img class="kb" crossorigin="anonymous" alt="Πλοίο Lefkimmi Lines στο Ιόνιο Πέλαγος"
          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1700&q=80" />
     <video class="hero-video" autoplay muted loop playsinline preload="none"
+           title="Drone shot ferry Λευκίμμη Ηγουμενίτσα Κέρκυρα"
            poster="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1700&q=80">
       <source src="https://videos.pexels.com/video-files/4115313/4115313-hd_1920_1080_25fps.mp4" type="video/mp4" />
       <source src="https://videos.pexels.com/video-files/4115313/4115313-hd_1920_1080_30fps.mp4" type="video/mp4" />
@@ -67,7 +68,7 @@
   <div class="wrap">
     <div class="section-head center reveal">
       <span class="eyebrow"><span class="ln"></span><span data-i18n="about.eyebrow">Ποιοι είμαστε</span></span>
-      <h2 class="h2" data-i18n="about.title">Η θάλασσα είναι ο δρόμος μας.</h2>
+      <h2 class="h2" data-i18n="about.title">Δρομολόγια Λευκίμμη – Ηγουμενίτσα από το 2012</h2>
       <p class="lede" style="margin:0 auto;" data-i18n="about.body">Η Lefkimmi Lines συνδέει καθημερινά τη νότια Κέρκυρα με την Ηγουμενίτσα, από το λιμάνι της Λευκίμμης. Εδώ και πάνω από μία δεκαετία, μεταφέρουμε επιβάτες και οχήματα με συνέπεια, ασφάλεια και σεβασμό σε κάθε ταξιδιώτη. Δεν είμαστε απλώς ένα πέρασμα — είμαστε η αρχή των διακοπών σας.</p>
     </div>
   </div>
@@ -78,12 +79,12 @@
   <div class="wrap">
     <div class="offset reveal">
       <div class="ph">
-        <img crossorigin="anonymous" alt="Νότια Κέρκυρα — θάλασσα και ακτή"
+        <img crossorigin="anonymous" alt="Λιμάνι Λευκίμμης Κέρκυρα — νότια Κέρκυρα"
              src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=1100&q=80" />
       </div>
       <div class="card">
         <span class="eyebrow" data-i18n="why.eyebrow">Γιατί Λευκίμμη</span>
-        <h2 class="h2" data-i18n="why.title">Πιο κοντά απ' όσο νομίζεις.</h2>
+        <h2 class="h2" data-i18n="why.title">Γιατί Λευκίμμη; Πιο κοντά απ' όσο νομίζεις</h2>
         <p class="lede" data-i18n="why.body">Πολλοί ψάχνουν το πλοίο για την Κέρκυρα και καταλήγουν στη μακρινή, ακριβότερη γραμμή της πόλης. Η Λευκίμμη, στη νότια Κέρκυρα, είναι ο συντομότερος και φθηνότερος τρόπος να πατήσεις το νησί: μόλις 50 λεπτά από την Ηγουμενίτσα. Ιδανικό αν πας νότια Κέρκυρα — Κάβος, Λευκίμμη, Μπούκαρι, Άγιος Γεώργιος.</p>
         <div class="usp-tabs">
           <a href="#schedule"><span class="t" data-i18n="why.tab1t">Σύντομο</span><span class="v" data-i18n="why.tab1v">50 λεπτά</span></a>
@@ -108,7 +109,7 @@
   <div class="wrap">
     <div class="section-head center reveal">
       <span class="eyebrow"><span class="ln"></span><span data-i18n="prices.eyebrow">Τιμές</span></span>
-      <h2 class="h2" data-i18n="prices.title">Από 7,30€ το εισιτήριο.</h2>
+      <h2 class="h2" data-i18n="prices.title">Τιμές εισιτηρίων – από 7,30€</h2>
       <p class="lede" style="margin:0 auto;" data-i18n="prices.body">Με το Μεταφορικό Ισοδύναμο (κρατική επιδότηση), το πέρασμα προς την Κέρκυρα γίνεται από τα πιο οικονομικά της Ελλάδας.</p>
     </div>
     <div class="price-grid">
@@ -143,14 +144,14 @@
     </div>
     <div class="fleet-grid">
       <div class="ship-card reveal">
-        <img crossorigin="anonymous" alt="Φ/Β Αγία Τριάδα"
+        <img crossorigin="anonymous" alt="Φ/Β Αγία Τριάδα — Lefkimmi Lines οχηματαγωγό"
              src="https://images.unsplash.com/photo-1580752300992-559f8e0734e0?w=900&q=80" />
         <div class="frame-acc"></div>
         <div class="ov"></div>
         <div class="meta"><div class="tag" data-i18n="fleet.tag">Επιβατηγό / Οχηματαγωγό</div><div class="nm">Φ/Β Αγία Τριάδα</div></div>
       </div>
       <div class="ship-card reveal d1">
-        <img crossorigin="anonymous" alt="Φ/Β Ιωάννης Καποδίστριας"
+        <img crossorigin="anonymous" alt="Φ/Β Ιωάννης Καποδίστριας — Lefkimmi Lines"
              src="https://images.unsplash.com/photo-1693780860490-39520bb85643?w=900&q=80" />
         <div class="frame-acc"></div>
         <div class="ov"></div>
@@ -177,7 +178,7 @@
         </a>
       </div>
       <div class="ph">
-        <img crossorigin="anonymous" alt="Καφές με θέα τη θάλασσα εν πλω"
+        <img crossorigin="anonymous" alt="Κατάστρωμα πλοίου Lefkimmi Lines — Ιόνιο"
              src="https://images.unsplash.com/photo-1743628113907-42d01d469d0c?w=1100&q=80" />
       </div>
     </div>
@@ -189,7 +190,7 @@
   <div class="wrap">
     <div class="section-head center reveal">
       <span class="eyebrow"><span class="ln"></span><span data-i18n="sched.eyebrow">Δρομολόγια</span></span>
-      <h2 class="h2" data-i18n="sched.title">Πρόγραμμα ημέρας</h2>
+      <h2 class="h2" data-i18n="sched.title">Δρομολόγια &amp; Πρόγραμμα ημέρας</h2>
       <p class="lede" style="margin:0 auto;" data-i18n="sched.body">Δες τις ώρες και διάλεξε το δρομολόγιο που σε βολεύει.</p>
     </div>
 
@@ -228,7 +229,7 @@
   <div class="wrap">
     <div class="section-head center reveal">
       <span class="eyebrow"><span class="ln"></span><span data-i18n="map.eyebrow">Χάρτης</span></span>
-      <h2 class="h2" data-i18n="map.title">1 ώρα ταξίδι.</h2>
+      <h2 class="h2" data-i18n="map.title">Λευκίμμη – Ηγουμενίτσα: 50 λεπτά ταξίδι</h2>
       <p class="lede" style="margin:0 auto;" data-i18n="map.body">Από το λιμάνι της Λευκίμμης στο λιμάνι της Ηγουμενίτσας.</p>
     </div>
     <div class="map-card reveal" style="background:var(--navy-deep);">
@@ -236,7 +237,7 @@
         <div class="v">50<small style="font-size:18px;font-weight:400;">'</small></div>
         <div class="l" data-i18n="map.badge">ταξίδι</div>
       </div>
-      <svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;" aria-label="Χάρτης Λευκίμμη – Ηγουμενίτσα">
+      <svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;" aria-label="Χάρτης δρομολογίου Λευκίμμη Ηγουμενίτσα 50 λεπτά">
         <defs>
           <linearGradient id="seaBg" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="#0d2238"/>
@@ -310,6 +311,46 @@
   </div>
 </section>
 
+<!-- ============================ FAQ ============================ -->
+<section class="section paper" id="faq" data-screen-label="FAQ">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow"><span class="ln"></span><span data-i18n="faq.eyebrow">FAQ</span></span>
+      <h2 class="h2" data-i18n="faq.title">Συχνές Ερωτήσεις</h2>
+    </div>
+    <div class="faq-list reveal">
+      <details class="faq-item" open>
+        <summary class="faq-q" data-i18n="faq.q1">Πόσο κρατάει το ταξίδι Λευκίμμη – Ηγουμενίτσα;</summary>
+        <p class="faq-a" data-i18n="faq.a1">Το ταξίδι διαρκεί περίπου 50 λεπτά.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q" data-i18n="faq.q2">Πόσο κοστίζει το εισιτήριο;</summary>
+        <p class="faq-a" data-i18n="faq.a2">Τα εισιτήρια ξεκινούν από 7,30€ για επιβάτη με το Μεταφορικό Ισοδύναμο. Με αυτοκίνητο από ~30€.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q" data-i18n="faq.q3">Πόσα δρομολόγια υπάρχουν την ημέρα;</summary>
+        <p class="faq-a" data-i18n="faq.a3">6+ δρομολόγια καθημερινά Λευκίμμη–Ηγουμενίτσα και 10+ Ηγουμενίτσα–Λευκίμμη.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q" data-i18n="faq.q4">Πού βρίσκεται το λιμάνι της Λευκίμμης;</summary>
+        <p class="faq-a" data-i18n="faq.a4">Το λιμάνι της Λευκίμμης βρίσκεται στη νότια Κέρκυρα, 3 χλμ από τον οικισμό. Εξυπηρετεί Κάβο, Μπούκαρι, Άγιο Γεώργιο.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q" data-i18n="faq.q5">Μπορώ να μεταφέρω αυτοκίνητο;</summary>
+        <p class="faq-a" data-i18n="faq.a5">Ναι, τα πλοία μας (Αγία Τριάδα &amp; Ιωάννης Καποδίστριας) είναι οχηματαγωγά.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q" data-i18n="faq.q6">Υπάρχουν δρομολόγια για Παξούς;</summary>
+        <p class="faq-a" data-i18n="faq.a6">Ναι, η Kamelia Lines εκτελεί δρομολόγια Λευκίμμη–Παξοί με 3 δρομολόγια ημερησίως.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q" data-i18n="faq.q7">Πώς κλείνω εισιτήριο online;</summary>
+        <p class="faq-a" data-i18n="faq.a7">Πατήστε «Κλείσε εισιτήριο» — η κράτηση γίνεται μέσω του ηλεκτρονικού συστήματος της εταιρείας.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
 <!-- ============================ CONTACT ============================ -->
 <section class="section paper-2" id="contact" data-screen-label="Contact">
   <div class="wrap">
@@ -371,6 +412,16 @@
 <div class="action-bar">
   <a class="btn btn-gold" href="https://lefkimmilines.gr/el/arxiki/" data-i18n="nav.book">Κλείσε εισιτήριο</a>
   <a class="btn btn-ghost ab-ghost" href="#schedule" data-i18n="hero.cta2">Δες τα δρομολόγια</a>
+</div>
+
+<!-- ============================ COOKIE CONSENT ============================ -->
+<div id="ll-cookie" class="ll-cookie" role="dialog" aria-live="polite" aria-label="Cookie consent" hidden>
+  <p class="ll-cookie__msg" data-i18n="cookie.msg">Χρησιμοποιούμε cookies για βελτίωση της εμπειρίας σας.</p>
+  <div class="ll-cookie__btns">
+    <button id="ll-cookie-accept"    class="btn btn-gold"  data-i18n="cookie.accept">Αποδοχή</button>
+    <button id="ll-cookie-necessary" class="btn btn-ghost" data-i18n="cookie.necessary">Μόνο απαραίτητα</button>
+    <a      id="ll-cookie-more"      href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>" data-i18n="cookie.more">Μάθε περισσότερα</a>
+  </div>
 </div>
 
 <?php get_footer(); ?>

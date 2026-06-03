@@ -30,14 +30,18 @@ function ll_enqueue_assets() {
     wp_enqueue_style( 'll-caldera',  $tu . '/assets/caldera.css',  [ 'll-fonts' ], $v );
     wp_enqueue_style( 'll-block21',  $tu . '/assets/block21.css',  [ 'll-caldera' ], $v );
     wp_enqueue_style( 'll-block23',  $tu . '/assets/block23.css',  [ 'll-caldera' ], $v );
+    wp_enqueue_style( 'll-block24',  $tu . '/assets/block24.css',  [ 'll-caldera' ], $v );
+    wp_enqueue_style( 'll-cookie',   $tu . '/assets/cookie-consent.css', [ 'll-caldera' ], $v );
 
     // Scripts — CRITICAL ORDER: blocks must execute before i18n.js
     // so that data-i18n elements are in DOM when i18n.js caches originals.
     wp_enqueue_script( 'll-block21', $tu . '/assets/block21.js', [],                             $v, true );
     wp_enqueue_script( 'll-block23', $tu . '/assets/block23.js', [],                             $v, true );
+    wp_enqueue_script( 'll-block24', $tu . '/assets/block24.js', [],                             $v, true );
     wp_enqueue_script( 'll-i18n',   $tu . '/assets/i18n.js',    [ 'll-block21', 'll-block23' ], $v, true );
     wp_enqueue_script( 'll-app',    $tu . '/assets/app.js',     [ 'll-i18n' ],                  $v, true );
     wp_enqueue_script( 'll-skin',   $tu . '/assets/skin-picker.js', [ 'll-app' ],               $v, true );
+    wp_enqueue_script( 'll-cookie', $tu . '/assets/cookie-consent.js', [ 'll-i18n' ],           $v, true );
 }
 add_action( 'wp_enqueue_scripts', 'll_enqueue_assets' );
 

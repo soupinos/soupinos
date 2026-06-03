@@ -3,6 +3,39 @@
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Πόσο κρατάει το ταξίδι Λευκίμμη Ηγουμενίτσα;",
+      "acceptedAnswer": { "@type": "Answer", "text": "Το ταξίδι διαρκεί περίπου 50 λεπτά." }
+    },
+    {
+      "@type": "Question",
+      "name": "Πόσο κοστίζει το εισιτήριο Λευκίμμη Ηγουμενίτσα;",
+      "acceptedAnswer": { "@type": "Answer", "text": "Εισιτήρια από 7,30€ για επιβάτη με Μεταφορικό Ισοδύναμο. Με αυτοκίνητο από ~30€." }
+    },
+    {
+      "@type": "Question",
+      "name": "Πόσα δρομολόγια υπάρχουν την ημέρα;",
+      "acceptedAnswer": { "@type": "Answer", "text": "6+ δρομολόγια Λευκίμμη–Ηγουμενίτσα και 10+ Ηγουμενίτσα–Λευκίμμη καθημερινά." }
+    },
+    {
+      "@type": "Question",
+      "name": "Πού βρίσκεται το λιμάνι της Λευκίμμης;",
+      "acceptedAnswer": { "@type": "Answer", "text": "Στη νότια Κέρκυρα, 3 χλμ από τον οικισμό. Εξυπηρετεί Κάβο, Μπούκαρι, Άγιο Γεώργιο." }
+    },
+    {
+      "@type": "Question",
+      "name": "Μπορώ να μεταφέρω αυτοκίνητο;",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ναι, τα πλοία Αγία Τριάδα & Ιωάννης Καποδίστριας είναι οχηματαγωγά." }
+    }
+  ]
+}
+</script>
 <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
