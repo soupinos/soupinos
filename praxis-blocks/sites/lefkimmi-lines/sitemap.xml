@@ -1,27 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  SITEMAP TEMPLATE — Lefkimmi Lines
+  SITEMAP — Lefkimmi Lines
   ─────────────────────────────────
-  UPDATE before going live:
-    • Replace https://www.lefkimmilines.gr/ with the real production URL
-    • Update <lastmod> dates on each deployment
-    • For WordPress: use Yoast SEO or Rank Math (they generate sitemap.xml automatically)
-    • For separate language URLs (/el/, /en/, etc.): add xhtml:link alternates per URL
+  For WordPress: /sitemap.xml is generated dynamically by the theme (inc/sitemap.php).
+  This static copy is for the gh-pages preview and as a reference.
+  Production URL: https://www.lefkimmilines.gr/sitemap.xml
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-  <!--
-    Single-URL site (client-side i18n): all 9 languages share one URL.
-    For full multilingual SEO, migrate to separate /el/, /en/, /fr/ etc. URLs.
-  -->
+  <!-- Homepage -->
   <url>
     <loc>https://www.lefkimmilines.gr/</loc>
-    <lastmod>2026-05-31</lastmod>
+    <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-
-    <!-- hreflang alternates (for separate-URL deployments, duplicate per lang URL) -->
     <xhtml:link rel="alternate" hreflang="el"        href="https://www.lefkimmilines.gr/"/>
     <xhtml:link rel="alternate" hreflang="en"        href="https://www.lefkimmilines.gr/"/>
     <xhtml:link rel="alternate" hreflang="fr"        href="https://www.lefkimmilines.gr/"/>
@@ -32,6 +25,46 @@
     <xhtml:link rel="alternate" hreflang="bg"        href="https://www.lefkimmilines.gr/"/>
     <xhtml:link rel="alternate" hreflang="ru"        href="https://www.lefkimmilines.gr/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.lefkimmilines.gr/"/>
+  </url>
+
+  <!-- Landing page — Ηγουμενίτσα Κέρκυρα -->
+  <url>
+    <loc>https://www.lefkimmilines.gr/igoumenitsa-kerkyra/</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Privacy Policy -->
+  <url>
+    <loc>https://www.lefkimmilines.gr/privacy-policy/</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Blog — Φθηνό πλοίο Κέρκυρα -->
+  <url>
+    <loc>https://www.lefkimmilines.gr/blog/ftino-ploio-kerkyra/</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Blog — Νότια Κέρκυρα οδηγός -->
+  <url>
+    <loc>https://www.lefkimmilines.gr/blog/notia-kerkyra-odigos/</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Blog — Lefkimmi vs Corfu Port (EN) -->
+  <url>
+    <loc>https://www.lefkimmilines.gr/en/blog/lefkimmi-vs-corfu-port/</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 
 </urlset>

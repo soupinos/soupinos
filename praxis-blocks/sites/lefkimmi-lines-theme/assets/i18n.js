@@ -113,7 +113,9 @@
       "cookie.msg": "We use cookies to improve your experience.",
       "cookie.accept": "Accept all", "cookie.necessary": "Essential only", "cookie.more": "Learn more",
       "seo.title": "Lefkimmi – Igoumenitsa Ferry | Lefkimmi Lines",
-      "seo.desc": "Daily ferry crossings Lefkimmi–Igoumenitsa in 50 min. The fastest & cheapest way to reach Corfu. Tickets from €7.30. Book online now."
+      "seo.desc": "Daily ferry crossings Lefkimmi–Igoumenitsa in 50 min. The fastest & cheapest way to reach Corfu. Tickets from €7.30. Book online now.",
+      "contact.errFields": "Please fill in all required fields.",
+      "contact.errServer": "Submission failed. Please try again or email info@lefkimmilines.gr."
     },
 
     fr: {

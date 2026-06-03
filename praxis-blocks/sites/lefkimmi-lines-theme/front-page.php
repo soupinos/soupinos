@@ -377,24 +377,29 @@
         <?php if ( function_exists( 'wpcf7_contact_form' ) ) : ?>
           <?php echo do_shortcode( '[contact-form-7 id="contact" title="Contact"]' ); ?>
         <?php else : ?>
-        <form>
+        <form id="ll-cform" method="post" novalidate>
+          <?php wp_nonce_field( 'll_contact_nonce', 'll_nonce' ); ?>
+          <!-- honeypot: must stay empty -->
+          <input type="text" name="ll_website" style="display:none!important;" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
           <div class="field">
             <label data-i18n="contact.fname">Ονοματεπώνυμο *</label>
-            <input type="text" required data-i18n-ph="contact.fname" placeholder="Ονοματεπώνυμο" />
+            <input type="text" name="fname" required data-i18n-ph="contact.fname" placeholder="Ονοματεπώνυμο" autocomplete="name" />
           </div>
           <div class="field">
             <label data-i18n="contact.femail">Email *</label>
-            <input type="email" required data-i18n-ph="contact.femail" placeholder="Email" />
+            <input type="email" name="femail" required data-i18n-ph="contact.femail" placeholder="Email" autocomplete="email" />
           </div>
           <div class="field">
             <label data-i18n="contact.fmsg">Μήνυμα *</label>
-            <textarea required data-i18n-ph="contact.fmsg" placeholder="Μήνυμα"></textarea>
+            <textarea name="fmsg" required data-i18n-ph="contact.fmsg" placeholder="Μήνυμα"></textarea>
           </div>
           <label class="consent">
             <input type="checkbox" required />
             <span><span data-i18n="contact.consent">Αποδέχομαι την</span>
-              <a href="<?php echo esc_url( get_privacy_policy_url() ?: '#' ); ?>" data-i18n="contact.privacy">Πολιτική Απορρήτου</a></span>
+              <a href="<?php echo esc_url( get_privacy_policy_url() ?: home_url('/privacy-policy/') ); ?>" data-i18n="contact.privacy">Πολιτική Απορρήτου</a></span>
           </label>
+          <div class="form-err" role="alert" style="display:none;color:#c0392b;font-size:14px;margin-bottom:12px;padding:10px 14px;background:rgba(192,57,43,.08);border-radius:4px;"></div>
           <button type="submit" class="btn btn-gold" style="width:100%;" data-i18n="contact.send">Αποστολή</button>
         </form>
         <div class="form-ok">

@@ -41,7 +41,16 @@ function ll_enqueue_assets() {
     wp_enqueue_script( 'll-i18n',   $tu . '/assets/i18n.js',    [ 'll-block21', 'll-block23' ], $v, true );
     wp_enqueue_script( 'll-app',    $tu . '/assets/app.js',     [ 'll-i18n' ],                  $v, true );
     wp_enqueue_script( 'll-skin',   $tu . '/assets/skin-picker.js', [ 'll-app' ],               $v, true );
-    wp_enqueue_script( 'll-cookie', $tu . '/assets/cookie-consent.js', [ 'll-i18n' ],           $v, true );
+    wp_enqueue_script( 'll-cookie',   $tu . '/assets/cookie-consent.js', [ 'll-i18n' ],           $v, true );
+    wp_enqueue_script( 'll-contact', $tu . '/assets/contact-form.js',   [ 'll-i18n' ],            $v, true );
+    wp_localize_script( 'll-contact', 'llContact', [
+        'ajaxUrl'   => admin_url( 'admin-ajax.php' ),
+        'errFields' => __( 'Παρακαλώ συμπληρώστε όλα τα πεδία.', 'lefkimmi-lines' ),
+        'errServer' => __( 'Σφάλμα αποστολής. Δοκιμάστε ξανά ή στείλτε email στο info@lefkimmilines.gr.', 'lefkimmi-lines' ),
+        'err_limit' => __( 'Πολλές αποστολές. Δοκιμάστε ξανά σε λίγη ώρα.', 'lefkimmi-lines' ),
+        'err_smtp'  => __( 'Σφάλμα αποστολής. Δοκιμάστε ξανά ή στείλτε email στο info@lefkimmilines.gr.', 'lefkimmi-lines' ),
+        'err_fields'=> __( 'Παρακαλώ συμπληρώστε όλα τα πεδία σωστά.', 'lefkimmi-lines' ),
+    ] );
 }
 add_action( 'wp_enqueue_scripts', 'll_enqueue_assets' );
 
@@ -66,6 +75,8 @@ add_action( 'wp_head', 'll_default_meta', 2 );
 /* ── Include modules ─────────────────────────────────────── */
 require_once get_template_directory() . '/inc/schedule-cpt.php';
 require_once get_template_directory() . '/inc/skin-options.php';
+require_once get_template_directory() . '/inc/contact-handler.php';
+require_once get_template_directory() . '/inc/sitemap.php';
 
 /* ── Schedule JSON helper ────────────────────────────────── */
 

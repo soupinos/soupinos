@@ -3,6 +3,24 @@
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="<?php echo esc_url( get_template_directory_uri() . '/assets/favicon.svg' ); ?>" />
+<link rel="apple-touch-icon" href="<?php echo esc_url( get_template_directory_uri() . '/assets/favicon.svg' ); ?>" />
+<!-- Open Graph -->
+<meta property="og:type"        content="website" />
+<meta property="og:site_name"   content="Lefkimmi Lines" />
+<meta property="og:title"       content="Δρομολόγια Λευκίμμη – Ηγουμενίτσα | Lefkimmi Lines" />
+<meta property="og:description" content="Καθημερινά δρομολόγια Λευκίμμη–Ηγουμενίτσα σε 50 λεπτά. Ο συντομότερος &amp; φθηνότερος δρόμος για την Κέρκυρα. Εισιτήρια από 7,30€." />
+<meta property="og:url"         content="<?php echo esc_url( home_url( '/' ) ); ?>" />
+<meta property="og:image"       content="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=630&fit=crop&q=85" />
+<meta property="og:image:width"  content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale"      content="el_GR" />
+<!-- Twitter Card -->
+<meta name="twitter:card"        content="summary_large_image" />
+<meta name="twitter:title"       content="Δρομολόγια Λευκίμμη – Ηγουμενίτσα | Lefkimmi Lines" />
+<meta name="twitter:description" content="Καθημερινά δρομολόγια Λευκίμμη–Ηγουμενίτσα σε 50 λεπτά. Εισιτήρια από 7,30€." />
+<meta name="twitter:image"       content="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=630&fit=crop&q=85" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",

@@ -1,8 +1,9 @@
-# robots.txt — Lefkimmi Lines
-# UPDATE: replace the Sitemap URL with the real production URL before going live.
-# For WordPress: Yoast SEO / Rank Math generate robots.txt automatically.
-
 User-agent: *
 Allow: /
+
+# WordPress admin — not indexed
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /wp-login.php
 
 Sitemap: https://www.lefkimmilines.gr/sitemap.xml
