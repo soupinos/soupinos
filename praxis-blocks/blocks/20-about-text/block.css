@@ -1,0 +1,84 @@
+/* ============================================================
+   BLOCK #20 — about-text
+   Single-column "about / intro" text block. Lots of air.
+   Caldera skin tokens (with fallbacks). px- prefixed, no deps.
+
+   PARTS
+     .px-at-root            wrapper (carries data-align)
+     .px-at-eyebrow         small uppercase label (optional)
+     .px-at-title           headline (serif heading font)
+     .px-at-body            paragraph(s) — calm, readable measure
+     .px-at-credential      small discreet line (e.g. specialty)
+
+   CONFIG (attributes on .px-at-root)
+     data-align="center"    centered column (default)
+     data-align="left"      left-aligned column
+
+   EXAMPLE
+     <div class="px-at-root reveal" data-align="center">
+       <span class="px-at-eyebrow">Ποιός είμαι</span>
+       <h2 class="px-at-title">Με λένε [ΟΝΟΜΑ].</h2>
+       <p class="px-at-body">…</p>
+       <p class="px-at-credential">Κλινική &amp; Κοινωνική Ψυχολογία</p>
+     </div>
+
+   REUSE: generic — any "intro / about / manifesto" section, any sector.
+   ============================================================ */
+
+.px-at-root {
+  max-width: 60ch;
+}
+.px-at-root[data-align="center"] {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.px-at-root[data-align="left"] {
+  text-align: left;
+}
+
+.px-at-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--fontB, system-ui, sans-serif);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: .34em;
+  text-transform: uppercase;
+  color: var(--gold-deep, #a8882e);
+  margin-bottom: 18px;
+}
+
+.px-at-title {
+  font-family: var(--fontH, Georgia, serif);
+  font-weight: 400;
+  color: var(--navy-ink, #3f2a1e);
+  font-size: clamp(28px, 3.6vw, 44px);
+  line-height: 1.12;
+  margin: 0 0 22px;
+}
+
+.px-at-body {
+  font-family: var(--fontB, system-ui, sans-serif);
+  font-size: 17px;
+  line-height: 1.85;            /* breathing room */
+  color: var(--body-ink, #4a4039);
+  margin: 0 0 18px;
+}
+.px-at-root[data-align="center"] .px-at-body {
+  margin-left: auto;
+  margin-right: auto;
+}
+.px-at-body:last-child {
+  margin-bottom: 0;
+}
+
+.px-at-credential {
+  font-family: var(--fontB, system-ui, sans-serif);
+  font-size: 12.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted, #8a7d70);
+  margin: 26px 0 0;
+}

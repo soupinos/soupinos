@@ -1,0 +1,14 @@
+/*
+Theme Name:  Praxis Therapist
+Theme URI:   https://praxis.gr
+Author:      Praxis
+Author URI:  https://praxis.gr
+Description: Calm, breathing single-page theme for psychotherapists. Forked from the Praxis/Caldera engine — warm "sand" skin, GR-only, Greek-verified typography (EB Garamond + Inter), assembled from reusable px- library blocks. No counters, no parallax: "less is more".
+Version:     0.1.0
+License:     GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: praxis-therapist
+Tags:        one-page, therapist, greek, custom-colors, minimal
+*/
+
+/* Real styles live in assets/main.css (enqueued in functions.php). */

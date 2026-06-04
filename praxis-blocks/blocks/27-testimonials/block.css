@@ -1,0 +1,102 @@
+/* ============================================================
+   BLOCK #27 — testimonials
+   Grid of quote cards (author + meta). Caldera skin tokens (with
+   fallbacks). px- prefixed, paired with block.js (render guard).
+
+   ETHICS / RENDER RULE (important):
+   This block renders ONLY when it contains real, consented cards.
+   block.js removes the root (and an optional parent section) when
+   there are no cards or data-render="off". NEVER ship demo/fake
+   testimonials.
+
+   PARTS
+     .px-ts-root            wrapper (data-render, data-variant, data-hide-target)
+     .px-ts-grid            responsive grid (3 → 2 → 1)
+     .px-ts-card            one testimonial
+     .px-ts-quote           decorative quote mark
+     .px-ts-text            the quote (serif italic)
+     .px-ts-author          author row
+     .px-ts-avatar          round initial/avatar
+     .px-ts-name            author name
+     .px-ts-meta            small source/date line
+
+   CONFIG (attributes on .px-ts-root)
+     data-render="auto"     render only if ≥1 .px-ts-card (default)
+     data-render="off"      always remove (kill switch)
+     data-variant="dark"    on dark/navy surfaces (default light)
+     data-hide-target="#x"  CSS selector of a wrapping section to remove
+                            together with the block when empty/off
+
+   REUSE: generic — reviews, references, client words, any sector.
+   ============================================================ */
+
+.px-ts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+@media (max-width: 900px) { .px-ts-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .px-ts-grid { grid-template-columns: 1fr; } }
+
+.px-ts-card {
+  background: var(--white, #fff);
+  border: 1px solid var(--line, #e8e0d2);
+  border-radius: var(--radius, 4px);
+  padding: 34px 30px;
+  transition: transform .3s var(--ease, ease), box-shadow .3s var(--ease, ease), border-color .3s var(--ease, ease);
+}
+.px-ts-card:hover {
+  transform: translateY(-2px);                          /* lift ≤ 2px */
+  box-shadow: 0 18px 44px -28px rgba(63, 42, 30, .35);
+  border-color: var(--gold-soft, #d4b56a);
+}
+
+.px-ts-quote {
+  font-family: var(--fontH, Georgia, serif);
+  font-size: 56px;
+  line-height: .6;
+  height: 26px;
+  color: var(--gold, #C9A84C);
+  opacity: .5;
+}
+
+.px-ts-text {
+  font-family: var(--fontSerif, Georgia, serif);
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--navy-ink, #3f2a1e);
+  margin: 0 0 22px;
+}
+
+.px-ts-author { display: flex; align-items: center; gap: 13px; }
+.px-ts-avatar {
+  width: 42px; height: 42px; flex: none;
+  border-radius: 50%;
+  background: var(--gold, #C9A84C);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--fontH, Georgia, serif);
+  font-size: 18px;
+  border: 1px solid var(--gold-soft, #d4b56a);
+}
+.px-ts-name { font-weight: 600; font-size: 14px; color: var(--navy-ink, #3f2a1e); }
+.px-ts-meta { font-size: 12px; color: var(--muted, #8a7d70); margin-top: 2px; }
+
+/* dark variant */
+.px-ts-root[data-variant="dark"] .px-ts-card {
+  background: rgba(255, 255, 255, .04);
+  border-color: rgba(255, 255, 255, .1);
+}
+.px-ts-root[data-variant="dark"] .px-ts-card:hover {
+  background: rgba(255, 255, 255, .06);
+  border-color: rgba(212, 181, 106, .5);
+}
+.px-ts-root[data-variant="dark"] .px-ts-text { color: #fff; }
+.px-ts-root[data-variant="dark"] .px-ts-name { color: #fff; }
+.px-ts-root[data-variant="dark"] .px-ts-meta { color: rgba(255, 255, 255, .55); }
+
+@media (prefers-reduced-motion: reduce) {
+  .px-ts-card { transition: none; }
+  .px-ts-card:hover { transform: none; }
+}

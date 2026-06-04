@@ -26,6 +26,11 @@
   <link rel="stylesheet" href="../blocks/14-schedule-table/block.css">
   <link rel="stylesheet" href="../blocks/15-lang-switcher/block.css">
   <link rel="stylesheet" href="../blocks/19-booking-cta/block.css">
+  <!-- Therapist blocks (caldera/sand tokens, read via fallbacks) -->
+  <link rel="stylesheet" href="../blocks/20-about-text/block.css">
+  <link rel="stylesheet" href="../blocks/25-services-cards/block.css">
+  <link rel="stylesheet" href="../blocks/26-statement-list/block.css">
+  <link rel="stylesheet" href="../blocks/27-testimonials/block.css">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; }
@@ -132,6 +137,10 @@
     <a href="#b14" title="14 — Schedule Table"></a>
     <a href="#b15" title="15 — Lang Switcher"></a>
     <a href="#bfx" title="✦ Font Effects"></a>
+    <a href="#b20" title="20 — About Text"></a>
+    <a href="#b25" title="25 — Services Cards"></a>
+    <a href="#b26" title="26 — Statement List"></a>
+    <a href="#b27" title="27 — Testimonials"></a>
   </nav>
 
   <!-- ─── 01 HEADER ─────────────────────────────────────────────────── -->
@@ -572,6 +581,105 @@
     </div>
   </div>
 
+  <!-- ─── THERAPIST BLOCKS (20/25/26/27) — caldera/sand tokens ───────────
+       These read caldera vars (--navy/--gold/--paper…) with warm fallbacks,
+       so they render in their intended light/warm palette here even though
+       the page chrome is dark. Shown on light wrappers on purpose. -->
+
+  <!-- ─── 20 ABOUT TEXT ─────────────────────────────────────────────── -->
+  <div id="b20">
+    <div class="pv-label">
+      20 — About Text
+      <a href="../blocks/20-about-text/README.md">View source →</a>
+    </div>
+    <section style="background:#faf7f1;padding:5rem 1.5rem;">
+      <div style="max-width:1180px;margin:0 auto;">
+        <div class="px-at-root" data-align="center">
+          <span class="px-at-eyebrow">Ποιός είμαι</span>
+          <h2 class="px-at-title">Με λένε [ΟΝΟΜΑ]. Και δεν πιστεύω στην εμπορευματοποίηση της ψυχής.</h2>
+          <p class="px-at-body">Ξέρω τι σκέφτεσαι: «ακόμα ένας ψυχολόγος». Το σκέφτομαι κι εγώ — κάθε φορά που η ψυχοθεραπεία αντιμετωπίζεται σαν συνδρομή γυμναστηρίου: πακέτα, προσφορές, εύκολες υποσχέσεις.</p>
+          <p class="px-at-body">Δεν είμαι εδώ για να σε «διορθώσω». Είμαι εδώ για να σε ακούσω — αληθινά.</p>
+          <p class="px-at-credential">Κλινική &amp; Κοινωνική Ψυχολογία</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ─── 25 SERVICES CARDS ─────────────────────────────────────────── -->
+  <div id="b25">
+    <div class="pv-label">
+      25 — Services Cards
+      <a href="../blocks/25-services-cards/README.md">View source →</a>
+    </div>
+    <section style="background:#f1ebe1;padding:5rem 1.5rem;">
+      <div style="max-width:1180px;margin:0 auto;">
+        <div class="px-sc-grid" data-cols="3">
+          <article class="px-sc-card">
+            <span class="px-sc-icon" aria-hidden="true">✦</span>
+            <h3 class="px-sc-title"><span class="px-sc-num">1 ·</span> Ψυχοθεραπεία</h3>
+            <p class="px-sc-text">Χωρίς φάρμακα. Χωρίς συνταγές. Μόνο κουβέντα που σε πάει πιο κάτω.</p>
+          </article>
+          <article class="px-sc-card">
+            <span class="px-sc-icon" aria-hidden="true">✦</span>
+            <h3 class="px-sc-title"><span class="px-sc-num">2 ·</span> Σκοπός ζωής</h3>
+            <p class="px-sc-text">Δεν είναι φιλοσοφία. Είναι η πιο πρακτική ερώτηση: «γιατί ξυπνάω το πρωί;»</p>
+          </article>
+          <article class="px-sc-card">
+            <span class="px-sc-icon" aria-hidden="true">✦</span>
+            <h3 class="px-sc-title"><span class="px-sc-num">3 ·</span> Έφηβοι &amp; μεταέφηβοι</h3>
+            <p class="px-sc-text">Η μεγαλύτερη πίεση σήμερα: να είσαι τέλειος. Αμέσως. Εδώ δεν υπάρχει «πρέπει».</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ─── 26 STATEMENT LIST ─────────────────────────────────────────── -->
+  <div id="b26">
+    <div class="pv-label">
+      26 — Statement List
+      <a href="../blocks/26-statement-list/README.md">View source →</a>
+    </div>
+    <section style="background:#faf7f1;padding:5rem 1.5rem;">
+      <div style="max-width:1180px;margin:0 auto;">
+        <div class="px-sl-root" data-variant="light">
+          <p class="px-sl-item"><span class="px-sl-mark" aria-hidden="true">✦</span><span class="px-sl-text">Δεν θα σε πω «πελάτη» — είσαι άνθρωπος.</span></p>
+          <p class="px-sl-item"><span class="px-sl-mark" aria-hidden="true">✦</span><span class="px-sl-text">Δεν θα στείλεις ραντεβού σε γραμματεία — απαντάω εγώ.</span></p>
+          <p class="px-sl-item"><span class="px-sl-mark" aria-hidden="true">✦</span><span class="px-sl-text">Δεν θα σου πουλήσω πακέτο — η ψυχή δεν είναι συνδρομή.</span></p>
+          <p class="px-sl-item"><span class="px-sl-mark" aria-hidden="true">✦</span><span class="px-sl-text">Δεν θα προσποιηθώ ότι τα ξέρω όλα. Αλλά ξέρω να ακούω.</span></p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ─── 27 TESTIMONIALS ───────────────────────────────────────────── -->
+  <div id="b27">
+    <div class="pv-label">
+      27 — Testimonials (render guard — demo shows the markup only)
+      <a href="../blocks/27-testimonials/README.md">View source →</a>
+    </div>
+    <section style="background:#3a2118;padding:5rem 1.5rem;">
+      <div style="max-width:1180px;margin:0 auto;">
+        <!-- data-render="hold" (non-standard) so the guard does NOT remove this
+             illustrative markup in the preview. On a real site use auto|off. -->
+        <div class="px-ts-root" data-variant="dark" data-render="hold">
+          <div class="px-ts-grid">
+            <article class="px-ts-card">
+              <div class="px-ts-quote" aria-hidden="true">&ldquo;</div>
+              <p class="px-ts-text">[Πραγματική, συναινετική μαρτυρία — δεν εμφανίζεται χωρίς πραγματικό περιεχόμενο.]</p>
+              <div class="px-ts-author"><span class="px-ts-avatar" aria-hidden="true">—</span><div><div class="px-ts-name">[Όνομα]</div><div class="px-ts-meta">[έτος]</div></div></div>
+            </article>
+            <article class="px-ts-card">
+              <div class="px-ts-quote" aria-hidden="true">&ldquo;</div>
+              <p class="px-ts-text">[Markup demo. Με data-render="auto" και 0 κάρτες, το block αφαιρείται αυτόματα.]</p>
+              <div class="px-ts-author"><span class="px-ts-avatar" aria-hidden="true">—</span><div><div class="px-ts-name">[Όνομα]</div><div class="px-ts-meta">[έτος]</div></div></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
   <!-- ─── SCRIPTS ───────────────────────────────────────────────────── -->
   <script src="../blocks/01-header-dropdown/block.js"></script>
   <script src="../blocks/02-hero-video/block.js"></script>
@@ -592,5 +700,6 @@
   <script src="../blocks/16-seo-head/block.js"></script>
   <script src="../blocks/17-schema-injector/block.js"></script>
   <script src="../blocks/18-hreflang/block.js"></script>
+  <script src="../blocks/27-testimonials/block.js"></script>
 </body>
 </html>

@@ -59,3 +59,9 @@ This file is the first thing the next agent reads — it prevents duplicate work
 | 2026-06-04 | `sites/lefkimmi-lines-theme/assets/i18n.js` | Fix 2 — Lang switcher: added initialized guard + window.load fallback + capture-phase outside-click handler; added sched.tabLL/HL/LP/PL × FR/IT/DE/ES/RO; BG+RU get Cyrillic route names |
 | 2026-06-04 | `blocks/15-lang-switcher/block.js` | Fix 2 fed back to library: capture-phase document click listener for outside-click detection |
 | 2026-06-04 | `utils/greek-caps.js` | New utility: reusable Greek tonos stripping for any block site; LLGreekCaps.stripTonosUC() + .apply() |
+| 2026-06-04 | `20-about-text` | New: single-column about/intro block (eyebrow/title/body/credential), data-align center\|left, caldera tokens, CSS-only |
+| 2026-06-04 | `25-services-cards` | New: quiet 3-up service cards (✦ icon, optional index, title, text), data-cols, hover lift ≤2px; NO pricing/featured/gold top-bar; caldera tokens |
+| 2026-06-04 | `26-statement-list` | New: manifesto lines one-per-row, optional ✦ mark, light\|dark variant, soft staggered reveal; caldera tokens |
+| 2026-06-04 | `27-testimonials` | New: quote-card grid + render guard (block.js) — renders only with real cards; data-render auto\|off, data-variant, data-hide-target; NO demo testimonials |
+| 2026-06-04 | `preview/index.html` | Added #20/#25/#26/#27 with labels + TOC dots (light/sand wrappers) |
+| 2026-06-04 | `sites/praxis-therapist` | New WP theme — clean fork of lefkimmi-lines-theme: ferry code removed, engine kept; sand skin baked into main.css; GR-only (no i18n); EB Garamond+Inter (Greek-safe; Playfair Display dropped — no Greek subset); softened motion (reveal .9s, Ken Burns 1→1.05/48s, hover 2px); no counters/parallax/video. PHASE 1 (engine + hero scaffold); sections assembled in Phase 2 |
