@@ -63,13 +63,14 @@
     });
   }
 
-  /* Apply once to every element CSS uppercases (eyebrows, nav, buttons…). */
+  /* Apply once to EVERY element the CSS renders uppercase — generic, so it
+     also covers block classes (.px-at-eyebrow, .px-at-credential, …) and any
+     future ones, without a brittle hand-kept selector list. Touches only the
+     element's own text nodes, only when computed text-transform is uppercase. */
   function applyGreekCaps() {
     if (document.documentElement.lang && document.documentElement.lang !== "el") return;
-    var sel = ".eyebrow, .navlink, .btn, .hero-eyebrow, .footer-col h4, .scroll-cue span, .contact-info .k";
-    document.querySelectorAll(sel).forEach(function (el) {
-      var cs = window.getComputedStyle(el);
-      if (cs.textTransform === "uppercase") processTextNodes(el);
+    document.querySelectorAll("body *").forEach(function (el) {
+      if (window.getComputedStyle(el).textTransform === "uppercase") processTextNodes(el);
     });
   }
   if (document.readyState === "loading") {
