@@ -182,6 +182,8 @@
       "banner.eyebrow": "Réservation", "banner.title": "Réservez vos billets en ligne",
       "banner.sub": "Rapide, facile, sécurisé. Passager, moto ou voiture — réservez en 2 minutes.",
       "banner.cta": "RÉSERVEZ MAINTENANT",
+      "sched.tabLL": "Lefkimmi → Igoumenitsa", "sched.tabHL": "Igoumenitsa → Lefkimmi",
+      "sched.tabLP": "Lefkimmi → Paxos", "sched.tabPL": "Paxos → Lefkimmi",
       "about.title": "Traversées Lefkimmi–Igoumenitsa depuis 2012",
       "why.title": "Pourquoi Lefkimmi ? Plus proche qu'on ne le croit",
       "prices.title": "Tarifs ferry – dès 7,30€",
@@ -272,6 +274,8 @@
       "banner.eyebrow": "Prenotazione", "banner.title": "Prenota biglietti online",
       "banner.sub": "Rapido, facile, sicuro. Passeggero, moto o auto — assicurati il tuo posto in 2 minuti.",
       "banner.cta": "PRENOTA ORA",
+      "sched.tabLL": "Lefkimmi → Igoumenitsa", "sched.tabHL": "Igoumenitsa → Lefkimmi",
+      "sched.tabLP": "Lefkimmi → Paxos", "sched.tabPL": "Paxos → Lefkimmi",
       "about.title": "Traghetti Lefkimmi–Igoumenitsa dal 2012",
       "why.title": "Perché Lefkimmi? Più vicina di quanto pensi",
       "prices.title": "Tariffe traghetto – da 7,30€",
@@ -362,6 +366,8 @@
       "banner.eyebrow": "Buchung", "banner.title": "Tickets online buchen",
       "banner.sub": "Schnell, einfach, sicher. Passagier, Motorrad oder Auto — sichern Sie sich Ihren Platz in 2 Minuten.",
       "banner.cta": "JETZT BUCHEN",
+      "sched.tabLL": "Lefkimmi → Igoumenitsa", "sched.tabHL": "Igoumenitsa → Lefkimmi",
+      "sched.tabLP": "Lefkimmi → Paxos", "sched.tabPL": "Paxos → Lefkimmi",
       "about.title": "Fähre Lefkimmi–Igoumenitsa seit 2012",
       "why.title": "Warum Lefkimmi? Näher als du denkst",
       "prices.title": "Fähre Preise – ab 7,30€",
@@ -452,6 +458,8 @@
       "banner.eyebrow": "Reserva", "banner.title": "Reserva billetes online",
       "banner.sub": "Rápido, fácil, seguro. Pasajero, moto o coche — asegura tu plaza en 2 minutos.",
       "banner.cta": "RESERVAR AHORA",
+      "sched.tabLL": "Lefkimmi → Igoumenitsa", "sched.tabHL": "Igoumenitsa → Lefkimmi",
+      "sched.tabLP": "Lefkimmi → Paxos", "sched.tabPL": "Paxos → Lefkimmi",
       "about.title": "Rutas ferry Lefkimmi–Igoumenitsa desde 2012",
       "why.title": "¿Por qué Lefkimmi? Más cerca de lo que crees",
       "prices.title": "Tarifas ferry – desde 7,30€",
@@ -542,6 +550,8 @@
       "banner.eyebrow": "Rezervare", "banner.title": "Rezervă bilete online",
       "banner.sub": "Rapid, ușor, sigur. Pasager, motocicletă sau mașină — asigură-ți locul în 2 minute.",
       "banner.cta": "REZERVĂ ACUM",
+      "sched.tabLL": "Lefkimmi → Igoumenitsa", "sched.tabHL": "Igoumenitsa → Lefkimmi",
+      "sched.tabLP": "Lefkimmi → Paxos", "sched.tabPL": "Paxos → Lefkimmi",
       "about.title": "Curse feribot Lefkimmi–Igoumenitsa din 2012",
       "why.title": "De ce Lefkimmi? Mai aproape decât crezi",
       "prices.title": "Tarife feribot – de la 7,30€",
@@ -632,6 +642,8 @@
       "banner.eyebrow": "Резервация", "banner.title": "Резервирайте билети онлайн",
       "banner.sub": "Бързо, лесно, сигурно. Пътник, мотоциклет или автомобил — осигурете си място за 2 минути.",
       "banner.cta": "РЕЗЕРВИРАЙ СЕГА",
+      "sched.tabLL": "Лефкими → Игуменица", "sched.tabHL": "Игуменица → Лефкими",
+      "sched.tabLP": "Лефкими → Паксос", "sched.tabPL": "Паксос → Лефкими",
       "about.title": "Фериботни линии Лефкими–Игуменица от 2012",
       "why.title": "Защо Лефкими? По-близо, отколкото мислите",
       "prices.title": "Цени ферибот – от 7,30€",
@@ -722,6 +734,8 @@
       "banner.eyebrow": "Бронирование", "banner.title": "Купить билеты онлайн",
       "banner.sub": "Быстро, легко, безопасно. Пассажир, мотоцикл или автомобиль — займите место за 2 минуты.",
       "banner.cta": "КУПИТЬ БИЛЕТ СЕЙЧАС",
+      "sched.tabLL": "Лефкими → Игуменица", "sched.tabHL": "Игуменица → Лефкими",
+      "sched.tabLP": "Лефкими → Паксос", "sched.tabPL": "Паксос → Лефкими",
       "about.title": "Паромное сообщение Лефкими–Игуменица с 2012 года",
       "why.title": "Почему Лефкими? Ближе, чем кажется",
       "prices.title": "Цены на паром – от 7,30€",
@@ -815,30 +829,41 @@
     });
   }
 
+  var initialized = false;
+
   function init() {
+    if (initialized) return;
+    initialized = true;
+
     buildMenu();
     var saved = "el";
     try { saved = localStorage.getItem(STORE_KEY) || "el"; } catch (e) {}
     apply(saved);
 
     var wrap = document.querySelector("[data-lang]");
-    var btn = document.querySelector("[data-lang-btn]");
+    var btn  = document.querySelector("[data-lang-btn]");
     if (btn && wrap) {
       btn.addEventListener("click", function (e) {
         e.stopPropagation();
         wrap.classList.toggle("open");
       });
+      /* Close dropdown on any outside click */
       document.addEventListener("click", function (e) {
-        if (!wrap.contains(e.target)) wrap.classList.remove("open");
-      });
+        if (wrap.classList.contains("open") && !wrap.contains(e.target)) {
+          wrap.classList.remove("open");
+        }
+      }, true); /* capture phase — fires before any stopPropagation */
     }
   }
 
   global.LLi18n = { init: init, apply: apply, LANGS: LANGS };
 
+  /* Run immediately when DOM is ready; use load as belt-and-suspenders
+     in case a WordPress plugin delays script execution. */
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
   } else {
     init();
   }
+  window.addEventListener("load", init); /* no-op if init() already ran */
 })(window);

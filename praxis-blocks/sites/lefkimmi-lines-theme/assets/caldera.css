@@ -39,7 +39,8 @@ img{max-width:100%;display:block;}
 a{color:inherit;}
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 40px;}
 
-/* greek caps without accents handled by text-transform + pre-stripped source */
+/* greek caps: CSS text-transform:uppercase does NOT strip tonos in Chrome/Blink.
+   JS utility in app.js (stripTonosUC + applyGreekCaps) handles this at runtime. */
 .eyebrow{
   font-family:var(--fontB);font-weight:600;font-size:13px;letter-spacing:.34em;
   text-transform:uppercase;color:var(--gold-deep);display:inline-flex;align-items:center;gap:14px;

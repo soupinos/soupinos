@@ -114,8 +114,8 @@
     });
   });
 
-  // Close on outside click / Escape
-  document.addEventListener('click', e => { if (!widget.contains(e.target)) closeMenu(); });
+  // Close on outside click (capture phase: fires before any stopPropagation on children) / Escape
+  document.addEventListener('click', e => { if (!widget.contains(e.target)) closeMenu(); }, true);
   widget.addEventListener('keydown', e => {
     if (e.key === 'Escape') { closeMenu(); toggle.focus(); }
   });

@@ -1,7 +1,7 @@
 /* ============================================================
    LEFKIMMI LINES — interactions (vanilla)
    header scroll · count-up stats · scroll reveal · drawer ·
-   contact form · hero-layout (tweakable) · video fallback
+   hero-layout (tweakable) · video fallback
    ============================================================ */
 (function () {
   "use strict";
@@ -84,17 +84,6 @@
     });
   }
 
-  /* ---------- contact form (demo submit) ---------- */
-  var form = document.querySelector(".cform form");
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var ok = form.parentNode.querySelector(".form-ok");
-      form.style.display = "none";
-      if (ok) ok.classList.add("show");
-    });
-  }
-
   /* ---------- defer map iframe until after load (non-blocking) ---------- */
   function loadMap() {
     var f = document.querySelector(".map-card iframe[data-src]");
@@ -103,10 +92,7 @@
   if (document.readyState === "complete") setTimeout(loadMap, 400);
   else window.addEventListener("load", function () { setTimeout(loadMap, 400); });
 
-  /* ---------- subtle parallax (hero media + 2 offset photos) ----------
-     Desktop + motion-OK only. Hero uses translate on the .media wrapper
-     (won't fight the Ken Burns scale on the child img); offset photos use
-     object-position so they also stay clear of their scale animation. */
+  /* ---------- subtle parallax (hero media + 2 offset photos) ---------- */
   var mqDesk   = window.matchMedia("(min-width:861px)");
   var mqMotion = window.matchMedia("(prefers-reduced-motion: no-preference)");
   function pxOn() { return mqDesk.matches && mqMotion.matches; }
@@ -137,7 +123,7 @@
         it.el.style.transform = "translate3d(0," + (prog * 8).toFixed(2) + "%,0)";
       } else {
         var center = r.top + r.height / 2;
-        var rel = (center - vh / 2) / vh;           /* ~ -0.6 .. 0.6 */
+        var rel = (center - vh / 2) / vh;
         var pos = Math.max(34, Math.min(66, 50 + rel * 14));
         it.el.style.objectPosition = "50% " + pos.toFixed(1) + "%";
       }
@@ -149,4 +135,69 @@
   window.addEventListener("resize", function () { setupParallax(); pxFrame(); }, { passive: true });
   if (mqMotion.addEventListener) mqMotion.addEventListener("change", function () { setupParallax(); pxFrame(); });
   pxFrame();
+
+  /* =================================================================
+     FIX 1 — GREEK UPPERCASE WITHOUT TONOS
+     CSS text-transform:uppercase in Chrome/Blink does NOT remove Greek
+     tonos (acute accent) even when html[lang="el"]. Firefox follows the
+     CSS spec; Chrome does not. Fix: strip tonos in JS via Unicode NFD.
+
+     NFD decomposes e.g. "ά" → "α" (U+03B1) + combining acute (U+0301).
+     We then remove combining marks U+0300–U+0307 and U+0309–U+036F,
+     intentionally KEEPING U+0308 (diaeresis/dialytika) so that
+     ϊ (iota-diaeresis) uppercase correctly becomes Ϊ, not just Ι.
+
+     Block library note: this utility belongs in praxis-blocks/utils/
+     as greek-caps.js so future sites can import it.
+     ================================================================= */
+
+  /* Build regex using explicit codepoints to avoid encoding ambiguity. */
+  var TONOS_RE = (function () {
+    /* Combine two ranges into one character class:
+       [̀-̇̉-ͯ]  (skips U+0308 diaeresis) */
+    return new RegExp(
+      "[̀-̇̉-ͯ]", "g"
+    );
+  }());
+
+  function stripTonosUC(s) {
+    return s.normalize("NFD").replace(TONOS_RE, "").toUpperCase();
+  }
+
+  /* Process direct text nodes of el — does not recurse into child elements. */
+  function processTextNodes(el) {
+    Array.prototype.forEach.call(el.childNodes, function (n) {
+      if (n.nodeType !== 3) return;
+      var t = n.textContent;
+      if (!t.trim()) return;
+      n.textContent = stripTonosUC(t);
+    });
+  }
+
+  /* One-time fix for hardcoded Greek text that CSS uppercases but is never
+     replaced by i18n.js (no data-i18n attribute). */
+  document.querySelectorAll(".lk-txt .ln2").forEach(processTextNodes);
+
+  /* Called after every i18n language switch. Only acts when lang="el"
+     because other languages do not have Greek-specific tonos in their text. */
+  function applyGreekCaps() {
+    if (document.documentElement.lang !== "el") return;
+    document.querySelectorAll("[data-i18n]").forEach(function (el) {
+      var cs = window.getComputedStyle(el);
+      if (cs.textTransform !== "uppercase") return;
+      processTextNodes(el);
+    });
+  }
+
+  /* Patch window.LLi18n.apply (i18n.js exposes it before app.js runs). */
+  (function patchI18n() {
+    if (!window.LLi18n) return;
+    var orig = window.LLi18n.apply;
+    window.LLi18n.apply = function (lang) {
+      orig.call(window.LLi18n, lang);
+      applyGreekCaps();
+    };
+    applyGreekCaps(); /* handle current state set by i18n init */
+  }());
+
 })();
