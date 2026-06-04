@@ -176,6 +176,7 @@ h1,h2,h3{font-family:var(--fontH);font-weight:400;color:var(--navy-ink);margin:0
 .consent a{color:var(--gold-deep);}
 .form-ok{display:none;text-align:center;padding:30px;}
 .form-ok.show{display:block;}
+.form-err{display:none;margin-top:14px;padding:12px 16px;border-radius:4px;background:#fbeceb;color:#9b2c2c;border:1px solid #f0cfcc;font-size:14px;}
 .form-ok .tick{width:58px;height:58px;border-radius:50%;background:var(--gold-tint);color:var(--gold-deep);
   display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
 .form-ok h3{font-size:24px;margin-bottom:8px;}
@@ -232,6 +233,13 @@ h1,h2,h3{font-family:var(--fontH);font-weight:400;color:var(--navy-ink);margin:0
   .section{padding:84px 0;}
   .footer-grid{grid-template-columns:1fr 1fr;gap:30px;}
   .site-header{padding:14px 22px;}
+}
+@media(max-width:560px){
+  /* long Greek CTAs must wrap, never overflow the viewport */
+  .btn{white-space:normal;text-align:center;}
+  .hero-ctas{width:100%;}
+  .hero-ctas .btn{width:100%;}
+  .book-banner .btn-xl{width:100%;padding:18px 24px;}
 }
 @media(max-width:520px){
   .footer-grid{grid-template-columns:1fr;}

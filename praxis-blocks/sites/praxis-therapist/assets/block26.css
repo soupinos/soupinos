@@ -1,0 +1,68 @@
+/* ============================================================
+   BLOCK #26 — statement-list
+   A short manifesto: a few strong lines, one per row, each gently
+   revealed. Calm, declarative. Caldera skin tokens (with fallbacks).
+   px- prefixed, no deps.
+
+   PARTS
+     .px-sl-root            wrapper (carries data-variant)
+     .px-sl-item            one statement line
+     .px-sl-mark            small leading accent (✦ / — ) — optional
+     .px-sl-text            the statement text
+
+   CONFIG (attributes on .px-sl-root)
+     data-variant="light"   on light surfaces (default)
+     data-variant="dark"    on dark/navy surfaces
+
+   EXAMPLE
+     <div class="px-sl-root" data-variant="light">
+       <p class="px-sl-item reveal">
+         <span class="px-sl-mark" aria-hidden="true">✦</span>
+         <span class="px-sl-text">Δεν θα σε πω «πελάτη» — είσαι άνθρωπος.</span>
+       </p>
+       <p class="px-sl-item reveal d1">…</p>
+     </div>
+
+   REUSE: generic — values, promises, principles, "why us", any sector.
+   ============================================================ */
+
+.px-sl-root {
+  max-width: 56ch;
+  margin: 0 auto;
+}
+
+.px-sl-item {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin: 0;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line, #e8e0d2);
+}
+.px-sl-item:last-child { border-bottom: 0; }
+
+.px-sl-mark {
+  flex: none;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--gold, #C9A84C);
+}
+
+.px-sl-text {
+  font-family: var(--fontH, Georgia, serif);
+  font-weight: 400;
+  font-size: clamp(20px, 2.4vw, 27px);
+  line-height: 1.4;
+  color: var(--navy-ink, #3f2a1e);
+}
+
+/* dark variant — on .section.navy or any dark surface */
+.px-sl-root[data-variant="dark"] .px-sl-item {
+  border-bottom-color: rgba(255, 255, 255, .12);
+}
+.px-sl-root[data-variant="dark"] .px-sl-text {
+  color: #fff;
+}
+.px-sl-root[data-variant="dark"] .px-sl-mark {
+  color: var(--gold-soft, #d4b56a);
+}
