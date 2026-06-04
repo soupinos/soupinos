@@ -1,0 +1,12 @@
+# stray / personal media (never part of the project)
+*.mp4
+*.mov
+
+# stray archives at repo root only
+# (tracked zips under praxis-blocks/sites/ must stay tracked, so scope to root)
+/*.zip
+
+# Office lock/temp files
+~$*
+.DS_Store
+Thumbs.db
