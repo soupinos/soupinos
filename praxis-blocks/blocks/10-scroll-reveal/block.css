@@ -15,17 +15,17 @@
 /* Direction: up (default) */
 [data-reveal]:not([data-reveal-dir]),
 [data-reveal][data-reveal-dir="up"] {
-  transform: translateY(28px);
+  transform: translateY(16px);
 }
 
 /* Direction: left */
 [data-reveal][data-reveal-dir="left"] {
-  transform: translateX(-28px);
+  transform: translateX(-16px);
 }
 
 /* Direction: right */
 [data-reveal][data-reveal-dir="right"] {
-  transform: translateX(28px);
+  transform: translateX(16px);
 }
 
 /* Direction: fade only */

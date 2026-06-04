@@ -245,14 +245,20 @@ h1,h2,h3{font-family:var(--fontH);font-weight:400;color:var(--navy-ink);margin:0
 
 /* ============================================================ FLEET */
 .fleet-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;}
-.ship-card{position:relative;border-radius:3px;overflow:hidden;box-shadow:0 26px 56px -32px rgba(15,42,68,.4);}
-.ship-card img{width:100%;height:420px;object-fit:cover;transition:.7s var(--ease);}
-.ship-card:hover img{transform:scale(1.05);}
+.ship-card{position:relative;border-radius:3px;overflow:hidden;
+  box-shadow:0 26px 56px -32px rgba(15,42,68,.4);transition:box-shadow .45s var(--ease);}
+.ship-card img{width:100%;height:420px;object-fit:cover;transition:transform .45s var(--ease);}
 .ship-card .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,34,56,0) 40%,rgba(13,34,56,.82) 100%);}
 .ship-card .meta{position:absolute;left:30px;bottom:26px;right:30px;color:#fff;z-index:2;}
 .ship-card .meta .tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-soft);font-weight:600;}
 .ship-card .meta .nm{font-family:var(--fontH);font-size:28px;margin-top:6px;}
-.ship-card .frame-acc{position:absolute;inset:14px;border:1px solid rgba(255,255,255,.25);z-index:2;pointer-events:none;}
+.ship-card .frame-acc{position:absolute;inset:14px;border:1px solid rgba(255,255,255,.25);z-index:2;
+  pointer-events:none;transition:border-color .45s var(--ease);}
+@media(hover:hover){
+  .ship-card:hover{box-shadow:0 26px 56px -32px rgba(15,42,68,.55),0 0 0 1px rgba(166,134,60,.38);}
+  .ship-card:hover img{transform:scale(1.05);}
+  .ship-card:hover .frame-acc{border-color:rgba(194,163,91,.55);}
+}
 
 /* ============================================================ SCHEDULE — readable labels (FIX) */
 .sched-wrap{background:#fff;border:1px solid var(--line);border-radius:6px;overflow:hidden;
@@ -351,18 +357,20 @@ h1,h2,h3{font-family:var(--fontH);font-weight:400;color:var(--navy-ink);margin:0
 .footer-bottom a:hover{color:#fff;}
 
 /* ============================================================ REVEAL ANIM */
-.reveal{opacity:0;transform:translateY(28px);transition:.8s var(--ease);}
+.reveal{opacity:0;transform:translateY(16px);transition:.55s var(--ease);}
 .reveal.in{opacity:1;transform:none;}
 .reveal.d1{transition-delay:.08s;}.reveal.d2{transition-delay:.16s;}.reveal.d3{transition-delay:.24s;}
 
 /* ---- offset card children stagger (#8 Ken Burns + text fade-in) ---- */
-@keyframes oc-up{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
-.offset.in .card .eyebrow{animation:oc-up .62s var(--ease) both;}
-.offset.in .card .h2{animation:oc-up .66s var(--ease) .12s both;}
-.offset.in .card .lede{animation:oc-up .66s var(--ease) .22s both;}
-.offset.in .card .usp-tabs{animation:oc-up .56s var(--ease) .34s both;}
-.offset.in .card .explore{animation:oc-up .5s var(--ease) .44s both;}
+@keyframes oc-up{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
+.offset.in .card .eyebrow{animation:oc-up .55s var(--ease) both;}
+.offset.in .card .h2{animation:oc-up .58s var(--ease) .10s both;}
+.offset.in .card .lede{animation:oc-up .58s var(--ease) .19s both;}
+.offset.in .card .usp-tabs{animation:oc-up .52s var(--ease) .30s both;}
+.offset.in .card .explore{animation:oc-up .48s var(--ease) .40s both;}
 @media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none;}
+  .ship-card img{transition:none;}
   .offset .card .eyebrow,.offset .card .h2,.offset .card .lede,
   .offset .card .usp-tabs,.offset .card .explore{animation:none;}
 }
