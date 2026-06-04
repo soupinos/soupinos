@@ -109,7 +109,7 @@
       "faq.q6": "Are there crossings to Paxos?",
       "faq.a6": "Yes, Kamelia Lines operates Lefkimmi–Paxos with 3 crossings daily.",
       "faq.q7": "How do I book a ticket online?",
-      "faq.a7": "Click "Book a ticket" — booking is made through the company's online reservation system.",
+      "faq.a7": "Click \"Book a ticket\" — booking is made through the company's online reservation system.",
       "cookie.msg": "We use cookies to improve your experience.",
       "cookie.accept": "Accept all", "cookie.necessary": "Essential only", "cookie.more": "Learn more",
       "seo.title": "Lefkimmi – Igoumenitsa Ferry | Lefkimmi Lines",
