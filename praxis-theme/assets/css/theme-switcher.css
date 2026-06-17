@@ -1,0 +1,185 @@
+/* ════════════════════════════════════════════════════════════════════════════
+   theme-switcher.css  —  Language switcher panel styles
+   Depends on CSS custom properties defined in main.css (:root)
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* ── Wrapper ─────────────────────────────────────────────────────────────── */
+#lang-switcher {
+  position: relative;
+}
+
+/* ── Toggle button ───────────────────────────────────────────────────────── */
+#lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  line-height: 1;
+}
+
+#lang-toggle:hover {
+  border-color: var(--red);
+  color: var(--white);
+  background: var(--red-soft);
+}
+
+#lang-label {
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+/* ── Dropdown panel ──────────────────────────────────────────────────────── */
+#lang-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 175px;
+  background: var(--bg2);
+  border: 1px solid rgba(128, 128, 128, 0.22);
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow:
+    0 20px 48px rgba(0, 0, 0, 0.48),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+  z-index: 3000;
+  /* hidden state */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px) scale(0.97);
+  pointer-events: none;
+  transition:
+    opacity    0.22s var(--ease),
+    transform  0.22s var(--ease),
+    visibility 0.22s;
+}
+
+#lang-panel.open {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
+}
+
+/* ── Individual option ───────────────────────────────────────────────────── */
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 10px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s;
+}
+
+.lang-option:hover  { background: var(--red-soft); }
+.lang-option.active { background: var(--red-soft); }
+
+.lang-flag {
+  font-size: 1.1rem;
+  line-height: 1;
+  flex-shrink: 0;
+  /* Emoji flag baseline fix */
+  display: inline-flex;
+  align-items: center;
+}
+
+.lang-name {
+  flex: 1;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.86rem;
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1;
+}
+
+.lang-code {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.64rem;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.lang-option.active .lang-name,
+.lang-option.active .lang-code {
+  color: var(--red);
+}
+
+/* Thin separator after active item to help scanability */
+.lang-option + .lang-option { border-top: 1px solid rgba(128,128,128,0.08); }
+
+/* ── Mobile: hide (nav links also hidden below 768px) ────────────────────── */
+@media (max-width: 768px) {
+  #lang-switcher { display: none; }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   Skin Switcher — override 4-column grid (main.css) with clean vertical list
+   ══════════════════════════════════════════════════════════════════════════════ */
+#theme-panel {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 190px !important;
+  padding: 5px !important;
+  gap: 0 !important;
+}
+
+.skin-card {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 10px !important;
+  width: 100% !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 6px !important;
+  padding: 7px 10px !important;
+  cursor: pointer !important;
+  text-align: left !important;
+  transform: none !important;
+  box-shadow: none !important;
+  transition: background 0.15s !important;
+}
+
+.skin-card:hover  { background: var(--red-soft) !important; }
+.skin-card.active { background: var(--red-soft) !important; }
+.skin-card + .skin-card { border-top: 1px solid rgba(128,128,128,0.08); }
+
+.skin-swatch {
+  display: flex !important;
+  flex-direction: row !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 5px !important;
+  overflow: hidden !important;
+  flex-shrink: 0 !important;
+}
+
+.skin-swatch span { display: block; height: 100%; }
+
+.skin-name {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 0.82rem !important;
+  font-weight: 500 !important;
+  color: var(--white) !important;
+  letter-spacing: 0.03em !important;
+  text-transform: none !important;
+}
+
+.skin-card.active .skin-name { color: var(--red) !important; }

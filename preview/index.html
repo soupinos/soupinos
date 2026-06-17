@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Δημήτρης Κουκούλης — Ψυχολόγος | Ψυχοθεραπευτής</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#FAF7F4;
+  --bg2:#F2EDE6;
+  --bg3:#EBE4DA;
+  --caldera:#7A5C44;
+  --caldera-light:#A07858;
+  --sand:#C8B49A;
+  --sand-light:#DDD0C0;
+  --text:#2A1F14;
+  --muted:#7A6A5C;
+  --border:rgba(122,92,68,.12);
+  --border2:rgba(122,92,68,.2);
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  font-family:'DM Sans',sans-serif;
+  font-weight:400;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  line-height:1.6;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  padding:22px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background .4s,backdrop-filter .4s,padding .3s,box-shadow .4s;
+}
+nav.scrolled{
+  background:rgba(250,247,244,.94);
+  backdrop-filter:blur(14px);
+  padding:14px 48px;
+  box-shadow:0 1px 0 var(--border2);
+}
+.nav-logo{
+  font-family:'Playfair Display',serif;font-weight:700;font-size:1.2rem;
+  color:var(--text);text-decoration:none;letter-spacing:-.01em;
+}
+.nav-links{display:flex;align-items:center;gap:36px;list-style:none}
+.nav-links a{
+  color:var(--muted);text-decoration:none;font-size:.88rem;
+  transition:color .2s;
+}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{
+  background:var(--caldera)!important;
+  color:#FAF7F4!important;
+  padding:9px 20px;border-radius:3px;
+  transition:opacity .2s!important;
+}
+.nav-cta:hover{opacity:.84!important}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  padding:120px 48px 80px;
+  position:relative;
+  background:#E8DDD2;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background-image:url('https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1600');
+  background-size:cover;
+  background-position:center;
+  z-index:0;
+}
+.hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background:rgba(250,247,244,.78);
+}
+#hero::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;
+  height:1px;background:var(--border);z-index:1;
+}
+.hero-content{
+  text-align:center;max-width:800px;
+  position:relative;z-index:1;
+}
+.hero-headline{
+  font-family:'Playfair Display',serif;font-weight:700;
+  font-size:clamp(1.85rem,4.2vw,3.4rem);
+  line-height:1.22;letter-spacing:-.02em;
+  margin-bottom:28px;
+  color:var(--text);
+}
+.hero-sub{
+  font-size:clamp(.93rem,1.6vw,1.05rem);
+  font-weight:300;color:var(--muted);
+  margin-bottom:16px;line-height:1.9;
+}
+.hero-identity{
+  font-size:.88rem;
+  color:var(--caldera-light);
+  letter-spacing:.04em;
+  margin-bottom:40px;
+  font-weight:500;
+}
+.btn-primary{
+  background:var(--caldera);color:var(--bg);
+  padding:14px 30px;border-radius:3px;
+  text-decoration:none;font-size:.93rem;
+  transition:opacity .2s,transform .2s;display:inline-block;
+  font-weight:400;
+}
+.btn-primary:hover{opacity:.84;transform:translateY(-1px)}
+
+/* ── STATEMENT ── */
+#statement{
+  padding:80px 48px;
+  background:var(--bg2);
+  border-bottom:1px solid var(--border);
+}
+.statement-inner{
+  max-width:680px;margin:0 auto;
+  text-align:center;
+}
+.statement-inner p{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.05rem,2.2vw,1.35rem);
+  font-weight:400;
+  line-height:1.8;
+  color:var(--text);
+  opacity:.88;
+}
+
+/* ── ABOUT ── */
+#about{
+  padding:100px 48px;
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:start;
+}
+.about-photo{
+  aspect-ratio:4/5;
+  background:var(--bg3);
+  border:1px solid var(--border2);
+  border-radius:3px;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--muted);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;
+}
+.about-text .sec-label{
+  font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--caldera);margin-bottom:16px;
+}
+.about-text h2{
+  font-family:'Playfair Display',serif;font-weight:700;
+  font-size:clamp(1.5rem,2.8vw,2.2rem);
+  line-height:1.25;letter-spacing:-.02em;
+  margin-bottom:24px;color:var(--text);
+}
+.about-body p{
+  color:var(--muted);font-weight:300;font-size:.95rem;
+  line-height:1.85;margin-bottom:16px;
+}
+.about-body p:last-child{margin-bottom:0}
+.about-credential{
+  margin-top:28px;padding-top:24px;
+  border-top:1px solid var(--border2);
+  font-size:.82rem;color:var(--caldera-light);
+  letter-spacing:.04em;font-weight:500;
+}
+
+/* ── SERVICES ── */
+#services{
+  padding:100px 48px;
+  background:var(--bg2);
+  border-top:1px solid var(--border);
+}
+.section-wrap{max-width:1100px;margin:0 auto}
+.sec-label{
+  font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--caldera);margin-bottom:14px;
+}
+.sec-title{
+  font-family:'Playfair Display',serif;font-weight:700;
+  font-size:clamp(1.8rem,3.5vw,2.8rem);
+  line-height:1.15;letter-spacing:-.02em;margin-bottom:12px;color:var(--text);
+}
+.sec-sub{
+  color:var(--muted);font-weight:300;font-size:.95rem;margin-bottom:56px;
+  max-width:560px;
+}
+.services-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--border2);border:1px solid var(--border2);
+  border-radius:3px;overflow:hidden;
+}
+.svc-card{
+  background:var(--bg);
+  padding:40px 32px;
+  transition:background .2s;
+}
+.svc-card:hover{background:var(--bg3)}
+.svc-num{
+  font-family:'Playfair Display',serif;font-weight:600;
+  font-size:1.8rem;color:var(--sand);margin-bottom:20px;
+  line-height:1;
+}
+.svc-title{
+  font-family:'Playfair Display',serif;font-weight:600;
+  font-size:1.05rem;line-height:1.35;margin-bottom:12px;color:var(--text);
+}
+.svc-desc{color:var(--muted);font-weight:300;font-size:.88rem;line-height:1.8}
+
+/* ── WHY ── */
+#why{
+  padding:100px 48px;
+  border-top:1px solid var(--border);
+}
+.why-inner{max-width:1100px;margin:0 auto}
+.why-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:start;margin-top:56px;
+}
+.why-text p{
+  color:var(--muted);font-weight:300;font-size:.95rem;
+  line-height:1.85;margin-bottom:16px;
+}
+.why-list{list-style:none}
+.why-list li{
+  padding:20px 0;
+  border-bottom:1px solid var(--border);
+  display:flex;gap:16px;
+  font-size:.93rem;font-weight:300;color:var(--muted);
+  line-height:1.7;
+}
+.why-list li:first-child{border-top:1px solid var(--border)}
+.why-list li::before{
+  content:'—';color:var(--caldera-light);
+  flex-shrink:0;margin-top:2px;
+}
+
+/* ── CTA BANNER ── */
+#cta-banner{
+  background:var(--caldera);
+  padding:80px 48px;
+  text-align:center;
+}
+.cta-inner{max-width:680px;margin:0 auto}
+.cta-inner h2{
+  font-family:'Playfair Display',serif;font-weight:700;
+  font-size:clamp(1.8rem,3.5vw,2.8rem);
+  line-height:1.2;letter-spacing:-.02em;
+  color:#FAF7F4;margin-bottom:16px;
+}
+.cta-inner p{
+  color:rgba(250,247,244,.7);font-weight:300;
+  font-size:.97rem;margin-bottom:36px;line-height:1.7;
+}
+.btn-light{
+  background:#FAF7F4;color:var(--caldera);
+  padding:14px 30px;border-radius:3px;
+  text-decoration:none;font-size:.93rem;
+  transition:opacity .2s;display:inline-block;
+  font-weight:500;
+}
+.btn-light:hover{opacity:.88}
+
+/* ── CONTACT ── */
+#contact{
+  padding:100px 48px;
+  background:var(--bg2);
+  border-top:1px solid var(--border);
+}
+.contact-wrap{max-width:680px;margin:0 auto}
+.contact-wrap h2{
+  font-family:'Playfair Display',serif;font-weight:700;
+  font-size:clamp(1.8rem,3.5vw,2.8rem);
+  line-height:1.2;letter-spacing:-.02em;
+  color:var(--text);margin-bottom:14px;
+}
+.contact-wrap .sec-label{margin-bottom:16px}
+.contact-sub{color:var(--muted);font-weight:300;font-size:.95rem;margin-bottom:44px;line-height:1.7}
+.contact-details{
+  display:flex;flex-direction:column;gap:14px;margin-bottom:36px;
+}
+.contact-row{
+  display:flex;gap:14px;align-items:center;
+  font-size:.93rem;color:var(--muted);font-weight:300;
+}
+.contact-row strong{
+  color:var(--text);font-weight:400;min-width:80px;
+}
+.contact-row a{
+  color:var(--muted);text-decoration:none;
+  transition:color .2s;
+}
+.contact-row a:hover{color:var(--caldera)}
+.contact-note{
+  font-size:.82rem;color:var(--muted);
+  border-top:1px solid var(--border);
+  padding-top:20px;font-weight:300;line-height:1.7;
+}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--bg3);border-top:1px solid var(--border);
+  padding:28px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.foot-name{
+  font-family:'Playfair Display',serif;font-weight:600;
+  font-size:1rem;color:var(--text);
+}
+.foot-copy{font-size:.82rem;color:var(--muted);font-weight:300}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  nav{padding:16px 20px}
+  nav.scrolled{padding:12px 20px}
+  .nav-links{display:none}
+
+  #hero{padding:100px 20px 64px}
+  #statement{padding:56px 20px}
+  #about{
+    grid-template-columns:1fr;gap:40px;
+    padding:64px 20px;
+  }
+  .about-photo{aspect-ratio:3/2;max-height:240px}
+  #services{padding:64px 20px}
+  .services-grid{grid-template-columns:1fr}
+  #why{padding:64px 20px}
+  .why-grid{grid-template-columns:1fr;gap:40px}
+  #cta-banner{padding:56px 20px}
+  #contact{padding:64px 20px}
+  footer{padding:22px 20px;flex-direction:column;gap:8px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Δ. Κουκούλης</a>
+  <ul class="nav-links">
+    <li><a href="#services">Υπηρεσίες</a></li>
+    <li><a href="#about">Σχετικά</a></li>
+    <li><a href="#contact" class="nav-cta">Ραντεβού →</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content reveal">
+    <h1 class="hero-headline">«Δεν θα σου πω ότι όλα θα πάνε καλά.<br>Θα σου πω: κάτσε να δούμε γιατί δεν πάνε.»</h1>
+    <p class="hero-sub">
+      Ψυχοθεραπεία χωρίς εύκολες υποσχέσεις.<br>
+      Χωρίς life coaching.<br>
+      Χωρίς έτοιμες συνταγές.<br>
+      Χωρίς συνθήματα αυτοβελτίωσης.
+    </p>
+    <p class="hero-identity">Δημήτρης Κουκούλης — Ψυχολόγος | Ψυχοθεραπευτής</p>
+    <a href="#contact" class="btn-primary">Κλείσε ένα ραντεβού — χωρίς δέσμευση</a>
+  </div>
+</section>
+
+<!-- STATEMENT -->
+<section id="statement">
+  <div class="statement-inner reveal">
+    <p>
+      Δεν είμαι εδώ για να σε διορθώσω. Δεν είμαι εδώ για να σου μάθω πώς
+      να γίνεις μια καλύτερη εκδοχή του εαυτού σου. Είμαι εδώ για να ακούσω
+      την ιστορία σου, να καταλάβουμε μαζί τι σε δυσκολεύει και να δώσουμε
+      χώρο σε όσα μέχρι τώρα έμεναν χωρίς λόγια.
+    </p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-photo reveal">
+    <img src="https://images.pexels.com/photos/256559/pexels-photo-256559.jpeg?auto=compress&cs=tinysrgb&w=800" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:3px;">
+  </div>
+  <div class="about-text">
+    <div class="sec-label reveal">Σχετικά</div>
+    <h2 class="reveal d1">Με λένε Δημήτρη Κουκούλη και είμαι ψυχολόγος – ψυχοθεραπευτής.</h2>
+    <div class="about-body reveal d2">
+      <p>Δεν πιστεύω ότι η ψυχοθεραπεία είναι προϊόν.</p>
+      <p>Ξέρω τι ίσως σκέφτεσαι: «Άλλος ένας ψυχολόγος». Το σκέφτομαι κι εγώ —
+      κάθε φορά που βλέπω την ψυχοθεραπεία να παρουσιάζεται σαν συνδρομή
+      γυμναστηρίου. Πακέτα. Προσφορές. Εγγυημένα αποτελέσματα. Εύκολες
+      υποσχέσεις.</p>
+      <p>Δεν είμαι εδώ για να σε διορθώσω. Είμαι εδώ για να σε ακούσω.
+      Πραγματικά.</p>
+    </div>
+    <div class="about-credential reveal d3">Ψυχολόγος – Ψυχοθεραπευτής</div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-wrap">
+    <div class="reveal">
+      <div class="sec-label">Υπηρεσίες</div>
+      <h2 class="sec-title">Με τι μπορώ να σε βοηθήσω.</h2>
+      <p class="sec-sub">Ψυχοθεραπεία ενηλίκων — ατομική, πρόσωπο με πρόσωπο ή εξ αποστάσεως.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card reveal">
+        <div class="svc-num">01</div>
+        <h3 class="svc-title">Άγχος & Πανικός</h3>
+        <p class="svc-desc">Όταν το σώμα αντιδρά πριν προλάβεις να σκεφτείς. Μαθαίνουμε να το ακούμε αντί να το αγνοούμε.</p>
+      </div>
+      <div class="svc-card reveal d1">
+        <div class="svc-num">02</div>
+        <h3 class="svc-title">Κατάθλιψη & Θλίψη</h3>
+        <p class="svc-desc">Όταν τα πράγματα που άξιζαν σταματούν να αξίζουν. Χωρίς ταμπέλες, χωρίς βιαστικές λύσεις.</p>
+      </div>
+      <div class="svc-card reveal d2">
+        <div class="svc-num">03</div>
+        <h3 class="svc-title">Σχέσεις & Επικοινωνία</h3>
+        <p class="svc-desc">Μοτίβα που επαναλαμβάνονται. Συγκρούσεις που δεν λύνονται. Συναισθήματα που δεν βγαίνουν.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why">
+  <div class="why-inner">
+    <div class="reveal">
+      <div class="sec-label">Πώς δουλεύω</div>
+      <h2 class="sec-title">Ψυχοθεραπεία που σέβεται<br>την πολυπλοκότητά σου.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-text reveal d1">
+        <p>Δεν υπάρχουν πρωτόκολλα που κόβονται και ράβονται. Κάθε άνθρωπος έχει τη δική του ιστορία, τον δικό του ρυθμό, τις δικές του ανάγκες.</p>
+        <p>Η θεραπευτική σχέση δεν είναι υπηρεσία. Είναι ο χώρος όπου κάτι μπορεί να αλλάξει — αν υπάρχει ο κατάλληλος χρόνος και η κατάλληλη ασφάλεια.</p>
+      </div>
+      <ul class="why-list reveal d2">
+        <li>Χωρίς «homework» που δεν έχει νόημα για σένα</li>
+        <li>Χωρίς ωράρια-εξπρές ή πακέτα session</li>
+        <li>Χωρίς κρίση για αυτό που θα πεις</li>
+        <li>Με εμπιστευτικότητα, πάντα</li>
+        <li>Εξ αποστάσεως ή δια ζώσης — [ΠΟΛΗ]</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section id="cta-banner">
+  <div class="cta-inner reveal">
+    <h2>Το πρώτο βήμα είναι απλά να ρωτήσεις.</h2>
+    <p>Δεν χρειάζεται να ξέρεις τι ακριβώς ψάχνεις. Αρκεί να νιώθεις ότι κάτι δεν κυλάει όπως θα έπρεπε.</p>
+    <a href="#contact" class="btn-light">Κλείσε ένα ραντεβού — χωρίς δέσμευση</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="sec-label reveal">Επικοινωνία</div>
+    <h2 class="reveal d1">Ας μιλήσουμε.</h2>
+    <p class="contact-sub reveal d2">Στείλε μήνυμα ή κάλεσε για να κλείσουμε ένα πρώτο ραντεβού — εντελώς χωρίς δέσμευση.</p>
+    <div class="contact-details reveal d2">
+      <div class="contact-row">
+        <strong>Τηλέφωνο</strong>
+        <a href="tel:[ΤΗΛΕΦΩΝΟ]">[ΤΗΛΕΦΩΝΟ]</a>
+      </div>
+      <div class="contact-row">
+        <strong>Email</strong>
+        <a href="mailto:[EMAIL]">[EMAIL]</a>
+      </div>
+      <div class="contact-row">
+        <strong>Τοποθεσία</strong>
+        <span>[ΠΟΛΗ]</span>
+      </div>
+    </div>
+    <p class="contact-note reveal d3">
+      Δημήτρης Κουκούλης — Ψυχολόγος – Ψυχοθεραπευτής<br>
+      Συνεδρίες δια ζώσης & εξ αποστάσεως (βιντεοκλήση)
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="foot-name">Δημήτρης Κουκούλης</span>
+  <p class="foot-copy">Ψυχολόγος – Ψυχοθεραπευτής · © 2026</p>
+</footer>
+
+<script>
+(function(){
+
+/* ── NAV SCROLL ── */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',scrollY>60);
+},{passive:true});
+
+/* ── REVEAL ── */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+})();
+</script>
+</body>
+</html>

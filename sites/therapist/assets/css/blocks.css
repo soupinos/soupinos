@@ -1,0 +1,80 @@
+/* praxis-therapist — blocks.css
+   WP block editor overrides and front-end block styles.
+   Keeps default Gutenberg blocks aligned with Caldera token palette. */
+
+/* editor body */
+.editor-styles-wrapper {
+  font-family: var(--font-sans, 'DM Sans', sans-serif);
+  background: var(--bg, #FAF6F0);
+  color: var(--text, #3A2A20);
+}
+
+/* paragraph */
+.wp-block-paragraph {
+  font-family: var(--font-serif, 'EB Garamond', serif);
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--muted, #85756A);
+  font-weight: 300;
+}
+
+/* headings */
+.wp-block-heading h2,
+.wp-block-heading h3 {
+  font-family: var(--font-display, 'Cormorant', serif);
+  font-weight: 600;
+  color: var(--text, #3A2A20);
+  letter-spacing: -.01em;
+}
+
+/* separator */
+.wp-block-separator {
+  border-color: var(--border, rgba(92,61,46,.13));
+  opacity: 1;
+}
+
+/* image */
+.wp-block-image img {
+  border-radius: 4px;
+}
+
+/* quote */
+.wp-block-quote {
+  border-left: 2px solid var(--gold, #C9A84C);
+  padding-left: 24px;
+  font-family: var(--font-display, 'Cormorant', serif);
+  font-style: italic;
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
+  color: var(--navy-soft, #7A5A47);
+}
+.wp-block-quote cite {
+  font-family: var(--font-sans, 'DM Sans', sans-serif);
+  font-size: .78rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted, #85756A);
+}
+
+/* button */
+.wp-block-button__link {
+  background: var(--navy, #5C3D2E) !important;
+  color: var(--bg, #FAF6F0) !important;
+  border-radius: 2px !important;
+  font-family: var(--font-sans, 'DM Sans', sans-serif);
+  font-size: .94rem;
+  letter-spacing: .01em;
+  padding: 14px 30px;
+  transition: opacity .25s, transform .25s;
+}
+.wp-block-button__link:hover {
+  opacity: .9;
+  transform: translateY(-1px);
+}
+
+/* list */
+.wp-block-list {
+  font-family: var(--font-serif, 'EB Garamond', serif);
+  color: var(--muted, #85756A);
+  font-weight: 300;
+  line-height: 1.85;
+}
