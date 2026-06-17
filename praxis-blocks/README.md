@@ -5,6 +5,14 @@ Drop any block into a WordPress theme or a standalone HTML page in minutes.
 
 ---
 
+## ΚΑΝΟΝΑΣ ΒΙΒΛΙΟΘΗΚΗΣ (single source of truth)
+- main = η μία αλήθεια. Όλα τα blocks ζουν εδώ.
+- Νέο/αλλαγμένο block → branch ΑΠΟ main → δουλειά → merge ΠΙΣΩ στο main → push.
+- Κάθε block μπαίνει ΚΑΙ στο preview/index.html ΚΑΙ στο CHANGELOG.md. Πάντα.
+- ΠΟΤΕ ορφανές session-branches. ΠΟΤΕ δουλειά εκτός main που δεν γίνεται merge.
+
+---
+
 ## How to plug in a block (3 steps)
 
 **1. Copy the block folder**
