@@ -1,0 +1,52 @@
+/* ============================================================
+   motion.css — Reveal base states (pre-GSAP).
+   Elements start in their "hidden" position; GSAP animates
+   them in via ScrollTrigger. Without JS: content is visible.
+   ============================================================ */
+
+/* ── Scroll reveal base state ──────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  will-change: transform, opacity;
+}
+
+/* No-JS / prefers-reduced-motion: show immediately */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ── Word-level reveal (manifesto) ─────────────────────────── */
+.px-sl-word {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+/* ── Parallax containers ────────────────────────────────────── */
+.px-hero-video-media {
+  will-change: transform;
+}
+
+/* ── Counter & key-fact figures ─────────────────────────────── */
+.px-counter-value,
+.px-kf__fig {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Hero content: starts transparent (GSAP fades in) ───────── */
+.px-hero-video-content {
+  will-change: transform, opacity;
+}
+
+/* ── Smooth scroll body padding for fixed header ───────────── */
+/* Handled by header height — no offset hack needed */
+
+/* ── Focus visible: champagne outline site-wide ─────────────── */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}

@@ -1,0 +1,173 @@
+/* ============================================================
+   layout.css — Section wrappers + page-level structure.
+   pw- prefixed (theme-only, no block naming conflicts).
+   ============================================================ */
+
+/* ── Page-level wrapper ────────────────────────────────────── */
+.pw-wrap {
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 5vw, 3rem);
+}
+
+/* ── Section baseline ──────────────────────────────────────── */
+.pw-section {
+  padding-block: clamp(5rem, 10vw, 8rem);
+}
+
+/* Alternate surface */
+.pw-section--alt {
+  background: var(--bg2);
+}
+
+/* ── Eyebrow text (UPPERCASE via PHP px_gr_upper()) ─────────── */
+.pw-eyebrow {
+  font-family: var(--font-b);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--gold);
+  margin: 0 0 1.5rem;
+}
+
+/* ── Section heading ────────────────────────────────────────── */
+.pw-section-heading {
+  font-family: var(--font-h);
+  font-weight: 200;
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.2;
+  color: var(--navy-ink);
+  margin: 0 0 3rem;
+  letter-spacing: -0.01em;
+}
+
+/* ── Services cards: tag above the ✦ icon ───────────────────── */
+.px-sc-tag {
+  display: inline-block;
+  font-family: var(--font-b);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--gold);
+  margin: 0 0 12px;
+}
+
+/* Services card: link arrow */
+.px-sc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+  font-family: var(--font-b);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.3s var(--ease), gap 0.3s var(--ease);
+}
+
+.px-sc-link:hover {
+  color: var(--gold-deep);
+  gap: 10px;
+}
+
+.px-sc-card {
+  background: var(--bg);    /* light card on light bg: border gives separation */
+}
+
+/* ── Manifesto section ──────────────────────────────────────── */
+.pw-section--manifesto .pw-wrap {
+  max-width: 720px;
+}
+
+.pw-section--manifesto .px-sl-root {
+  max-width: none;   /* override block's 56ch max-width in this context */
+}
+
+/* Statement text: Inter weight 300, larger */
+.px-sl-text {
+  font-family: var(--font-h);
+  font-weight: 300;
+  font-size: clamp(22px, 2.8vw, 32px);
+  line-height: 1.35;
+  color: var(--navy-ink);
+  letter-spacing: -0.01em;
+}
+
+/* ── Stats / key-facts section ──────────────────────────────── */
+.pw-section--stats .px-kf__fig {
+  font-weight: 200;       /* very thin → champagne number aesthetic */
+  letter-spacing: -0.02em;
+  font-size: clamp(40px, 6vw, 60px);
+}
+
+/* ── CTA section ────────────────────────────────────────────── */
+.pw-section--cta {
+  text-align: center;
+}
+
+.pw-cta-copy h2 {
+  font-family: var(--font-h);
+  font-weight: 200;
+  font-size: clamp(28px, 4vw, 44px);
+  color: var(--navy-ink);
+  margin: 0 0 1rem;
+  letter-spacing: -0.01em;
+}
+
+.pw-cta-copy p {
+  font-family: var(--font-b);
+  font-weight: 300;
+  font-size: clamp(15px, 1.6vw, 18px);
+  color: var(--muted);
+  margin: 0 0 2.5rem;
+  max-width: 52ch;
+  margin-inline: auto;
+}
+
+.px-cta-multi {
+  justify-content: center;
+}
+
+/* ── Hero: no eyebrow (data-eyebrow="" in PHP) ──────────────── */
+.px-hero-video-eyebrow { display: none; }
+
+/* Hero CTA button: near-black on dark overlay */
+.px-hero-video-cta {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  backdrop-filter: blur(8px);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  transition: background 0.35s var(--ease), border-color 0.35s var(--ease);
+}
+
+.px-hero-video-cta:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+/* Hero CTA2: ghost outline */
+.px-hero-video-cta2 {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 300;
+  transition: border-color 0.35s var(--ease), color 0.35s var(--ease);
+}
+
+.px-hero-video-cta2:hover {
+  border-color: var(--gold-soft);
+  color: #fff;
+}
+
+/* ── Responsive tweaks ──────────────────────────────────────── */
+@media (max-width: 640px) {
+  .pw-section--cta .px-cta-multi__row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .px-kf__grid { grid-template-columns: 1fr 1fr; }
+}

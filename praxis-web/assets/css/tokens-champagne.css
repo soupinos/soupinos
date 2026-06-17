@@ -1,0 +1,76 @@
+/* ============================================================
+   tokens-champagne.css — Champagne skin override
+   praxisweb.gr ΑΡΧΙΚΗ version B.
+
+   Load BEFORE all block CSS. Overrides praxis-blocks/tokens.css
+   defaults (dark theme) with the locked champagne vision.
+
+   Champagne accent (#9A8866 / #B8A179) appears ONLY on:
+     numbers · hairlines · hover states · logo dot
+   CTA = near-black (#1C1714) — NOT champagne.
+   ============================================================ */
+
+:root {
+  /* ── Surface (light warm cream) ───────────────────────────── */
+  --bg:   #F9F7F4;   /* main page bg — paper white */
+  --bg2:  #F4F1EC;   /* card bg, alternate sections */
+  --bg3:  #EDEAE3;   /* nav dropdown, subtle inset surfaces */
+
+  /* ── Text ─────────────────────────────────────────────────── */
+  --white:    #FFFFFF;
+  --ink:      #2A2520;   /* near-black body text */
+  --muted:    #7A6F65;   /* secondary / placeholder text */
+  --body-ink: #4A4039;   /* block body paragraphs */
+  --navy-ink: #1C1714;   /* darkest text, headings */
+
+  /* ── Lines ────────────────────────────────────────────────── */
+  --line: #DDD7CE;
+
+  /* ── Champagne accent system ──────────────────────────────── */
+  /* --red is the "primary accent" slot in praxis-blocks.
+     We remap it to near-black because the CTA must be near-black. */
+  --red:     #1C1714;    /* CTA solid fill → near-black */
+  --red-rgb: 28, 23, 20;
+
+  /* Caldera palette tokens (used by blocks 25, 26, 30, 32, 34, 35) */
+  --gold:       #9A8866;   /* primary champagne */
+  --gold-soft:  #B8A179;   /* lighter hover border */
+  --gold-deep:  #7A6A4F;   /* pressed / active state */
+  --gold-light: #D4C9B2;   /* very faint bg tint */
+
+  /* ── Typography: Inter thin throughout ───────────────────── */
+  --font-h: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-b: 'Inter', system-ui, -apple-system, sans-serif;
+  /* Caldera aliases (blocks 25, 26, 27, 30, 32, 34 use --fontH/B) */
+  --fontH:  var(--font-h);
+  --fontB:  var(--font-b);
+
+  /* ── Motion ───────────────────────────────────────────────── */
+  --ease:            cubic-bezier(.22, .61, .36, 1);
+  --transition:      0.4s var(--ease);
+  --transition-fast: 0.2s var(--ease);
+
+  /* ── Layout ───────────────────────────────────────────────── */
+  --max-w:     1240px;
+  --radius:    4px;
+  --radius-lg: 10px;
+
+  /* Spacing unchanged from base */
+  --sp-xs:  0.25rem;
+  --sp-sm:  0.5rem;
+  --sp-md:  1rem;
+  --sp-lg:  2rem;
+  --sp-xl:  4rem;
+  --sp-2xl: 6rem;
+}
+
+/* Body baseline: light surface, Inter weight-300 */
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-b);
+  font-weight: 300;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

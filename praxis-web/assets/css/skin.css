@@ -1,0 +1,252 @@
+/* ============================================================
+   skin.css — Component-level champagne skin overrides.
+   Loads AFTER all block CSS. Covers:
+     • px-nav (block #01): center layout, champagne dot, underline, shrink
+     • px-mnav (block #34): always-visible burger, champagne accents
+     • px-footer (block #04): dark surface + champagne accents
+     • px-cta (block #30): near-black solid, champagne outline/ghost
+     • px-modal (block #35): champagne accents (CSS token override only)
+   ============================================================ */
+
+/* ══ HEADER / px-nav (Block #01) ════════════════════════════ */
+
+/* Center-logo grid layout */
+.px-nav-inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: 76px;
+  transition: height var(--transition);
+}
+
+.px-nav {
+  transition: height var(--transition), background var(--transition),
+              backdrop-filter var(--transition), box-shadow var(--transition);
+}
+
+/* Shrink on scroll */
+.px-nav.is-scrolled .px-nav-inner {
+  height: 58px;
+}
+
+/* Logo: center cell */
+.px-nav-logo {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: center;
+  position: relative;   /* anchor for ::after underline */
+}
+
+/* Logo mark: small champagne dot (hide the "P" character) */
+.px-nav-logo-mark {
+  width: 10px;
+  height: 10px;
+  background: var(--gold);     /* champagne — the ONLY accent here */
+  border-radius: 2px;
+  font-size: 0;
+  color: transparent;
+  flex-shrink: 0;
+}
+
+/* Logo text: Inter 300, near-black, generous tracking */
+.px-nav-logo-text {
+  font-family: var(--font-h);
+  font-weight: 300;
+  font-size: 1rem;
+  letter-spacing: 0.22em;
+  color: var(--navy-ink);
+}
+
+/* Underline that grows from center on scroll/hover.
+   Pure CSS scaleX — GSAP does NOT touch this element. */
+.px-nav-logo::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 56px;
+  height: 1px;
+  background: var(--gold);
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform 0.55s var(--ease);
+}
+
+.px-nav.is-scrolled .px-nav-logo::after,
+.px-nav-logo:hover::after,
+.px-nav-logo:focus-visible::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* Scrolled state: warm white bg + blur */
+.px-nav.is-scrolled {
+  background: rgba(249, 247, 244, 0.94);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 1px 0 rgba(28, 23, 20, 0.08);
+}
+
+/* Always-solid (transparent attr absent) */
+.px-nav:not([data-transparent="true"]) {
+  background: rgba(249, 247, 244, 0.97);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+/* Hide standard desktop dropdown nav — we use block #34 overlay instead */
+.px-nav-menu      { display: none !important; }
+.px-nav-mobile    { display: none !important; }
+
+/* Standard block #01 hamburger: hidden (block #34 burger is used) */
+.px-nav-hamburger { display: none !important; }
+
+/* Block #34 burger placed inside .px-nav-inner → right cell */
+.px-nav-inner .px-mnav__burger {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
+  /* Override block #34's default desktop:none rule */
+  display: inline-flex !important;
+  color: var(--navy-ink);
+}
+
+.px-nav-inner .px-mnav__burger:focus-visible {
+  outline-color: var(--gold);
+}
+
+/* ══ BLOCK #34 — px-nav-mobile ══════════════════════════════ */
+
+/* Always visible burger — override the @media(min-width:1025px) hide */
+.px-mnav__burger {
+  display: inline-flex !important;
+  color: var(--navy-ink);
+}
+
+/* Panel inner: warm white surface */
+.px-mnav__inner {
+  background: var(--bg);
+  box-shadow: 0 0 80px -20px rgba(28, 23, 20, 0.3);
+}
+
+/* Nav links: champagne on hover */
+.px-mnav__list a {
+  font-family: var(--font-h);
+  font-weight: 300;
+  font-size: clamp(20px, 3.5vw, 26px);
+  letter-spacing: 0.04em;
+  color: var(--navy-ink);
+  border-bottom-color: var(--line);
+  transition: color 0.35s var(--ease), padding-left 0.35s var(--ease);
+}
+
+.px-mnav__list a:hover {
+  color: var(--gold);
+  padding-left: 16px;
+}
+
+/* CTA in panel: near-black (matching champagne brand standard) */
+.px-mnav__cta {
+  background: var(--navy-ink);
+  color: #fff;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+
+.px-mnav__cta:hover {
+  background: var(--gold);
+}
+
+.px-mnav__cta:focus-visible {
+  outline-color: var(--gold);
+}
+
+/* Close button */
+.px-mnav__close { color: var(--muted); }
+.px-mnav__close:hover { color: var(--navy-ink); }
+.px-mnav__close:focus-visible { outline-color: var(--gold); }
+
+/* ══ BLOCK #04 — px-footer (dark surface on light page) ═════ */
+
+/* Scope dark tokens inside footer so block vars resolve correctly */
+.px-footer {
+  --bg2:  #1A1714;        /* dark footer bg */
+  --bg:   #1A1714;
+  --white: #F0EDE8;       /* warm off-white for headings */
+  --ink:  #8A7D70;        /* muted body text */
+  --muted: #5A5048;
+  --red:  var(--gold);    /* champagne for icons, hover, focus rings */
+  background: #1A1714;
+  border-top-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Logo mark: champagne dot in footer */
+.px-footer-logo-mark {
+  background: var(--gold);
+  font-size: 0;
+  color: transparent;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.px-footer-logo-text {
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: var(--white);
+}
+
+.px-footer-tagline { font-weight: 300; }
+
+/* Social links: champagne hover */
+.px-footer-social-link:hover {
+  background: var(--gold);
+  color: #fff;
+}
+
+/* ══ BLOCK #30 — px-cta (CTA = near-black, NOT gold) ════════ */
+
+/* "solid" variant: near-black fill per brand standard */
+.px-cta[data-variant="solid"] {
+  background: var(--navy-ink);
+  border-color: var(--navy-ink);
+  color: #fff;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+
+.px-cta[data-variant="solid"]:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+.px-cta:focus-visible { outline-color: var(--gold); }
+
+/* "outline" variant on light surface */
+.px-cta[data-variant="outline"] {
+  color: var(--navy-ink);
+  border-color: var(--line);
+}
+
+.px-cta[data-variant="outline"]:hover {
+  border-color: var(--gold-soft);
+  color: var(--gold-deep);
+}
+
+/* ══ BLOCK #35 — px-modal (champagne accents via CSS token override) ══ */
+
+/* Scope --gold accent correctly for the modal accent slots */
+.px-modal {
+  --px-modal-accent:      var(--gold);
+  --px-modal-accent-deep: var(--gold-deep);
+  --px-modal-overlay:     rgba(28, 23, 20, 0.5);
+}
+
+.px-modal__submit {
+  background: var(--navy-ink);   /* CTA = near-black */
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.px-modal__submit:hover:not(:disabled) {
+  background: var(--gold);
+}
