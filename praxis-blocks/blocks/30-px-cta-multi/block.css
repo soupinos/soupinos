@@ -1,0 +1,129 @@
+/* ============================================================
+   BLOCK #30 — px-cta-multi
+   Several CTA variants in ONE block: pick per-button via data-variant.
+   Use for a row of mixed calls-to-action (primary + secondary + link)
+   or a single banner-style CTA. Caldera skin tokens (with fallbacks).
+   px- prefixed; CSS-only (optional data-open-modal hook → block 35).
+
+   PARTS
+     .px-cta-multi          wrapper (data-align, data-variant on root surface)
+     .px-cta-multi__row     flex row of CTAs
+     .px-cta                one CTA (carries data-variant)
+     .px-cta__label         text
+     .px-cta__icon          optional trailing icon (arrow etc.)
+
+   CTA VARIANTS (data-variant on .px-cta)
+     "solid"    filled gold — the primary action (default)
+     "outline"  bordered, transparent — the secondary action
+     "ghost"    text + underline-on-hover — the tertiary / "learn more"
+     "banner"   large full-width bar CTA
+
+   CONFIG (attributes on .px-cta-multi)
+     data-align="start"     "start" (default) | "center" | "end"
+     data-surface="light"   "light" (default) | "dark"
+
+   MODAL HOOK: add data-open-modal to any .px-cta to fire px:open-modal
+   (decoupled — block 35 listens). No direct coupling.
+
+   REUSE: generic — any sector.
+   ============================================================ */
+
+.px-cta-multi__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.px-cta-multi[data-align="center"] .px-cta-multi__row { justify-content: center; }
+.px-cta-multi[data-align="end"]    .px-cta-multi__row { justify-content: flex-end; }
+
+.px-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 30px;
+  border-radius: var(--radius, 4px);
+  border: 1px solid transparent;
+  font-family: var(--fontB, system-ui, sans-serif);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: .01em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .3s var(--ease, ease), background .3s var(--ease, ease),
+              color .3s var(--ease, ease), border-color .3s var(--ease, ease);
+}
+
+.px-cta:hover { transform: translateY(-2px); }                 /* lift ≤ 2px */
+
+.px-cta:focus-visible {
+  outline: 2px solid var(--gold, #C9A84C);
+  outline-offset: 3px;
+}
+
+.px-cta__icon { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; }
+
+/* ── solid (primary) ── */
+.px-cta[data-variant="solid"] {
+  background: var(--gold, #C9A84C);
+  color: #fff;
+  border-color: var(--gold, #C9A84C);
+}
+.px-cta[data-variant="solid"]:hover { background: var(--gold-deep, #a8882e); border-color: var(--gold-deep, #a8882e); }
+
+/* ── outline (secondary) ── */
+.px-cta[data-variant="outline"] {
+  background: transparent;
+  color: var(--navy-ink, #3f2a1e);
+  border-color: var(--line, #e8e0d2);
+}
+.px-cta[data-variant="outline"]:hover { border-color: var(--gold-soft, #d4b56a); color: var(--gold-deep, #a8882e); }
+
+/* ── ghost (tertiary) ── */
+.px-cta[data-variant="ghost"] {
+  background: transparent;
+  color: var(--navy-ink, #3f2a1e);
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.px-cta[data-variant="ghost"] .px-cta__label {
+  background-image: linear-gradient(var(--gold, #C9A84C), var(--gold, #C9A84C));
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size .35s var(--ease, ease);
+}
+.px-cta[data-variant="ghost"]:hover { color: var(--gold-deep, #a8882e); transform: none; }
+.px-cta[data-variant="ghost"]:hover .px-cta__label { background-size: 100% 1px; }
+
+/* ── banner (full-width bar) ── */
+.px-cta[data-variant="banner"] {
+  display: flex;
+  width: 100%;
+  padding: 26px 34px;
+  background: var(--navy-ink, #3f2a1e);
+  color: #fff;
+  border-color: var(--navy-ink, #3f2a1e);
+  font-size: 17px;
+}
+.px-cta[data-variant="banner"]:hover { background: #2c1d14; transform: none; }
+.px-cta[data-variant="banner"] .px-cta__icon { width: 20px; height: 20px; }
+
+/* dark surface overrides */
+.px-cta-multi[data-surface="dark"] .px-cta[data-variant="outline"] { color: #fff; border-color: rgba(255, 255, 255, .25); }
+.px-cta-multi[data-surface="dark"] .px-cta[data-variant="outline"]:hover { border-color: var(--gold-soft, #d4b56a); color: var(--gold-soft, #d4b56a); }
+.px-cta-multi[data-surface="dark"] .px-cta[data-variant="ghost"] { color: #fff; }
+.px-cta-multi[data-surface="dark"] .px-cta[data-variant="banner"] { background: var(--gold, #C9A84C); border-color: var(--gold, #C9A84C); }
+.px-cta-multi[data-surface="dark"] .px-cta[data-variant="banner"]:hover { background: var(--gold-deep, #a8882e); }
+
+@media (prefers-reduced-motion: reduce) {
+  .px-cta { transition: none; }
+  .px-cta:hover { transform: none; }
+}
+
+@media (max-width: 560px) {
+  .px-cta-multi__row { flex-direction: column; align-items: stretch; }
+  .px-cta { width: 100%; }
+}

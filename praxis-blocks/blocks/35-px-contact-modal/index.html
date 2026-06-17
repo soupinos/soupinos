@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Block 35 — px-contact-modal</title>
+  <link rel="stylesheet" href="../../tokens.css">
+  <link rel="stylesheet" href="block.css">
+  <!-- GSAP optional — uncomment for animated open/close + check draw:
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script> -->
+  <style>
+    /* demo chrome only — not part of the block */
+    body { background: var(--bg, #faf7f1); color: var(--navy-ink, #3f2a1e);
+           font-family: var(--fontB, system-ui, sans-serif); margin: 0; }
+    .demo { max-width: 720px; margin: 0 auto; padding: 5rem 1.5rem; }
+    .demo h1 { font-family: var(--fontH, Georgia, serif); font-weight: 400; }
+    .demo p  { color: var(--muted, #8a7d70); line-height: 1.7; }
+    .demo-btn {
+      display: inline-flex; gap: 10px; align-items: center;
+      margin-top: 1.5rem; padding: 15px 26px; border: 0; border-radius: 4px;
+      background: var(--gold, #C9A84C); color: #fff; font-size: 15px;
+      font-weight: 600; cursor: pointer;
+    }
+    .demo-btn.alt { background: transparent; color: var(--gold-deep, #a8882e);
+                    border: 1px solid var(--line, #e8e0d2); }
+  </style>
+</head>
+<body>
+
+  <!--
+    px-contact-modal — LISTENS for the custom event `px:open-modal`, and for
+    clicks on any [data-open-modal] (outside block #34's panel). Desktop →
+    centered popup; mobile → bottom-sheet. Honeypot + (in WP) nonce.
+
+    This static page is the demo / markup reference. In WordPress the markup
+    is rendered server-side by block.php (wp_footer) and the form POSTs to
+    admin-ajax.php; here (no pxModal) it just shows the success state.
+  -->
+
+  <div class="demo">
+    <h1>Block 35 — px-contact-modal</h1>
+    <p>Δύο decoupled τρόποι να ανοίξει: ένα κουμπί με <code>data-open-modal</code>,
+       ή με dispatch του event <code>px:open-modal</code> (όπως κάνει το block #34).</p>
+
+    <!-- way 1: a [data-open-modal] trigger (block.js wires it) -->
+    <button class="demo-btn" type="button" data-open-modal>Κλείσε ραντεβού</button>
+
+    <!-- way 2: dispatch the event directly — simulates block #34's nav CTA -->
+    <button class="demo-btn alt" type="button" id="demo-dispatch">Προσομοίωση px:open-modal</button>
+  </div>
+
+  <!-- ── MODAL (in WP this is emitted by block.php on wp_footer) ───────── -->
+  <div class="px-modal" id="px-contact-modal" aria-hidden="true">
+    <div class="px-modal__overlay" data-modal-close></div>
+    <div class="px-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="px-modal-title">
+      <button class="px-modal__close" type="button" aria-label="Κλείσιμο" data-modal-close>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <div class="px-modal__body">
+        <span class="px-modal__eyebrow">ΡΑΝΤΕΒΟΥ</span>
+        <h2 class="px-modal__title" id="px-modal-title">Ας τα πούμε από κοντά</h2>
+        <p class="px-modal__sub">Άφησε τηλέφωνο ή email και επικοινωνώ μαζί σου σύντομα — χωρίς καμία δέσμευση.</p>
+
+        <form class="px-modal__form" id="px-contact-form" novalidate>
+          <div class="px-hp" aria-hidden="true">
+            <label>Μην συμπληρώνεις αυτό το πεδίο
+              <input type="text" name="px_website" tabindex="-1" autocomplete="off">
+            </label>
+          </div>
+          <input type="hidden" name="action" value="px_contact_modal">
+          <!-- px_nonce is injected by wp_localize_script in WordPress -->
+
+          <div class="px-field">
+            <label for="pxm-name">ΟΝΟΜΑ *</label>
+            <input type="text" id="pxm-name" name="name" autocomplete="name" required aria-describedby="px-err-name">
+            <p class="px-form-error px-field-error" id="px-err-name" role="alert" hidden>Συμπλήρωσε το όνομά σου.</p>
+          </div>
+          <div class="px-field">
+            <label for="pxm-phone">ΤΗΛΕΦΩΝΟ</label>
+            <input type="tel" id="pxm-phone" name="phone" autocomplete="tel" aria-describedby="px-err-phone">
+            <p class="px-form-error px-field-error" id="px-err-phone" role="alert" hidden>Δώσε έναν έγκυρο αριθμό τηλεφώνου.</p>
+          </div>
+          <div class="px-field">
+            <label for="pxm-email">EMAIL</label>
+            <input type="email" id="pxm-email" name="email" autocomplete="email" aria-describedby="px-err-email">
+            <p class="px-form-error px-field-error" id="px-err-email" role="alert" hidden>Δώσε ένα έγκυρο email.</p>
+          </div>
+          <p class="px-field__hint">Συμπλήρωσε τηλέφωνο ή email — τουλάχιστον ένα από τα δύο.</p>
+          <div class="px-field">
+            <label for="pxm-msg">ΜΗΝΥΜΑ</label>
+            <textarea id="pxm-msg" name="message" rows="4"></textarea>
+          </div>
+          <button type="submit" class="px-modal__submit">Αποστολή</button>
+          <p class="px-form-error" role="alert" hidden></p>
+        </form>
+
+        <div class="px-modal__success" hidden>
+          <svg class="px-check" viewBox="0 0 52 52" aria-hidden="true">
+            <circle class="px-check__circle" cx="26" cy="26" r="24"/>
+            <path class="px-check__mark" d="M14 27l8 8 16-16"/>
+          </svg>
+          <p>Ευχαριστώ — θα επικοινωνήσω πολύ σύντομα.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="block.js"></script>
+  <script>
+    /* demo only — fire the decoupled event, exactly like block #34 does */
+    document.getElementById('demo-dispatch').addEventListener('click', function () {
+      document.dispatchEvent(new CustomEvent('px:open-modal'));
+    });
+  </script>
+</body>
+</html>

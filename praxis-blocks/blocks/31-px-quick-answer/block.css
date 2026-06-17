@@ -1,0 +1,80 @@
+/* ============================================================
+   BLOCK #31 — px-quick-answer
+   A featured-snippet-friendly short answer: one clear question, a
+   tight 40–55 word answer up top, optional supporting detail below.
+   Built to win Google's "featured snippet" / answer box. Caldera
+   skin tokens (with fallbacks). px- prefixed, paired with block.js
+   (optional Question JSON-LD).
+
+   PARTS
+     .px-qa                 root (data-variant, data-schema)
+     .px-qa__q              the question (semantic <h2>/<h3>/<p>)
+     .px-qa__a              the concise answer (the snippet target)
+     .px-qa__more           optional supporting detail / list
+
+   CONFIG (attributes on .px-qa)
+     data-variant="light"   "light" (default) | "dark"
+     data-schema="on"       "on" (default) emits Question JSON-LD | "off"
+
+   SEO NOTE: keep .px-qa__a to ~40–55 words, lead with the direct
+   answer, and use a real heading for .px-qa__q. The answer text is
+   read verbatim into the schema by block.js.
+
+   REUSE: generic — any sector, any "what is / how much / how long" Q.
+   ============================================================ */
+
+.px-qa {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 34px 36px;
+  background: var(--white, #fff);
+  border: 1px solid var(--line, #e8e0d2);
+  border-left: 3px solid var(--gold, #C9A84C);
+  border-radius: var(--radius, 4px);
+}
+
+.px-qa__q {
+  font-family: var(--fontH, Georgia, serif);
+  font-size: clamp(20px, 2.4vw, 25px);
+  line-height: 1.3;
+  color: var(--navy-ink, #3f2a1e);
+  margin: 0 0 14px;
+}
+
+.px-qa__a {
+  font-family: var(--fontB, system-ui, sans-serif);
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--body-ink, #4a4039);
+  margin: 0;
+}
+
+.px-qa__a strong { color: var(--navy-ink, #3f2a1e); }
+
+.px-qa__more {
+  margin: 18px 0 0;
+  padding: 18px 0 0;
+  border-top: 1px solid var(--line, #e8e0d2);
+  font-family: var(--fontB, system-ui, sans-serif);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--muted, #8a7d70);
+}
+
+.px-qa__more :first-child { margin-top: 0; }
+.px-qa__more :last-child  { margin-bottom: 0; }
+
+/* dark variant */
+.px-qa[data-variant="dark"] {
+  background: rgba(255, 255, 255, .04);
+  border-color: rgba(255, 255, 255, .12);
+  border-left-color: var(--gold, #C9A84C);
+}
+.px-qa[data-variant="dark"] .px-qa__q { color: #fff; }
+.px-qa[data-variant="dark"] .px-qa__a { color: rgba(255, 255, 255, .82); }
+.px-qa[data-variant="dark"] .px-qa__a strong { color: #fff; }
+.px-qa[data-variant="dark"] .px-qa__more { color: rgba(255, 255, 255, .55); border-top-color: rgba(255, 255, 255, .12); }
+
+@media (max-width: 560px) {
+  .px-qa { padding: 26px 22px; }
+}

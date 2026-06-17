@@ -1,0 +1,103 @@
+/* ============================================================
+   BLOCK #33 — px-pros-cons
+   A balanced two-column pros / cons (υπέρ / κατά) comparison. Honest
+   by design — both columns are first-class, no dark-patterns. Caldera
+   skin tokens (with fallbacks). px- prefixed; CSS-only.
+
+   PARTS
+     .px-pc                 root (data-variant)
+     .px-pc__col            a column; data-kind="pro" | "con"
+     .px-pc__head           column heading row (icon + title)
+     .px-pc__title          column title (pre-uppercased if caps wanted)
+     .px-pc__list           the points
+     .px-pc__item           one point (icon auto via ::before per kind)
+
+   CONFIG (attributes on .px-pc)
+     data-variant="light"   "light" (default) | "dark"
+
+   A11Y: the pro/con meaning is carried by the column title text, not
+   colour alone; the ✓ / — glyphs are decorative (aria-hidden via CSS
+   content).
+
+   REUSE: generic — "is therapy right for me", product comparisons,
+   decisions, any sector.
+   ============================================================ */
+
+.px-pc {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.px-pc__col {
+  background: var(--white, #fff);
+  border: 1px solid var(--line, #e8e0d2);
+  border-top: 3px solid var(--line, #e8e0d2);
+  border-radius: var(--radius, 4px);
+  padding: 30px 30px 34px;
+}
+
+.px-pc__col[data-kind="pro"] { border-top-color: #6f9a5f; }   /* calm green */
+.px-pc__col[data-kind="con"] { border-top-color: var(--muted, #8a7d70); }
+
+.px-pc__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 20px;
+  padding: 0 0 16px;
+  border-bottom: 1px solid var(--line, #e8e0d2);
+}
+
+.px-pc__head svg { width: 22px; height: 22px; flex: none; }
+.px-pc__col[data-kind="pro"] .px-pc__head svg { color: #6f9a5f; }
+.px-pc__col[data-kind="con"] .px-pc__head svg { color: var(--muted, #8a7d70); }
+
+.px-pc__title {
+  font-family: var(--fontH, Georgia, serif);
+  font-size: 19px;
+  color: var(--navy-ink, #3f2a1e);
+  margin: 0;
+}
+
+.px-pc__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.px-pc__item {
+  position: relative;
+  padding-left: 30px;
+  font-family: var(--fontB, system-ui, sans-serif);
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--body-ink, #4a4039);
+}
+
+.px-pc__item::before {
+  position: absolute;
+  left: 0;
+  top: 0.05em;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.px-pc__col[data-kind="pro"] .px-pc__item::before { content: "✓"; color: #6f9a5f; }
+.px-pc__col[data-kind="con"] .px-pc__item::before { content: "—"; color: var(--muted, #8a7d70); }
+
+/* dark variant */
+.px-pc[data-variant="dark"] .px-pc__col   { background: rgba(255, 255, 255, .04); border-color: rgba(255, 255, 255, .12); }
+.px-pc[data-variant="dark"] .px-pc__head  { border-bottom-color: rgba(255, 255, 255, .12); }
+.px-pc[data-variant="dark"] .px-pc__title { color: #fff; }
+.px-pc[data-variant="dark"] .px-pc__item  { color: rgba(255, 255, 255, .8); }
+.px-pc[data-variant="dark"] .px-pc__col[data-kind="con"] .px-pc__item::before { color: rgba(255, 255, 255, .45); }
+
+@media (max-width: 640px) {
+  .px-pc { grid-template-columns: 1fr; }
+}

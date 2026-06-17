@@ -1,0 +1,161 @@
+/* ============================================================
+   BLOCK #34 — px-nav-mobile
+   Off-canvas mobile navigation: hamburger → slide-in panel with
+   overlay, focus trap, staggered links. The CTA inside the panel
+   fires the custom event `px:open-modal` — it does NOT know about
+   any modal. Block #35 (px-contact-modal) listens. Fully decoupled.
+   Caldera skin tokens (with fallbacks). px- prefixed, paired with
+   block.js. Generalised from the proven sites/therapist mobile-nav.
+
+   PARTS
+     .px-mnav               root wrapper
+     .px-mnav__burger       hamburger button (id="px-mnav-burger")
+     .px-mnav__overlay      backdrop (id="px-mnav-overlay")
+     .px-mnav__panel        off-canvas container (id="px-mnav-panel")
+     .px-mnav__inner        sliding inner (id="px-mnav-inner")
+     .px-mnav__close        close button (id="px-mnav-close")
+     .px-mnav__list         nav links
+     .px-mnav__cta          the CTA — add data-open-modal to fire the event
+
+   CONFIG (attributes on .px-mnav)
+     data-side="right"      panel side: "right" (default) | "left"
+
+   EVENT CONTRACT: a [data-open-modal] click inside the panel closes
+   the menu, then dispatches  new CustomEvent('px:open-modal')  on
+   document. Nothing else couples this block to the modal.
+
+   REUSE: generic — any site needing a mobile drawer + a "book/contact"
+   action that opens a modal.
+   ============================================================ */
+
+.px-mnav__burger,
+.px-mnav__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: var(--navy-ink, #3f2a1e);
+}
+
+.px-mnav__burger svg,
+.px-mnav__close svg { width: 26px; height: 26px; }
+
+.px-mnav__burger:focus-visible,
+.px-mnav__close:focus-visible {
+  outline: 2px solid var(--gold, #C9A84C);
+  outline-offset: 2px;
+}
+
+/* overlay */
+.px-mnav__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 12, 8, .5);
+  opacity: 0;
+  z-index: 1400;
+  pointer-events: none;
+}
+
+/* panel container — clips the sliding inner */
+.px-mnav__panel {
+  position: fixed;
+  inset: 0;
+  z-index: 1500;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.px-mnav__panel[aria-hidden="false"] { visibility: visible; pointer-events: auto; }
+.px-mnav__panel[aria-hidden="false"] ~ .px-mnav__overlay,
+.px-mnav__panel[aria-hidden="false"] .px-mnav__overlay { pointer-events: auto; }
+
+/* sliding inner */
+.px-mnav__inner {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: min(380px, 86vw);
+  background: var(--white, #fff);
+  box-shadow: 0 0 60px -20px rgba(20, 12, 8, .5);
+  display: flex;
+  flex-direction: column;
+  padding: 22px 26px 34px;
+  transform: translateX(100%);
+}
+
+.px-mnav[data-side="left"] .px-mnav__inner { left: 0; right: auto; transform: translateX(-100%); }
+.px-mnav[data-side="right"] .px-mnav__inner,
+.px-mnav__inner { right: 0; }
+
+.px-mnav__top {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 18px;
+}
+
+.px-mnav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.px-mnav__list a {
+  display: block;
+  padding: 14px 6px;
+  font-family: var(--fontH, Georgia, serif);
+  font-size: 22px;
+  color: var(--navy-ink, #3f2a1e);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line, #e8e0d2);
+  transition: color .3s var(--ease, ease), padding-left .3s var(--ease, ease);
+}
+
+.px-mnav__list a:hover { color: var(--gold-deep, #a8882e); padding-left: 14px; }
+
+.px-mnav__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+  padding: 15px 24px;
+  background: var(--gold, #C9A84C);
+  color: #fff;
+  border: 0;
+  border-radius: var(--radius, 4px);
+  font-family: var(--fontB, system-ui, sans-serif);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background .3s var(--ease, ease);
+}
+
+.px-mnav__cta:hover { background: var(--gold-deep, #a8882e); }
+.px-mnav__cta:focus-visible { outline: 2px solid var(--navy-ink, #3f2a1e); outline-offset: 3px; }
+
+/* body lock when open (block.js toggles this on <body>) */
+body.px-no-scroll { overflow: hidden; }
+
+/* No-JS / no-GSAP fallback: when open, force visible end-state */
+.px-mnav__panel[aria-hidden="false"] .px-mnav__inner { transform: translateX(0); }
+.px-mnav__panel[aria-hidden="false"] + .px-mnav__overlay { opacity: 1; }
+
+/* show the drawer only on smaller viewports; desktop keeps its own nav */
+@media (min-width: 1025px) {
+  .px-mnav__burger { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .px-mnav__list a { transition: none; }
+}
