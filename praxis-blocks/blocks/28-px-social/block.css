@@ -1,0 +1,122 @@
+/* ============================================================
+   BLOCK #28 — px-social
+   Social follow links + share row. SEO-aware: the share targets
+   read the page's canonical URL + title at runtime (block.js), so
+   the same markup works on any page. Caldera skin tokens (with
+   fallbacks). px- prefixed, paired with block.js.
+
+   PARTS
+     .px-soc-root           wrapper (carries data-mode, data-variant)
+     .px-soc-group          one labelled group (follow / share)
+     .px-soc-label          small caps label (pre-uppercased in markup)
+     .px-soc-list           inline row of icon buttons
+     .px-soc-link           a follow link (real profile href)
+     .px-soc-share          a share button (wired by block.js)
+     .px-soc-icon           inline svg (24×24, currentColor)
+
+   CONFIG (attributes on .px-soc-root)
+     data-mode="both"       "follow" | "share" | "both" (default both)
+     data-variant="light"   "light" (default) | "dark"
+     data-share="..."       optional space list of share networks,
+                            default "native facebook x linkedin link"
+
+   SEO NOTE: share links are built from <link rel=canonical> (or the
+   live URL) and og:title / document.title — never hardcoded — so the
+   shared snippet always matches the indexed page.
+
+   REUSE: generic — any brand, any sector.
+   ============================================================ */
+
+.px-soc-root {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px 48px;
+}
+
+.px-soc-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.px-soc-label {
+  font-family: var(--fontB, system-ui, sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  color: var(--muted, #8a7d70);
+  margin: 0;
+}
+
+.px-soc-list {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.px-soc-link,
+.px-soc-share {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--white, #fff);
+  border: 1px solid var(--line, #e8e0d2);
+  color: var(--navy-ink, #3f2a1e);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform .3s var(--ease, ease), border-color .3s var(--ease, ease),
+              color .3s var(--ease, ease), background .3s var(--ease, ease);
+}
+
+.px-soc-link:hover,
+.px-soc-share:hover {
+  transform: translateY(-2px);                          /* lift ≤ 2px */
+  border-color: var(--gold-soft, #d4b56a);
+  color: var(--gold-deep, #a8882e);
+}
+
+.px-soc-link:focus-visible,
+.px-soc-share:focus-visible {
+  outline: 2px solid var(--gold, #C9A84C);
+  outline-offset: 3px;
+}
+
+.px-soc-icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+/* copy-link button briefly confirms */
+.px-soc-share[data-copied="true"] {
+  color: #fff;
+  background: var(--gold, #C9A84C);
+  border-color: var(--gold, #C9A84C);
+}
+
+/* dark variant — for dark/navy surfaces */
+.px-soc-root[data-variant="dark"] .px-soc-link,
+.px-soc-root[data-variant="dark"] .px-soc-share {
+  background: rgba(255, 255, 255, .04);
+  border-color: rgba(255, 255, 255, .12);
+  color: #fff;
+}
+.px-soc-root[data-variant="dark"] .px-soc-link:hover,
+.px-soc-root[data-variant="dark"] .px-soc-share:hover {
+  background: rgba(255, 255, 255, .07);
+  border-color: rgba(212, 181, 106, .5);
+  color: var(--gold-soft, #d4b56a);
+}
+.px-soc-root[data-variant="dark"] .px-soc-label { color: rgba(255, 255, 255, .55); }
+
+@media (prefers-reduced-motion: reduce) {
+  .px-soc-link, .px-soc-share { transition: none; }
+  .px-soc-link:hover, .px-soc-share:hover { transform: none; }
+}
