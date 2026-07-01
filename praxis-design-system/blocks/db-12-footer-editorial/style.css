@@ -1,0 +1,87 @@
+/**
+ * DB-12 · Footer Editorial — component layer.
+ * Multi-column footer styled as an editorial colophon, not a utility bar.
+ */
+.db-footer-editorial {
+  --px-footer-bg: var(--olive-900, #262a1c);
+  --px-footer-ink: var(--sand-100, #f4ecdd);
+  --px-footer-muted: var(--sand-300, #d8c9a8);
+  --px-footer-accent: var(--gold-500, #c99a3e);
+  --px-footer-rule: var(--line-on-dark, rgba(244, 236, 221, 0.16));
+  --px-footer-pad: var(--px-breath-s, 2.125rem);
+
+  background: var(--px-footer-bg);
+  color: var(--px-footer-ink);
+  padding: var(--px-footer-pad) var(--px-space-5, 3.4375rem) var(--px-space-4, 2.125rem);
+}
+
+.db-footer-editorial__top {
+  max-width: var(--px-max-w, 1440px);
+  margin: 0 auto var(--px-space-6, 5.5625rem);
+  display: grid;
+  grid-template-columns: var(--px-split-major, 61.8%) 1fr;
+  gap: var(--px-space-6, 5.5625rem);
+}
+
+.db-footer-editorial__mark {
+  font-family: var(--px-font-display);
+  font-style: italic;
+  font-size: var(--px-type-350, 3.34rem);
+  line-height: var(--px-lh-display, 0.92);
+  margin: 0;
+}
+
+.db-footer-editorial__columns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--px-space-5, 3.4375rem);
+}
+
+.db-footer-editorial__columns h4 {
+  font-family: var(--px-font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--px-footer-accent);
+  margin: 0 0 var(--px-space-3, 1.3125rem);
+}
+
+.db-footer-editorial__columns ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--px-font-body);
+  font-size: 0.9rem;
+  color: var(--px-footer-muted);
+}
+
+.db-footer-editorial__columns li + li {
+  margin-top: var(--px-space-2, 0.8125rem);
+}
+
+.db-footer-editorial__columns a {
+  color: inherit;
+  text-decoration: none;
+}
+.db-footer-editorial__columns a:hover {
+  color: var(--px-footer-ink);
+}
+
+.db-footer-editorial__bottom {
+  max-width: var(--px-max-w, 1440px);
+  margin: 0 auto;
+  padding-top: var(--px-space-4, 2.125rem);
+  border-top: 1px solid var(--px-footer-rule);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--px-space-3, 1.3125rem);
+  flex-wrap: wrap;
+  font-family: var(--px-font-body);
+  font-size: 0.8rem;
+  color: var(--px-footer-muted);
+}
+
+@media (max-width: 800px) {
+  .db-footer-editorial__top { grid-template-columns: 1fr; }
+  .db-footer-editorial__columns { grid-template-columns: 1fr 1fr; }
+}

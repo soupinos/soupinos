@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DB-11 · CTA Modal Trigger — Praxis-Ionian</title>
+<link rel="stylesheet" href="../../tokens/core.css">
+<link rel="stylesheet" href="../../tokens/skin-ionian.css">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<section class="db-cta-trigger" data-spacing="xl">
+  <p class="db-cta-trigger__eyebrow">Έτοιμοι;</p>
+  <button
+    type="button"
+    class="db-cta-trigger__button"
+    data-fx="fx-05 fx-12"
+    data-fx-modal="#db-cta-modal"
+  >
+    Ξεκίνα ένα έργο &rarr;
+  </button>
+</section>
+
+<div class="db-cta-modal" id="db-cta-modal" aria-hidden="true">
+  <div class="db-cta-modal__backdrop" data-fx-target="backdrop"></div>
+  <div class="db-cta-modal__panel" data-fx-target="panel" role="dialog" aria-modal="true" aria-labelledby="db-cta-modal-title">
+    <button type="button" class="db-cta-modal__close" data-fx-close aria-label="Κλείσιμο">&times;</button>
+    <h3 class="db-cta-modal__title" id="db-cta-modal-title">Πες μας για το έργο σου</h3>
+    <form>
+      <label class="sr-only" for="db-cta-name">Όνομα</label>
+      <input class="db-cta-modal__field" id="db-cta-name" type="text" placeholder="Όνομα" autocomplete="name">
+      <label class="sr-only" for="db-cta-email">Email</label>
+      <input class="db-cta-modal__field" id="db-cta-email" type="email" placeholder="Email" autocomplete="email">
+      <button type="submit" class="db-cta-modal__submit">Αποστολή</button>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="../../fx/fx-core.js"></script>
+<script src="../../fx/fx-catalog.js"></script>
+</body>
+</html>

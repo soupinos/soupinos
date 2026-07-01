@@ -1,0 +1,77 @@
+/**
+ * DB-09 · FAQ Quiet — component layer.
+ * Deliberately the calmest block in the library.
+ */
+.db-faq-quiet {
+  --px-faq-bg: var(--sand-100, #f4ecdd);
+  --px-faq-ink: var(--olive-900, #262a1c);
+  --px-faq-muted: var(--sand-700, #6b5c46);
+  --px-faq-rule: var(--line, rgba(38, 42, 28, 0.14));
+  --px-faq-pad: var(--px-breath-xl, 14.5625rem);
+
+  background: var(--px-faq-bg);
+  color: var(--px-faq-ink);
+  padding: var(--px-faq-pad) var(--px-space-5, 3.4375rem);
+}
+
+.db-faq-quiet[data-spacing='s'] { --px-faq-pad: var(--px-breath-s, 2.125rem); }
+.db-faq-quiet[data-spacing='m'] { --px-faq-pad: var(--px-breath-m, 5.5625rem); }
+
+.db-faq-quiet__heading {
+  max-width: var(--px-max-w, 1440px);
+  margin: 0 auto var(--px-space-6, 5.5625rem);
+  font-family: var(--px-font-display);
+  font-size: var(--px-type-300, 2.625rem);
+  line-height: var(--px-lh-display, 0.92);
+}
+
+.db-faq-quiet__list {
+  max-width: var(--px-measure, 65ch);
+  margin: 0 auto;
+}
+
+.db-faq-quiet__item {
+  border-top: 1px solid var(--px-faq-rule);
+  padding: var(--px-space-4, 2.125rem) 0;
+}
+
+.db-faq-quiet__item:last-child {
+  border-bottom: 1px solid var(--px-faq-rule);
+}
+
+.db-faq-quiet__item summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--px-space-3, 1.3125rem);
+  font-family: var(--px-font-body);
+  font-weight: 600;
+  font-size: var(--px-type-100, 1rem);
+}
+
+.db-faq-quiet__item summary::-webkit-details-marker {
+  display: none;
+}
+
+.db-faq-quiet__item summary::after {
+  content: '+';
+  font-family: var(--px-font-display);
+  font-size: 1.3rem;
+  color: var(--px-faq-muted);
+  transition: transform var(--px-duration-sm, 0.4s) var(--px-ease, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.db-faq-quiet__item[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.db-faq-quiet__answer {
+  margin: var(--px-space-3, 1.3125rem) 0 0;
+  font-family: var(--px-font-body);
+  font-size: 0.95rem;
+  line-height: var(--px-lh-body, 1.6);
+  color: var(--px-faq-muted);
+  max-width: 56ch;
+}

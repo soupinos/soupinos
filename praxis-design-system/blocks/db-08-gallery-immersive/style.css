@@ -1,0 +1,58 @@
+/**
+ * DB-08 · Gallery Immersive — component layer.
+ * Full-bleed, pinned, horizontally-scrubbed gallery. The one block
+ * allowed to run motion for an extended scroll distance.
+ */
+.db-gallery-immersive {
+  --px-gallery-bg: var(--olive-900, #262a1c);
+  --px-gallery-ink: var(--sand-100, #f4ecdd);
+  --px-gallery-media-from: var(--olive-500, #5c6440);
+  --px-gallery-media-to: var(--sand-700, #6b5c46);
+
+  position: relative;
+  height: 100vh;
+  overflow: clip;
+  background: var(--px-gallery-bg);
+  color: var(--px-gallery-ink);
+}
+
+.db-gallery-immersive__track {
+  display: flex;
+  height: 100%;
+  width: max-content;
+  will-change: transform;
+}
+
+.db-gallery-immersive__frame {
+  position: relative;
+  width: 70vw;
+  height: 100%;
+  flex: none;
+  margin: 0 var(--px-space-3, 1.3125rem);
+  overflow: clip;
+  border-radius: var(--px-radius-md, 4px);
+}
+
+.db-gallery-immersive__media {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 100% at 50% 40%, var(--px-gallery-media-from), var(--px-gallery-media-to));
+  will-change: transform;
+}
+
+.db-gallery-immersive__caption {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: var(--px-z-raised, 10);
+  padding: var(--px-space-4, 2.125rem);
+  font-family: var(--px-font-body);
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.45), transparent);
+  width: 100%;
+}
+
+@media (max-width: 700px) {
+  .db-gallery-immersive__frame { width: 88vw; }
+}

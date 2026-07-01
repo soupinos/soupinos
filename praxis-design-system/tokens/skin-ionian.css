@@ -1,0 +1,69 @@
+/**
+ * PRAXIS-IONIAN — Skin: "Ionian Earth" (olive-gold)
+ * Import AFTER tokens/core.css. This is the ONLY file allowed to set
+ * bare colour/font tokens. It must never define a --px-{block}-* token
+ * (that's the component layer's job — see README.md "Token model").
+ *
+ * Palette rule: max 2 base hues + 1 accent, accent ≤10% of surface.
+ *   Base 1 — olive   (structure: bg, ink-on-light)
+ *   Base 2 — sand     (paper, cards, light surfaces)
+ *   Accent — terracotta→gold, ONE hue family spanning a warm ember
+ *            range. Terracotta is the deep/muted end (borders, small
+ *            text accents); gold is the bright end (CTAs, focal
+ *            underlines, the signature slot). Together they are one
+ *            accent, not two — never place both at full saturation on
+ *            the same surface.
+ *
+ * TYPOGRAPHY NOTE: Cormorant Garamond ships a Greek subset on Google
+ * Fonts (verify at fonts.google.com before production use — subsets
+ * change). If it ever drops Greek coverage, fall back to a Greek-safe
+ * display serif (e.g. 'Noto Serif Display') rather than silently
+ * degrading to the browser default. Body font Inter is Greek-verified
+ * (see praxis-blocks/tokens.css). Greek uppercase display copy must be
+ * authored WITHOUT tonos in the markup — see docs/principles.md.
+ */
+
+:root {
+  /* ── Base 1 — olive ───────────────────────────────────────────── */
+  --olive-900: #262a1c;
+  --olive-700: #3c4229;
+  --olive-500: #5c6440;
+  --olive-300: #8b9268;
+  --olive-100: #dde1cd;
+
+  /* ── Base 2 — sand ────────────────────────────────────────────── */
+  --sand-900: #3a3226;
+  --sand-700: #6b5c46;
+  --sand-500: #a4906c;
+  --sand-300: #d8c9a8;
+  --sand-100: #f4ecdd;
+
+  /* ── Accent — terracotta → gold (one family) ─────────────────── */
+  --terracotta-700: #8a4a30;
+  --terracotta-500: #b06239;
+  --gold-600: #a6791f;
+  --gold-500: #c99a3e;
+  --gold-400: #e0b45c;
+
+  /* ── Neutrals / semantic ──────────────────────────────────────── */
+  --ink: var(--olive-900);
+  --paper: var(--sand-100);
+  --muted: var(--sand-700);
+  --line: rgba(38, 42, 28, 0.14); /* hairline, over paper */
+  --line-on-dark: rgba(244, 236, 221, 0.16);
+
+  /* ── Fonts ────────────────────────────────────────────────────── */
+  --px-font-display: 'Cormorant Garamond', 'Noto Serif Display', Georgia, serif;
+  --px-font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* ── Grain tint for .px-grain (core.css) ─────────────────────── */
+  --px-grain-color: var(--olive-900);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--px-font-body);
+}

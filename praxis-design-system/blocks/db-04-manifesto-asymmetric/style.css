@@ -1,0 +1,66 @@
+/**
+ * DB-04 · Manifesto Asymmetric — component layer.
+ * 61.8 / 38.2 split: long-form statement in the major column, a
+ * pull-quote in the minor column.
+ */
+.db-manifesto {
+  --px-manifesto-bg: var(--sand-100, #f4ecdd);
+  --px-manifesto-ink: var(--olive-900, #262a1c);
+  --px-manifesto-muted: var(--sand-700, #6b5c46);
+  --px-manifesto-accent: var(--gold-600, #a6791f);
+  --px-manifesto-pad: var(--px-breath-s, 2.125rem);
+  --px-manifesto-rule: var(--line, rgba(38, 42, 28, 0.14));
+
+  background: var(--px-manifesto-bg);
+  color: var(--px-manifesto-ink);
+  padding: var(--px-manifesto-pad) var(--px-space-5, 3.4375rem);
+}
+
+.db-manifesto__grid {
+  max-width: var(--px-max-w, 1440px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: var(--px-split-major, 61.8%) 1fr;
+  gap: var(--px-space-6, 5.5625rem);
+}
+
+.db-manifesto__body {
+  font-family: var(--px-font-body);
+  font-size: var(--px-type-200, 1.625rem);
+  line-height: var(--px-lh-body, 1.6);
+  max-width: var(--px-measure, 65ch);
+}
+
+.db-manifesto__body p + p {
+  margin-top: var(--px-space-3, 1.3125rem);
+}
+
+.db-manifesto__quote {
+  border-left: 2px solid var(--px-manifesto-accent);
+  padding-left: var(--px-space-4, 2.125rem);
+  align-self: start;
+  position: sticky;
+  top: var(--px-space-5, 3.4375rem);
+}
+
+.db-manifesto__quote blockquote {
+  margin: 0 0 var(--px-space-3, 1.3125rem);
+  font-family: var(--px-font-display);
+  font-style: italic;
+  font-size: var(--px-type-300, 2.625rem);
+  line-height: var(--px-lh-display, 0.92);
+}
+
+.db-manifesto__quote cite {
+  font-family: var(--px-font-body);
+  font-style: normal;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--px-manifesto-muted);
+}
+
+@media (max-width: 900px) {
+  .db-manifesto__grid { grid-template-columns: 1fr; }
+  .db-manifesto__quote { position: static; border-left: none; border-top: 2px solid var(--px-manifesto-accent); padding-left: 0; padding-top: var(--px-space-3, 1.3125rem); }
+}
