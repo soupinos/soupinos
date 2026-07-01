@@ -27,6 +27,16 @@ referenced by the trigger's `data-fx-modal`. It needs exactly:
 control tagged `data-fx-close`. Esc key and backdrop click both close it
 (see FX-12 in `fx-catalog.js`).
 
+## Accessibility
+
+FX-12 traps focus inside `[data-fx-target="panel"]` while the modal is
+open: opening moves focus to the panel's first focusable element, Tab
+and Shift+Tab cycle only within the panel's focusable elements (they
+never escape to the page behind it), and closing — by Esc, backdrop
+click, or `[data-fx-close]` — returns focus to the trigger button. Any
+project that adds fields to the form must keep them inside
+`[data-fx-target="panel"]` for the trap to see them.
+
 ## Component tokens
 
 `--px-cta-bg`, `--px-cta-ink`, `--px-cta-accent`, `--px-cta-pad`.

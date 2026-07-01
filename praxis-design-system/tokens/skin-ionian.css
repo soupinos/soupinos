@@ -12,15 +12,24 @@
  *            text accents); gold is the bright end (CTAs, focal
  *            underlines, the signature slot). Together they are one
  *            accent, not two — never place both at full saturation on
- *            the same surface.
+ *            the same surface. --gold-700 / --terracotta-700 are the
+ *            AA-safe text variants of this family on --sand-100:
+ *            --gold-500 / --gold-600 / --terracotta-500 measure under
+ *            4.5:1 there and must not carry small/regular text on a
+ *            light surface — use them for borders, underlines, or
+ *            decorative fills on light surfaces, or for text on the
+ *            dark olive surfaces instead (where they pass).
  *
- * TYPOGRAPHY NOTE: Cormorant Garamond ships a Greek subset on Google
- * Fonts (verify at fonts.google.com before production use — subsets
- * change). If it ever drops Greek coverage, fall back to a Greek-safe
- * display serif (e.g. 'Noto Serif Display') rather than silently
- * degrading to the browser default. Body font Inter is Greek-verified
- * (see praxis-blocks/tokens.css). Greek uppercase display copy must be
- * authored WITHOUT tonos in the markup — see docs/principles.md.
+ * TYPOGRAPHY NOTE: --px-font-display is EB Garamond, chosen specifically
+ * because it ships a verified Greek subset on Google Fonts (many Latin
+ * revival serifs don't — check any future display-face swap against
+ * Google Fonts' published subset list before adopting it, the same way
+ * this one was checked). The css2 endpoint below serves that subset
+ * automatically — Google Fonts includes every subset a family has by
+ * default, no subset= parameter needed. Body font Inter is
+ * Greek-verified (see praxis-blocks/tokens.css). Greek uppercase
+ * display copy must be authored WITHOUT tonos in the markup — see
+ * docs/principles.md.
  */
 
 :root {
@@ -41,6 +50,7 @@
   /* ── Accent — terracotta → gold (one family) ─────────────────── */
   --terracotta-700: #8a4a30;
   --terracotta-500: #b06239;
+  --gold-700: #7a5614; /* AA-safe gold-family text on --sand-100 (5.65:1) */
   --gold-600: #a6791f;
   --gold-500: #c99a3e;
   --gold-400: #e0b45c;
@@ -53,14 +63,14 @@
   --line-on-dark: rgba(244, 236, 221, 0.16);
 
   /* ── Fonts ────────────────────────────────────────────────────── */
-  --px-font-display: 'Cormorant Garamond', 'Noto Serif Display', Georgia, serif;
+  --px-font-display: 'EB Garamond', Georgia, serif;
   --px-font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   /* ── Grain tint for .px-grain (core.css) ─────────────────────── */
   --px-grain-color: var(--olive-900);
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap');
 
 body {
   background: var(--paper);

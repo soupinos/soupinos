@@ -6,7 +6,7 @@
 .db-cta-trigger {
   --px-cta-bg: var(--sand-100, #f4ecdd);
   --px-cta-ink: var(--olive-900, #262a1c);
-  --px-cta-accent: var(--gold-500, #c99a3e);
+  --px-cta-accent: var(--gold-700, #7a5614); /* AA fix: gold-500 measured 2.19:1 on sand-100, fails 4.5:1 */
   --px-cta-pad: var(--px-breath-xl, 14.5625rem);
 
   background: var(--px-cta-bg);

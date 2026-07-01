@@ -295,7 +295,12 @@
 
   /* ── FX-12 · modal-fade-scale ──────────────────────────────────────
      Click-triggered modal open/close. Not scroll-based. One channel
-     per element: backdrop opacity, panel scale (+opacity, same tween). */
+     per element: backdrop opacity, panel scale (+opacity, same tween).
+     A11y: traps Tab/Shift+Tab inside the modal while open, Escape
+     closes, and focus returns to the trigger button on close. */
+  var FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), input:not([disabled]), ' +
+    'select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
   global.PraxisFX.register('fx-12', function (el) {
     var trigger = el;
     var modalSel = trigger.getAttribute('data-fx-modal');
@@ -308,12 +313,18 @@
     gsap.set(backdrop, { opacity: 0 });
     gsap.set(panel, { opacity: 0, scale: 0.92 });
 
+    function focusable() {
+      return Array.prototype.slice.call(panel.querySelectorAll(FOCUSABLE_SELECTOR));
+    }
+
     function open() {
       gsap.set(modal, { display: 'flex' });
       gsap.to(backdrop, { opacity: 1, duration: 0.3, ease: 'power1.out' });
       gsap.to(panel, { opacity: 1, scale: 1, duration: 0.45, ease: 'cubic-bezier(.16,1,.3,1)' });
       modal.setAttribute('aria-hidden', 'false');
       document.addEventListener('keydown', onKey);
+      var first = focusable()[0];
+      if (first) first.focus();
     }
     function close() {
       gsap.to(panel, { opacity: 0, scale: 0.92, duration: 0.3, ease: 'power1.in' });
@@ -323,8 +334,23 @@
       });
       modal.setAttribute('aria-hidden', 'true');
       document.removeEventListener('keydown', onKey);
+      trigger.focus();
     }
-    function onKey(e) { if (e.key === 'Escape') close(); }
+    function onKey(e) {
+      if (e.key === 'Escape') { close(); return; }
+      if (e.key !== 'Tab') return;
+      var items = focusable();
+      if (!items.length) { e.preventDefault(); return; }
+      var firstEl = items[0];
+      var lastEl = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === firstEl) {
+        e.preventDefault();
+        lastEl.focus();
+      } else if (!e.shiftKey && document.activeElement === lastEl) {
+        e.preventDefault();
+        firstEl.focus();
+      }
+    }
     function onTriggerClick() { open(); }
     function onModalClick(e) { if (e.target === modal || e.target === backdrop) close(); }
 

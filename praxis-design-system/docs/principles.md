@@ -82,3 +82,20 @@ body copy keeps its normal accents. Every other language keeps its
 diacritics in caps (`text-transform: uppercase` is fine for those). This
 mirrors the convention already in production in `praxis-blocks/README.md`
 — don't diverge from it.
+
+## Display font: Greek coverage is a hard requirement
+
+`tokens/skin-ionian.css` ships **EB Garamond** as `--px-font-display`.
+It was chosen over other Latin revival serifs specifically because it
+carries a verified Greek subset on Google Fonts — several visually
+similar serif families don't, which would silently fall the display face
+back to the browser default on every Greek headline. Any future skin's
+display font must be checked for a verified Greek subset on Google Fonts
+*before* it's adopted, the same way EB Garamond was checked here.
+
+**GFS Didot** is pre-approved as an alternative display font at the skin
+level for Greek-first luxury skins (it's a Greek Font Society revival
+with native, high-quality Greek glyphs, not a Latin face with bolted-on
+Greek coverage) — a new `skin-*.css` may swap `--px-font-display` to GFS
+Didot without further typography review. Any other display face swap
+needs the same Greek-subset verification EB Garamond got.

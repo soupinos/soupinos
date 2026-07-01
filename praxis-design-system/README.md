@@ -94,7 +94,8 @@ No other dependencies are permitted (see Quality Bar below).
 
 - Every block opens standalone in a browser with no build step.
 - Semantic HTML, `alt` text on every image, AA contrast.
-- No external dependencies beyond GSAP / ScrollTrigger / Lenis (CDN).
+- No external dependencies beyond GSAP / ScrollTrigger / Lenis (CDN) and
+  Google Fonts (EB Garamond, Inter).
 - Every FX: no console errors, clean `prefers-reduced-motion` fallback, no
   two tweens driving the same transform channel on the same element.
 

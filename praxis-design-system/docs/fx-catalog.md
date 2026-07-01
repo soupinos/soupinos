@@ -39,7 +39,7 @@ attributes.
 | FX-09 | `horizontal-scrub` | scroll scrub, pinned | `[data-fx-target="track"]` | `xPercent` | Distance reduced on mobile |
 | FX-10 | `sticky-stack` | scroll scrub, pinned per card | `[data-fx-target="card"]` | `scale` (+`y`, same tween) | Each card but the last stays pinned while the next arrives |
 | FX-11 | `cursor-glow-trail` | pointer move | `[data-fx-target="glow"]` | `x`, `y` (`quickTo`) | Desktop / fine-pointer only |
-| FX-12 | `modal-fade-scale` | click (not scroll) | `[data-fx-target="backdrop"]`, `[data-fx-target="panel"]` | `opacity`; `opacity`+`scale` | Opens `data-fx-modal` selector target; Esc + backdrop click close |
+| FX-12 | `modal-fade-scale` | click (not scroll) | `[data-fx-target="backdrop"]`, `[data-fx-target="panel"]` | `opacity`; `opacity`+`scale` | Opens `data-fx-modal` selector target; Esc + backdrop click close; traps Tab/Shift+Tab inside the panel while open; focus returns to the trigger on close |
 
 ## DB → FX default mapping
 

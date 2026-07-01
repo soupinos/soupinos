@@ -5,7 +5,7 @@
 .db-tension-statement {
   --px-tension-bg: var(--sand-100, #f4ecdd);
   --px-tension-ink: var(--olive-900, #262a1c);
-  --px-tension-accent: var(--terracotta-500, #b06239);
+  --px-tension-accent: var(--terracotta-700, #8a4a30); /* AA fix: terracotta-500 measured 3.85:1 on sand-100, fails 4.5:1 */
   --px-tension-pad: var(--px-breath-xl, 14.5625rem);
 
   position: relative;
