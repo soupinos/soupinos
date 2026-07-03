@@ -1,8 +1,8 @@
 # Praxis-Ionian Design System
 
-A design system package for **Claude Design**: tokens, 12 reusable Design
-Blocks (DB), and 12 named GSAP effects (FX), skinned in the first palette
-— **Ionian Earth** (olive-gold).
+A design system package for **Claude Design**: tokens, 16 reusable Design
+Blocks (DB) plus one bespoke signature slot, and 15 named GSAP effects
+(FX), skinned in the first palette — **Ionian Earth** (olive-gold).
 
 This is a static HTML/CSS/JS component library. It is **not** a WordPress
 theme, and it is a separate initiative from `praxis-blocks/` (the vanilla
@@ -37,15 +37,23 @@ praxis-design-system/
 │   └── skin-ionian.css   Ionian Earth palette + fonts (skin layer)
 ├── blocks/
 │   ├── db-00-signature/  empty — one bespoke moment per client, see notes.md
-│   └── db-01 … db-12/    index.html (standalone demo) + style.css + notes.md
+│   └── db-01 … db-16/    index.html (standalone demo) + style.css + notes.md
 ├── fx/
 │   ├── fx-core.js        GSAP + ScrollTrigger + Lenis bootstrap, FX registry
-│   └── fx-catalog.js     FX-01 … FX-12, named functions registered on load
+│   └── fx-catalog.js     FX-01 … FX-15, named functions registered on load
 └── docs/
     ├── principles.md     DNA, composition rules, cinematic rhythm
-    ├── design-blocks.md  DB-01…12 definitions + storytelling slots
-    └── fx-catalog.md     FX-01…12 definitions + DB → FX default mapping
+    ├── design-blocks.md  DB-01…16 definitions + storytelling slots
+    └── fx-catalog.md     FX-01…15 definitions + DB → FX default mapping
 ```
+
+## `@dsCard` grouping
+
+`blocks/db-13-*` through `db-16-*` open with a first-line comment,
+`<!-- @dsCard group="…" -->`, tagging the block for Claude Design's own
+grouping UI (`Navigation`, `Epilogue`, `Proof`, `Trust`, …). This
+convention was introduced with those four blocks; `db-00`…`db-12` don't
+carry it yet — see `docs/design-blocks.md` for the known-gap note.
 
 ## Quick start (any block)
 

@@ -59,7 +59,7 @@
 .db-hero-cinematic__title {
   font-family: var(--px-font-display);
   font-weight: 500;
-  font-size: clamp(2.625rem, 6vw + 1rem, var(--px-type-500, 6.875rem));
+  font-size: var(--px-type-500, 6.875rem); /* token is fluid — no local clamp needed, see tokens/core.css */
   line-height: var(--px-lh-display, 0.92);
   margin: 0 0 var(--px-space-4, 2.125rem);
 }

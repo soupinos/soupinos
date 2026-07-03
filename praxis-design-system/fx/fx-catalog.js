@@ -368,4 +368,176 @@
       }
     };
   });
+
+  /* ── FX-13 · nav-overlay ─────────────────────────────────────────
+     Click-triggered fullscreen nav panel (DB-13 NavEditorial). Not
+     scroll-based. One channel per element: panel opacity; per-item
+     y+opacity stagger (same tween, shared across items — one owner).
+     Shares the focus-trap / focus-return contract with FX-12: opening
+     moves focus into the panel, Tab/Shift+Tab stay trapped inside it,
+     Esc or any close/nav-link click returns focus to the trigger. */
+  global.PraxisFX.register('fx-13', function (el) {
+    var trigger = el;
+    var panelSel = trigger.getAttribute('data-fx-modal');
+    var panel = panelSel ? document.querySelector(panelSel) : null;
+    if (!panel) return { kill: function () {} };
+    var items = Array.prototype.slice.call(panel.querySelectorAll('[data-fx-target="navitem"]'));
+
+    gsap.set(panel, { display: 'none', opacity: 0 });
+    gsap.set(items, { opacity: 0, y: 28 });
+
+    function focusable() {
+      return Array.prototype.slice.call(panel.querySelectorAll(FOCUSABLE_SELECTOR));
+    }
+
+    function open() {
+      gsap.set(panel, { display: 'flex' });
+      document.body.style.overflow = 'hidden';
+      gsap.to(panel, { opacity: 1, duration: 0.5, ease: 'power2.out' });
+      gsap.to(items, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.06, delay: 0.15 });
+      panel.setAttribute('aria-hidden', 'false');
+      document.addEventListener('keydown', onKey);
+      var first = focusable()[0];
+      if (first) first.focus();
+    }
+    function close() {
+      document.body.style.overflow = '';
+      gsap.to(panel, {
+        opacity: 0, duration: 0.4, ease: 'power2.out',
+        onComplete: function () { gsap.set(panel, { display: 'none' }); gsap.set(items, { opacity: 0, y: 28 }); }
+      });
+      panel.setAttribute('aria-hidden', 'true');
+      document.removeEventListener('keydown', onKey);
+      trigger.focus();
+    }
+    function onKey(e) {
+      if (e.key === 'Escape') { close(); return; }
+      if (e.key !== 'Tab') return;
+      var f = focusable();
+      if (!f.length) { e.preventDefault(); return; }
+      var firstEl = f[0];
+      var lastEl = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === firstEl) {
+        e.preventDefault();
+        lastEl.focus();
+      } else if (!e.shiftKey && document.activeElement === lastEl) {
+        e.preventDefault();
+        firstEl.focus();
+      }
+    }
+    function onTriggerClick() { open(); }
+
+    trigger.addEventListener('click', onTriggerClick);
+    panel.querySelectorAll('[data-fx-close]').forEach(function (btn) { btn.addEventListener('click', close); });
+    panel.querySelectorAll('[data-fx-navlink]').forEach(function (a) { a.addEventListener('click', close); });
+
+    return {
+      kill: function () {
+        trigger.removeEventListener('click', onTriggerClick);
+        document.removeEventListener('keydown', onKey);
+      }
+    };
+  });
+
+  /* ── FX-14 · accordion-cards ──────────────────────────────────────
+     Click-triggered card accordion (DB-14 FaqCards). Not scroll-based.
+     One channel per element: [data-fx-a] height only — icon rotation
+     and the open-question colour swap are driven by CSS reading the
+     card's own [data-open] attribute, never a second JS-owned
+     transform on the same element. Only one card open at a time across
+     the whole group (opening one closes any other that's open). */
+  global.PraxisFX.register('fx-14', function (el) {
+    var cards = Array.prototype.slice.call(el.querySelectorAll('[data-fx-target="card"]'));
+    var handlers = [];
+    cards.forEach(function (card) {
+      var btn = card.querySelector('[data-fx-q]');
+      var ans = card.querySelector('[data-fx-a]');
+      if (!btn || !ans) return;
+      gsap.set(ans, { height: 0, overflow: 'hidden' });
+      function toggle() {
+        var isOpen = card.getAttribute('data-open') === '1';
+        cards.forEach(function (other) {
+          if (other === card || other.getAttribute('data-open') !== '1') return;
+          other.setAttribute('data-open', '0');
+          var oa = other.querySelector('[data-fx-a]');
+          if (oa) gsap.to(oa, { height: 0, duration: 0.5, ease: 'power3.inOut' });
+        });
+        if (isOpen) {
+          card.setAttribute('data-open', '0');
+          gsap.to(ans, { height: 0, duration: 0.5, ease: 'power3.inOut' });
+        } else {
+          card.setAttribute('data-open', '1');
+          gsap.set(ans, { height: 'auto' });
+          gsap.from(ans, { height: 0, duration: 0.55, ease: 'power3.inOut' });
+        }
+      }
+      btn.addEventListener('click', toggle);
+      handlers.push({ btn: btn, fn: toggle });
+    });
+    return {
+      kill: function () { handlers.forEach(function (h) { h.btn.removeEventListener('click', h.fn); }); }
+    };
+  });
+
+  /* ── FX-15 · reviews-carousel ──────────────────────────────────────
+     Prev/next + auto-advance quote carousel (DB-15 ReviewsCarousel).
+     Not scroll-based. One channel: opacity on the quote/name/loc group,
+     always driven by a single tween per transition (never two tweens
+     racing on the same element). Reads its slide data from a sibling
+     `<script type="application/json" data-fx-target="reviews-data">` —
+     the markup's initial quote/name/loc text must match slide 0 exactly
+     so there's no flash on mount, and so a no-JS or reduced-motion page
+     still shows a complete, real first review. */
+  global.PraxisFX.register('fx-15', function (el) {
+    var dataEl = el.querySelector('[data-fx-target="reviews-data"]');
+    var reviews = [];
+    try { reviews = JSON.parse(dataEl ? dataEl.textContent : '[]'); } catch (e) { reviews = []; }
+    if (!reviews.length) return { kill: function () {} };
+
+    var quoteEl = el.querySelector('[data-fx-target="quote"]');
+    var nameEl = el.querySelector('[data-fx-target="name"]');
+    var locEl = el.querySelector('[data-fx-target="loc"]');
+    var prevBtn = el.querySelector('[data-fx-prev]');
+    var nextBtn = el.querySelector('[data-fx-next]');
+    var fadeGroup = [quoteEl, nameEl, locEl].filter(Boolean);
+    var idx = 0;
+    var timer = null;
+
+    function render(i) {
+      var r = reviews[i];
+      gsap.to(fadeGroup, {
+        opacity: 0, duration: 0.25, ease: 'power1.in',
+        onComplete: function () {
+          if (quoteEl) quoteEl.textContent = '“' + r.quote + '”';
+          if (nameEl) nameEl.textContent = r.name;
+          if (locEl) locEl.textContent = r.loc;
+          gsap.to(fadeGroup, { opacity: 1, duration: 0.35, ease: 'power1.out' });
+        }
+      });
+    }
+
+    function restart() {
+      if (timer) clearInterval(timer);
+      timer = setInterval(function () { go(idx + 1); }, 6500);
+    }
+    function go(newIdx) {
+      idx = (newIdx + reviews.length) % reviews.length;
+      render(idx);
+      restart();
+    }
+    function onPrev() { go(idx - 1); }
+    function onNext() { go(idx + 1); }
+
+    if (prevBtn) prevBtn.addEventListener('click', onPrev);
+    if (nextBtn) nextBtn.addEventListener('click', onNext);
+    restart();
+
+    return {
+      kill: function () {
+        if (timer) clearInterval(timer);
+        if (prevBtn) prevBtn.removeEventListener('click', onPrev);
+        if (nextBtn) nextBtn.removeEventListener('click', onNext);
+      }
+    };
+  });
 })(window);

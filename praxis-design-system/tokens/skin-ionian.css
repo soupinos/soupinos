@@ -13,10 +13,14 @@
  *            underlines, the signature slot). Together they are one
  *            accent, not two — never place both at full saturation on
  *            the same surface. --gold-700 / --terracotta-700 are the
- *            AA-safe text variants of this family on --sand-100:
+ *            AA-safe text variants of this family on --sand-100;
+ *            --gold-800 is the AA-safe variant on the DARKER --sand-300
+ *            card surface specifically (a lighter card background needs
+ *            a darker accent to hold 4.5:1 — check against the actual
+ *            surface a text accent sits on, not just --sand-100).
  *            --gold-500 / --gold-600 / --terracotta-500 measure under
- *            4.5:1 there and must not carry small/regular text on a
- *            light surface — use them for borders, underlines, or
+ *            4.5:1 on light surfaces and must not carry small/regular
+ *            text there — use them for borders, underlines, or
  *            decorative fills on light surfaces, or for text on the
  *            dark olive surfaces instead (where they pass).
  *
@@ -50,6 +54,7 @@
   /* ── Accent — terracotta → gold (one family) ─────────────────── */
   --terracotta-700: #8a4a30;
   --terracotta-500: #b06239;
+  --gold-800: #6b4a11; /* AA-safe gold-family text on --sand-300 (4.91:1) */
   --gold-700: #7a5614; /* AA-safe gold-family text on --sand-100 (5.65:1) */
   --gold-600: #a6791f;
   --gold-500: #c99a3e;

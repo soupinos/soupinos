@@ -1,10 +1,12 @@
 # FX Catalog
 
-12 named GSAP effects, implemented in `fx/fx-catalog.js` on top of the
+15 named GSAP effects, implemented in `fx/fx-catalog.js` on top of the
 registry in `fx/fx-core.js`. Wire an FX by adding `data-fx="fx-XX"` (space
 -separated for a second FX) to a block's root element, plus any
 `data-fx-target="…"` markers the effect expects and `data-fx-*` option
-attributes.
+attributes. FX-13…FX-15 were added alongside DB-13…DB-16 (the Villa
+Elysion merge) — the original catalog was FX-01…FX-12; nothing about
+those twelve changed.
 
 ## Hard rules
 
@@ -40,6 +42,9 @@ attributes.
 | FX-10 | `sticky-stack` | scroll scrub, pinned per card | `[data-fx-target="card"]` | `scale` (+`y`, same tween) | Each card but the last stays pinned while the next arrives |
 | FX-11 | `cursor-glow-trail` | pointer move | `[data-fx-target="glow"]` | `x`, `y` (`quickTo`) | Desktop / fine-pointer only |
 | FX-12 | `modal-fade-scale` | click (not scroll) | `[data-fx-target="backdrop"]`, `[data-fx-target="panel"]` | `opacity`; `opacity`+`scale` | Opens `data-fx-modal` selector target; Esc + backdrop click close; traps Tab/Shift+Tab inside the panel while open; focus returns to the trigger on close |
+| FX-13 | `nav-overlay` | click (not scroll) | `[data-fx-target="navitem"]` (panel via `data-fx-modal`) | `opacity` (panel); `y`+`opacity` (items, same tween) | Fullscreen nav panel — same focus-trap/Esc/focus-return contract as FX-12; closes on any `[data-fx-navlink]` click too; locks body scroll while open |
+| FX-14 | `accordion-cards` | click (not scroll) | `[data-fx-target="card"]` groups, each with `[data-fx-q]`/`[data-fx-a]` | `height` on `[data-fx-a]` only | Only one card open at a time across the group; icon rotation + open-question colour are CSS reading the card's `[data-open]` attribute, not a second JS channel |
+| FX-15 | `reviews-carousel` | click (prev/next) + auto-advance timer | `[data-fx-target="quote/name/loc"]` | `opacity` (one tween per transition across all three) | Reads slides from a sibling `<script type="application/json" data-fx-target="reviews-data">`; 6.5s auto-advance restarts on manual nav |
 
 ## DB → FX default mapping
 
@@ -61,3 +66,7 @@ starting points, not requirements.
 | DB-10 Map & Presence | FX-02 `parallax-depth` + FX-11 `cursor-glow-trail` | Map layer drifts; accent glow follows the cursor near the pin |
 | DB-11 CTA Modal Trigger | FX-12 `modal-fade-scale` + FX-05 `magnetic-cta` | Trigger button is magnetic; click opens the fade/scale modal |
 | DB-12 Footer Editorial | FX-01 `reveal-mask` | Closing beat — restrained, one subtle reveal only |
+| DB-13 NavEditorial | FX-13 `nav-overlay` | Trigger opens the fullscreen numbered menu, focus-trapped |
+| DB-14 FaqCards | FX-14 `accordion-cards` | Card accordion, one FX owns the whole open/close/height/icon/colour behavior |
+| DB-15 ReviewsCarousel | FX-02 `parallax-depth` + FX-15 `reviews-carousel` | Photo drifts; quote card cycles independently |
+| DB-16 AmenitiesQuiet | FX-07 `stagger-grid` | Fast facts grid — one FX, same reasoning as DB-06 |

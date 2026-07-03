@@ -1,0 +1,85 @@
+<!-- @dsCard group="Navigation" -->
+<!doctype html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DB-13 · NavEditorial — Praxis-Ionian</title>
+<link rel="stylesheet" href="../../tokens/core.css">
+<link rel="stylesheet" href="../../tokens/skin-ionian.css">
+<link rel="stylesheet" href="./style.css">
+<style>
+  /* Demo-only filler so the fixed header has something to sit over. Not part of the block. */
+  .demo-filler { min-height: 100vh; display: grid; place-items: center; background: var(--olive-900); color: var(--sand-300); font-family: var(--px-font-body); text-align: center; padding: 2rem; }
+</style>
+</head>
+<body>
+
+<header class="db-nav-editorial" data-spacing="s">
+  <div class="db-nav-editorial__bar">
+    <span class="db-nav-editorial__hairline db-nav-editorial__hairline--l" aria-hidden="true"></span>
+    <span class="db-nav-editorial__hairline db-nav-editorial__hairline--r" aria-hidden="true"></span>
+
+    <div class="db-nav-editorial__left">
+      <button type="button" class="db-nav-editorial__trigger" data-fx="fx-13" data-fx-modal="#db-nav-menu" aria-haspopup="true">
+        <span class="db-nav-editorial__burger" aria-hidden="true"><span></span><span></span></span>
+        <span>ΜΕΝΟΥ</span>
+      </button>
+    </div>
+
+    <a href="#top" class="db-nav-editorial__word">
+      <span class="db-nav-editorial__word-a">ΠΡΑΞΙΣ</span>
+      <span class="db-nav-editorial__word-b">Ionian</span>
+    </a>
+
+    <div class="db-nav-editorial__right">
+      <a href="#contact" class="db-nav-editorial__contact">ΕΠΙΚΟΙΝΩΝΙΑ</a>
+      <div class="db-nav-editorial__langs">
+        <button type="button" class="is-active" data-lang="el">EL</button>
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="de">DE</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div id="db-nav-menu" class="db-nav-editorial__overlay" aria-hidden="true">
+  <div class="db-nav-editorial__overlay-media" aria-hidden="true"></div>
+  <div class="db-nav-editorial__overlay-inner">
+    <div class="db-nav-editorial__overlay-top">
+      <span class="db-nav-editorial__overlay-word">ΠΡΑΞΙΣ IONIAN</span>
+      <button type="button" class="db-nav-editorial__close" data-fx-close>
+        <span>ΚΛΕΙΣΕ</span> <span aria-hidden="true">✕</span>
+      </button>
+    </div>
+
+    <nav class="db-nav-editorial__list" aria-label="Κύριο μενού">
+      <a class="db-nav-editorial__item" href="#spaces" data-fx-target="navitem" data-fx-navlink><span class="db-nav-editorial__num">01</span>ΟΙ ΧΩΡΟΙ</a>
+      <a class="db-nav-editorial__item" href="#amenities" data-fx-target="navitem" data-fx-navlink><span class="db-nav-editorial__num">02</span>ΠΑΡΟΧΕΣ</a>
+      <a class="db-nav-editorial__item" href="#reviews" data-fx-target="navitem" data-fx-navlink><span class="db-nav-editorial__num">03</span>ΚΡΙΤΙΚΕΣ</a>
+      <a class="db-nav-editorial__item" href="#faq" data-fx-target="navitem" data-fx-navlink><span class="db-nav-editorial__num">04</span>ΕΡΩΤΗΣΕΙΣ</a>
+      <a class="db-nav-editorial__item" href="#location" data-fx-target="navitem" data-fx-navlink><span class="db-nav-editorial__num">05</span>ΤΟΠΟΘΕΣΙΑ</a>
+    </nav>
+
+    <div class="db-nav-editorial__overlay-bottom" data-fx-target="navitem">
+      <a class="db-nav-editorial__overlay-contact" href="mailto:hello@praxis-ionian.example">hello@praxis-ionian.example</a>
+      <div class="db-nav-editorial__langs">
+        <button type="button" class="is-active" data-lang="el">EL</button>
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="de">DE</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="demo-filler">
+  <p>Demo filler content — scrolls behind the fixed header.<br>Open “ΜΕΝΟΥ” to see the fullscreen overlay.</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="../../fx/fx-core.js"></script>
+<script src="../../fx/fx-catalog.js"></script>
+</body>
+</html>

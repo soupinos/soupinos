@@ -16,6 +16,50 @@ these is a bug, not a style choice.
   `--px-{block}-*` tokens. See README.md "Token model". This is what
   lets a second skin (`skin-*.css`) reskin the whole library with zero
   block edits.
+- **Icon restraint.** The library defaults to zero decorative icon
+  sets — hierarchy comes from type, spacing, and the accent colour, not
+  from glyphs. **DB-16 AmenitiesQuiet is the one approved exception**:
+  a short scannable facts grid is genuinely faster to read with one
+  recognisable glyph per row. If a brief seems to want icons elsewhere,
+  that's a signal to re-check whether type/spacing/color can carry the
+  same hierarchy first — icons are the exception, not a toolbox to reach
+  for by default. Where they are used: inline SVG only (no icon font, no
+  sprite sheet), `stroke-width: 1.5`, `fill: none`, one accent-family
+  stroke colour, never a second colour per icon and never a filled
+  shape.
+
+## Fluid type
+
+The φ-type-scale (`--px-type-100`…`--px-type-500` and the √φ half-steps,
+all in `tokens/core.css`) is fluid, not fixed px. Every step is a
+`clamp(min, preferred, max)` interpolated between a 360px and a 1440px
+viewport:
+
+- **max** is the token's classic φ-ladder value (16 / 26 / 42 / 68 /
+  110px, plus the half-steps) — unchanged, and still exact at 1440px and
+  above. Nothing about the desktop scale moved.
+- **min** is a deliberately *flatter* mobile floor, not a scaled-down
+  copy of the ladder: body-weight tokens (100/150/200/250) compress
+  gently (16px only floors to 15px), while display-weight tokens
+  (300/350/400/450/500) compress hard (110px floors to 48px). This is
+  why the hero token never exceeds roughly 52px on a 360px phone even
+  though it reaches 110px on desktop — the ladder's *ratios* are a
+  desktop concept; the *mobile floor* is tuned per role, the way an
+  editorial type system would be manually re-set at each breakpoint, not
+  linearly scaled.
+- The two interpolation bounds (360 / 1440) are fixed system-wide. A
+  block must never wrap a `--px-type-*` token in its own local
+  `clamp()` "for mobile safety" — that was the workaround for the old
+  fixed-px scale, and duplicating it now just fights the token's own
+  curve. Reference the token directly; if a specific block genuinely
+  needs a different curve, that's a new named token, not a per-block
+  patch.
+
+This exists because a fixed-px φ-scale is the "oversized mobile display
+type" bug by construction: a 110px hero token has no floor and no
+ceiling, so a phone renders literally the same 110px as a 1440px
+desktop. Fluid tokens make that impossible without every block having to
+remember to defend itself.
 
 ## Composition: the φ-grid
 

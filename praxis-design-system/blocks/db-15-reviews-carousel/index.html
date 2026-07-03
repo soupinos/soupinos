@@ -1,0 +1,64 @@
+<!-- @dsCard group="Proof" -->
+<!doctype html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DB-15 · ReviewsCarousel — Praxis-Ionian</title>
+<link rel="stylesheet" href="../../tokens/core.css">
+<link rel="stylesheet" href="../../tokens/skin-ionian.css">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<section class="db-reviews-carousel" data-spacing="m" data-fx="fx-02" data-fx-amount="10">
+  <div class="db-reviews-carousel__media" data-fx-target="parallax"></div>
+  <div class="db-reviews-carousel__shade"></div>
+
+  <div class="db-reviews-carousel__inner" data-fx="fx-15">
+    <script type="application/json" data-fx-target="reviews-data">
+      [
+        { "quote": "Ένα πραγματικό καταφύγιο ηρεμίας. Κοιμηθήκαμε όπως είχαμε χρόνια να κοιμηθούμε.", "name": "Άννα & Μάρκους", "loc": "ΓΕΡΜΑΝΙΑ" },
+        { "quote": "Η πισίνα και ο κήπος ήταν το αγαπημένο μας σημείο. Απόλυτη ιδιωτικότητα.", "name": "Σοφία Λ.", "loc": "ΓΑΛΛΙΑ" },
+        { "quote": "Τα μπάνια μοιάζουν με spa. Κάθε λεπτομέρεια προσεγμένη.", "name": "Γιώργος Π.", "loc": "ΕΛΛΑΔΑ" },
+        { "quote": "Μακριά από τον κόσμο, αλλά κοντά σε όλα. Ιδανικό για οικογένεια.", "name": "Έλενα & Δημήτρης", "loc": "ΕΛΛΑΔΑ" }
+      ]
+    </script>
+
+    <div class="db-reviews-carousel__head">
+      <p class="db-reviews-carousel__eyebrow"><span></span>ΟΙ ΦΙΛΟΞΕΝΟΥΜΕΝΟΙ ΜΑΣ</p>
+      <h2 class="db-reviews-carousel__title">Λόγια από όσους έμειναν</h2>
+    </div>
+
+    <div class="db-reviews-carousel__cardwrap">
+      <button type="button" class="db-reviews-carousel__arrow" data-fx-prev aria-label="Προηγούμενη κριτική">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 5l-7 7 7 7"/></svg>
+      </button>
+
+      <div class="db-reviews-carousel__card">
+        <div class="db-reviews-carousel__stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+        </div>
+        <blockquote class="db-reviews-carousel__quote" data-fx-target="quote">&ldquo;Ένα πραγματικό καταφύγιο ηρεμίας. Κοιμηθήκαμε όπως είχαμε χρόνια να κοιμηθούμε.&rdquo;</blockquote>
+        <p class="db-reviews-carousel__name" data-fx-target="name">Άννα &amp; Μάρκους</p>
+        <p class="db-reviews-carousel__loc" data-fx-target="loc">ΓΕΡΜΑΝΙΑ</p>
+      </div>
+
+      <button type="button" class="db-reviews-carousel__arrow" data-fx-next aria-label="Επόμενη κριτική">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="../../fx/fx-core.js"></script>
+<script src="../../fx/fx-catalog.js"></script>
+</body>
+</html>

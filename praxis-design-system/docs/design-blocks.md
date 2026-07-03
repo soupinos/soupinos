@@ -1,9 +1,15 @@
 # Design Blocks
 
-12 numbered blocks (DB-01…DB-12) plus one empty signature slot
+16 numbered blocks (DB-01…DB-16) plus one empty signature slot
 (DB-00). Each lives in `blocks/db-XX-{slug}/` as `index.html` (standalone
 demo), `style.css` (component-layer tokens + layout), `notes.md`
 (storytelling slot, spacing variants, FX rationale).
+
+DB-13 through DB-16 were merged in from a Villa Elysion source page and
+additionally open with a `<!-- @dsCard group="…" -->` first line, tagging
+them for Claude Design's own grouping UI. **Known gap:** DB-00 through
+DB-12 don't carry an `@dsCard` tag yet — that convention started with
+this merge and hasn't been backfilled onto the original twelve.
 
 Every block:
 - Uses semantic HTML (`<section>`, `<h1>/<h2>`, `<figure>`, `<blockquote>`
@@ -121,3 +127,53 @@ legal) styled as an editorial colophon rather than a utility footer —
 last impression, calm, minimal motion.
 
 **Rhythm beat:** dense / `s`, but visually quiet — see FX mapping.
+
+## DB-13 · NavEditorial
+
+`@dsCard group="Navigation"`
+
+**Storytelling slot:** persistent chrome, not a rhythm beat — a fixed
+header (menu trigger, centered wordmark flanked by hairlines, language
+switcher, contact link) and the fullscreen numbered menu overlay it
+opens. Sits above every other block on the page.
+
+**Rhythm beat:** n/a — always on, always fixed.
+
+## DB-14 · FaqCards
+
+`@dsCard group="Epilogue"`
+
+**Storytelling slot:** the same objection-handling slot as DB-09 FAQ
+Quiet, but tactile instead of minimal: rounded cards, a gold plus-icon
+that rotates to a cross, the open question highlighted gold. **Use
+DB-09 when the brief wants restraint; use DB-14 when it wants the FAQ to
+feel like part of the design, not an afterthought appended to the
+bottom of the page.** Both are valid, permanent alternatives — DB-14
+doesn't replace DB-09.
+
+**Rhythm beat:** default / `m`.
+
+## DB-15 · ReviewsCarousel
+
+`@dsCard group="Proof"`
+
+**Storytelling slot:** social proof with visual weight — a full-bleed
+photo with a dark quote card layered over it, prev/next-navigable,
+auto-advancing. The editorial counterpart to DB-07 Proof Strip's compact
+band; use this one when proof deserves its own full section rather than
+a strip before the CTA.
+
+**Rhythm beat:** default / `m`.
+
+## DB-16 · AmenitiesQuiet
+
+`@dsCard group="Trust"`
+
+**Storytelling slot:** "here's exactly what's included" — a calm,
+scannable icon + label grid, hairline-separated. No persuasion, just
+facts, placed wherever the brief needs to answer "what do I actually
+get" without slowing the page down. This is the one block in the
+library that uses decorative icons — see `docs/principles.md` "Icon
+restraint" for why, and the constraints that come with the exception.
+
+**Rhythm beat:** default / `m`.

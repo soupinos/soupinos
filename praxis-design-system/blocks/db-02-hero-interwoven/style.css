@@ -36,7 +36,7 @@
   align-self: end;
   font-family: var(--px-font-display);
   font-weight: 500;
-  font-size: clamp(3rem, 9vw + 1rem, var(--px-type-500, 6.875rem));
+  font-size: var(--px-type-500, 6.875rem); /* token is fluid — no local clamp needed, see tokens/core.css */
   line-height: var(--px-lh-display, 0.92);
   margin: 0;
   padding: var(--px-interwoven-pad) var(--px-space-5, 3.4375rem) var(--px-space-6, 5.5625rem);
