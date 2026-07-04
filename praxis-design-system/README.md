@@ -49,11 +49,12 @@ praxis-design-system/
 
 ## `@dsCard` grouping
 
-`blocks/db-13-*` through `db-16-*` open with a first-line comment,
-`<!-- @dsCard group="…" -->`, tagging the block for Claude Design's own
-grouping UI (`Navigation`, `Epilogue`, `Proof`, `Trust`, …). This
-convention was introduced with those four blocks; `db-00`…`db-12` don't
-carry it yet — see `docs/design-blocks.md` for the known-gap note.
+Every `blocks/db-01-*` through `db-16-*` opens with a first-line
+comment, `<!-- @dsCard group="…" -->`, tagging the block for Claude
+Design's own grouping UI: `Hero`, `Statement`, `Editorial`, `Proof`,
+`Epilogue`, `Trust`, `Conversion`, `Navigation` — see
+`docs/design-blocks.md` for which block carries which group.
+`db-00-signature` has no `index.html`, so nothing to tag.
 
 ## Quick start (any block)
 

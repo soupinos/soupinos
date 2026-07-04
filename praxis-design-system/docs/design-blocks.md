@@ -5,11 +5,15 @@
 demo), `style.css` (component-layer tokens + layout), `notes.md`
 (storytelling slot, spacing variants, FX rationale).
 
-DB-13 through DB-16 were merged in from a Villa Elysion source page and
-additionally open with a `<!-- @dsCard group="…" -->` first line, tagging
-them for Claude Design's own grouping UI. **Known gap:** DB-00 through
-DB-12 don't carry an `@dsCard` tag yet — that convention started with
-this merge and hasn't been backfilled onto the original twelve.
+DB-13 through DB-16 were merged in from a Villa Elysion source page. The
+`<!-- @dsCard group="…" -->` first-line convention started with that
+merge and has since been backfilled onto DB-01…DB-12 as well, so every
+numbered block (DB-01…DB-16) now opens with one, tagging it for Claude
+Design's own grouping UI: `Hero` (DB-01, DB-02), `Statement` (DB-03,
+DB-04), `Editorial` (DB-05, DB-06, DB-08), `Proof` (DB-07, DB-15),
+`Epilogue` (DB-09, DB-12, DB-14), `Trust` (DB-10, DB-16), `Conversion`
+(DB-11), `Navigation` (DB-13). DB-00 has no `index.html` to tag — it's
+an intentionally empty slot, see below.
 
 Every block:
 - Uses semantic HTML (`<section>`, `<h1>/<h2>`, `<figure>`, `<blockquote>`
@@ -27,6 +31,8 @@ Not a block — a placeholder folder. See `blocks/db-00-signature/notes.md`.
 
 ## DB-01 · Hero Cinematic
 
+`@dsCard group="Hero"`
+
 **Storytelling slot:** the opener. First thing the visitor sees — sets
 tone and pace for the whole page. Full-bleed media, φ-split headline
 block at the 61.8 mark, one line of eyebrow copy, one CTA.
@@ -34,6 +40,8 @@ block at the 61.8 mark, one line of eyebrow copy, one CTA.
 **Rhythm beat:** full-bleed / `xl`.
 
 ## DB-02 · Hero Interwoven
+
+`@dsCard group="Hero"`
 
 **Storytelling slot:** an alternate opener (or second hero further down a
 long page) where the headline and the image occupy the *same* space —
@@ -45,6 +53,8 @@ viewport edge.
 
 ## DB-03 · Tension Statement
 
+`@dsCard group="Statement"`
+
 **Storytelling slot:** the near-empty beat. One sentence, oversized,
 pinned mid-scroll. Exists to make the reader stop. Never follows another
 near-empty block — always sits between a dense and a full-bleed section.
@@ -52,6 +62,8 @@ near-empty block — always sits between a dense and a full-bleed section.
 **Rhythm beat:** near-empty / `xl`.
 
 ## DB-04 · Manifesto Asymmetric
+
+`@dsCard group="Statement"`
 
 **Storytelling slot:** the founder/brand statement. Dense, text-forward,
 61.8/38.2 split (long-form copy in the major column, a pull-quote or
@@ -62,6 +74,8 @@ in its own voice.
 
 ## DB-05 · Editorial Split
 
+`@dsCard group="Editorial"`
+
 **Storytelling slot:** proof-of-craft. Alternating image/text halves on
 the φ-split, used to walk through a process, a product, or a place in
 2–4 repeated instances down the page.
@@ -69,6 +83,8 @@ the φ-split, used to walk through a process, a product, or a place in
 **Rhythm beat:** default / `m`.
 
 ## DB-06 · Feature Rhythm
+
+`@dsCard group="Editorial"`
 
 **Storytelling slot:** the feature/benefit list — what the offer actually
 includes. Repeating rows, alternating image-left / image-right, meant to
@@ -79,6 +95,8 @@ contrast to DB-04's "give the reader belief."
 
 ## DB-07 · Proof Strip
 
+`@dsCard group="Proof"`
+
 **Storytelling slot:** social proof — stats, logos, or a short quote
 band. Compact, sits right before a CTA to convert credibility into
 action.
@@ -86,6 +104,8 @@ action.
 **Rhythm beat:** dense / `s`, always short.
 
 ## DB-08 · Gallery Immersive
+
+`@dsCard group="Editorial"`
 
 **Storytelling slot:** the sensory/immersive beat — a place, a product
 range, a portfolio. Full-bleed horizontal-scrubbed frames pinned to
@@ -96,6 +116,8 @@ an extended scroll distance.
 
 ## DB-09 · FAQ Quiet
 
+`@dsCard group="Epilogue"`
+
 **Storytelling slot:** objection-handling, deliberately calm. Accordion,
 one FX only (see `fx-catalog.md`), generous whitespace. Placed late in
 the page, after the reader already has the story — this block answers,
@@ -105,6 +127,8 @@ it doesn't sell.
 
 ## DB-10 · Map & Presence
 
+`@dsCard group="Trust"`
+
 **Storytelling slot:** "we are real, we are here" — location, hours,
 contact. Map or stylised location graphic with a cursor-reactive glow
 accent near the pin.
@@ -112,6 +136,8 @@ accent near the pin.
 **Rhythm beat:** default / `m`.
 
 ## DB-11 · CTA Modal Trigger
+
+`@dsCard group="Conversion"`
 
 **Storytelling slot:** the ask. A magnetic trigger button opens a
 full-screen modal with the actual conversion action (booking, contact
@@ -121,6 +147,8 @@ modal itself can hold a denser form.
 **Rhythm beat:** near-empty / `xl`, the button is the only element.
 
 ## DB-12 · Footer Editorial
+
+`@dsCard group="Epilogue"`
 
 **Storytelling slot:** the close. Multi-column footer (nav, contact,
 legal) styled as an editorial colophon rather than a utility footer —
