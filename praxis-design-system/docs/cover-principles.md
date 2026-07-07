@@ -36,12 +36,12 @@ Site = βιβλίο. Hero = εξώφυλλο: μία εικόνα + λίγες �
 πένθιμο περίγραμμα — όχι δέκα εφέ. Το λιγότερο, σωστά
 διαλεγμένο, μένει.
 
-## 6. Tension + κλίμακα
+## 6. Tension + κλίμακα σε ΜΙΑ εικόνα (Jaws)
 
-> **PENDING — incomplete source text.** The approved text for this
-> principle was pasted truncated mid-sentence ("...κλίμακα σε") and
-> cut off before reaching a usage rule. Principles 1–5 above are
-> verbatim from what was provided. This section and the usage rule are
-> placeholders until the rest of the canonical text is supplied —
-> intentionally left incomplete rather than reconstructed, since a
-> paraphrased guess is exactly what this file replaced last time.
+Αν το hero έχει αφήγηση, να είναι μία στιγμή έντασης/σχέσης
+μεγεθών που διαβάζεται ακαριαία — όχι σκηνικό γεμάτο πράγματα.
+
+## Κανόνας χρήσης
+
+Κάθε νέο project: το hero περνά από αυτά τα 6 φίλτρα στο brief.
+Αν δεν περνά το #1 (ένα κυρίαρχο στοιχείο), ξανασχεδιάζεται.
