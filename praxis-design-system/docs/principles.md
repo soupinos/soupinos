@@ -18,12 +18,16 @@ these is a bug, not a style choice.
   block edits.
 - **Icon restraint.** The library defaults to zero decorative icon
   sets — hierarchy comes from type, spacing, and the accent colour, not
-  from glyphs. **DB-16 AmenitiesQuiet is the one approved exception**:
-  a short scannable facts grid is genuinely faster to read with one
-  recognisable glyph per row. If a brief seems to want icons elsewhere,
-  that's a signal to re-check whether type/spacing/color can carry the
-  same hierarchy first — icons are the exception, not a toolbox to reach
-  for by default. Where they are used: inline SVG only (no icon font, no
+  from glyphs. **Two approved exceptions**: DB-16 AmenitiesQuiet (a
+  short scannable facts grid is genuinely faster to read with one
+  recognisable glyph per row) and DB-12 Footer Editorial's social-icon
+  row (there is no non-icon way to distinguish Instagram from Facebook
+  from WhatsApp — that's the actual identity of each link, not
+  decoration standing in for text that could carry the hierarchy
+  instead). If a brief seems to want icons anywhere else, that's a
+  signal to re-check whether type/spacing/color can carry the same
+  hierarchy first — icons are the exception, not a toolbox to reach for
+  by default. Where they are used: inline SVG only (no icon font, no
   sprite sheet), `stroke-width: 1.5`, `fill: none`, one accent-family
   stroke colour, never a second colour per icon and never a filled
   shape.
@@ -41,8 +45,8 @@ viewport:
 - **min** is a deliberately *flatter* mobile floor, not a scaled-down
   copy of the ladder: body-weight tokens (100/150/200/250) compress
   gently (16px only floors to 15px), while display-weight tokens
-  (300/350/400/450/500) compress hard (110px floors to 48px). This is
-  why the hero token never exceeds roughly 52px on a 360px phone even
+  (300/350/400/450/500) compress hard (110px floors to 44px). This is
+  why the hero token never exceeds roughly 44px on a 360px phone even
   though it reaches 110px on desktop — the ladder's *ratios* are a
   desktop concept; the *mobile floor* is tuned per role, the way an
   editorial type system would be manually re-set at each breakpoint, not
@@ -94,6 +98,9 @@ clip at the viewport edge on purpose. Use the `.px-bleed` utility
 **variant**, not the default: Hero Interwoven (DB-02) and Tension
 Statement (DB-03) ship a clipped-overflow variant explicitly; other
 blocks should stay contained unless a brief calls for scale courage.
+When a hero is acting as the page's *cover* rather than just an opener,
+see `docs/cover-principles.md` for the stricter six-rule set that
+applies there.
 
 ## Motion discipline
 

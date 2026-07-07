@@ -97,5 +97,10 @@
 }
 @media (max-width: 430px) {
   .db-amenities-quiet__grid { grid-template-columns: 1fr; }
-  .db-amenities-quiet__item { border-right: none; }
+  .db-amenities-quiet__item {
+    flex-direction: row;
+    align-items: center;
+    border-right: none;
+    padding: var(--px-space-4, 2.125rem);
+  }
 }

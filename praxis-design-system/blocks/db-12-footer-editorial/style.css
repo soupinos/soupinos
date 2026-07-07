@@ -1,6 +1,9 @@
 /**
  * DB-12 · Footer Editorial — component layer.
- * Multi-column footer styled as an editorial colophon, not a utility bar.
+ * "Back cover" redesign: a large wordmark, a true-φ (61.8/38.2) body
+ * split — epigraph + summary + social row on the major side, pages +
+ * contact stacked on the minor side — then a hairline and the legal
+ * line. No shadows anywhere in this block.
  */
 .db-footer-editorial {
   --px-footer-bg: var(--olive-900, #262a1c);
@@ -15,25 +18,77 @@
   padding: var(--px-footer-pad) var(--px-space-5, 3.4375rem) var(--px-space-4, 2.125rem);
 }
 
-.db-footer-editorial__top {
+.db-footer-editorial__wordmark {
+  margin: 0 0 var(--px-space-6, 5.5625rem);
+  font-family: var(--px-font-display);
+  font-weight: 500;
+  font-size: var(--px-type-450, 5.375rem);
+  line-height: var(--px-lh-display, 0.92);
+  letter-spacing: 0.01em;
+  text-align: center;
+  color: var(--px-footer-ink);
+}
+
+.db-footer-editorial__body {
   max-width: var(--px-max-w, 1440px);
   margin: 0 auto var(--px-space-6, 5.5625rem);
   display: grid;
-  grid-template-columns: var(--px-split-major, 61.8%) 1fr;
+  /* fr units, not % (--px-split-major/minor) — % columns sum to 100%
+     BEFORE `gap` is added, which skews the visible split once a gap
+     exists; fr computes the gap first, so 61.8fr/38.2fr stays a true
+     φ split of the remaining content width regardless of gap size. */
+  grid-template-columns: 61.8fr 38.2fr;
   gap: var(--px-space-6, 5.5625rem);
 }
 
-.db-footer-editorial__mark {
+.db-footer-editorial__epigraph {
+  margin: 0 0 var(--px-space-4, 2.125rem);
   font-family: var(--px-font-display);
   font-style: italic;
-  font-size: var(--px-type-350, 3.34rem);
-  line-height: var(--px-lh-display, 0.92);
-  margin: 0;
+  font-weight: 500;
+  font-size: var(--px-type-250, 2.067rem);
+  line-height: 1.3;
+  max-width: 32ch;
+  color: var(--px-footer-ink);
+}
+
+.db-footer-editorial__summary {
+  margin: 0 0 var(--px-space-5, 3.4375rem);
+  font-family: var(--px-font-body);
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  font-weight: 300;
+  max-width: 52ch;
+  color: var(--px-footer-muted);
+}
+
+.db-footer-editorial__social {
+  display: flex;
+  align-items: center;
+  gap: var(--px-space-3, 1.3125rem);
+}
+.db-footer-editorial__social a {
+  display: inline-flex;
+  color: var(--px-footer-accent);
+  transition: color 0.4s var(--px-ease);
+}
+.db-footer-editorial__social a:hover,
+.db-footer-editorial__social a:focus-visible {
+  color: var(--px-footer-ink);
+}
+.db-footer-editorial__social svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .db-footer-editorial__columns {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: var(--px-space-5, 3.4375rem);
 }
 
@@ -82,6 +137,6 @@
 }
 
 @media (max-width: 800px) {
-  .db-footer-editorial__top { grid-template-columns: 1fr; }
-  .db-footer-editorial__columns { grid-template-columns: 1fr 1fr; }
+  .db-footer-editorial__body { grid-template-columns: 1fr; }
+  .db-footer-editorial__wordmark { font-size: var(--px-type-400, 4.25rem); }
 }

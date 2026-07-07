@@ -150,9 +150,10 @@ modal itself can hold a denser form.
 
 `@dsCard group="Epilogue"`
 
-**Storytelling slot:** the close. Multi-column footer (nav, contact,
-legal) styled as an editorial colophon rather than a utility footer —
-last impression, calm, minimal motion.
+**Storytelling slot:** the close, styled as a "back cover" — a large
+wordmark, a true-φ (61.8/38.2) split of epigraph/summary/social vs.
+pages/contact, then the legal line — last impression, calm, minimal
+motion, no shadows.
 
 **Rhythm beat:** dense / `s`, but visually quiet — see FX mapping.
 

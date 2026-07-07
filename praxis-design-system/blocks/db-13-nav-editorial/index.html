@@ -34,10 +34,24 @@
 
     <div class="db-nav-editorial__right">
       <a href="#contact" class="db-nav-editorial__contact">ΕΠΙΚΟΙΝΩΝΙΑ</a>
-      <div class="db-nav-editorial__langs">
-        <button type="button" class="is-active" data-lang="el">EL</button>
-        <button type="button" data-lang="en">EN</button>
-        <button type="button" data-lang="de">DE</button>
+
+      <!-- Demo tests the 9-code case on purpose (the brief's stated max). -->
+      <div class="db-nav-editorial__lang" data-fx="fx-16">
+        <button type="button" class="db-nav-editorial__lang-trigger" data-fx-lang-trigger aria-haspopup="listbox" aria-expanded="false">
+          <span data-fx-lang-current>EL</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="db-nav-editorial__lang-dropdown" data-fx-lang-dropdown role="listbox" aria-label="Γλώσσα" hidden style="display:none">
+          <button type="button" data-lang="el" class="is-active" role="option" aria-selected="true">EL</button>
+          <button type="button" data-lang="en" role="option" aria-selected="false">EN</button>
+          <button type="button" data-lang="de" role="option" aria-selected="false">DE</button>
+          <button type="button" data-lang="fr" role="option" aria-selected="false">FR</button>
+          <button type="button" data-lang="it" role="option" aria-selected="false">IT</button>
+          <button type="button" data-lang="es" role="option" aria-selected="false">ES</button>
+          <button type="button" data-lang="pt" role="option" aria-selected="false">PT</button>
+          <button type="button" data-lang="nl" role="option" aria-selected="false">NL</button>
+          <button type="button" data-lang="ru" role="option" aria-selected="false">RU</button>
+        </div>
       </div>
     </div>
   </div>
@@ -53,21 +67,30 @@
       </button>
     </div>
 
+    <!-- aria-current="true" is set/removed by the HOST PAGE's scrollspy
+         (which section is in view), not by this block — see notes.md.
+         The gold underline reads that attribute directly. -->
     <nav class="db-nav-editorial__list" aria-label="Κύριο μενού">
-      <a class="db-nav-editorial__item" href="#spaces" data-fx-target="navitem" data-fx-navlink><span class="db-nav-editorial__num">01</span>ΟΙ ΧΩΡΟΙ</a>
-      <a class="db-nav-editorial__item" href="#amenities" data-fx-target="navitem" data-fx-navlink><span class="db-nav-editorial__num">02</span>ΠΑΡΟΧΕΣ</a>
-      <a class="db-nav-editorial__item" href="#reviews" data-fx-target="navitem" data-fx-navlink><span class="db-nav-editorial__num">03</span>ΚΡΙΤΙΚΕΣ</a>
-      <a class="db-nav-editorial__item" href="#faq" data-fx-target="navitem" data-fx-navlink><span class="db-nav-editorial__num">04</span>ΕΡΩΤΗΣΕΙΣ</a>
-      <a class="db-nav-editorial__item" href="#location" data-fx-target="navitem" data-fx-navlink><span class="db-nav-editorial__num">05</span>ΤΟΠΟΘΕΣΙΑ</a>
+      <a class="db-nav-editorial__item" href="#spaces" data-fx-target="navitem" data-fx-navlink><span class="db-nav-editorial__num">01</span><span class="db-nav-editorial__label">ΟΙ ΧΩΡΟΙ</span></a>
+      <a class="db-nav-editorial__item" href="#amenities" data-fx-target="navitem" data-fx-navlink><span class="db-nav-editorial__num">02</span><span class="db-nav-editorial__label">ΠΑΡΟΧΕΣ</span></a>
+      <a class="db-nav-editorial__item" href="#reviews" data-fx-target="navitem" data-fx-navlink aria-current="true"><span class="db-nav-editorial__num">03</span><span class="db-nav-editorial__label">ΚΡΙΤΙΚΕΣ</span></a>
+      <a class="db-nav-editorial__item" href="#faq" data-fx-target="navitem" data-fx-navlink><span class="db-nav-editorial__num">04</span><span class="db-nav-editorial__label">ΕΡΩΤΗΣΕΙΣ</span></a>
+      <a class="db-nav-editorial__item" href="#location" data-fx-target="navitem" data-fx-navlink><span class="db-nav-editorial__num">05</span><span class="db-nav-editorial__label">ΤΟΠΟΘΕΣΙΑ</span></a>
     </nav>
 
     <div class="db-nav-editorial__overlay-bottom" data-fx-target="navitem">
-      <a class="db-nav-editorial__overlay-contact" href="mailto:hello@praxis-ionian.example">hello@praxis-ionian.example</a>
-      <div class="db-nav-editorial__langs">
-        <button type="button" class="is-active" data-lang="el">EL</button>
-        <button type="button" data-lang="en">EN</button>
-        <button type="button" data-lang="de">DE</button>
+      <div class="db-nav-editorial__overlay-langs" role="listbox" aria-label="Γλώσσα">
+        <button type="button" data-lang="el" class="is-active" role="option" aria-selected="true">EL</button>
+        <button type="button" data-lang="en" role="option" aria-selected="false">EN</button>
+        <button type="button" data-lang="de" role="option" aria-selected="false">DE</button>
+        <button type="button" data-lang="fr" role="option" aria-selected="false">FR</button>
+        <button type="button" data-lang="it" role="option" aria-selected="false">IT</button>
+        <button type="button" data-lang="es" role="option" aria-selected="false">ES</button>
+        <button type="button" data-lang="pt" role="option" aria-selected="false">PT</button>
+        <button type="button" data-lang="nl" role="option" aria-selected="false">NL</button>
+        <button type="button" data-lang="ru" role="option" aria-selected="false">RU</button>
       </div>
+      <a class="db-nav-editorial__overlay-contact" href="mailto:hello@praxis-ionian.example">hello@praxis-ionian.example</a>
     </div>
   </div>
 </div>

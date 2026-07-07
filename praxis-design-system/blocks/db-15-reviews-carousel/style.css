@@ -74,6 +74,10 @@
   color: var(--px-revcar-ink);
 }
 
+/* Base (tablet-safe default, ~480–1024px): the pre-φ-split absolute
+   overlay, arrows flanking the card in flex flow. Overridden below at
+   the two named breakpoints — ≤480px stacks everything in normal
+   flow, ≥1024px switches to the precise φ split. */
 .db-reviews-carousel__cardwrap {
   position: absolute;
   left: var(--px-space-5, 3.4375rem);
@@ -114,6 +118,67 @@
   border: 1px solid var(--px-revcar-card-rule);
   padding: var(--px-space-4, 2.125rem);
   box-shadow: 0 40px 90px -40px rgba(0, 0, 0, 0.6);
+}
+
+/* ── ≤480px: stacked, zero overlap ─────────────────────────────────
+   eyebrow -> heading -> full-width card -> prev/next below. The photo
+   stays as a background wash but nothing sits absolutely over it. */
+@media (max-width: 480px) {
+  .db-reviews-carousel__inner {
+    padding-bottom: var(--px-space-6, 5.5625rem);
+  }
+  .db-reviews-carousel__head {
+    max-width: none;
+  }
+  .db-reviews-carousel__cardwrap {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "card card" "prev next";
+    gap: var(--px-space-3, 1.3125rem);
+    margin-top: var(--px-space-5, 3.4375rem);
+  }
+  .db-reviews-carousel__card {
+    grid-area: card;
+    flex: none;
+    width: 100%;
+  }
+  .db-reviews-carousel__arrow {
+    position: static;
+    transform: none;
+  }
+  .db-reviews-carousel__arrow--prev { grid-area: prev; justify-self: start; }
+  .db-reviews-carousel__arrow--next { grid-area: next; justify-self: end; }
+}
+
+/* ── ≥1024px: φ asymmetry ───────────────────────────────────────────
+   Full-width photo stays as-is (already absolute/full-bleed). The
+   card's OWN left edge sits at 61.8% of the section width; the head
+   (eyebrow+heading) is capped to the 38.2 side. Arrows overlap the
+   card's edges instead of flanking it in flow, so the card box itself
+   — not a wrapper that also includes an arrow — is what measures at
+   61.8%. */
+@media (min-width: 1024px) {
+  .db-reviews-carousel__head {
+    max-width: 38.2%;
+  }
+  .db-reviews-carousel__cardwrap {
+    left: 61.8%;
+    right: var(--px-space-5, 3.4375rem);
+    display: block;
+  }
+  .db-reviews-carousel__card {
+    width: 100%;
+    flex: none;
+  }
+  .db-reviews-carousel__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+  }
+  .db-reviews-carousel__arrow--prev { left: -1.5rem; }
+  .db-reviews-carousel__arrow--next { right: -1.5rem; }
 }
 
 .db-reviews-carousel__stars {

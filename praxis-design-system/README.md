@@ -1,8 +1,9 @@
 # Praxis-Ionian Design System
 
 A design system package for **Claude Design**: tokens, 16 reusable Design
-Blocks (DB) plus one bespoke signature slot, and 15 named GSAP effects
-(FX), skinned in the first palette — **Ionian Earth** (olive-gold).
+Blocks (DB) plus one bespoke signature slot, and 16 named effects (FX,
+almost all GSAP-driven), skinned in the first palette — **Ionian Earth**
+(olive-gold).
 
 This is a static HTML/CSS/JS component library. It is **not** a WordPress
 theme, and it is a separate initiative from `praxis-blocks/` (the vanilla
@@ -40,11 +41,12 @@ praxis-design-system/
 │   └── db-01 … db-16/    index.html (standalone demo) + style.css + notes.md
 ├── fx/
 │   ├── fx-core.js        GSAP + ScrollTrigger + Lenis bootstrap, FX registry
-│   └── fx-catalog.js     FX-01 … FX-15, named functions registered on load
+│   └── fx-catalog.js     FX-01 … FX-16, named functions registered on load
 └── docs/
-    ├── principles.md     DNA, composition rules, cinematic rhythm
-    ├── design-blocks.md  DB-01…16 definitions + storytelling slots
-    └── fx-catalog.md     FX-01…15 definitions + DB → FX default mapping
+    ├── principles.md        DNA, composition rules, cinematic rhythm
+    ├── cover-principles.md  the 6 stricter rules for a page's one cover
+    ├── design-blocks.md     DB-01…16 definitions + storytelling slots
+    └── fx-catalog.md        FX-01…16 definitions + DB → FX default mapping
 ```
 
 ## `@dsCard` grouping

@@ -9,7 +9,7 @@ a long page.
 **Rhythm beat:** full-bleed, `xl`.
 
 **Scale courage:** the title uses the fluid `--px-type-500` token
-(clamp 48px at 360px up to 110px at 1440px+ — see `tokens/core.css`) and
+(clamp 44px at 360px up to 110px at 1440px+ — see `tokens/core.css`) and
 is allowed to run to `max-width: 90vw` — on narrow viewports or long
 headline words it will visually crowd the edge. That's intentional;
 don't "fix" it by capping the font size lower without

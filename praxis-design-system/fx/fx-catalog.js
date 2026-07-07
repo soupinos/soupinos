@@ -33,20 +33,37 @@
   function splitEl(el, mode) {
     if (el.dataset.pxSplit === '1') return el.querySelectorAll('.px-split-unit');
     var text = el.textContent;
-    var units = mode === 'word' ? text.split(/(\s+)/) : text.split('');
     el.textContent = '';
     var frag = document.createDocumentFragment();
-    units.forEach(function (unit) {
-      if (mode === 'char' && unit === ' ') {
-        frag.appendChild(document.createTextNode(' '));
+    text.split(/(\s+)/).forEach(function (part) {
+      if (part === '') return;
+      if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+      if (mode === 'word') {
+        var wordSpan = document.createElement('span');
+        wordSpan.className = 'px-split-unit';
+        wordSpan.style.display = 'inline-block';
+        wordSpan.style.willChange = 'transform, opacity';
+        wordSpan.textContent = part;
+        frag.appendChild(wordSpan);
         return;
       }
-      var span = document.createElement('span');
-      span.className = 'px-split-unit';
-      span.style.display = 'inline-block';
-      span.style.willChange = 'transform, opacity';
-      span.textContent = unit;
-      frag.appendChild(span);
+      /* char mode: wrap the WORD in a nowrap inline-block first, then
+         split characters inside it — so a line break can only ever
+         land between words (at the space above), never mid-word. Each
+         character is still its own .px-split-unit and animates
+         individually; only the wrapping changed. */
+      var word = document.createElement('span');
+      word.style.display = 'inline-block';
+      word.style.whiteSpace = 'nowrap';
+      part.split('').forEach(function (ch) {
+        var charSpan = document.createElement('span');
+        charSpan.className = 'px-split-unit';
+        charSpan.style.display = 'inline-block';
+        charSpan.style.willChange = 'transform, opacity';
+        charSpan.textContent = ch;
+        word.appendChild(charSpan);
+      });
+      frag.appendChild(word);
     });
     el.appendChild(frag);
     el.dataset.pxSplit = '1';
@@ -537,6 +554,76 @@
         if (timer) clearInterval(timer);
         if (prevBtn) prevBtn.removeEventListener('click', onPrev);
         if (nextBtn) nextBtn.removeEventListener('click', onNext);
+      }
+    };
+  });
+
+  /* ── FX-16 · lang-dropdown ─────────────────────────────────────────
+     Compact language switcher (DB-13 NavEditorial header): a trigger
+     showing only the current code, opening a quiet dropdown listing
+     every code. Not GSAP-driven — no transform/opacity channel at all,
+     just a hidden-attribute + class toggle, since this is meant to be
+     the quietest possible interaction (no motion budget spent on it).
+     Closes on outside click, Escape, or picking an option; picking an
+     option returns focus to the trigger. Forces the dropdown closed on
+     mount via JS (not just the markup's `hidden` attribute) — some
+     render environments strip bare boolean attributes, so the closed
+     state must not depend on the attribute surviving intact. */
+  global.PraxisFX.register('fx-16', function (el) {
+    var trigger = el.querySelector('[data-fx-lang-trigger]');
+    var dropdown = el.querySelector('[data-fx-lang-dropdown]');
+    var currentLabel = el.querySelector('[data-fx-lang-current]');
+    if (!trigger || !dropdown) return { kill: function () {} };
+    var options = Array.prototype.slice.call(dropdown.querySelectorAll('[data-lang]'));
+
+    function close() {
+      dropdown.hidden = true;
+      dropdown.style.display = 'none'; /* belt-and-suspenders: some render environments strip the bare `hidden` attribute, so the inline style is the real source of truth */
+      dropdown.classList.remove('is-open');
+      trigger.setAttribute('aria-expanded', 'false');
+    }
+    function open() {
+      dropdown.hidden = false;
+      dropdown.style.display = '';
+      dropdown.classList.add('is-open');
+      trigger.setAttribute('aria-expanded', 'true');
+    }
+    close();
+
+    function onTriggerClick(e) {
+      e.stopPropagation();
+      if (dropdown.hidden) open(); else close();
+    }
+    function onOptionClick(e) {
+      var btn = e.currentTarget;
+      var code = btn.getAttribute('data-lang') || '';
+      if (currentLabel) currentLabel.textContent = code.toUpperCase();
+      options.forEach(function (o) {
+        var isPicked = o === btn;
+        o.classList.toggle('is-active', isPicked);
+        o.setAttribute('aria-selected', isPicked ? 'true' : 'false');
+      });
+      close();
+      trigger.focus();
+    }
+    function onDocClick(e) {
+      if (!dropdown.hidden && !el.contains(e.target)) close();
+    }
+    function onKey(e) {
+      if (e.key === 'Escape' && !dropdown.hidden) { close(); trigger.focus(); }
+    }
+
+    trigger.addEventListener('click', onTriggerClick);
+    options.forEach(function (o) { o.addEventListener('click', onOptionClick); });
+    document.addEventListener('click', onDocClick);
+    document.addEventListener('keydown', onKey);
+
+    return {
+      kill: function () {
+        trigger.removeEventListener('click', onTriggerClick);
+        options.forEach(function (o) { o.removeEventListener('click', onOptionClick); });
+        document.removeEventListener('click', onDocClick);
+        document.removeEventListener('keydown', onKey);
       }
     };
   });

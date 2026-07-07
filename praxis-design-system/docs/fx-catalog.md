@@ -1,12 +1,15 @@
 # FX Catalog
 
-15 named GSAP effects, implemented in `fx/fx-catalog.js` on top of the
+16 named effects, implemented in `fx/fx-catalog.js` on top of the
 registry in `fx/fx-core.js`. Wire an FX by adding `data-fx="fx-XX"` (space
 -separated for a second FX) to a block's root element, plus any
 `data-fx-target="…"` markers the effect expects and `data-fx-*` option
 attributes. FX-13…FX-15 were added alongside DB-13…DB-16 (the Villa
-Elysion merge) — the original catalog was FX-01…FX-12; nothing about
-those twelve changed.
+Elysion merge); FX-16 was added in the following backport round to
+support DB-13's scalable language switcher. The original catalog was
+FX-01…FX-12 — nothing about those twelve changed. Not every FX is
+GSAP-driven: FX-16 is a plain hidden-attribute/class toggle with no
+motion at all, by design (see its row below).
 
 ## Hard rules
 
@@ -33,7 +36,7 @@ those twelve changed.
 | FX-01 | `reveal-mask` | scroll enter, once | `[data-fx-target="reveal"]` | `clip-path` | Wipe reveal, staggered if multiple targets |
 | FX-02 | `parallax-depth` | scroll scrub | `[data-fx-target="parallax"]` | `yPercent` | Amplitude halved on mobile |
 | FX-03 | `pin-scrub-text` | scroll scrub, pinned | `[data-fx-target="statement"]` | `scale` (+opacity, same tween) | Pins the section for `data-fx-distance`% of scroll |
-| FX-04 | `split-char-in` | scroll enter, once | `[data-fx-target="split"]` | `yPercent` (+opacity, same tween) | Splits text into `.px-split-unit` spans at runtime |
+| FX-04 | `split-char-in` | scroll enter, once | `[data-fx-target="split"]` | `yPercent` (+opacity, same tween) | Splits text into `.px-split-unit` spans at runtime; char mode wraps each word in a nowrap inline-block first, so line breaks only fall between words, never mid-word |
 | FX-05 | `magnetic-cta` | pointer move | the element itself | `x`, `y` (`quickTo`) | Desktop / fine-pointer only |
 | FX-06 | `image-kenburns` | scroll enter/leave (play/pause) | `[data-fx-target="kenburns"]` | `scale` | Slow drift while section is in view; reduced target scale on mobile |
 | FX-07 | `stagger-grid` | scroll enter, once | `[data-fx-target="item"]` | `y` (+opacity, same tween) | Grid/list children, staggered |
@@ -45,6 +48,7 @@ those twelve changed.
 | FX-13 | `nav-overlay` | click (not scroll) | `[data-fx-target="navitem"]` (panel via `data-fx-modal`) | `opacity` (panel); `y`+`opacity` (items, same tween) | Fullscreen nav panel — same focus-trap/Esc/focus-return contract as FX-12; closes on any `[data-fx-navlink]` click too; locks body scroll while open |
 | FX-14 | `accordion-cards` | click (not scroll) | `[data-fx-target="card"]` groups, each with `[data-fx-q]`/`[data-fx-a]` | `height` on `[data-fx-a]` only | Only one card open at a time across the group; icon rotation + open-question colour are CSS reading the card's `[data-open]` attribute, not a second JS channel |
 | FX-15 | `reviews-carousel` | click (prev/next) + auto-advance timer | `[data-fx-target="quote/name/loc"]` | `opacity` (one tween per transition across all three) | Reads slides from a sibling `<script type="application/json" data-fx-target="reviews-data">`; 6.5s auto-advance restarts on manual nav |
+| FX-16 | `lang-dropdown` | click (not scroll) | `[data-fx-lang-trigger]`, `[data-fx-lang-dropdown]` | none — `hidden` attribute + `display` + class toggle only | No GSAP tween, no transform, no opacity fade — the quietest interaction in the library on purpose; closes on outside click or Esc; enforces closed state on mount via both `.hidden` and inline `style.display` (defends against render environments that strip bare boolean attributes) |
 
 ## DB → FX default mapping
 
@@ -66,7 +70,7 @@ starting points, not requirements.
 | DB-10 Map & Presence | FX-02 `parallax-depth` + FX-11 `cursor-glow-trail` | Map layer drifts; accent glow follows the cursor near the pin |
 | DB-11 CTA Modal Trigger | FX-12 `modal-fade-scale` + FX-05 `magnetic-cta` | Trigger button is magnetic; click opens the fade/scale modal |
 | DB-12 Footer Editorial | FX-01 `reveal-mask` | Closing beat — restrained, one subtle reveal only |
-| DB-13 NavEditorial | FX-13 `nav-overlay` | Trigger opens the fullscreen numbered menu, focus-trapped |
+| DB-13 NavEditorial | FX-13 `nav-overlay` + FX-16 `lang-dropdown` | Trigger opens the fullscreen numbered menu, focus-trapped; the header's language switcher runs its own quiet, motion-free FX |
 | DB-14 FaqCards | FX-14 `accordion-cards` | Card accordion, one FX owns the whole open/close/height/icon/colour behavior |
 | DB-15 ReviewsCarousel | FX-02 `parallax-depth` + FX-15 `reviews-carousel` | Photo drifts; quote card cycles independently |
 | DB-16 AmenitiesQuiet | FX-07 `stagger-grid` | Fast facts grid — one FX, same reasoning as DB-06 |
