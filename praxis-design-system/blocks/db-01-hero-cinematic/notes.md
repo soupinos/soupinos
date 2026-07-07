@@ -8,6 +8,15 @@ anchored bottom-left.
 variants shrink `min-height` for use as a secondary hero further down a
 page — still full-bleed media, less vertical weight.
 
+**Cover guidance (default):** `docs/cover-principles.md` governs this
+block's composition and copy when it's the page's cover — read it
+before changing how many elements the hero carries or how loud the
+copy gets. Note that DB-01's default markup (eyebrow + h1 + lede + CTA)
+is four content elements, more than that doc's "Big Book Look"
+principle calls for strictly ("ONE dominant element, everything else
+subordinate") — treat the lede/CTA as optional-to-cut on a real cover
+brief, not as required scaffolding.
+
 ## Default FX
 
 `data-fx="fx-06 fx-04"` — FX-06 `image-kenburns` drifts the media layer

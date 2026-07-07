@@ -98,9 +98,9 @@ clip at the viewport edge on purpose. Use the `.px-bleed` utility
 **variant**, not the default: Hero Interwoven (DB-02) and Tension
 Statement (DB-03) ship a clipped-overflow variant explicitly; other
 blocks should stay contained unless a brief calls for scale courage.
-When a hero is acting as the page's *cover* rather than just an opener,
-see `docs/cover-principles.md` for the stricter six-rule set that
-applies there.
+`docs/cover-principles.md` is the **default** art-direction standard for
+DB-01/DB-02 in the cover role — read it before building or adjusting a
+hero, not just when a brief explicitly asks for "cover" treatment.
 
 ## Motion discipline
 

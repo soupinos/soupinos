@@ -37,6 +37,11 @@ Not a block — a placeholder folder. See `blocks/db-00-signature/notes.md`.
 tone and pace for the whole page. Full-bleed media, φ-split headline
 block at the 61.8 mark, one line of eyebrow copy, one CTA.
 
+**Cover guidance:** when this block is playing the page's *cover* role
+(usually true for DB-01 as the opener), it's governed by default by
+`docs/cover-principles.md`, not just this entry — read that file before
+adjusting the hero's composition or copy.
+
 **Rhythm beat:** full-bleed / `xl`.
 
 ## DB-02 · Hero Interwoven
@@ -48,6 +53,10 @@ long page) where the headline and the image occupy the *same* space —
 type bleeds over/behind a photograph rather than sitting beside it.
 Ships a scale-courage variant where the display line clips at the
 viewport edge.
+
+**Cover guidance:** the same default applies as DB-01 — see
+`docs/cover-principles.md`. DB-02's headline-over-photo treatment is a
+direct expression of that doc's "Type as Image" principle.
 
 **Rhythm beat:** full-bleed / `xl`.
 

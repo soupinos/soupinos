@@ -21,6 +21,15 @@ else on the page, but a whole site with no bespoke moment reads as a
 template, not a piece of design. The signature slot is the one place per
 project where the system explicitly steps aside.
 
+## Relationship to the cover motif
+
+`docs/cover-principles.md` principle 4 ("Ένα μοτίβο-σφραγίδα") asks
+every project to pick one small, repeating motif that echoes discreetly
+across sections and the footer. The signature slot is the natural place
+to *introduce* that motif deliberately — it's bespoke per project
+already, so it's where a one-off shape/glyph/object can be established
+before it starts recurring quietly elsewhere.
+
 ## Where it goes
 
 Placement is a creative call per brief, not fixed — but it should sit

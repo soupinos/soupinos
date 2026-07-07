@@ -8,6 +8,13 @@ a long page.
 
 **Rhythm beat:** full-bleed, `xl`.
 
+**Cover guidance (default):** `docs/cover-principles.md` governs this
+block's composition when it's the page's cover. DB-02 already embodies
+that doc's "Type as Image" principle by construction — the headline
+occupies the same space as the photograph rather than sitting beside
+it — which is why this block, not DB-01, is the closer default fit
+when a brief explicitly calls for cover treatment over a plain opener.
+
 **Scale courage:** the title uses the fluid `--px-type-500` token
 (clamp 44px at 360px up to 110px at 1440px+ — see `tokens/core.css`) and
 is allowed to run to `max-width: 90vw` — on narrow viewports or long
