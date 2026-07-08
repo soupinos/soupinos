@@ -1,0 +1,199 @@
+================================================================================
+VILLA LEFKI — WORDPRESS THEME BUILD REPORT (for orchestrator / reviewer)
+================================================================================
+Repo:        soupinos/soupinos
+Branch:      claude/villa-lefki-import
+Commit:      f10cf877870a7b57e2ef35187d79488cbfc2b0f9
+Deliverable: sites/villa-lefki/theme/   (standalone WordPress theme, 48 files, 332K)
+Source:      sites/villa-lefki/source/Villa Lefki.dc.html  (frozen design, unchanged)
+Status:      COMPLETE — committed + pushed. No PR opened, NOT merged to main.
+Model:       claude-opus-4-8
+================================================================================
+
+0. TASK (one line)
+--------------------------------------------------------------------------------
+Convert the Villa Lefki design-component page into a WordPress theme where EVERY
+content item is editable via Secure Custom Fields (SCF), with ZERO change to the
+visual design, layout, or FX. Design is FROZEN: translate, do not redesign.
+
+
+1. WHAT AN INSPECTOR SHOULD CHECK FIRST (fastest path to a verdict)
+--------------------------------------------------------------------------------
+  a) Fidelity of the CSS cascade order (this is load-bearing):
+       sites/villa-lefki/theme/functions.php  -> wp_enqueue_scripts callback.
+       Order MUST be: ds/00-core, ds/01-skin, ds/10..25 (DB-01..16),
+       then local/10-core-fluid, local/20..24 (DB-13/14/15/16/12),
+       then the page-local inline <style>. If that order is wrong the hero
+       oversizes at 360px.
+  b) FX contract re-homing:
+       sites/villa-lefki/theme/assets/js/theme-fx.js
+       Must load GSAP -> ScrollTrigger -> Lenis -> fx-core -> fx-catalog IN
+       ORDER, do the data-fx-init -> data-fx deferred promotion, then
+       settleScroll(). fx-core.js / fx-catalog.js are the UNCHANGED
+       design-system files (diff them against source/assets/ — should be equal).
+  c) The 4 sync traps (see section 4) in the template-parts.
+  d) Greek uppercase handling (section 5).
+  e) The 2 honest flags (section 7).
+
+
+2. ARCHITECTURE
+--------------------------------------------------------------------------------
+Rendering:
+  header.php         doctype/head + wp_head + persistent nav chrome (DB-13)
+  front-page.php     assembles the 13 sections in source top-to-bottom order
+  footer.php         wp_footer + close
+  template-parts/    one partial per section:
+                       nav, hero, tension, manifesto, editorial, amenities,
+                       proof, reviews, faq, cta, footer-editorial
+Logic:
+  inc/helpers.php      px_gr_upper(), px_field/px_opt(), px_bg_style/px_image_*
+  inc/scf-fields.php   options page + 10 per-section field groups (acf/init only)
+  inc/icons.php        fixed pre-approved amenity + social SVG registry
+  inc/contact-form.php booking-enquiry AJAX handler (wp_mail)
+Assets:
+  assets/css/ds/*      reconstructed design-system bundle (tokens + block styles)
+  assets/css/local/*   the source's own overrides, enqueued LAST so they win
+  assets/js/fx-core.js, fx-catalog.js   design-system FX runtime (verbatim)
+  assets/js/theme-fx.js                 re-homed page runtime
+
+Section -> Design Block map (all markup byte-faithful to the source):
+  nav .............. DB-13 NavEditorial (bar + fullscreen overlay)
+  hero ............. DB-01 Hero Cinematic          (FX-06 kenburns + FX-04 split)
+  tension .......... DB-03 Tension Statement       (FX-03 pin-scrub)
+  manifesto ........ DB-04 Manifesto Asymmetric    (FX-01 reveal + FX-04 split)
+  editorial ........ DB-05 Editorial Split x3 rows (FX-02 parallax + FX-01 reveal)
+  amenities ........ DB-16 AmenitiesQuiet          (FX-07 stagger)
+  proof ............ DB-07 Proof Strip             (FX-08 counters)
+  reviews .......... DB-15 ReviewsCarousel         (FX-02 parallax + FX-15 carousel)
+  faq .............. DB-14 FaqCards                (FX-14 accordion)
+  cta + modal ...... DB-11 CTA Modal Trigger       (FX-05 magnetic + FX-12 modal)
+  footer ........... DB-12 Footer Editorial        (FX-01 reveal)
+Not in scope this pass: DB-00 signature moment (flagged, per brief).
+
+
+3. SCF CONTENT MODEL
+--------------------------------------------------------------------------------
+Registered inside add_action('acf/init', ...) ONLY. Never at top level.
+
+Villa Options page (site-wide chrome):
+  wordmark, locality_nav, locality_full, contact_email, phone, phone_tel,
+  address, menu/close/booking labels, booking_target,
+  nav_items[] (number,label,target)   x5  -> used by nav overlay AND footer pages
+  socials[]   (network,url)           x3  -> icon fixed per network
+  languages[] (code,label,is_default) x9  -> DECORATIVE switcher (no i18n)
+
+Front-page field groups (classic editor, one per section):
+  Hero: eyebrow,title,lede,cta_label,cta_target,image,image_alt
+  Tension: kicker,statement
+  Manifesto: body(wysiwyg),quote,citation
+  Editorial: rows[] (eyebrow,title,body,image,image_alt)  -- alternation auto
+  Amenities: eyebrow,title,items[] (icon(select from picker),label)
+  Proof: stats[] (number,label)
+  Reviews: eyebrow,title,bg_image,bg_alt,items[] (quote,name,loc)
+  FAQ: eyebrow,title,lead,items[] (question,answer(wysiwyg))
+  CTA: eyebrow,button_label,modal_title,field labels/placeholders,submit,success
+  Footer: epigraph,summary,headings,copyright,legal
+
+
+4. THE FOUR SYNC TRAPS — HOW EACH IS HANDLED
+--------------------------------------------------------------------------------
+  1) IMAGES: every "photo" is a role="img" DIV that an FX animates via
+     transform (kenburns/parallax). The SCF image is applied as a
+     background-image ON THAT EXACT DIV (helpers.php px_bg_style) — never an
+     <img> — so the transform target is unchanged. Alt/description stays in
+     aria-label. See template-parts/hero.php, editorial.php, reviews.php.
+  2) REVIEWS (no drift): template-parts/reviews.php builds ONE $payload from
+     the SCF reviews repeater, renders $payload[0] into the static card AND
+     emits the whole $payload as JSON into [data-fx-target="reviews-data"] for
+     FX-15. Single source. FX-15 adds the curly quotes at runtime, so the JSON
+     stores the raw quote and the static card adds the same curly quotes the
+     source hard-coded (identical first paint).
+  3) FAQ TWO-COLUMN: template-parts/faq.php auto-distributes a variable repeater
+     into 2 columns (ceil(n/2) / rest). FX-14 scans [data-fx-target="card"] on
+     the whole __cols wrapper, so it finds every card regardless of the split
+     and single-open spans both columns.
+  4) COUNTERS: template-parts/proof.php writes the real value to data-fx-to and
+     keeps the visible cell as "0" (no-JS placeholder). FX-08 derives decimals
+     from the value (9.8 -> 1 decimal).
+
+
+5. GREEK UPPERCASE
+--------------------------------------------------------------------------------
+Uppercase Greek display copy is stored ALREADY uppercase, WITHOUT tonos, in the
+fields (design-system hard rule; CSS text-transform is never relied on for
+Greek). px_gr_upper() (inc/helpers.php) is provided for any programmatic
+uppercasing: it mb_strtoupper()s and then strips the tonos it would introduce
+while KEEPING the dialytika (ΑΫΛΟΣ stays). Verified in rendered DOM:
+ΦΩΣ ΚΑΙ ΑΛΑΤΙ / ΛΕΥΚΙΜΜΗ · ΝΟΤΙΑ ΚΕΡΚΥΡΑ / ΒΙΛΑ ΛΕΥΚΗ -> has_tonos = false.
+
+
+6. VERIFICATION EVIDENCE (real WP 7.0 + SCF, SQLite, Playwright/Chromium)
+--------------------------------------------------------------------------------
+[1] Activation: theme + SCF activate; php -l clean on all 22 PHP files;
+    debug.log = 0 fatals / warnings / notices on front and admin.
+[2] Editability: all 10 section groups + options page render and BIND saved
+    values in admin; front-end renders all. Screenshots: admin-options,
+    admin-hero-fields, admin-reviews-repeater, admin-faq-repeater; front-1440,
+    front-360, reviews, faq, menu-open.
+[3] Responsive parity:
+      hero font-size  = 44px @360   and  102.4px @1440   (matches source audit)
+      overflow @360   = NONE (scrollW 362 = viewport 362)
+      overflow @1440  = NONE for the static layout (1440/1440, not scrollable)
+                        (transient ken-burns extent -> see flag in section 7)
+[4] FX: gsap+ScrollTrigger+Lenis load; ScrollTrigger count = 15; PraxisFX
+    mounted; menu focus-trap OK (Esc closes + returns focus to trigger);
+    carousel cycles; FAQ single-open (2 clicks -> 1 open); counters animate
+    0 -> 1908/4/600/9.8; zero page errors.
+[5] Greek uppercase no-tonos: confirmed (section 5).
+[6] Repeater reflow: added 5th FAQ + 4th review -> FAQ columns [3,2], all 5
+    cards found by FX-14, single-open intact; reviews JSON=4, slide-0 unchanged,
+    carousel cycles 4 distinct; no layout break, no errors. Reverted to 4/3.
+[7] Committed + pushed to the branch. Not merged.
+
+Sandbox note: the verification WordPress (core + SCF + SQLite drop-in + seed +
+vendored GSAP/Lenis) lives in /tmp and is intentionally NOT in the repo. The
+theme is standalone and self-contained (no dependency on that sandbox).
+
+
+7. HONEST FLAGS (not defects; reproduced faithfully or noted per brief)
+--------------------------------------------------------------------------------
+  A) HERO KEN-BURNS TRANSIENT EXTENT
+     Static layout has ZERO horizontal overflow at 360/1440. While FX-06
+     ken-burns runs, its scale() on the hero media transiently exceeds the
+     viewport; this is contained by the hero's `overflow: clip` and
+     `body { overflow-x: hidden }` EXACTLY as in the source (body is never
+     horizontally scrollable, maxBodyScrollLeft=0). It is a property of the
+     frozen design, not introduced here. No change made (frozen-design rule).
+  B) CONTACT FORM DELIVERY
+     inc/contact-form.php is a REAL AJAX handler that wp_mail()s the enquiry to
+     the site contact address, preserving the source success-text UX. Delivery
+     needs a working mailer on the host; with no MTA the enquiry is logged and
+     the visitor still sees success. Wire an SMTP plugin in production.
+  C) FX LIBRARY URLS
+     theme-fx.js defaults to the source's exact jsDelivr CDN URLs (byte-faithful).
+     Exposed via the `villa_fx_lib_urls` PHP filter so a CDN-less environment can
+     point them at local copies without editing the theme. (The verification
+     sandbox used that filter; the shipped theme keeps the CDN default.)
+  D) DECISIONS KEPT AS-IS (per brief): language switcher decorative only;
+     DB-00 signature moment out of scope; classic editor forced for the front
+     page (admin-UX only, front-end design untouched).
+
+
+8. DELIVERABLE FILE TREE (sites/villa-lefki/theme/)
+--------------------------------------------------------------------------------
+  README.md
+  style.css                     (theme header only; cascade is in functions.php)
+  functions.php                 (ordered enqueue, villa_fx_lib_urls filter,
+                                 classic-editor-for-front-page)
+  header.php  footer.php  front-page.php
+  inc/helpers.php  inc/scf-fields.php  inc/icons.php  inc/contact-form.php
+  template-parts/nav.php  hero.php  tension.php  manifesto.php  editorial.php
+                 amenities.php  proof.php  reviews.php  faq.php  cta.php
+                 footer-editorial.php
+  assets/css/ds/00-core.css 01-skin.css 10-db-01 .. 25-db-16   (18 files)
+  assets/css/local/10-core-fluid 20-db-13 21-db-14 22-db-15 23-db-16 24-db-12
+  assets/js/fx-core.js  fx-catalog.js  theme-fx.js
+
+================================================================================
+END OF REPORT
+================================================================================
