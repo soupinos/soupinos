@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/praxis-ionian-design-system-fab23595-fbdb-434b-ad48-7cba3cbb8db9/styles.css">
+  <!-- Fluid φ type scale. The bundled styles.css above imports the mirror's
+       stale core.css (fixed φ-ladder); this reloads the updated fluid
+       clamp-based tokens so nothing is oversized at 360px. Later :root
+       declaration wins. -->
+  <link rel="stylesheet" href="assets/tokens/core-fluid.css">
+  <link rel="stylesheet" href="assets/blocks/db-13-nav-editorial.css">
+  <link rel="stylesheet" href="assets/blocks/db-14-faq-cards.css">
+  <link rel="stylesheet" href="assets/blocks/db-15-reviews-carousel.css">
+  <link rel="stylesheet" href="assets/blocks/db-16-amenities-quiet.css">
+  <link rel="stylesheet" href="assets/blocks/db-12-footer-editorial.css">
+  <style>
+    html, body { margin: 0; padding: 0; }
+    html { scroll-padding-top: 6rem; }
+    body { background: var(--sand-100, #f4ecdd); overflow-x: hidden; }
+    section[id], footer[id] { scroll-margin-top: 6rem; }
+    /* Page-local hero retune: the shared db-01 title clamps its own min
+       to 2.625rem (42px). Raise the mobile floor to 44px per the 360px
+       audit target. Only the min changes — the preferred term (6vw+1rem)
+       still governs ≥467px, so desktop stays 102.4px @1440 (φ intact). */
+    .db-hero-cinematic__title { font-size: clamp(2.75rem, 6vw + 1rem, var(--px-type-500, 6.875rem)); }
+  </style>
+</helmet>
+
+<header class="db-nav-editorial" data-spacing="s">
+  <div class="db-nav-editorial__bar">
+    <span class="db-nav-editorial__hairline db-nav-editorial__hairline--l" aria-hidden="true"></span>
+    <span class="db-nav-editorial__hairline db-nav-editorial__hairline--r" aria-hidden="true"></span>
+
+    <div class="db-nav-editorial__left">
+      <button type="button" class="db-nav-editorial__trigger" data-fx-init="fx-13" data-fx-modal="#nav-menu" aria-haspopup="true">
+        <span class="db-nav-editorial__burger" aria-hidden="true"><span></span><span></span></span>
+        <span>ΜΕΝΟΥ</span>
+      </button>
+    </div>
+
+    <a href="#top" class="db-nav-editorial__word">
+      <span class="db-nav-editorial__word-a">ΒΙΛΑ ΛΕΥΚΗ</span>
+      <span class="db-nav-editorial__word-b">ΛΕΥΚΙΜΜΗ · ΚΕΡΚΥΡΑ</span>
+    </a>
+
+    <div class="db-nav-editorial__right">
+      <a href="#krathsh" class="db-nav-editorial__contact">ΚΡΑΤΗΣΗ</a>
+      <div class="db-nav-editorial__langpick">
+        <button type="button" class="db-nav-editorial__langtrigger" data-langtrigger aria-haspopup="true" aria-expanded="false">
+          <span data-langcurrent>EL</span> <span aria-hidden="true">·</span>
+        </button>
+        <ul class="db-nav-editorial__langmenu" data-langmenu hidden>
+          <li><button type="button" class="is-active" data-lang="el">EL</button></li>
+          <li><button type="button" data-lang="en">EN</button></li>
+          <li><button type="button" data-lang="de">DE</button></li>
+          <li><button type="button" data-lang="fr">FR</button></li>
+          <li><button type="button" data-lang="it">IT</button></li>
+          <li><button type="button" data-lang="es">ES</button></li>
+          <li><button type="button" data-lang="nl">NL</button></li>
+          <li><button type="button" data-lang="ru">RU</button></li>
+          <li><button type="button" data-lang="zh">ZH</button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div id="nav-menu" class="db-nav-editorial__overlay" aria-hidden="true">
+  <div class="db-nav-editorial__overlay-media" aria-hidden="true"></div>
+  <div class="db-nav-editorial__overlay-inner">
+    <div class="db-nav-editorial__overlay-top">
+      <span class="db-nav-editorial__overlay-word">ΒΙΛΑ ΛΕΥΚΗ</span>
+      <button type="button" class="db-nav-editorial__close" data-fx-close>
+        <span>ΚΛΕΙΣΕ</span> <span aria-hidden="true">✕</span>
+      </button>
+    </div>
+
+    <nav class="db-nav-editorial__list" aria-label="Κύριο μενού">
+      <a class="db-nav-editorial__item" href="#spaces" data-fx-target="navitem" data-fx-navlink><span class="db-nav-editorial__num">01</span>ΟΙ ΧΩΡΟΙ</a>
+      <a class="db-nav-editorial__item" href="#amenities" data-fx-target="navitem" data-fx-navlink><span class="db-nav-editorial__num">02</span>ΠΑΡΟΧΕΣ</a>
+      <a class="db-nav-editorial__item" href="#reviews" data-fx-target="navitem" data-fx-navlink><span class="db-nav-editorial__num">03</span>ΚΡΙΤΙΚΕΣ</a>
+      <a class="db-nav-editorial__item" href="#faq" data-fx-target="navitem" data-fx-navlink><span class="db-nav-editorial__num">04</span>ΕΡΩΤΗΣΕΙΣ</a>
+      <a class="db-nav-editorial__item" href="#krathsh" data-fx-target="navitem" data-fx-navlink><span class="db-nav-editorial__num">05</span>ΚΡΑΤΗΣΗ</a>
+    </nav>
+
+    <div class="db-nav-editorial__overlay-bottom" data-fx-target="navitem">
+      <div class="db-nav-editorial__overlay-langs" aria-label="Γλώσσα">
+        <button type="button" class="is-active" data-lang="el">EL</button>
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="de">DE</button>
+        <button type="button" data-lang="fr">FR</button>
+        <button type="button" data-lang="it">IT</button>
+        <button type="button" data-lang="es">ES</button>
+        <button type="button" data-lang="nl">NL</button>
+        <button type="button" data-lang="ru">RU</button>
+        <button type="button" data-lang="zh">ZH</button>
+      </div>
+      <a class="db-nav-editorial__overlay-contact" href="mailto:stay@lefki-corfu.example">stay@lefki-corfu.example</a>
+    </div>
+  </div>
+</div>
+
+<section class="db-hero-cinematic px-grain px-bleed" data-spacing="xl" id="top" data-fx-init="fx-06 fx-04" data-screen-label="Hero">
+  <div class="db-hero-cinematic__media" data-fx-target="kenburns" role="img" aria-label="Ελαιώνας και αλυκές Λευκίμμης στο πρωινό φως, θέα προς το Ιόνιο"></div>
+  <div class="db-hero-cinematic__scrim" aria-hidden="true"></div>
+  <div class="db-hero-cinematic__content">
+    <p class="db-hero-cinematic__eyebrow">ΛΕΥΚΙΜΜΗ · ΝΟΤΙΑ ΚΕΡΚΥΡΑ</p>
+    <h1 class="db-hero-cinematic__title" data-fx-target="split">ΦΩΣ ΚΑΙ ΑΛΑΤΙ</h1>
+    <p class="db-hero-cinematic__lede">Μια πέτρινη βίλα ανάμεσα στις αλυκές και τον ελαιώνα, εκεί που η Κέρκυρα τελειώνει και αρχίζει η ησυχία.</p>
+    <a class="db-hero-cinematic__cta" href="#spaces">Δες τη διαμονή →</a>
+  </div>
+</section>
+
+<section class="db-tension-statement" data-spacing="xl" data-fx-init="fx-03" data-fx-distance="100" data-screen-label="Tension">
+  <div>
+    <span class="db-tension-statement__mark">ΗΣΥΧΙΑ, ΣΚΟΠΙΜΑ</span>
+    <p class="db-tension-statement__line" data-fx-target="statement">Εδώ, ο πιο δυνατός ήχος είναι ο άνεμος μέσα στις καλαμιές.</p>
+  </div>
+</section>
+
+<section class="db-manifesto" data-spacing="s" data-fx-init="fx-01 fx-04" data-screen-label="Manifesto">
+  <div class="db-manifesto__grid">
+    <div class="db-manifesto__body" data-fx-target="reveal">
+      <p>Δεν νοικιάζουμε ένα σπίτι. Ανοίγουμε έναν τόπο που η οικογένεια κρατά ζωντανό εδώ και τέσσερις γενιές.</p>
+      <p>Η πέτρα, το ξύλο, το αλάτι, το λάδι — όλα εδώ γεννιούνται. Δεν φέραμε τίποτα που να μην ανήκει σ' αυτό το χώμα.</p>
+      <p>Μένεις λίγες μέρες και φεύγεις με τον ρυθμό ενός τόπου που δεν βιάζεται να σου μιλήσει.</p>
+    </div>
+    <aside class="db-manifesto__quote">
+      <blockquote data-fx-target="split">Ο τόπος δεν σε φιλοξενεί. Σε θυμάται.</blockquote>
+      <cite>ΟΙΚΟΓΕΝΕΙΑ ΛΕΥΚΗΣ · ΑΠΟ ΤΟ 1908</cite>
+    </aside>
+  </div>
+</section>
+
+<section class="db-editorial-split" data-spacing="m" id="spaces" data-screen-label="Editorial">
+
+  <div class="db-editorial-split__row" data-fx-init="fx-02 fx-01">
+    <figure class="db-editorial-split__media">
+      <div class="db-editorial-split__media-layer" data-fx-target="parallax" role="img" aria-label="Αλυκές και ελαιώνας στη Λευκίμμη"></div>
+    </figure>
+    <div class="db-editorial-split__text" data-fx-target="reveal">
+      <p class="db-editorial-split__eyebrow">01 · Ο ΤΟΠΟΣ</p>
+      <h3 class="db-editorial-split__title">Ανάμεσα σε αλάτι και ελιά</h3>
+      <p class="db-editorial-split__body">Οι αλυκές της Λευκίμμης απλώνονται λίγα μέτρα πιο πέρα· ο ελαιώνας φτάνει ως την πόρτα. Το πρωί περπατάς ανάμεσά τους πριν τον καφέ.</p>
+    </div>
+  </div>
+
+  <div class="db-editorial-split__row db-editorial-split__row--reverse" data-fx-init="fx-02 fx-01">
+    <figure class="db-editorial-split__media">
+      <div class="db-editorial-split__media-layer" data-fx-target="parallax" role="img" aria-label="Στρωμένο τραπέζι κάτω από κληματαριά"></div>
+    </figure>
+    <div class="db-editorial-split__text" data-fx-target="reveal">
+      <p class="db-editorial-split__eyebrow">02 · ΤΟ ΤΡΑΠΕΖΙ</p>
+      <h3 class="db-editorial-split__title">Ό,τι μαζεύεται, σερβίρεται</h3>
+      <p class="db-editorial-split__body">Λάδι της χρονιάς, ψάρι απ' το κανάλι, χόρτα της πλαγιάς. Το δείπνο δεν είναι υπηρεσία· είναι μέρος της διαμονής.</p>
+    </div>
+  </div>
+
+  <div class="db-editorial-split__row" data-fx-init="fx-02 fx-01">
+    <figure class="db-editorial-split__media">
+      <div class="db-editorial-split__media-layer" data-fx-target="parallax" role="img" aria-label="Πέτρινη βίλα με αυλή και κυπαρίσσια"></div>
+    </figure>
+    <div class="db-editorial-split__text" data-fx-target="reveal">
+      <p class="db-editorial-split__eyebrow">03 · Η ΒΙΛΑ</p>
+      <h3 class="db-editorial-split__title">Μία κατοικία, όχι δέκα δωμάτια</h3>
+      <p class="db-editorial-split__body">Κρατήσαμε ένα σπίτι, ολόκληρο δικό σας. Τέσσερις κρεβατοκάμαρες, μια αυλή με κυπαρίσσια, κι η θάλασσα δέκα λεπτά με τα πόδια.</p>
+    </div>
+  </div>
+
+</section>
+
+<section class="db-amenities-quiet" data-spacing="m" id="amenities" data-screen-label="Amenities">
+  <div class="db-amenities-quiet__inner">
+    <div class="db-amenities-quiet__head">
+      <p class="db-amenities-quiet__eyebrow"><span></span>ΠΑΡΟΧΕΣ<span></span></p>
+      <h2 class="db-amenities-quiet__title">Όσα χρειάζεστε, τίποτα περιττό</h2>
+    </div>
+
+    <div class="db-amenities-quiet__grid" data-fx-init="fx-07">
+
+      <div class="db-amenities-quiet__item" data-fx-target="item">
+        <svg class="db-amenities-quiet__icon" viewBox="0 0 24 24"><path d="M3 14c1.5 0 1.5 1.5 3 1.5S10.5 14 12 14s1.5 1.5 3 1.5S19.5 14 21 14"/><path d="M3 18c1.5 0 1.5 1.5 3 1.5S10.5 18 12 18s1.5 1.5 3 1.5S19.5 18 21 18"/><path d="M8 14V6a2 2 0 0 1 4 0"/></svg>
+        <span class="db-amenities-quiet__label">Ιδιωτική πισίνα</span>
+      </div>
+
+      <div class="db-amenities-quiet__item" data-fx-target="item">
+        <svg class="db-amenities-quiet__icon" viewBox="0 0 24 24"><path d="M3 18v-3a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3"/><path d="M5 13V8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v5"/><path d="M3 18v2M21 18v2"/></svg>
+        <span class="db-amenities-quiet__label">4 υπνοδωμάτια</span>
+      </div>
+
+      <div class="db-amenities-quiet__item" data-fx-target="item">
+        <svg class="db-amenities-quiet__icon" viewBox="0 0 24 24"><path d="M12 3v6M5 9h14M6 9c0 5 2.5 9 6 9s6-4 6-9"/></svg>
+        <span class="db-amenities-quiet__label">Πλήρης κουζίνα</span>
+      </div>
+
+      <div class="db-amenities-quiet__item" data-fx-target="item">
+        <svg class="db-amenities-quiet__icon" viewBox="0 0 24 24"><path d="M9.5 4 8 6M14.5 4 13 6M4 11h16M5 11v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>
+        <span class="db-amenities-quiet__label">Κλιματισμός</span>
+      </div>
+
+      <div class="db-amenities-quiet__item" data-fx-target="item">
+        <svg class="db-amenities-quiet__icon" viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14 0"/><path d="M8.5 16.05a6 6 0 0 1 7 0"/><path d="M12 19.5h.01"/></svg>
+        <span class="db-amenities-quiet__label">Wi-Fi</span>
+      </div>
+
+      <div class="db-amenities-quiet__item" data-fx-target="item">
+        <svg class="db-amenities-quiet__icon" viewBox="0 0 24 24"><path d="M5 13l1.6-4.5A2 2 0 0 1 8.5 7h7a2 2 0 0 1 1.9 1.5L19 13"/><path d="M4 13h16v4H4z"/><circle cx="7.5" cy="17.5" r="1.2"/><circle cx="16.5" cy="17.5" r="1.2"/></svg>
+        <span class="db-amenities-quiet__label">Χώρος στάθμευσης</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="db-proof-strip" data-spacing="s" data-screen-label="Proof">
+  <div class="db-proof-strip__stats" data-fx-init="fx-08">
+    <div>
+      <span class="db-proof-strip__number" data-fx-target="counter" data-fx-to="1908">0</span>
+      <span class="db-proof-strip__label">ΑΠΟ ΤΟ ΕΤΟΣ</span>
+    </div>
+    <div>
+      <span class="db-proof-strip__number" data-fx-target="counter" data-fx-to="4">0</span>
+      <span class="db-proof-strip__label">ΚΡΕΒΑΤΟΚΑΜΑΡΕΣ</span>
+    </div>
+    <div>
+      <span class="db-proof-strip__number" data-fx-target="counter" data-fx-to="600">0</span>
+      <span class="db-proof-strip__label">ΕΛΑΙΟΔΕΝΤΡΑ</span>
+    </div>
+    <div>
+      <span class="db-proof-strip__number" data-fx-target="counter" data-fx-to="9.8">0</span>
+      <span class="db-proof-strip__label">ΜΕΣΗ ΚΡΙΤΙΚΗ</span>
+    </div>
+  </div>
+</section>
+
+<section class="db-reviews-carousel" data-spacing="m" id="reviews" data-fx-init="fx-02" data-fx-amount="10" data-screen-label="Reviews">
+  <div class="db-reviews-carousel__media" data-fx-target="parallax"></div>
+  <div class="db-reviews-carousel__shade"></div>
+
+  <div class="db-reviews-carousel__inner" data-fx-init="fx-15">
+    <div data-fx-target="reviews-data" style="display:none"></div>
+
+    <div class="db-reviews-carousel__head">
+      <p class="db-reviews-carousel__eyebrow"><span></span>ΟΙ ΦΙΛΟΞΕΝΟΥΜΕΝΟΙ ΜΑΣ</p>
+      <h2 class="db-reviews-carousel__title">Λόγια από όσους έμειναν</h2>
+    </div>
+
+    <div class="db-reviews-carousel__cardwrap">
+      <button type="button" class="db-reviews-carousel__arrow" data-fx-prev aria-label="Προηγούμενη κριτική">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 5l-7 7 7 7"/></svg>
+      </button>
+
+      <div class="db-reviews-carousel__card">
+        <div class="db-reviews-carousel__stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+        </div>
+        <blockquote class="db-reviews-carousel__quote" data-fx-target="quote">“Φύγαμε πιο αργοί απ' όσο ήρθαμε. Αυτό ζητούσαμε χωρίς να το ξέρουμε.”</blockquote>
+        <p class="db-reviews-carousel__name" data-fx-target="name">Άννα &amp; Μάρκους</p>
+        <p class="db-reviews-carousel__loc" data-fx-target="loc">ΓΕΡΜΑΝΙΑ</p>
+      </div>
+
+      <button type="button" class="db-reviews-carousel__arrow" data-fx-next aria-label="Επόμενη κριτική">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="db-faq-cards" data-spacing="m" id="faq" data-screen-label="FAQ">
+  <div class="db-faq-cards__head">
+    <div>
+      <p class="db-faq-cards__eyebrow"><span></span>ΚΑΛΟ ΝΑ ΞΕΡΕΤΕ</p>
+      <h2 class="db-faq-cards__title">Πριν κλείσεις</h2>
+    </div>
+    <p class="db-faq-cards__lead">Όσα ρωτούν συνήθως, πριν πουν το ναι.</p>
+  </div>
+
+  <div class="db-faq-cards__cols" data-fx-init="fx-14">
+    <div class="db-faq-cards__col">
+      <div class="db-faq-cards__item" data-fx-target="card">
+        <button class="db-faq-cards__q" data-fx-q>
+          <span class="db-faq-cards__q-text">Ποια είναι η ελάχιστη διαμονή;</span>
+          <span class="db-faq-cards__icon" data-fx-icon aria-hidden="true"><span></span><span></span></span>
+        </button>
+        <div class="db-faq-cards__a" data-fx-a>
+          <p>Τρεις νύχτες την υψηλή περίοδο, δύο την υπόλοιπη χρονιά — όσο χρειάζεται για ν' αλλάξεις ρυθμό.</p>
+        </div>
+      </div>
+      <div class="db-faq-cards__item" data-fx-target="card">
+        <button class="db-faq-cards__q" data-fx-q>
+          <span class="db-faq-cards__q-text">Νοικιάζεται ολόκληρη η βίλα;</span>
+          <span class="db-faq-cards__icon" data-fx-icon aria-hidden="true"><span></span><span></span></span>
+        </button>
+        <div class="db-faq-cards__a" data-fx-a>
+          <p>Ναι. Δεν μοιράζεστε τον χώρο με κανέναν· το σπίτι, η αυλή κι ο ελαιώνας είναι δικά σας για όσο μένετε.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="db-faq-cards__col">
+      <div class="db-faq-cards__item" data-fx-target="card">
+        <button class="db-faq-cards__q" data-fx-q>
+          <span class="db-faq-cards__q-text">Πώς φτάνουμε;</span>
+          <span class="db-faq-cards__icon" data-fx-icon aria-hidden="true"><span></span><span></span></span>
+        </button>
+        <div class="db-faq-cards__a" data-fx-a>
+          <p>Σαράντα λεπτά από το αεροδρόμιο της Κέρκυρας, ιδιωτικός δρόμος ως την πόρτα και στεγασμένη στάθμευση.</p>
+        </div>
+      </div>
+      <div class="db-faq-cards__item" data-fx-target="card">
+        <button class="db-faq-cards__q" data-fx-q>
+          <span class="db-faq-cards__q-text">Δέχεστε κατοικίδια;</span>
+          <span class="db-faq-cards__icon" data-fx-icon aria-hidden="true"><span></span><span></span></span>
+        </button>
+        <div class="db-faq-cards__a" data-fx-a>
+          <p>Ναι, με προηγούμενη συνεννόηση — ο ελαιώνας είναι ούτως ή άλλως γεμάτος ζωή.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="db-cta-trigger" data-spacing="xl" id="krathsh" data-screen-label="CTA">
+  <p class="db-cta-trigger__eyebrow">ΟΙ ΜΕΡΕΣ ΓΕΜΙΖΟΥΝ ΝΩΡΙΣ</p>
+  <button type="button" class="db-cta-trigger__button" data-fx-init="fx-05 fx-12" data-fx-modal="#cta-modal">Κράτησε τις μέρες σου →</button>
+</section>
+
+<div class="db-cta-modal" id="cta-modal" aria-hidden="true">
+  <div class="db-cta-modal__backdrop" data-fx-target="backdrop"></div>
+  <div class="db-cta-modal__panel" data-fx-target="panel" role="dialog" aria-modal="true" aria-labelledby="cta-modal-title">
+    <button type="button" class="db-cta-modal__close" data-fx-close aria-label="Κλείσιμο">×</button>
+    <h3 class="db-cta-modal__title" id="cta-modal-title">Πες μας πότε σκέφτεσαι να έρθεις</h3>
+    <form onSubmit="{{ onSubmit }}">
+      <label class="sr-only" for="cta-name">Όνομα</label>
+      <input class="db-cta-modal__field" id="cta-name" type="text" placeholder="Όνομα" autocomplete="name">
+      <label class="sr-only" for="cta-email">Email</label>
+      <input class="db-cta-modal__field" id="cta-email" type="email" placeholder="Email" autocomplete="email">
+      <label class="sr-only" for="cta-dates">Ημερομηνίες</label>
+      <input class="db-cta-modal__field" id="cta-dates" type="text" placeholder="Ημερομηνίες (π.χ. 12–16 Ιουνίου)" autocomplete="off">
+      <button type="submit" class="db-cta-modal__submit">Αποστολή</button>
+    </form>
+  </div>
+</div>
+
+<footer class="db-footer-editorial" data-spacing="s" data-fx-init="fx-01" data-screen-label="Footer">
+  <div class="db-footer-editorial__cover" data-fx-target="reveal">
+    <p class="db-footer-editorial__wordmark">ΒΙΛΑ ΛΕΥΚΗ<span>ΛΕΥΚΙΜΜΗ · ΝΟΤΙΑ ΚΕΡΚΥΡΑ</span></p>
+    <hr class="db-footer-editorial__rule">
+
+    <div class="db-footer-editorial__body">
+      <div class="db-footer-editorial__major">
+        <p class="db-footer-editorial__epigraph">Με σεβασμό στον τόπο και στον χρόνο.</p>
+        <p class="db-footer-editorial__summary">Μια πέτρινη βίλα ανάμεσα στις αλυκές και τον ελαιώνα της Λευκίμμης, κρατημένη ζωντανή από την ίδια οικογένεια εδώ και τέσσερις γενιές. Ένα σπίτι, ολόκληρο δικό σας, για όσο μένετε.</p>
+        <div class="db-footer-editorial__social">
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M15 8.5h-2a1.5 1.5 0 0 0-1.5 1.5v11"/><path d="M9 13.5h5"/><path d="M15 3.5V8.5"/></svg>
+          </a>
+          <a href="#" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5.7 0 1-.5 1-1s-.4-.9-1-1.2c-.5-.2-.9 0-1.2.3-1-.4-1.8-1.2-2.2-2.2.3-.3.5-.7.3-1.2C11.4 9 11 8.5 10.5 8.5S9 8.8 9 9.5z" fill="currentColor" stroke="none"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="db-footer-editorial__minor">
+        <div>
+          <h4>ΣΕΛΙΔΕΣ</h4>
+          <ul>
+            <li><a href="#spaces">Οι χώροι</a></li>
+            <li><a href="#amenities">Παροχές</a></li>
+            <li><a href="#reviews">Κριτικές</a></li>
+            <li><a href="#faq">Ερωτήσεις</a></li>
+            <li><a href="#krathsh">Κράτηση</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>ΕΠΙΚΟΙΝΩΝΙΑ</h4>
+          <ul>
+            <li>Λευκίμμη, Νότια Κέρκυρα 49080</li>
+            <li><a href="mailto:stay@lefki-corfu.example">stay@lefki-corfu.example</a></li>
+            <li><a href="tel:+302662000000">+30 26620 00000</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="db-footer-editorial__bottom">
+    <span>© 2026 Βίλα Λευκή · Λευκίμμη</span>
+    <span>Όροι διαμονής · Απόρρητο</span>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    if (this._fxStarted) return;
+    this._fxStarted = true;
+
+    // Reviews carousel slide data. FX-15 reads it from the
+    // [data-fx-target="reviews-data"] node's textContent as JSON. DC
+    // templates disallow inline scripts in the body, so we inject it
+    // here. Slide 0 must match the markup's initial quote/name/loc.
+    var reviews = [
+      { quote: "Φύγαμε πιο αργοί απ' όσο ήρθαμε. Αυτό ζητούσαμε χωρίς να το ξέρουμε.", name: "Άννα & Μάρκους", loc: "ΓΕΡΜΑΝΙΑ" },
+      { quote: "Το πρωινό περπάτημα στις αλυκές έγινε συνήθεια που κρατήσαμε και πίσω στο σπίτι.", name: "Sophie & Louis", loc: "ΓΑΛΛΙΑ" },
+      { quote: "Ένα σπίτι που μυρίζει λάδι και αλάτι. Μετρούσαμε τις μέρες ανάποδα, να μη φύγουμε.", name: "Γιώργος & Ελένη", loc: "ΕΛΛΑΔΑ" }
+    ];
+    var dataEl = document.querySelector('[data-fx-target="reviews-data"]');
+    if (dataEl) dataEl.textContent = JSON.stringify(reviews);
+
+    this.initLangSwitcher();
+    this.initScrollSpy();
+
+    var load = function (src, id) {
+      return new Promise(function (res, rej) {
+        if (document.getElementById(id)) { res(); return; }
+        var s = document.createElement('script');
+        s.id = id; s.src = src; s.async = false;
+        s.onload = function () { res(); };
+        s.onerror = function () { rej(new Error('failed ' + src)); };
+        document.head.appendChild(s);
+      });
+    };
+
+    var self = this;
+    (async function () {
+      try {
+        await load('https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js', 'px-gsap');
+        await load('https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js', 'px-st');
+        await load('https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js', 'px-lenis');
+        await load('assets/fx-core.js', 'px-fxcore');
+        await load('assets/fx-catalog.js', 'px-fxcat');
+        self.activateFx();
+      } catch (e) {
+        console.warn('[villa] FX unavailable:', e && e.message);
+      }
+    })();
+  }
+
+  // Scalable language switcher (up to 9 codes). Header shows only the
+  // current code as a compact trigger + quiet dropdown; the fullscreen
+  // menu shows the full code row. Visual selection only — full i18n is
+  // out of scope. All [data-lang] controls stay in sync.
+  initLangSwitcher() {
+    var trigger = document.querySelector('[data-langtrigger]');
+    var menu = document.querySelector('[data-langmenu]');
+    var current = document.querySelector('[data-langcurrent]');
+
+    var openMenu = function (open) {
+      if (!menu || !trigger) return;
+      menu.hidden = !open;
+      trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+
+    // The template's bare `hidden` boolean attribute is stripped by the DC
+    // render, so the dropdown would show on load. Enforce the closed state
+    // here (JS now owns open/close).
+    openMenu(false);
+
+    var selectLang = function (lang) {
+      document.querySelectorAll('[data-lang]').forEach(function (b) {
+        b.classList.toggle('is-active', b.getAttribute('data-lang') === lang);
+      });
+      if (current) current.textContent = lang.toUpperCase();
+    };
+
+    document.addEventListener('click', function (e) {
+      var t = e.target.closest && e.target.closest('[data-langtrigger]');
+      if (t) { openMenu(menu && menu.hidden); return; }
+      var btn = e.target.closest && e.target.closest('[data-lang]');
+      if (btn) { selectLang(btn.getAttribute('data-lang')); openMenu(false); return; }
+      // click outside closes the dropdown
+      if (menu && !menu.hidden) openMenu(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && menu && !menu.hidden) openMenu(false);
+    });
+  }
+
+  // Scrollspy: mark the menu item of the section currently in view with
+  // aria-current="true" (drives the persistent gold underline).
+  initScrollSpy() {
+    var links = Array.prototype.slice.call(document.querySelectorAll('[data-fx-navlink]'));
+    if (!links.length || !('IntersectionObserver' in window)) return;
+    var byId = {};
+    var sections = [];
+    links.forEach(function (a) {
+      var id = (a.getAttribute('href') || '').replace('#', '');
+      var sec = id && document.getElementById(id);
+      if (sec) { byId[id] = a; sections.push(sec); }
+    });
+    var visible = {};
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { visible[en.target.id] = en.isIntersecting ? en.intersectionRatio : 0; });
+      var bestId = null, best = 0;
+      Object.keys(visible).forEach(function (id) { if (visible[id] > best) { best = visible[id]; bestId = id; } });
+      links.forEach(function (a) { a.removeAttribute('aria-current'); });
+      if (bestId && byId[bestId]) byId[bestId].setAttribute('aria-current', 'true');
+    }, { rootMargin: '-45% 0px -45% 0px', threshold: [0, 0.25, 0.5, 1] });
+    sections.forEach(function (s) { io.observe(s); });
+  }
+
+  activateFx() {
+    if (!window.PraxisFX) return;
+    // Deferred activation: promote data-fx-init -> data-fx only after the
+    // catalog is registered, so fx-core's own on-load scan never warns.
+    var nodes = document.querySelectorAll('[data-fx-init]');
+    Array.prototype.forEach.call(nodes, function (el) {
+      el.setAttribute('data-fx', el.getAttribute('data-fx-init'));
+      el.removeAttribute('data-fx-init');
+    });
+    window.PraxisFX.scanAndMount(document);
+    this.settleScroll();
+  }
+
+  // Lenis + ScrollTrigger snapshot the page height at init. If they measure
+  // before fonts/images/FX have laid the page out, the scroll limit is too
+  // short (stranding the user partway) and every trigger sits at the wrong
+  // Y. Re-measure once everything that changes layout has settled.
+  settleScroll() {
+    var lenis = window.PraxisFX.state && window.PraxisFX.state.lenis;
+    var refresh = function () {
+      if (lenis && lenis.resize) lenis.resize();
+      if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+    };
+    requestAnimationFrame(function () { requestAnimationFrame(refresh); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(refresh);
+    window.addEventListener('load', refresh);
+    setTimeout(refresh, 400);
+    setTimeout(refresh, 1200);
+  }
+
+  renderVals() {
+    return {
+      onSubmit: function (e) {
+        e.preventDefault();
+        var btn = e.target.querySelector('button[type="submit"]');
+        if (btn) { btn.textContent = 'Λάβαμε το μήνυμά σου ✓'; btn.disabled = true; }
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
