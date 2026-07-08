@@ -1,0 +1,414 @@
+/**
+ * DB-13 · NavEditorial — component layer.
+ * Fixed header (menu trigger · centered wordmark with flanking
+ * hairlines · compact language switcher + contact) and the fullscreen
+ * numbered menu overlay it opens. Ported from Villa Elysion's
+ * header/menu, since refined for solid-surface contrast, mobile
+ * density, a φ-scaled item list, and a scalable language switcher.
+ *
+ * Two token blocks: the header (`.db-nav-editorial`) and the overlay
+ * (`.db-nav-editorial__overlay`) are SIBLING elements, not nested — a
+ * custom property set on one is not inherited by the other — so each
+ * declares its own --px-nav-*/--px-nav-overlay-* tokens rather than
+ * sharing one root. Both still only ever resolve bare skin tokens
+ * through --px-* component tokens, never reference --olive-*/--sand-*/
+ * --gold-* directly in a property value.
+ */
+.db-nav-editorial {
+  --px-nav-bar-bg: var(--olive-900, #262a1c); /* solid — was translucent rgba, contrast varied by what showed through */
+  --px-nav-ink: var(--sand-100, #f4ecdd);
+  --px-nav-accent: var(--gold-500, #c99a3e);
+  --px-nav-hairline: rgba(244, 236, 221, 0.34);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--px-z-sticky, 100);
+  padding: var(--px-space-3, 1.3125rem) var(--px-space-5, 3.4375rem);
+  background: var(--px-nav-bar-bg);
+  color: var(--px-nav-ink);
+  font-family: var(--px-font-body);
+}
+
+.db-nav-editorial__bar {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: end;
+  gap: var(--px-space-3, 1.3125rem);
+  min-height: 2.9rem;
+}
+
+.db-nav-editorial__hairline {
+  position: absolute;
+  bottom: 2px;
+  height: 1px;
+  width: calc(50% - 8.25rem);
+  background: var(--px-nav-hairline);
+  z-index: 0;
+}
+.db-nav-editorial__hairline--l { left: 0; }
+.db-nav-editorial__hairline--r { right: 0; }
+
+.db-nav-editorial__left,
+.db-nav-editorial__right {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--px-space-4, 2.125rem);
+  min-width: 0;
+}
+.db-nav-editorial__right { justify-self: end; }
+
+.db-nav-editorial__trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: currentColor;
+  font-family: var(--px-font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 0.375rem 0;
+}
+
+.db-nav-editorial__burger {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 22px;
+  flex: none;
+}
+.db-nav-editorial__burger span {
+  height: 1.4px;
+  background: currentColor;
+}
+.db-nav-editorial__burger span:last-child { width: 70%; }
+
+.db-nav-editorial__word {
+  position: relative;
+  z-index: 1;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  text-decoration: none;
+  color: currentColor;
+  padding: 0 var(--px-space-3, 1.3125rem);
+}
+.db-nav-editorial__word-a {
+  font-family: var(--px-font-display);
+  font-weight: 500;
+  font-size: var(--px-type-200, 1.625rem);
+  letter-spacing: 0.3em;
+  padding-left: 0.3em;
+  line-height: 1;
+}
+.db-nav-editorial__word-b {
+  font-family: var(--px-font-body);
+  font-size: 0.68rem;
+  letter-spacing: 0.46em;
+  padding-left: 0.46em;
+  text-transform: uppercase;
+  color: var(--px-nav-accent);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.db-nav-editorial__contact {
+  text-decoration: none;
+  color: currentColor;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+@media (max-width: 1080px) {
+  .db-nav-editorial__contact { display: none; }
+}
+
+/* ── Language switcher — header: compact trigger + dropdown ────────
+   Shows only the current code. Scales to as many codes as the project
+   needs (up to 9 tested) without growing the header row — see FX-16
+   `lang-dropdown` in fx-catalog.js for the open/close behaviour. */
+.db-nav-editorial__lang {
+  position: relative;
+  flex: none;
+}
+.db-nav-editorial__lang-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: currentColor;
+  font-family: inherit;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  padding: 0.25rem 0.125rem;
+}
+.db-nav-editorial__lang-trigger svg {
+  width: 0.625rem;
+  height: 0.625rem;
+  flex: none;
+  transition: transform 0.3s var(--px-ease);
+}
+.db-nav-editorial__lang-trigger[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+.db-nav-editorial__lang-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  min-width: 3.75rem;
+  background: var(--px-nav-bar-bg);
+  border: 1px solid var(--px-nav-hairline);
+}
+.db-nav-editorial__lang-dropdown[hidden] {
+  display: none;
+}
+.db-nav-editorial__lang-dropdown button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: var(--px-nav-ink);
+  opacity: 0.7;
+  padding: 0.5rem 0.75rem;
+}
+.db-nav-editorial__lang-dropdown button:hover,
+.db-nav-editorial__lang-dropdown button:focus-visible {
+  opacity: 1;
+}
+.db-nav-editorial__lang-dropdown button.is-active {
+  opacity: 1;
+  font-weight: 600;
+  color: var(--px-nav-accent);
+}
+
+/* ── Mobile header: tightened, no stray hairlines, compact wordmark ─ */
+@media (max-width: 600px) {
+  .db-nav-editorial {
+    padding: var(--px-space-2, 0.8125rem) var(--px-space-3, 1.3125rem);
+  }
+  .db-nav-editorial__hairline {
+    display: none; /* at this width `calc(50% - 8.25rem)` goes negative and renders as a stray "_" glyph */
+  }
+  .db-nav-editorial__left,
+  .db-nav-editorial__right {
+    gap: var(--px-space-2, 0.8125rem);
+  }
+  .db-nav-editorial__word {
+    gap: 0.0625rem;
+    padding: 0 var(--px-space-2, 0.8125rem);
+  }
+  .db-nav-editorial__word-a {
+    font-size: 1.0625rem;
+    letter-spacing: 0.14em;
+    padding-left: 0.14em;
+  }
+  .db-nav-editorial__word-b {
+    font-size: 0.5rem;
+    letter-spacing: 0.22em;
+    padding-left: 0.22em;
+  }
+  .db-nav-editorial__trigger span:last-child {
+    font-size: 0.6875rem;
+  }
+}
+
+/* ── Fullscreen overlay ───────────────────────────────────────────── */
+.db-nav-editorial__overlay {
+  --px-nav-overlay-bg: var(--olive-900, #262a1c);
+  --px-nav-overlay-media-from: var(--olive-500, #5c6440);
+  --px-nav-overlay-media-to: var(--olive-900, #262a1c);
+  --px-nav-overlay-ink: var(--sand-100, #f4ecdd);
+  --px-nav-overlay-muted: var(--sand-300, #d8c9a8);
+  --px-nav-overlay-accent: var(--gold-500, #c99a3e);
+  --px-nav-overlay-rule: rgba(244, 236, 221, 0.14);
+  /* Local φ clamp for the menu list, not one of tokens/core.css's
+     named --px-type-* steps — 32px @360 / 53px @1440, tuned for a
+     5-item numbered list rather than the shared display ladder. */
+  --px-nav-item-size: clamp(2rem, 1.25rem + 3.33vw, 3.3125rem);
+
+  position: fixed;
+  inset: 0;
+  z-index: var(--px-z-modal, 1100);
+  background: var(--px-nav-overlay-bg);
+  display: none;
+  flex-direction: column;
+}
+
+.db-nav-editorial__overlay-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.4;
+  background: radial-gradient(120% 100% at 70% 20%, var(--px-nav-overlay-media-from), var(--px-nav-overlay-media-to));
+}
+
+.db-nav-editorial__overlay-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: var(--px-space-3, 1.3125rem) var(--px-space-5, 3.4375rem) var(--px-space-5, 3.4375rem);
+  color: var(--px-nav-overlay-ink);
+}
+
+.db-nav-editorial__overlay-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.db-nav-editorial__overlay-word {
+  font-family: var(--px-font-display);
+  font-weight: 500;
+  font-size: 1.3125rem;
+  letter-spacing: 0.16em;
+}
+
+.db-nav-editorial__close {
+  display: flex;
+  align-items: center;
+  gap: 0.6875rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--px-nav-overlay-muted);
+  font-family: var(--px-font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.5rem;
+}
+.db-nav-editorial__close span[aria-hidden] {
+  font-size: 1.0625rem;
+  line-height: 1;
+}
+
+.db-nav-editorial__list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 38.2vh;
+  gap: var(--px-space-5, 3.4375rem);
+  max-width: 47.5rem;
+}
+@media (max-width: 600px) {
+  .db-nav-editorial__list {
+    gap: var(--px-space-4, 2.125rem);
+  }
+}
+
+.db-nav-editorial__item {
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+  text-decoration: none;
+  color: var(--px-nav-overlay-ink);
+  font-family: var(--px-font-display);
+  font-weight: 500;
+  font-size: var(--px-nav-item-size);
+  line-height: 1.3;
+  transition: color 0.4s var(--px-ease), padding-left 0.4s var(--px-ease);
+}
+.db-nav-editorial__item:hover,
+.db-nav-editorial__item:focus-visible {
+  color: var(--px-nav-overlay-accent);
+  padding-left: 0.875rem;
+}
+.db-nav-editorial__num {
+  font-family: var(--px-font-body);
+  font-weight: 500;
+  font-size: var(--px-type-250, 2.067rem); /* one φ step down from the item text */
+  color: var(--px-nav-overlay-accent);
+}
+
+/* Gold underline: base hidden (scaleX(0)), grows from the left on
+   hover/focus AND stays grown when a page-level scrollspy marks this
+   item aria-current="true" (see notes.md). One channel: transform,
+   on the ::after only — never competes with the item's own
+   color/padding-left transition above. */
+.db-nav-editorial__label {
+  position: relative;
+}
+.db-nav-editorial__label::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.1875rem;
+  height: 2px;
+  background: var(--px-nav-overlay-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--px-ease);
+}
+.db-nav-editorial__item:hover .db-nav-editorial__label::after,
+.db-nav-editorial__item:focus-visible .db-nav-editorial__label::after,
+.db-nav-editorial__item[aria-current="true"] .db-nav-editorial__label::after {
+  transform: scaleX(1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .db-nav-editorial__label::after {
+    transform: scaleX(1);
+    transition: none;
+  }
+}
+
+.db-nav-editorial__overlay-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: var(--px-space-3, 1.3125rem);
+  border-top: 1px solid var(--px-nav-overlay-rule);
+  padding-top: var(--px-space-3, 1.3125rem);
+}
+
+/* Full language row — every code, above the contact line. Wraps
+   instead of overflowing at any width, including 9 codes @360px. */
+.db-nav-editorial__overlay-langs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.db-nav-editorial__overlay-langs button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--px-nav-overlay-ink);
+  opacity: 0.6;
+  padding: 0.25rem 0.125rem;
+}
+.db-nav-editorial__overlay-langs button.is-active {
+  opacity: 1;
+  font-weight: 600;
+  color: var(--px-nav-overlay-accent);
+}
+
+.db-nav-editorial__overlay-contact {
+  text-decoration: none;
+  color: var(--px-nav-overlay-ink);
+  font-weight: 300;
+  font-size: clamp(0.9375rem, 1.3vw, 1.125rem);
+}

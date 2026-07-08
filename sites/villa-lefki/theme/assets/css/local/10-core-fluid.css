@@ -1,0 +1,134 @@
+/**
+ * PRAXIS-IONIAN — Core Tokens (structural, skin-agnostic)
+ * Import FIRST, before any skin-*.css. Never put colour here.
+ *
+ * This file is layer 0 (structure). tokens/skin-*.css is layer 1 (bare
+ * skin tokens: colour, font family). Each block's own style.css is
+ * layer 2 (component tokens, --px-{block}-{prop}). See README.md
+ * "Token model" for the no-leakage rule between layers.
+ */
+
+:root {
+  /* ── Golden ratio ──────────────────────────────────────────────── */
+  --phi: 1.618; /* @kind other */
+  --sqrt-phi: 1.272; /* @kind other */ /* half-step multiplier for the type scale */
+
+  /* ── φ-type-scale — FLUID, base 16px × φⁿ ────────────────────────
+     Every step is clamp(min, preferred, max) interpolated between a
+     360px and a 1440px viewport (the same two widths this system is
+     verified at — see docs/principles.md "Fluid type"). max == the
+     fixed φ-ladder value this scale always had (16/26/42/68/110 and
+     the √φ half-steps) — that ladder still holds exactly at 1440px
+     and above. min is a deliberately flatter mobile floor: body text
+     barely compresses, display text compresses hard, so nothing on a
+     360px phone is oversized. Formula: clamp(minRem, yIntersectRem +
+     slopeVw, maxRem) where slope = (max-min)/(1440-360) in px, and
+     yIntersect = min - slope*360, both converted to rem (÷16). Do not
+     hand-edit the middle term without recomputing both endpoints. */
+  --px-type-100: 1rem;                                              /* @kind other */ /* 16px flat — body (mobile floor raised 15→16, desktop 16 unchanged) */
+  --px-type-200: clamp(1.125rem, 0.9583rem + 0.7407vw, 1.625rem);   /* @kind other */ /* 18px → 26px  — lead / small display */
+  --px-type-300: clamp(1.8125rem, 1.5417rem + 1.2037vw, 2.625rem);  /* @kind other */ /* 29px → 42px  — h2 (mobile floor raised 24→29) */
+  --px-type-400: clamp(2.125rem, 1.4167rem + 3.1481vw, 4.25rem);    /* @kind other */ /* 34px → 68px  — h1 */
+  --px-type-500: clamp(2.75rem, 1.375rem + 6.1111vw, 6.875rem);     /* @kind other */ /* 44px → 110px — hero display (mobile floor lowered 48→44) */
+
+  /* Optional √φ half-steps, for when a full φ jump is too aggressive */
+  --px-type-150: clamp(1rem, 0.9167rem + 0.3704vw, 1.25rem);        /* @kind other */ /* 16px → 20px */
+  --px-type-250: clamp(1.25rem, 0.9792rem + 1.2037vw, 2.0625rem);   /* @kind other */ /* 20px → 33px */
+  --px-type-350: clamp(1.8125rem, 1.3125rem + 2.2222vw, 3.3125rem); /* @kind other */ /* 29px → 53px (mobile floor raised 27→29) */
+  --px-type-450: clamp(2.5rem, 1.5417rem + 4.2593vw, 5.375rem);     /* @kind other */ /* 40px → 86px */
+
+  /* ── Line-height ──────────────────────────────────────────────── */
+  --px-lh-display: 0.92;    /* @kind other */ /* 0.9-1.0 range - set tight, adjust per block */
+  --px-lh-body: 1.6; /* @kind other */
+  --px-measure: 65ch;       /* max-width for body copy @kind spacing */
+
+  /* ── Motion ───────────────────────────────────────────────────── */
+  --px-ease: cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */
+  --px-ease-out: cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */
+  --px-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1); /* @kind other */
+  --px-lenis-lerp: 0.085;   /* @kind other */ /* mirrored in fx-core.js - keep in sync */
+  --px-duration-sm: 0.4s; /* @kind other */
+  --px-duration-md: 0.8s; /* @kind other */
+  --px-duration-lg: 1.4s; /* @kind other */
+
+  /* ── Golden-ratio spacing scale — base 8px × φⁿ ──────────────── */
+  --px-space-1: 0.5rem;     /* 8px   */
+  --px-space-2: 0.8125rem;  /* 13px  */
+  --px-space-3: 1.3125rem;  /* 21px  */
+  --px-space-4: 2.125rem;   /* 34px  */
+  --px-space-5: 3.4375rem;  /* 55px  */
+  --px-space-6: 5.5625rem;  /* 89px  */
+  --px-space-7: 9rem;       /* 144px */
+  --px-space-8: 14.5625rem; /* 233px */
+
+  /* Named breathing-room variants — blocks read these for the
+     "dense → near-empty → full-bleed" rhythm rule (docs/principles.md) */
+  --px-breath-s: var(--px-space-4);   /* dense section  */
+  --px-breath-m: var(--px-space-6);   /* default        */
+  --px-breath-xl: var(--px-space-8);  /* near-empty / full-bleed */
+
+  /* ── φ-grid split ─────────────────────────────────────────────── */
+  --px-split-major: 61.8%; /* @kind other */
+  --px-split-minor: 38.2%; /* @kind other */
+
+  /* ── Layout ───────────────────────────────────────────────────── */
+  --px-max-w: 1440px;
+  --px-radius-sm: 2px;
+  --px-radius-md: 4px;
+
+  /* ── Grain overlay (texture, not colour — skin sets the tint) ─── */
+  --px-grain-opacity: 0.035; /* @kind other */
+
+  /* ── Z-index scale ────────────────────────────────────────────── */
+  --px-z-base: 0; /* @kind other */
+  --px-z-raised: 10; /* @kind other */
+  --px-z-sticky: 100; /* @kind other */
+  --px-z-overlay: 1000; /* @kind other */
+  --px-z-modal: 1100; /* @kind other */
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Scale courage: display elements are allowed to clip at the viewport
+   edge intentionally. This utility opts an element out of horizontal
+   containment so headline overflow is a deliberate choice, not a bug. */
+.px-bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+/* Grain overlay utility — one shared noise texture, tinted by the skin's
+   --px-grain-color. Apply to a section that wants tactile texture. */
+.px-grain {
+  position: relative;
+}
+.px-grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: var(--px-grain-opacity);
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Visually-hidden but screen-reader-accessible label text. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

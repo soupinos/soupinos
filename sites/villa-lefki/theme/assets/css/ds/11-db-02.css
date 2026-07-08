@@ -1,0 +1,76 @@
+/**
+ * DB-02 · Hero Interwoven — component layer.
+ * Headline and image occupy the same space: type sits above the media,
+ * clipped at the viewport edge on purpose (scale courage).
+ */
+.db-hero-interwoven {
+  --px-interwoven-bg: var(--sand-100, #f4ecdd);
+  --px-interwoven-media-from: var(--olive-500, #5c6440);
+  --px-interwoven-media-to: var(--olive-900, #262a1c);
+  --px-interwoven-ink: var(--olive-900, #262a1c);
+  --px-interwoven-title-ink: var(--sand-100, #f4ecdd);
+  --px-interwoven-accent: var(--gold-500, #c99a3e);
+  --px-interwoven-pad: var(--px-breath-xl, 14.5625rem);
+
+  position: relative;
+  background: var(--px-interwoven-bg);
+  color: var(--px-interwoven-ink);
+  overflow: clip;
+  min-height: 100vh;
+  display: grid;
+}
+
+.db-hero-interwoven[data-spacing='s'] { min-height: 60vh; }
+.db-hero-interwoven[data-spacing='m'] { min-height: 80vh; }
+.db-hero-interwoven[data-spacing='xl'] { min-height: 100vh; }
+
+.db-hero-interwoven__media {
+  position: absolute;
+  inset: 0 0 0 var(--px-split-minor, 38.2%);
+  background: radial-gradient(140% 120% at 70% 30%, var(--px-interwoven-media-from), var(--px-interwoven-media-to));
+}
+
+.db-hero-interwoven__title {
+  position: relative;
+  z-index: var(--px-z-raised, 10);
+  align-self: end;
+  font-family: var(--px-font-display);
+  font-weight: 500;
+  font-size: var(--px-type-500, 6.875rem); /* token is fluid — no local clamp needed, see tokens/core.css */
+  line-height: var(--px-lh-display, 0.92);
+  margin: 0;
+  padding: var(--px-interwoven-pad) var(--px-space-5, 3.4375rem) var(--px-space-6, 5.5625rem);
+  max-width: 90vw;
+  color: var(--px-interwoven-ink);
+  mix-blend-mode: normal;
+}
+
+/* The half of the headline that overlaps the media panel reads in the
+   light title colour so it stays legible over the darker photo. */
+.db-hero-interwoven__title span {
+  color: var(--px-interwoven-title-ink);
+  -webkit-text-stroke: 1px var(--px-interwoven-ink);
+}
+
+.db-hero-interwoven__caption {
+  position: relative;
+  z-index: var(--px-z-raised, 10);
+  align-self: start;
+  justify-self: end;
+  max-width: 28ch;
+  font-family: var(--px-font-body);
+  font-size: var(--px-type-100, 1rem);
+  line-height: var(--px-lh-body, 1.6);
+  padding: var(--px-space-5, 3.4375rem);
+  color: var(--px-interwoven-title-ink);
+}
+
+.db-hero-interwoven__caption strong {
+  color: var(--px-interwoven-accent);
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-family: var(--px-font-body);
+  font-size: 0.8rem;
+  margin-bottom: var(--px-space-2, 0.8125rem);
+}

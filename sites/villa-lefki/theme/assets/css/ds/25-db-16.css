@@ -1,0 +1,106 @@
+/**
+ * DB-16 · AmenitiesQuiet — component layer.
+ * Restrained icon + label grid with hairline separators. Ported from
+ * Villa Elysion's amenities section. Icons are the approved exception
+ * to this library's icon-restraint DNA rule — see docs/principles.md
+ * "Icon restraint" and this block's notes.md.
+ */
+.db-amenities-quiet {
+  --px-amenq-bg: var(--sand-100, #f4ecdd);
+  --px-amenq-ink: var(--olive-900, #262a1c);
+  --px-amenq-muted: var(--sand-700, #6b5c46);
+  --px-amenq-accent: var(--gold-700, #7a5614);
+  --px-amenq-rule: var(--line, rgba(38, 42, 28, 0.14));
+  --px-amenq-pad: var(--px-breath-m, 5.5625rem);
+
+  background: var(--px-amenq-bg);
+  color: var(--px-amenq-ink);
+  padding: var(--px-amenq-pad) var(--px-space-5, 3.4375rem);
+}
+
+.db-amenities-quiet__inner {
+  max-width: var(--px-max-w, 1440px);
+  margin: 0 auto;
+}
+
+.db-amenities-quiet__head {
+  text-align: center;
+  margin: 0 0 var(--px-space-6, 5.5625rem);
+}
+.db-amenities-quiet__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8125rem;
+  margin: 0 0 var(--px-space-2, 0.8125rem);
+  font-family: var(--px-font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--px-amenq-muted);
+}
+.db-amenities-quiet__eyebrow span {
+  width: 1.5rem;
+  height: 1px;
+  background: var(--px-amenq-accent);
+}
+.db-amenities-quiet__title {
+  margin: 0;
+  font-family: var(--px-font-display);
+  font-weight: 500;
+  font-size: var(--px-type-300, 2.625rem);
+  line-height: var(--px-lh-display, 0.92);
+}
+
+.db-amenities-quiet__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--px-amenq-rule);
+}
+
+.db-amenities-quiet__item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--px-space-3, 1.3125rem);
+  padding: var(--px-space-5, 3.4375rem) var(--px-space-4, 2.125rem);
+  border-bottom: 1px solid var(--px-amenq-rule);
+  border-right: 1px solid var(--px-amenq-rule);
+}
+.db-amenities-quiet__item:nth-child(3n) {
+  border-right: none;
+}
+
+.db-amenities-quiet__icon {
+  width: 1.875rem;
+  height: 1.875rem;
+  stroke: var(--px-amenq-accent);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.db-amenities-quiet__label {
+  font-family: var(--px-font-display);
+  font-weight: 500;
+  font-size: var(--px-type-200, 1.625rem);
+  line-height: 1.14;
+  color: var(--px-amenq-ink);
+}
+
+@media (max-width: 720px) {
+  .db-amenities-quiet__grid { grid-template-columns: 1fr 1fr; }
+  .db-amenities-quiet__item:nth-child(3n) { border-right: 1px solid var(--px-amenq-rule); }
+  .db-amenities-quiet__item:nth-child(2n) { border-right: none; }
+}
+@media (max-width: 430px) {
+  .db-amenities-quiet__grid { grid-template-columns: 1fr; }
+  .db-amenities-quiet__item {
+    flex-direction: row;
+    align-items: center;
+    border-right: none;
+    padding: var(--px-space-4, 2.125rem);
+  }
+}

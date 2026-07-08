@@ -1,0 +1,226 @@
+/**
+ * DB-15 · ReviewsCarousel — component layer.
+ * Full-bleed photo, editorial title top-left, dark quote card
+ * overlapping the photo at the bottom, prev/next arrows. Ported from
+ * Villa Elysion's reviews section.
+ */
+.db-reviews-carousel {
+  --px-revcar-bg: var(--olive-900, #262a1c);
+  --px-revcar-media-from: var(--olive-500, #5c6440);
+  --px-revcar-media-to: var(--olive-900, #262a1c);
+  --px-revcar-ink: var(--sand-100, #f4ecdd);
+  --px-revcar-accent: var(--gold-400, #e0b45c); /* AA fix: gold-500 measured 4.08:1 on this card's olive-700 bg, fails 4.5:1 */
+  --px-revcar-card-bg: var(--olive-700, #3c4229);
+  --px-revcar-card-rule: rgba(244, 236, 221, 0.22);
+  --px-revcar-pad: var(--px-breath-m, 5.5625rem);
+
+  position: relative;
+  overflow: clip;
+  background: var(--px-revcar-bg);
+  min-height: 38rem;
+}
+
+.db-reviews-carousel__media {
+  position: absolute;
+  inset: -8% 0;
+  z-index: 0;
+  background: radial-gradient(120% 100% at 60% 30%, var(--px-revcar-media-from), var(--px-revcar-media-to));
+}
+
+.db-reviews-carousel__shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(14, 24, 18, 0.78) 0%, rgba(14, 24, 18, 0.4) 46%, rgba(14, 24, 18, 0.55) 100%),
+    linear-gradient(180deg, rgba(14, 24, 18, 0.15) 0%, rgba(14, 24, 18, 0) 40%, rgba(14, 24, 18, 0.62) 100%);
+}
+
+.db-reviews-carousel__inner {
+  position: relative;
+  z-index: 2;
+  max-width: 70rem;
+  margin: 0 auto;
+  min-height: 38rem;
+  padding: var(--px-revcar-pad) var(--px-space-5, 3.4375rem);
+}
+
+.db-reviews-carousel__head {
+  max-width: 13ch;
+}
+.db-reviews-carousel__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.8125rem;
+  margin: 0 0 var(--px-space-3, 1.3125rem);
+  font-family: var(--px-font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--px-revcar-accent);
+}
+.db-reviews-carousel__eyebrow span {
+  width: 1.5rem;
+  height: 1px;
+  background: var(--px-revcar-accent);
+}
+.db-reviews-carousel__title {
+  margin: 0;
+  font-family: var(--px-font-display);
+  font-weight: 500;
+  font-size: var(--px-type-350, 3.34rem);
+  line-height: 1.08;
+  color: var(--px-revcar-ink);
+}
+
+/* Base (tablet-safe default, ~480–1024px): the pre-φ-split absolute
+   overlay, arrows flanking the card in flex flow. Overridden below at
+   the two named breakpoints — ≤480px stacks everything in normal
+   flow, ≥1024px switches to the precise φ split. */
+.db-reviews-carousel__cardwrap {
+  position: absolute;
+  left: var(--px-space-5, 3.4375rem);
+  right: var(--px-space-5, 3.4375rem);
+  bottom: var(--px-space-6, 5.5625rem);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: var(--px-space-2, 0.8125rem);
+}
+
+.db-reviews-carousel__arrow {
+  flex: none;
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid rgba(237, 231, 216, 0.4);
+  background: rgba(20, 32, 25, 0.35);
+  backdrop-filter: blur(4px);
+  color: var(--px-revcar-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.4s var(--px-ease), border-color 0.4s var(--px-ease), color 0.4s var(--px-ease);
+}
+.db-reviews-carousel__arrow:hover,
+.db-reviews-carousel__arrow:focus-visible {
+  background: var(--px-revcar-accent);
+  border-color: var(--px-revcar-accent);
+  color: var(--px-revcar-bg);
+}
+
+.db-reviews-carousel__card {
+  flex: 1 1 37.5rem;
+  max-width: 100%;
+  min-height: 17rem;
+  background: var(--px-revcar-card-bg);
+  border: 1px solid var(--px-revcar-card-rule);
+  padding: var(--px-space-4, 2.125rem);
+  box-shadow: 0 40px 90px -40px rgba(0, 0, 0, 0.6);
+}
+
+/* ── ≤480px: stacked, zero overlap ─────────────────────────────────
+   eyebrow -> heading -> full-width card -> prev/next below. The photo
+   stays as a background wash but nothing sits absolutely over it. */
+@media (max-width: 480px) {
+  .db-reviews-carousel__inner {
+    padding-bottom: var(--px-space-6, 5.5625rem);
+  }
+  .db-reviews-carousel__head {
+    max-width: none;
+  }
+  .db-reviews-carousel__cardwrap {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "card card" "prev next";
+    gap: var(--px-space-3, 1.3125rem);
+    margin-top: var(--px-space-5, 3.4375rem);
+  }
+  .db-reviews-carousel__card {
+    grid-area: card;
+    flex: none;
+    width: 100%;
+  }
+  .db-reviews-carousel__arrow {
+    position: static;
+    transform: none;
+  }
+  .db-reviews-carousel__arrow--prev { grid-area: prev; justify-self: start; }
+  .db-reviews-carousel__arrow--next { grid-area: next; justify-self: end; }
+}
+
+/* ── ≥1024px: φ asymmetry ───────────────────────────────────────────
+   Full-width photo stays as-is (already absolute/full-bleed). The
+   card's OWN left edge sits at 61.8% of the section width; the head
+   (eyebrow+heading) is capped to the 38.2 side. Arrows overlap the
+   card's edges instead of flanking it in flow, so the card box itself
+   — not a wrapper that also includes an arrow — is what measures at
+   61.8%. */
+@media (min-width: 1024px) {
+  .db-reviews-carousel__head {
+    max-width: 38.2%;
+  }
+  .db-reviews-carousel__cardwrap {
+    left: 61.8%;
+    right: var(--px-space-5, 3.4375rem);
+    display: block;
+  }
+  .db-reviews-carousel__card {
+    width: 100%;
+    flex: none;
+  }
+  .db-reviews-carousel__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+  }
+  .db-reviews-carousel__arrow--prev { left: -1.5rem; }
+  .db-reviews-carousel__arrow--next { right: -1.5rem; }
+}
+
+.db-reviews-carousel__stars {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: var(--px-space-3, 1.3125rem);
+}
+.db-reviews-carousel__stars svg {
+  width: 0.9375rem;
+  height: 0.9375rem;
+  fill: var(--px-revcar-accent);
+  flex: none;
+}
+
+.db-reviews-carousel__quote {
+  margin: 0;
+  font-family: var(--px-font-display);
+  font-weight: 500;
+  font-style: italic;
+  font-size: var(--px-type-250, 2.067rem);
+  line-height: 1.32;
+  color: var(--px-revcar-ink);
+}
+
+.db-reviews-carousel__name {
+  margin: var(--px-space-3, 1.3125rem) 0 0;
+  font-family: var(--px-font-display);
+  font-weight: 500;
+  font-size: 1.1875rem;
+  color: var(--px-revcar-ink);
+}
+.db-reviews-carousel__loc {
+  margin: 0.3125rem 0 0;
+  font-family: var(--px-font-body);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--px-revcar-accent);
+  font-weight: 400;
+}
+
+@media (max-width: 860px) {
+  .db-reviews-carousel__card { flex: 1 1 auto; }
+  .db-reviews-carousel__head { max-width: 9ch; }
+}

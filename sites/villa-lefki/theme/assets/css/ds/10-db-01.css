@@ -1,0 +1,94 @@
+/**
+ * DB-01 · Hero Cinematic — component layer.
+ * Reads only --px-hero-* tokens (each resolves a bare skin token with a
+ * hard fallback). Never reference --olive-*/--sand-*/--gold-* directly.
+ */
+.db-hero-cinematic {
+  --px-hero-bg: var(--olive-900, #262a1c);
+  --px-hero-media-from: var(--olive-700, #3c4229);
+  --px-hero-media-to: var(--olive-900, #262a1c);
+  --px-hero-ink: var(--sand-100, #f4ecdd);
+  --px-hero-muted: var(--sand-300, #d8c9a8);
+  --px-hero-accent: var(--gold-500, #c99a3e);
+  --px-hero-pad-block: var(--px-breath-xl, 14.5625rem);
+  --px-hero-pad-inline: var(--px-space-5, 3.4375rem);
+
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  align-items: end;
+  background: var(--px-hero-bg);
+  color: var(--px-hero-ink);
+  overflow: clip;
+}
+
+.db-hero-cinematic[data-spacing='s'] { min-height: 70vh; }
+.db-hero-cinematic[data-spacing='m'] { min-height: 85vh; }
+.db-hero-cinematic[data-spacing='xl'] { min-height: 100vh; }
+
+.db-hero-cinematic__media {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 100% at 30% 20%, var(--px-hero-media-from), var(--px-hero-media-to));
+  will-change: transform;
+}
+
+.db-hero-cinematic__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, var(--px-hero-bg) 0%, rgba(0, 0, 0, 0) 55%);
+}
+
+.db-hero-cinematic__content {
+  position: relative;
+  z-index: var(--px-z-raised, 10);
+  width: var(--px-split-major, 61.8%);
+  max-width: 44rem;
+  padding: var(--px-hero-pad-block) var(--px-hero-pad-inline);
+}
+
+.db-hero-cinematic__eyebrow {
+  font-family: var(--px-font-body);
+  font-size: var(--px-type-100, 1rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--px-hero-accent);
+  margin: 0 0 var(--px-space-3, 1.3125rem);
+}
+
+.db-hero-cinematic__title {
+  font-family: var(--px-font-display);
+  font-weight: 500;
+  font-size: var(--px-type-500, 6.875rem); /* token is fluid — no local clamp needed, see tokens/core.css */
+  line-height: var(--px-lh-display, 0.92);
+  margin: 0 0 var(--px-space-4, 2.125rem);
+}
+
+.db-hero-cinematic__lede {
+  font-family: var(--px-font-body);
+  font-size: var(--px-type-200, 1.625rem);
+  line-height: var(--px-lh-body, 1.6);
+  color: var(--px-hero-muted);
+  max-width: 38ch;
+  margin: 0 0 var(--px-space-5, 3.4375rem);
+}
+
+.db-hero-cinematic__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--px-space-2, 0.8125rem);
+  font-family: var(--px-font-body);
+  font-weight: 600;
+  color: var(--px-hero-bg);
+  background: var(--px-hero-accent);
+  padding: var(--px-space-2, 0.8125rem) var(--px-space-4, 2.125rem);
+  border-radius: var(--px-radius-sm, 2px);
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .db-hero-cinematic__content {
+    width: 100%;
+    padding: var(--px-space-6, 5.5625rem) var(--px-space-3, 1.3125rem);
+  }
+}

@@ -1,0 +1,23 @@
+/*
+Theme Name: Villa Lefki
+Theme URI: https://lefki-corfu.example
+Author: Praxis-Ionian
+Description: WordPress translation of the Villa Lefki (Praxis-Ionian) design source. Every content item is editable via Secure Custom Fields; the visual design, layout and FX are a byte-faithful port of the frozen design — no redesign. Assembled from Design Blocks DB-01, 03, 04, 05, 07, 11, 12, 13, 14, 15, 16.
+Version: 1.0.0
+Requires at least: 6.4
+Requires PHP: 8.0
+License: GPL-2.0-or-later
+Text Domain: villa-lefki
+*/
+
+/*
+ * This file is the WordPress theme identity header only. All real styling
+ * comes from the design-system cascade enqueued in functions.php, in the
+ * exact order the source .dc.html loaded it:
+ *   1. assets/css/ds/*      — reconstructed design-system bundle
+ *                             (core tokens -> skin -> DB-01..16 block CSS)
+ *   2. assets/css/local/*   — the source's own overrides, loaded LAST so
+ *                             the fluid token retune and the DB-12..16
+ *                             retunes win (matches the .dc.html link order).
+ * Do not add rules here — it would break the frozen-design contract.
+ */

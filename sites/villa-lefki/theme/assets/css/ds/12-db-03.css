@@ -1,0 +1,45 @@
+/**
+ * DB-03 · Tension Statement — component layer.
+ * The near-empty rhythm beat: one line, pinned, scaling in on scroll.
+ */
+.db-tension-statement {
+  --px-tension-bg: var(--sand-100, #f4ecdd);
+  --px-tension-ink: var(--olive-900, #262a1c);
+  --px-tension-accent: var(--terracotta-700, #8a4a30); /* AA fix: terracotta-500 measured 3.85:1 on sand-100, fails 4.5:1 */
+  --px-tension-pad: var(--px-breath-xl, 14.5625rem);
+
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--px-tension-bg);
+  color: var(--px-tension-ink);
+  overflow: clip;
+  padding: var(--px-space-4, 2.125rem);
+}
+
+.db-tension-statement[data-spacing='s'] { min-height: 70vh; }
+.db-tension-statement[data-spacing='m'] { min-height: 85vh; }
+.db-tension-statement[data-spacing='xl'] { min-height: 100vh; }
+
+.db-tension-statement__mark {
+  display: block;
+  font-family: var(--px-font-body);
+  font-size: var(--px-type-100, 1rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--px-tension-accent);
+  text-align: center;
+  margin: 0 0 var(--px-space-4, 2.125rem);
+}
+
+.db-tension-statement__line {
+  font-family: var(--px-font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: var(--px-type-450, 5.4rem); /* token is fluid — no local clamp needed, see tokens/core.css */
+  line-height: var(--px-lh-display, 0.92);
+  text-align: center;
+  max-width: 18ch;
+  margin: 0 auto;
+}

@@ -1,0 +1,105 @@
+/**
+ * DB-10 · Map & Presence — component layer.
+ * "We are real, we are here" — location block with a cursor-reactive
+ * accent glow near the pin.
+ */
+.db-map-presence {
+  --px-map-bg: var(--olive-900, #262a1c);
+  --px-map-line: var(--line-on-dark, rgba(244, 236, 221, 0.16));
+  --px-map-ink: var(--sand-100, #f4ecdd);
+  --px-map-muted: var(--sand-300, #d8c9a8);
+  --px-map-accent: var(--gold-500, #c99a3e);
+  --px-map-pad: var(--px-breath-m, 5.5625rem);
+
+  position: relative;
+  min-height: 70vh;
+  display: grid;
+  grid-template-columns: 1fr var(--px-split-minor, 38.2%);
+  background: var(--px-map-bg);
+  color: var(--px-map-ink);
+  overflow: clip;
+}
+
+.db-map-presence__canvas {
+  position: relative;
+  background-image:
+    linear-gradient(var(--px-map-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--px-map-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.db-map-presence__canvas [data-fx-target='parallax'] {
+  position: absolute;
+  inset: -10% -10%;
+  background:
+    radial-gradient(120px 120px at 55% 45%, var(--px-map-accent) 0%, transparent 70%);
+  opacity: 0.35;
+}
+
+.db-map-presence__glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 220px;
+  margin: -110px 0 0 -110px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 154, 62, 0.35), transparent 70%);
+  pointer-events: none;
+  z-index: var(--px-z-raised, 10);
+}
+
+.db-map-presence__pin {
+  position: absolute;
+  top: 45%;
+  left: 55%;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: var(--px-map-accent);
+  box-shadow: 0 0 0 6px rgba(201, 154, 62, 0.25);
+}
+
+.db-map-presence__panel {
+  padding: var(--px-map-pad) var(--px-space-5, 3.4375rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.db-map-presence__eyebrow {
+  font-family: var(--px-font-body);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--px-map-accent);
+  margin: 0 0 var(--px-space-2, 0.8125rem);
+}
+
+.db-map-presence__title {
+  font-family: var(--px-font-display);
+  font-size: var(--px-type-300, 2.625rem);
+  line-height: var(--px-lh-display, 0.92);
+  margin: 0 0 var(--px-space-4, 2.125rem);
+}
+
+.db-map-presence__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--px-font-body);
+  font-size: 0.95rem;
+  line-height: var(--px-lh-body, 1.6);
+  color: var(--px-map-muted);
+}
+
+.db-map-presence__list li + li {
+  margin-top: var(--px-space-2, 0.8125rem);
+}
+
+@media (max-width: 900px) {
+  .db-map-presence {
+    grid-template-columns: 1fr;
+  }
+  .db-map-presence__canvas { min-height: 50vh; }
+}

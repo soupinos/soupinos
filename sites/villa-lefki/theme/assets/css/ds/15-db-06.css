@@ -1,0 +1,72 @@
+/**
+ * DB-06 · Feature Rhythm — component layer.
+ * Compact, scannable feature list — the "give the reader facts"
+ * counterpart to DB-04's "give the reader belief."
+ */
+.db-feature-rhythm {
+  --px-feature-bg: var(--olive-900, #262a1c);
+  --px-feature-ink: var(--sand-100, #f4ecdd);
+  --px-feature-muted: var(--sand-300, #d8c9a8);
+  --px-feature-accent: var(--gold-500, #c99a3e);
+  --px-feature-rule: var(--line-on-dark, rgba(244, 236, 221, 0.16));
+  --px-feature-pad: var(--px-breath-s, 2.125rem);
+
+  background: var(--px-feature-bg);
+  color: var(--px-feature-ink);
+  padding: var(--px-feature-pad) var(--px-space-5, 3.4375rem);
+}
+
+.db-feature-rhythm__list {
+  max-width: var(--px-max-w, 1440px);
+  margin: 0 auto;
+  list-style: none;
+  padding: 0;
+}
+
+.db-feature-rhythm__item {
+  display: grid;
+  grid-template-columns: 4rem 3.5rem 1fr;
+  align-items: center;
+  gap: var(--px-space-4, 2.125rem);
+  padding: var(--px-space-4, 2.125rem) 0;
+  border-top: 1px solid var(--px-feature-rule);
+}
+
+.db-feature-rhythm__item:last-child {
+  border-bottom: 1px solid var(--px-feature-rule);
+}
+
+.db-feature-rhythm__index {
+  font-family: var(--px-font-display);
+  font-size: var(--px-type-200, 1.625rem);
+  color: var(--px-feature-muted);
+}
+
+.db-feature-rhythm__swatch {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: var(--px-radius-md, 4px);
+  background: linear-gradient(135deg, var(--px-feature-accent), transparent);
+}
+
+.db-feature-rhythm__title {
+  font-family: var(--px-font-display);
+  font-size: var(--px-type-200, 1.625rem);
+  margin: 0 0 var(--px-space-1, 0.5rem);
+}
+
+.db-feature-rhythm__body {
+  font-family: var(--px-font-body);
+  font-size: 0.95rem;
+  line-height: var(--px-lh-body, 1.6);
+  color: var(--px-feature-muted);
+  max-width: 52ch;
+  margin: 0;
+}
+
+@media (max-width: 700px) {
+  .db-feature-rhythm__item {
+    grid-template-columns: 3rem 1fr;
+  }
+  .db-feature-rhythm__index { display: none; }
+}

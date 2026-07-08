@@ -1,0 +1,110 @@
+/**
+ * DB-11 · CTA Modal Trigger — component layer.
+ * A light-touch trigger keeps the ask visually quiet on the page; the
+ * conversion form lives in the modal it opens.
+ */
+.db-cta-trigger {
+  --px-cta-bg: var(--sand-100, #f4ecdd);
+  --px-cta-ink: var(--olive-900, #262a1c);
+  --px-cta-accent: var(--gold-700, #7a5614); /* AA fix: gold-500 measured 2.19:1 on sand-100, fails 4.5:1 */
+  --px-cta-pad: var(--px-breath-xl, 14.5625rem);
+
+  background: var(--px-cta-bg);
+  color: var(--px-cta-ink);
+  padding: var(--px-cta-pad) var(--px-space-5, 3.4375rem);
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.db-cta-trigger__eyebrow {
+  font-family: var(--px-font-body);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--px-cta-accent);
+  margin: 0 0 var(--px-space-3, 1.3125rem);
+}
+
+.db-cta-trigger__button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--px-space-2, 0.8125rem);
+  font-family: var(--px-font-display);
+  font-size: var(--px-type-300, 2.625rem);
+  font-style: italic;
+  background: none;
+  border: none;
+  border-bottom: 2px solid var(--px-cta-accent);
+  color: var(--px-cta-ink);
+  cursor: pointer;
+  padding: 0 0 var(--px-space-1, 0.5rem);
+}
+
+/* ── Modal ────────────────────────────────────────────────────────── */
+.db-cta-modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--px-z-modal, 1100);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: var(--px-space-4, 2.125rem);
+}
+
+.db-cta-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(38, 42, 28, 0.72);
+}
+
+.db-cta-modal__panel {
+  position: relative;
+  z-index: 1;
+  width: min(32rem, 100%);
+  background: var(--px-cta-bg);
+  color: var(--px-cta-ink);
+  border-radius: var(--px-radius-md, 4px);
+  padding: var(--px-space-6, 5.5625rem) var(--px-space-5, 3.4375rem);
+}
+
+.db-cta-modal__close {
+  position: absolute;
+  top: var(--px-space-3, 1.3125rem);
+  right: var(--px-space-3, 1.3125rem);
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--px-cta-ink);
+}
+
+.db-cta-modal__title {
+  font-family: var(--px-font-display);
+  font-size: var(--px-type-250, 2.067rem);
+  margin: 0 0 var(--px-space-3, 1.3125rem);
+}
+
+.db-cta-modal__field {
+  display: block;
+  width: 100%;
+  font-family: var(--px-font-body);
+  font-size: 1rem;
+  padding: var(--px-space-2, 0.8125rem);
+  margin-bottom: var(--px-space-3, 1.3125rem);
+  border: 1px solid var(--line, rgba(38, 42, 28, 0.14));
+  border-radius: var(--px-radius-sm, 2px);
+  background: #fff;
+}
+
+.db-cta-modal__submit {
+  font-family: var(--px-font-body);
+  font-weight: 600;
+  background: var(--px-cta-accent);
+  color: var(--px-cta-bg);
+  border: none;
+  padding: var(--px-space-2, 0.8125rem) var(--px-space-4, 2.125rem);
+  border-radius: var(--px-radius-sm, 2px);
+  cursor: pointer;
+}
