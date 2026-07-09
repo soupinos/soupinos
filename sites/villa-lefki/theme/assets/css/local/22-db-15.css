@@ -27,6 +27,15 @@
   background: radial-gradient(120% 100% at 60% 30%, var(--px-revcar-media-from), var(--px-revcar-media-to));
 }
 
+/* FX-15 reads its slide data from this node's textContent. The markup hides
+   it inline (style="display:none"), but under prefers-reduced-motion fx-core
+   runs clearProps:'all' on every [data-fx-target] descendant, which strips
+   that inline style and would expose the raw JSON. Hide it from the
+   stylesheet too so it stays hidden regardless of clearProps. */
+.db-reviews-carousel [data-fx-target="reviews-data"] {
+  display: none !important;
+}
+
 .db-reviews-carousel__shade {
   position: absolute;
   inset: 0;
@@ -183,6 +192,7 @@
     left: 61.8%;                      /* φ intersection — card left edge */
     right: clamp(3.4375rem, 5vw, 6rem);
     bottom: var(--px-space-6, 5.5625rem);
+    display: flex;                    /* override the db-15 bundle's ≥1024 display:block */
     flex-wrap: wrap;
     align-items: flex-start;
     gap: var(--px-space-3, 1.3125rem);
@@ -191,6 +201,16 @@
     order: -1;
     flex: 1 1 100%;
     min-height: 15rem;
+  }
+  /* The db-15 bundle's ≥1024 rules position the arrows absolutely and put
+     their left/right offsets on --prev/--next modifier classes. This page's
+     markup uses data-fx-prev/data-fx-next (no modifier classes), so both
+     arrows would inherit position:absolute with no offset and stack on top
+     of the quote. Return them to flex flow so they wrap onto their own row
+     BELOW the card, per this layout's design. */
+  .db-reviews-carousel__arrow {
+    position: static;
+    transform: none;
   }
 }
 
