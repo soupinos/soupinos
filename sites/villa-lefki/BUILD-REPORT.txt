@@ -4,7 +4,7 @@ VILLA LEFKI — WORDPRESS THEME BUILD REPORT (for orchestrator / reviewer)
 Repo:        soupinos/soupinos
 Branch:      claude/villa-lefki-import
 Commit:      f10cf877870a7b57e2ef35187d79488cbfc2b0f9
-Deliverable: sites/villa-lefki/theme/   (standalone WordPress theme, 48 files, 332K)
+Deliverable: sites/villa-lefki/theme/   (standalone WordPress theme, 49 files, 332K)
 Source:      sites/villa-lefki/source/Villa Lefki.dc.html  (frozen design, unchanged)
 Status:      COMPLETE — committed + pushed. No PR opened, NOT merged to main.
 Model:       claude-opus-4-8
@@ -186,6 +186,7 @@ theme is standalone and self-contained (no dependency on that sandbox).
   functions.php                 (ordered enqueue, villa_fx_lib_urls filter,
                                  classic-editor-for-front-page)
   header.php  footer.php  front-page.php
+  index.php                     (hierarchy fallback: basic loop, same shell)
   inc/helpers.php  inc/scf-fields.php  inc/icons.php  inc/contact-form.php
   template-parts/nav.php  hero.php  tension.php  manifesto.php  editorial.php
                  amenities.php  proof.php  reviews.php  faq.php  cta.php

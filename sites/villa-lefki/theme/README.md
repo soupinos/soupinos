@@ -101,6 +101,7 @@ style.css                 theme header (no rules; cascade is in functions.php)
 functions.php             enqueues (ordered), FX config filter, classic-editor for front page
 header.php / footer.php   document shell; nav chrome lives in header
 front-page.php            assembles the 13 sections in source order
+index.php                 hierarchy fallback (basic loop, same shell) for non-front requests
 inc/helpers.php           px_gr_upper, px_field/px_opt, image + bg helpers
 inc/scf-fields.php        options page + per-section field groups (acf/init)
 inc/icons.php             pre-approved amenity + social SVG registry (icon-restraint safe)
