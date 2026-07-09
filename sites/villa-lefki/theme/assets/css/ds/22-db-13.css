@@ -9,9 +9,9 @@
  * Two token blocks: the header (`.db-nav-editorial`) and the overlay
  * (`.db-nav-editorial__overlay`) are SIBLING elements, not nested — a
  * custom property set on one is not inherited by the other — so each
- * declares its own --px-nav-*/--px-nav-overlay-* tokens rather than
+ * declares its own --px-nav-* and --px-nav-overlay-* tokens rather than
  * sharing one root. Both still only ever resolve bare skin tokens
- * through --px-* component tokens, never reference --olive-*/--sand-*/
+ * through --px-* component tokens, never reference --olive-*, --sand-*,
  * --gold-* directly in a property value.
  */
 .db-nav-editorial {

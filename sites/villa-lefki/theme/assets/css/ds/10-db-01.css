@@ -1,7 +1,7 @@
 /**
  * DB-01 · Hero Cinematic — component layer.
  * Reads only --px-hero-* tokens (each resolves a bare skin token with a
- * hard fallback). Never reference --olive-*/--sand-*/--gold-* directly.
+ * hard fallback). Never reference --olive-*, --sand-*, --gold-* directly.
  */
 .db-hero-cinematic {
   --px-hero-bg: var(--olive-900, #262a1c);
