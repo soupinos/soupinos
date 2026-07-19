@@ -10,3 +10,10 @@
 ~$*
 .DS_Store
 Thumbs.db
+
+# Node / Next.js build artifacts
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
