@@ -1,0 +1,40 @@
+:root {
+  /* FONTS — Display = GFS Didot (400/700), Text = IBM Plex Sans (400/500/600)
+     https://fonts.googleapis.com/css2?family=GFS+Didot:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap */
+  --font-display: 'GFS Didot', 'Times New Roman', Georgia, serif;
+  --font-text:    'IBM Plex Sans', system-ui, sans-serif;
+  --display-weight: 400;
+  --display-bold:   700;
+
+  /* COLOUR TOKENS (role · hex) */
+  --paper:    #ECE4D3;  /* GROUND  */
+  --paper-2:  #E0D6C0;  /* PANEL   */
+  --ink:      #16241C;  /* INK     */
+  --sea:      #0E2A22;  /* DEEP    */
+  --abyss:    #071813;  /* ABYSS   */
+  --cypress:  #2A4C3E;  /* FOREST  */
+  --olive:    #5F6238;  /* META    */
+  --stone:    #B6A588;  /* STONE   */
+  --foam:     #F3EEE1;  /* FOAM    */
+  --minium:   #F0603C;  /* ACCENT — dark grounds only, ≥24px */
+
+  --link: var(--cypress); --link-hover: var(--ink);
+
+  /* TYPE SCALE (φ 1.618, base 18px) */
+  --step--2:6.9px; --step--1:11.1px; --step-0:18px; --step-1:29.1px;
+  --step-2:47.1px; --step-3:76.3px; --step-4:123.4px; --type-ratio:1.618;
+
+  /* SPACING (Fibonacci) */
+  --space-xs:8px; --space-sm:13px; --space-md:21px; --space-lg:34px;
+  --space-xl:55px; --space-2xl:89px; --space-3xl:144px;
+
+  /* MOTION */
+  --fx-tide-dur:1400ms; --fx-tide-ease:cubic-bezier(.22,.61,.36,1);
+  --fx-drift-max:8%; --fx-threshold-dur:900ms; --fx-threshold-ease:ease-out;
+  --fx-surface-dur:180ms; --fx-chart-dur:1200ms; --fx-chart-ease:ease-in-out;
+}
+@media (prefers-reduced-motion: reduce){
+  :root{ --fx-tide-dur:200ms; --fx-tide-ease:ease; --fx-drift-max:0%;
+    --fx-threshold-dur:250ms; --fx-threshold-ease:ease;
+    --fx-surface-dur:0ms; --fx-chart-dur:0ms; }
+}
