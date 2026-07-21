@@ -5,7 +5,7 @@
 | Αρχείο | Surface | Πώς φορτώνεται |
 |---|---|---|
 | `orchestrator.md` | claude.ai Project «Praxis Orchestrator» | Χειροκίνητη επικόλληση στα Project custom instructions μετά από κάθε version bump |
-| *(μελλοντικά)* `claude-design.md` | Claude Design Project | Ομοίως |
+| `claude-design.md` | claude.ai Project «Claude Design» | Ομοίως |
 | `../../CLAUDE.md` | Claude Code (αυτό το repo) | **Αυτόματα** σε κάθε session |
 
 ## Ροή αλλαγής
