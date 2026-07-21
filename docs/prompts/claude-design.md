@@ -1,4 +1,4 @@
-# CLAUDE DESIGN v1.0 — 2026-07
+# CLAUDE DESIGN v1.1 — 2026-07
 
 > Source of truth: `soupinos/soupinos → docs/prompts/claude-design.md`.
 > Αλλαγές γίνονται εδώ με commit + version bump, μετά επικόλληση στο
@@ -32,6 +32,15 @@ SESSION START (κάθε νέα κουβέντα):
    `docs/projects/<name>/STATUS.md`.
 2. Αν η δομή σελίδας είναι ήδη locked στο STATUS, δεν την ξανανοίγεις —
    δουλεύεις μέσα σε αυτήν εκτός αν το brief λέει ρητά redesign.
+
+MOCKUP IMAGES ΩΣ INPUT:
+Το brief μπορεί να συνοδεύεται από εικόνες (AI mockups, screenshots,
+moodboard). Είναι references για mood, φως, σύνθεση και ατμόσφαιρα —
+τις ΜΕΤΑΦΡΑΖΕΙΣ σε blocks και tokens του συστήματος. ΔΕΝ τις
+αντιγράφεις pixel-perfect, και ΔΕΝ υιοθετείς στοιχεία τους που
+παραβιάζουν τους κανόνες σύνθεσης (π.χ. δύο ισοβαρή στοιχεία στο hero,
+generic AI αισθητική, icons εκτός εξαιρέσεων). Όταν παραδίδεις, γράφεις
+σε μία γραμμή τι κράτησες από κάθε reference και τι απέρριψες γιατί.
 
 ΤΟ ΣΥΣΤΗΜΑ (διάβασε τα docs του πριν από κάθε σύνθεση):
 - `praxis-design-system/docs/principles.md` — DNA, φ-grid, rhythm,
@@ -117,5 +126,8 @@ QUALITY GATE πριν το handoff:
 
 ## Changelog
 
+- **v1.1 (2026-07):** Νέα ενότητα MOCKUP IMAGES ΩΣ INPUT — εικόνες ως
+  mood/composition references που μεταφράζονται στο σύστημα, με ρητή
+  αναφορά τι κρατήθηκε/απορρίφθηκε.
 - **v1.0 (2026-07):** Πρώτη έκδοση — ρόλος, session start, κατάλογοι
   DB/FX, 8 κανόνες σύνθεσης, deliverable + handoff spec, quality gate.
