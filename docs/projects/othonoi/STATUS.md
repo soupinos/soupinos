@@ -21,7 +21,8 @@
   spacing/motion/motif/DB-00)· display blocker λύθηκε (GFS Didot),
   tokens committed & verified από Claude Code
 - [ ] Claude Code — υλοποίηση (SCF-driven WP theme)
-- [ ] DB-00 Signature Moment — ορισμός + υλοποίηση
+- [~] DB-00 Signature Moment — concept ορίστηκε: ΠΡΩΤΕΥΣ (ΟΙ 48), κεφ. 06·
+  design/FX spec + υλοποίηση εκκρεμούν
 - [ ] Elliot — τοπικό τεστ + scorecard
 - [ ] Pablo — Hetzner deploy + WP-CLI content
 - [ ] Τελικό scorecard ≥85, blockers: κανένα
@@ -51,16 +52,23 @@
   πολύ και δεν βιάζεται.»
 - **Κυρίαρχο στοιχείο hero:** το wordmark ΟΘΩΝΟΙ ως εικόνα (typography
   as image) — ένα και μόνο στοιχείο, χωρίς δεύτερο.
-- **Μοτίβο-σφραγίδα:** ΤΟ ΑΝΟΙΓΜΑ ΤΗΣ ΣΠΗΛΙΑΣ (The Cave Mouth) —
-  ασύμμετρη καμάρα/ημι-έλλειψη με off-centre apex (Ovane balance), το
-  κατώφλι σκότους/φωτός, από τη Σπηλιά της Καλυψώς (Ασπρη Αμμος).
-  Επανέρχεται 3 φορές: (1) DB-00 hero mask, (2) divider όπου light
-  section συναντά dark, (3) καμάρα στο footer.
-- **DB-00 Signature — ΚΑΤΩΦΛΙ (The Threshold):** full-viewport hero, το
-  wordmark ΟΘΩΝΟΙ μόνο στοιχείο μέσα στην καμάρα-σπηλιά· το φως ανεβαίνει
-  από τη sea-line στο κάτω άκρο μέσα από τα γράμματα. Στο πρώτο scroll η
-  καμάρα ανοίγει μία φορά (FX-03): ο επισκέπτης περνά από cave-dark σε
-  sea-light και εμφανίζεται ο χάρτης. Συμβαίνει ΑΚΡΙΒΩΣ μία φορά.
+- **Μοτίβο-σφραγίδα — ΚΑΤΩΦΛΙ (ΜΟΤΙΒΟ μόνο, ΟΧΙ DB-00):** ΤΟ ΑΝΟΙΓΜΑ
+  ΤΗΣ ΣΠΗΛΙΑΣ (The Cave Mouth) — ασύμμετρη καμάρα/ημι-έλλειψη με
+  off-centre apex (Ovane balance), το κατώφλι σκότους/φωτός, από τη
+  Σπηλιά της Καλυψώς (Ασπρη Αμμος). Πρωτοεμφανίζεται στο κεφάλαιο **03
+  ΟΜΗΡΟΣ** (ο μύθος της Καλυψώς) και επανέρχεται ως διακριτικό σχήμα
+  (divider όπου light section συναντά dark, καμάρα στο footer). Το φως
+  που ανεβαίνει από τη sea-line κρατιέται ως τυπογραφική μεταχείριση,
+  αλλά δεν είναι πλέον το DB-00.
+- **DB-00 Signature — ΠΡΩΤΕΥΣ (ΟΙ 48):** το bespoke moment του site.
+  Μνημείο του υποβρυχίου **Υ-3 «Πρωτεύς»** και του πληρώματός του (ΟΙ
+  48), στο κεφάλαιο **06**. Αντικαθιστά το αποσυρθέν αρχικό concept
+  «ΚΑΤΩΦΛΙ» ως DB-00. Ο σχεδιασμός/συμπεριφορά/FX του θα οριστούν από
+  Claude Design σε επόμενο spec (chapter 06).
+  · ⚠ Copy-truthfulness (ευθύνη Orchestrator): τα ιστορικά στοιχεία
+    (όνομα Υ-3 «Πρωτεύς», αριθμός «48», σύνδεση με Οθωνούς) να
+    επιβεβαιωθούν με πηγή πριν γίνουν on-page copy — δες κανόνα «ποτέ
+    ψεύτικες υποσχέσεις» στο CLAUDE.md.
 
 ## Skin spec — othonoi (από Claude Design, υπό blocker)
 
@@ -76,7 +84,8 @@
   ✓). φ-scale 1.618, max deviation 0.0093 (Claude Code recompute).
 - **Spacing:** Fibonacci (xs 8 → 3xl 144).
 - **Motion tokens (aliases FX-01…05):** ΠΑΛΙΡΡΟΙΑ (tide/reveal, FX-01),
-  ΡΕΥΜΑ (drift/parallax, FX-02), ΚΑΤΩΦΛΙ (threshold arch, FX-03),
+  ΡΕΥΜΑ (drift/parallax, FX-02), ΚΑΤΩΦΛΙ (threshold-arch reveal, FX-03 —
+  το motion token κρατά το όνομα· οδηγεί το ΜΟΤΙΒΟ της καμάρας, όχι DB-00),
   ΕΠΙΦΑΝΕΙΑ (surface hover, FX-04), ΧΑΡΑΞΗ (charting line-draw, FX-05).
   Το καθένα με reduced-motion fallback.
 - **Γλώσσες:** EL / EN / IT / FR.
@@ -110,6 +119,7 @@ design απόφαση.
 | 2026-07-21 | Init STATUS — pipeline test restart (ORCHESTRATOR v2.0) | Claude Code | STATUS.md δημιουργήθηκε από template· 9+1 sections, blocks TBD· verification report στο chat |
 | 2026-07-21 | Ορισμός skin othonoi (ORCHESTRATOR v2.0) | Claude Design | Skin spec παραδόθηκε· contrast/φ/spread/τόνοι/accent ΟΛΑ pass. Blocker: Cormorant χωρίς ελληνικά — εντοπίστηκε από Claude Code |
 | 2026-07-21 | Skin fix + tokens παράδοση | Claude Design → Claude Code | Display → GFS Didot. `skin-othonoi.css` committed & verified (10 χρώματα/1 accent, 7 type steps φ dev 0.0093, 7 spacing Fibonacci, 5 motion tokens + reduced-motion). ⚠ ανοιχτό: GFS Didot regular-only vs. --display-bold:700 |
+| 2026-07-21 | Corrective: DB-00 stale fix + DB→FX index (ORCHESTRATOR v2.2) | Claude Code | DB-00 ΚΑΤΩΦΛΙ → **ΠΡΩΤΕΥΣ (ΟΙ 48)**, κεφ. 06· ΚΑΤΩΦΛΙ υποβιβάστηκε σε μοτίβο (κεφ. 03 ΟΜΗΡΟΣ). Κανένα othonoi DB-00 hardcode στο praxis-design-system (verified). Πλήρης DB→FX πίνακας στο report |
 
 ## Τρέχον scorecard
 
